@@ -1,95 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - RBY</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: #fff;
-            font-family: Arial, sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - RBY</title>
+  <!-- pakai Google Fonts biar halus -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- pakai font-awesome buat icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-        .login-container {
-            background: #000;
-            padding: 40px;
-            border-radius: 6px;
-            width: 320px;
-            text-align: center;
-        }
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #fff;
+      font-family: 'Poppins', sans-serif;
+    }
 
-        .login-container h2 {
-            color: #fff;
-            margin-bottom: 20px;
-        }
+    .login-container {
+        background: #000;
+        padding: 40px 25px;   
+        border-radius: 12px;
+        width: 320px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
 
-        .login-container img {
-            width: 150px;
-            margin-bottom: 20px;
-        }
+    .login-container h2 {
+      color: #fff;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
 
-        .form-group {
-            margin-bottom: 15px;
-            position: relative;
-        }
+    .login-container img {
+      width: 200px;
+      margin-bottom: 25px;
+    }
 
-        .form-group input {
-            width: 100%;
-            padding: 10px 35px 10px 10px;
-            border: none;
-            border-radius: 5px;
-            outline: none;
-        }
+    .form-group {
+      margin-bottom: 15px;
+      position: relative;
+    }
 
-        .form-group .icon {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 16px;
-            color: #333;
-        }
+    .form-group input {
+        width: 100%;
+        padding: 12px 12px 12px 40px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        outline: none;
+        font-size: 14px;
+        box-sizing: border-box; 
+    }
 
-        .btn-login {
-            width: 100%;
-            padding: 10px;
-            background: #e6c465; /* warna emas */
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+    .form-group input::placeholder {
+      color: #aaa;
+    }
 
-        .btn-login:hover {
-            background: #d4b24d;
-        }
-    </style>
+    .form-group .icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      color: #444;
+    }
+
+    .btn-login {
+        margin-top: 15px;
+        width: 100%;
+        padding: 12px;
+        background: #F7CC51;   /* warna emas utama */
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: #000; /* teks hitam biar kontras */
+        box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    }
+
+    .btn-login:hover {
+        background: #e6b842;  /* versi lebih gelap dari #F7CC51 */
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+  </style>
 </head>
 <body>
 
-    <div class="login-container">
-        <h2>Login</h2>
-        <img src="{{ asset('images/rby-logo.png') }}" alt="RBY Logo"> <!-- Ganti dengan path logo -->
-        
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-            <div class="form-group">
-                <input type="text" name="username" placeholder="Username" required>
-                <span class="icon">👤</span>
-            </div>
+  <div class="login-container">
+    <h2>Login</h2>
+    <img src="{{ asset('images/rby-logo.png') }}" alt="RBY Logo">
+    
+    <form method="POST" action="{{ route('login') }}">
+      @csrf
+      <div class="form-group">
+        <span class="icon"><i class="fa-solid fa-user"></i></span>
+        <input type="text" name="username" placeholder="Username" required>
+      </div>
 
-            <div class="form-group">
-                <input type="password" name="password" placeholder="Password" required>
-                <span class="icon">🔒</span>
-            </div>
+      <div class="form-group">
+        <span class="icon"><i class="fa-solid fa-lock"></i></span>
+        <input type="password" name="password" placeholder="Password" required>
+      </div>
 
-            <button type="submit" class="btn-login">Masuk</button>
-        </form>
-    </div>
+      <button type="submit" class="btn-login">Masuk</button>
+    </form>
+  </div>
 
 </body>
 </html>
