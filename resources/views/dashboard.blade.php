@@ -100,15 +100,16 @@
             margin-right: 20px;
         }
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            background-color: #E0A800;
-            color: #000;
-            padding: 5px 10px;
-            border-radius: 5px;
+        /* === PERUBAHAN CSS UNTUK LOGO === */
+        .logo-container {
+            height: 50px; /* Atur tinggi container logo */
         }
+
+        .logo-container img {
+            height: 100%; /* Buat gambar mengisi tinggi container */
+            width: auto; /* Lebar akan menyesuaikan */
+        }
+        /* ================================== */
 
         .header-center {
             flex-grow: 1;
@@ -131,9 +132,8 @@
             color: #000;
         }
         
-        /* Ikon search akan muncul saat sidebar aktif (sesuai gambar) */
         .search-bar .search-icon {
-            display: none; /* Sembunyikan default */
+            display: none;
             position: absolute;
             right: 15px;
             top: 50%;
@@ -142,9 +142,8 @@
         }
         
         .sidebar.active ~ .main-content .header .search-icon {
-             display: block; /* Tampilkan jika sidebar aktif */
+             display: block;
         }
-
 
         .header-right {
             display: flex;
@@ -164,7 +163,6 @@
             transition: padding-left 0.3s ease-in-out;
         }
 
-        /* Geser konten utama saat sidebar aktif */
         .sidebar.active ~ .main-content {
             padding-left: 250px;
         }
@@ -172,7 +170,7 @@
         .content {
             padding: 20px;
             background-color: white;
-            min-height: calc(100vh - 60px); /* Konten memenuhi sisa layar */
+            min-height: calc(100vh - 60px);
         }
 
     </style>
@@ -196,8 +194,11 @@
             <header class="header">
                 <div class="header-left">
                     <button id="menu-toggle"><i class="fas fa-bars"></i></button>
-                    <div class="logo">R BY</div>
-                </div>
+                    
+                    <div class="logo-container">
+                        <img src="{{ asset('images/rby-logo2.png') }}" alt="Company Logo">
+                    </div>
+                    </div>
 
                 <div class="header-center">
                     <div class="search-bar">
