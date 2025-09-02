@@ -4,31 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
         body, html {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to top right, #f4f7f9, #e9edf2);
+            color: #333;
         }
 
-        /* --- Header --- */
+        /* --- Header (MODIFIKASI DI SINI) --- */
         .header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 80px;
-            background-color: #000;
-            color: white;
+            background-color: #000000; /* Warna header kembali hitam */
+            color: #ffffff; /* Teks dan ikon kembali putih */
             display: flex;
             align-items: center;
             padding: 0 30px;
-            border-bottom: 3px solid #007BFF;
             box-sizing: border-box;
             z-index: 1000;
+            border-bottom: 3px solid #007BFF; /* Border biru dipertahankan */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .header-left {
@@ -39,7 +46,7 @@
         #menu-toggle {
             background: none;
             border: none;
-            color: white;
+            color: #ffffff; /* Ikon menu kembali putih */
             font-size: 24px;
             cursor: pointer;
             margin-right: 20px;
@@ -60,96 +67,108 @@
             gap: 15px;
             margin-left: auto;
         }
-
-        .search-bar {
-            position: relative;
-            width: 300px;
-        }
-
-        .search-bar input {
-            width: 100%;
-            padding: 8px 35px 8px 15px;
-            border: 1px solid #555;
-            border-radius: 20px;
-        }
-
-        .search-bar .search-icon {
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #888;
-        }
-
+        
         .profile-icon {
             font-size: 22px;
             cursor: pointer;
+            color: #ffffff; /* Ikon profil kembali putih */
         }
 
         /* --- Profile Content --- */
         .profile-container {
-            margin-top: 100px;
+            margin-top: 120px;
             padding: 30px;
             display: flex;
-            gap: 30px;
+            flex-direction: column;
             align-items: center;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .profile-photo {
-            width: 180px;
-            height: 180px;
-            border: 2px solid #000;
+            width: 200px;
+            height: 200px;
+            border: 5px solid #ffffff;
+            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #fff;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background: #e0e0e0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1), 0 5px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .profile-photo:hover {
+            transform: scale(1.05);
         }
 
         .profile-photo i {
-            font-size: 100px;
-            color: #111;
+            font-size: 110px;
+            color: #555;
+        }
+        
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .profile-details {
-            flex: 1;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            margin-bottom: 30px;
         }
 
         .profile-details .field {
-            background: #fff;
-            border: 1px solid #111;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
             border-radius: 12px;
             padding: 15px 20px;
             font-size: 18px;
             font-weight: 500;
+            color: #333;
             margin-bottom: 20px;
-            box-shadow: 2px 3px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            transition: box-shadow 0.3s ease;
         }
 
+        .profile-details .field:hover {
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .edit-container {
+            width: 100%;
+            max-width: 500px;
+            text-align: right;
+        }
+        
+        /* --- Tombol (MODIFIKASI DI SINI) --- */
         .edit-btn {
             display: inline-block;
-            background-color: #E0A800;
-            color: #000;
-            border: 1px solid #000;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: bold;
+            background-color: #E0A800; /* Warna tombol kembali kuning */
+            color: #000000; /* Teks tombol kembali hitam */
+            border: none;
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-weight: 600;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(224, 168, 0, 0.4); /* Bayangan disesuaikan dengan warna kuning */
+            letter-spacing: 0.5px;
         }
 
         .edit-btn:hover {
             background-color: #ffc107;
-        }
-
-        .edit-container {
-            text-align: right;
-            margin-top: 20px;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 193, 7, 0.5);
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    
     <header class="header">
         <div class="header-left">
             <button id="menu-toggle"><i class="fas fa-bars"></i></button>
@@ -159,17 +178,12 @@
         </div>
 
         <div class="header-right">
-            <div class="search-bar">
-                <input type="text" placeholder="Telusuri">
-                <i class="fas fa-search search-icon"></i>
-            </div>
-            <a href="{{ route('profile') }}" class="profile-icon">
+            <a href="#" class="profile-icon">
                 <i class="fas fa-user"></i>
             </a>
         </div>
     </header>
 
-    <!-- Profile Content -->
     <div class="profile-container">
         <div class="profile-photo">
             <i class="fas fa-user"></i>
@@ -177,11 +191,12 @@
         <div class="profile-details">
             <div class="field">Name Surname</div>
             <div class="field">Divisi</div>
+        </div>
 
-            <div class="edit-container">
-                <button class="edit-btn">Edit Profil</button>
-            </div>
+        <div class="edit-container">
+            <button class="edit-btn">Edit Profil</button>
         </div>
     </div>
+
 </body>
 </html>
