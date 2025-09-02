@@ -75,12 +75,12 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 60px;
+            height: 80px;
             background-color: #000;
             color: white;
             display: flex;
             align-items: center;
-            padding: 0 20px;
+            padding: 0 30px;
             border-bottom: 3px solid #007BFF; /* Garis biru di bawah header */
             box-sizing: border-box;
             z-index: 1000;
@@ -100,65 +100,64 @@
             margin-right: 20px;
         }
 
-        /* === PERUBAHAN CSS UNTUK LOGO === */
+        /* === LOGO === */
         .logo-container {
-            height: 50px; /* Atur tinggi container logo */
+            height: 65px; /* Atur tinggi container logo */
         }
 
         .logo-container img {
             height: 100%; /* Buat gambar mengisi tinggi container */
             width: auto; /* Lebar akan menyesuaikan */
         }
-        /* ================================== */
 
-        .header-center {
-            flex-grow: 1;
+        /* === HEADER RIGHT === */
+        .header-right {
             display: flex;
-            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-left: auto; 
         }
 
         .search-bar {
             position: relative;
-            width: 50%;
-            max-width: 400px;
+            width: 350px; 
+            max-width: 400px; 
+            min-width: 250px;  
+            flex-shrink: 1;
+            margin-right: 25px;
         }
 
         .search-bar input {
             width: 100%;
-            padding: 8px 15px;
+            padding: 10px 40px 10px 15px;;
             border: 1px solid #555;
             border-radius: 20px;
             background-color: #fff;
             color: #000;
+            font-size: 16px;
+            box-sizing: border-box;
         }
-        
+
         .search-bar .search-icon {
-            display: none;
             position: absolute;
-            right: 15px;
+            right: 12px;
             top: 50%;
             transform: translateY(-50%);
             color: #888;
-        }
-        
-        .sidebar.active ~ .main-content .header .search-icon {
-             display: block;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
+            font-size: 18px;
+            cursor: pointer;
+            pointer-events: none;
         }
 
         .profile-icon {
-            font-size: 24px;
+            font-size: 27px;
             cursor: pointer;
         }
 
         /* --- Main Content --- */
         .main-content {
             width: 100%;
-            padding-top: 60px; /* Jarak dari header */
+            padding-top: 80px; /* Jarak dari header */
             padding-left: 0;
             transition: padding-left 0.3s ease-in-out;
         }
@@ -198,19 +197,17 @@
                     <div class="logo-container">
                         <img src="{{ asset('images/rby-logo2.png') }}" alt="Company Logo">
                     </div>
-                    </div>
+                </div>
 
-                <div class="header-center">
+                <div class="header-right">
                     <div class="search-bar">
                         <input type="text" placeholder="Telusuri">
                         <i class="fas fa-search search-icon"></i>
                     </div>
-                </div>
-
-                <div class="header-right">
-                    <div class="profile-icon">
+                    <a href="{{ route('profile') }}" class="profile-icon">
                         <i class="fas fa-user"></i>
-                    </div>
+                    </a>
+
                 </div>
             </header>
 
