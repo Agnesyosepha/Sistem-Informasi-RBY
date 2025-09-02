@@ -20,21 +20,21 @@
             color: #333;
         }
 
-        /* --- Header (MODIFIKASI DI SINI) --- */
+        /* --- Header --- */
         .header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 80px;
-            background-color: #000000; /* Warna header kembali hitam */
-            color: #ffffff; /* Teks dan ikon kembali putih */
+            background-color: #000000;
+            color: #ffffff;
             display: flex;
             align-items: center;
             padding: 0 30px;
             box-sizing: border-box;
             z-index: 1000;
-            border-bottom: 3px solid #007BFF; /* Border biru dipertahankan */
+            border-bottom: 3px solid #007BFF;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
@@ -46,7 +46,7 @@
         #menu-toggle {
             background: none;
             border: none;
-            color: #ffffff; /* Ikon menu kembali putih */
+            color: #ffffff;
             font-size: 24px;
             cursor: pointer;
             margin-right: 20px;
@@ -55,7 +55,6 @@
         .logo-container {
             height: 65px;
         }
-
         .logo-container img {
             height: 100%;
             width: auto;
@@ -71,7 +70,74 @@
         .profile-icon {
             font-size: 22px;
             cursor: pointer;
-            color: #ffffff; /* Ikon profil kembali putih */
+            color: #ffffff;
+        }
+
+        /* --- Sidebar --- */
+        .sidebar {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 250px;
+            height: calc(100% - 80px);
+            background: linear-gradient(180deg, #111, #222);
+            padding-top: 20px;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 999;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.3);
+        }
+
+        .sidebar.active {
+            transform: translateX(0);
+        }
+
+        .sidebar nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar nav ul li a {
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            color: #f1f1f1;
+            text-decoration: none;
+            margin: 8px 15px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar nav ul li a:hover,
+        .sidebar nav ul li a.active {
+            background-color: #ffc107;
+            color: #111;
+            transform: translateX(5px);
+        }
+
+        .sidebar nav ul li a i {
+            margin-right: 12px;
+            font-size: 18px;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 80px);
+            background: rgba(0,0,0,0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            z-index: 998;
+        }
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
 
         /* --- Profile Content --- */
@@ -99,16 +165,13 @@
             overflow: hidden;
             transition: transform 0.3s ease;
         }
-        
         .profile-photo:hover {
             transform: scale(1.05);
         }
-
         .profile-photo i {
             font-size: 110px;
             color: #555;
         }
-        
         .profile-photo img {
             width: 100%;
             height: 100%;
@@ -134,7 +197,6 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.06);
             transition: box-shadow 0.3s ease;
         }
-
         .profile-details .field:hover {
             box-shadow: 0 6px 20px rgba(0,0,0,0.1);
         }
@@ -145,21 +207,19 @@
             text-align: right;
         }
         
-        /* --- Tombol (MODIFIKASI DI SINI) --- */
         .edit-btn {
             display: inline-block;
-            background-color: #E0A800; /* Warna tombol kembali kuning */
-            color: #000000; /* Teks tombol kembali hitam */
+            background-color: #E0A800;
+            color: #000000;
             border: none;
             padding: 14px 30px;
             border-radius: 30px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(224, 168, 0, 0.4); /* Bayangan disesuaikan dengan warna kuning */
+            box-shadow: 0 5px 15px rgba(224, 168, 0, 0.4);
             letter-spacing: 0.5px;
         }
-
         .edit-btn:hover {
             background-color: #ffc107;
             transform: translateY(-3px);
@@ -169,6 +229,23 @@
 </head>
 <body>
     
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <nav>
+            <ul>
+                <li><a href="#" class="active"><i class="fas fa-user-cog"></i> Admin</a></li>
+                <li><a href="#"><i class="fas fa-clipboard-list"></i> Surveyor</a></li>
+                <li><a href="#"><i class="fas fa-desktop"></i> EDP</a></li>
+                <li><a href="#"><i class="fas fa-file-invoice-dollar"></i> Finance</a></li>
+                <li><a href="#"><i class="fas fa-server"></i> IT</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Header -->
     <header class="header">
         <div class="header-left">
             <button id="menu-toggle"><i class="fas fa-bars"></i></button>
@@ -184,6 +261,7 @@
         </div>
     </header>
 
+    <!-- Profile Content -->
     <div class="profile-container">
         <div class="profile-photo">
             <i class="fas fa-user"></i>
@@ -197,6 +275,24 @@
             <button class="edit-btn">Edit Profil</button>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+
+            menuToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+            });
+
+            overlay.addEventListener('click', function() {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        });
+    </script>
 
 </body>
 </html>
