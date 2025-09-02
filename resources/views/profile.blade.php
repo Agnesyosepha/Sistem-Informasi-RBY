@@ -73,6 +73,21 @@
             color: #ffffff;
         }
 
+        /* Logout Button */
+        .logout-btn {
+            background: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .logout-btn:hover {
+            background: #c82333;
+        }
+
         /* --- Sidebar --- */
         .sidebar {
             position: fixed;
@@ -82,14 +97,13 @@
             height: calc(100% - 80px);
             background: linear-gradient(180deg, #111, #222);
             padding-top: 20px;
-            transform: translateX(-100%);
-            transition: transform 0.3s ease-in-out;
+            transition: width 0.3s ease;
             z-index: 999;
             box-shadow: 2px 0 8px rgba(0,0,0,0.3);
         }
 
-        .sidebar.active {
-            transform: translateX(0);
+        .sidebar.collapsed {
+            width: 70px;
         }
 
         .sidebar nav ul {
@@ -108,6 +122,8 @@
             border-radius: 8px;
             font-weight: 500;
             transition: all 0.3s ease;
+            white-space: nowrap;
+            overflow: hidden;
         }
 
         .sidebar nav ul li a:hover,
@@ -120,24 +136,12 @@
         .sidebar nav ul li a i {
             margin-right: 12px;
             font-size: 18px;
+            min-width: 24px;
+            text-align: center;
         }
 
-        /* Overlay */
-        .overlay {
-            position: fixed;
-            top: 80px;
-            left: 0;
-            width: 100%;
-            height: calc(100% - 80px);
-            background: rgba(0,0,0,0.5);
-            opacity: 0;
-            visibility: hidden;
-            transition: 0.3s;
-            z-index: 998;
-        }
-        .overlay.active {
-            opacity: 1;
-            visibility: visible;
+        .sidebar.collapsed nav ul li a span {
+            display: none;
         }
 
         /* --- Profile Content --- */
@@ -149,6 +153,12 @@
             align-items: center;
             width: 100%;
             box-sizing: border-box;
+            transition: padding-left 0.3s ease;
+            padding-left: 250px;
+        }
+
+        .sidebar.collapsed ~ .profile-container {
+            padding-left: 70px;
         }
 
         .profile-photo {
@@ -225,6 +235,75 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(255, 193, 7, 0.5);
         }
+
+        /* --- Modal Logout --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(3px);
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .modal-box {
+            background: #fff;
+            padding: 25px 35px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 380px;
+            width: 100%;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-box h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn-yes {
+            background: #28a745;
+            border: none;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .btn-yes:hover {
+            background: #218838;
+        }
+
+        .btn-no {
+            background: #dc3545;
+            border: none;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .btn-no:hover {
+            background: #c82333;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: scale(0.9);}
+            to {opacity: 1; transform: scale(1);}
+        }
     </style>
 </head>
 <body>
@@ -233,17 +312,14 @@
     <aside class="sidebar" id="sidebar">
         <nav>
             <ul>
-                <li><a href="#" class="active"><i class="fas fa-user-cog"></i> Admin</a></li>
-                <li><a href="#"><i class="fas fa-clipboard-list"></i> Surveyor</a></li>
-                <li><a href="#"><i class="fas fa-desktop"></i> EDP</a></li>
-                <li><a href="#"><i class="fas fa-file-invoice-dollar"></i> Finance</a></li>
-                <li><a href="#"><i class="fas fa-server"></i> IT</a></li>
+                <li><a href="#" class="active"><i class="fas fa-user-cog"></i><span> Admin</span></a></li>
+                <li><a href="#"><i class="fas fa-clipboard-list"></i><span> Surveyor</span></a></li>
+                <li><a href="#"><i class="fas fa-desktop"></i><span> EDP</span></a></li>
+                <li><a href="#"><i class="fas fa-file-invoice-dollar"></i><span> Finance</span></a></li>
+                <li><a href="#"><i class="fas fa-server"></i><span> IT</span></a></li>
             </ul>
         </nav>
     </aside>
-
-    <!-- Overlay -->
-    <div class="overlay" id="overlay"></div>
 
     <!-- Header -->
     <header class="header">
@@ -258,6 +334,9 @@
             <a href="#" class="profile-icon">
                 <i class="fas fa-user"></i>
             </a>
+
+            <!-- Tombol Logout -->
+            <button type="button" class="logout-btn" id="logoutBtn">Logout</button>
         </div>
     </header>
 
@@ -276,20 +355,48 @@
         </div>
     </div>
 
+    <!-- Modal Logout -->
+    <div id="logoutModal" class="modal-overlay">
+        <div class="modal-box">
+            <h3>Apakah Anda yakin ingin keluar?</h3>
+            <div class="modal-actions">
+                <button class="btn-yes" id="confirmLogout">Ya</button>
+                <button class="btn-no" id="cancelLogout">Tidak</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form logout hidden -->
+    <form id="logoutForm" action="{{ route('logout') }}" method="POST" style="display:none;">
+        @csrf
+    </form>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const menuToggle = document.getElementById('menu-toggle');
             const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('overlay');
 
             menuToggle.addEventListener('click', function() {
-                sidebar.classList.toggle('active');
-                overlay.classList.toggle('active');
+                sidebar.classList.toggle('collapsed');
             });
 
-            overlay.addEventListener('click', function() {
-                sidebar.classList.remove('active');
-                overlay.classList.remove('active');
+            // Modal Logout
+            const logoutBtn = document.getElementById('logoutBtn');
+            const logoutModal = document.getElementById('logoutModal');
+            const cancelLogout = document.getElementById('cancelLogout');
+            const confirmLogout = document.getElementById('confirmLogout');
+            const logoutForm = document.getElementById('logoutForm');
+
+            logoutBtn.addEventListener('click', () => {
+                logoutModal.style.display = 'flex';
+            });
+
+            cancelLogout.addEventListener('click', () => {
+                logoutModal.style.display = 'none';
+            });
+
+            confirmLogout.addEventListener('click', () => {
+                logoutForm.submit();
             });
         });
     </script>

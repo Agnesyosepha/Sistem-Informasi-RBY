@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - RBY</title>
-  <!-- pakai Google Fonts biar halus -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <!-- pakai font-awesome buat icon -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
@@ -87,6 +87,23 @@
         transform: translateY(-2px);
         box-shadow: 0 6px 12px rgba(0,0,0,0.3);
     }
+
+    .register-link {
+        margin-top: 18px;
+        font-size: 14px;
+        color: #ccc;
+    }
+
+    .register-link a {
+        color: #F7CC51;
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    .register-link a:hover {
+        color: #e6b842;
+    }
   </style>
 </head>
 <body>
@@ -108,7 +125,14 @@
       </div>
 
       <button type="submit" class="btn-login">Masuk</button>
+      
+</p>
+
     </form>
+
+    <p style="margin-top:15px; color:#fff; font-size:14px;">
+    Belum punya akun?
+    <a href="{{ route('register') }}" style="color:#F7CC51; font-weight:600;">Register</a>
   </div>
 
 </body>

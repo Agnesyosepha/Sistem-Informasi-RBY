@@ -5,6 +5,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register.store');
+
 Route::get('/', function () {
     return redirect()->route('login.form');
 });
