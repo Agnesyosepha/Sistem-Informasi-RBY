@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Layout</title>
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
     <style>
@@ -31,14 +30,14 @@
             height: calc(100% - 80px);
             background: linear-gradient(180deg, #111, #222);
             padding-top: 20px;
-            transition: width 0.3s ease;
+            transition: width 0.3s ease-in-out;
             z-index: 999;
             box-shadow: 2px 0 8px rgba(0,0,0,0.3);
+            overflow-x: hidden;
         }
 
-        /* mode mini */
         .sidebar.collapsed {
-            width: 70px;
+            width: 80px;
         }
 
         .sidebar nav ul {
@@ -50,37 +49,42 @@
         .sidebar nav ul li a {
             display: flex;
             align-items: center;
-            padding: 14px 20px;
+            padding: 14px 25px;
             color: #f1f1f1;
             text-decoration: none;
             margin: 8px 10px;
             border-radius: 8px;
             font-weight: 500;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             white-space: nowrap;
-            overflow: hidden;
         }
 
         .sidebar nav ul li a:hover,
         .sidebar nav ul li a.active {
             background-color: #ffc107;
             color: #111;
-            transform: translateX(5px);
+        }
+
+        .sidebar.collapsed nav ul li a:hover,
+        .sidebar.collapsed nav ul li a.active {
+            transform: scale(1.1);
         }
 
         .sidebar nav ul li a i {
-            margin-right: 12px;
+            margin-right: 20px;
             font-size: 18px;
-            min-width: 24px;
+            min-width: 30px;
             text-align: center;
         }
 
-        /* sembunyikan teks saat collapsed */
         .sidebar.collapsed nav ul li a span {
             display: none;
         }
+        .sidebar.collapsed nav ul li a i {
+            margin-right: 0;
+        }
 
-        /* --- Header --- */
+        /* --- Header (PERUBAHAN CSS DI SINI) --- */
         .header {
             position: fixed;
             top: 0;
@@ -95,6 +99,29 @@
             border-bottom: 3px solid #007BFF;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             z-index: 1000;
+            box-sizing: border-box; /* Pastikan padding tidak menambah lebar */
+        }
+
+        /* Bagian Kiri: Menu dan Logo */
+        .header-left {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0; /* Mencegah bagian ini menyusut */
+        }
+
+        /* Bagian Tengah: Search Bar */
+        .header-center {
+            flex-grow: 1; /* Mengambil ruang kosong di tengah */
+            display: flex;
+            justify-content: center; /* Pusatkan search bar di tengah */
+            min-width: 150px; /* Lebar minimum agar tidak terlalu kecil */
+        }
+        
+        /* Bagian Kanan: Ikon */
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
         #menu-toggle {
@@ -114,19 +141,10 @@
             width: auto;
         }
 
-        /* Header Right */
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-left: auto;
-        }
-
         .search-bar {
             position: relative;
-            width: 250px; 
-            max-width: 100%;
-            flex-shrink: 0;
+            width: 100%;
+            max-width: 400px; /* Beri lebar maksimal agar tidak terlalu besar di layar lebar */
         }
 
         .search-bar input {
@@ -136,6 +154,7 @@
             border-radius: 25px;
             background-color: #fff;
             font-size: 15px;
+            box-sizing: border-box;
         }
         .search-bar .search-icon {
             position: absolute;
@@ -209,7 +228,28 @@
 <body>
 
     <div class="main-container">
-        <!-- Sidebar -->
+        <header class="header">
+            <div class="header-left">
+                <button id="menu-toggle"><i class="fas fa-bars"></i></button>
+                <div class="logo-container">
+                    <img src="{{ asset('images/rby-logo2.png') }}" alt="Company Logo">
+                </div>
+            </div>
+
+            <div class="header-center">
+                <div class="search-bar">
+                    <input type="text" placeholder="Telusuri">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <a href="{{ route('profile') }}" class="icon-btn">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+        </header>
+
         <aside class="sidebar" id="sidebar">
             <nav>
                 <ul>
@@ -222,28 +262,7 @@
             </nav>
         </aside>
 
-        <!-- Main Content -->
         <div class="main-content" id="main-content">
-            <!-- Header -->
-            <header class="header">
-                <button id="menu-toggle"><i class="fas fa-bars"></i></button>
-                <div class="logo-container">
-                    <img src="{{ asset('images/rby-logo2.png') }}" alt="Company Logo">
-                </div>
-
-                <div class="header-right">
-                    <div class="search-bar">
-                        <input type="text" placeholder="Telusuri">
-                        <i class="fas fa-search search-icon"></i>
-                    </div>
-                    <i class="fas fa-bell icon-btn"></i>
-                    <a href="{{ route('profile') }}" class="icon-btn">
-                        <i class="fas fa-user-circle"></i>
-                    </a>
-                </div>
-            </header>
-
-            <!-- Content -->
             <main class="content">
                 <h1>Selamat Datang!</h1>
                 <p>Ini adalah area konten utama Anda. Silakan kembangkan sesuai kebutuhan.</p>
