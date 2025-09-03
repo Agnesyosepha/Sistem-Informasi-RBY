@@ -299,5 +299,31 @@
             });
         });
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const sidebar = document.getElementById('sidebar');
+
+            menuToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('collapsed');
+            });
+
+            // Tambahan untuk placeholder "Telusuri"
+            const searchInput = document.querySelector('.search-bar input');
+            const placeholderText = searchInput.placeholder;
+
+            searchInput.addEventListener('focus', function() {
+                this.placeholder = '';
+            });
+
+            searchInput.addEventListener('blur', function() {
+                if (this.value === '') {
+                    this.placeholder = placeholderText;
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>
