@@ -1,80 +1,146 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title', 'Dashboard')</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f9fc;
+            height: 100%;
+            color: #333;
+        }
+        .main-container { display: flex; height: 100vh; }
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+        /* --- Sidebar --- */
+        .sidebar {
+            position: fixed; top: 80px; left: 0;
+            width: 250px; height: calc(100% - 80px);
+            background: linear-gradient(180deg, #111, #222);
+            padding-top: 20px;
+            transition: width 0.3s ease-in-out;
+            z-index: 999; box-shadow: 2px 0 8px rgba(0,0,0,0.3);
+            overflow-x: hidden;
+        }
+        .sidebar.collapsed { width: 80px; }
+        .sidebar nav ul { list-style: none; padding: 0; margin: 0; }
+        .sidebar nav ul li a {
+            display: flex; align-items: center;
+            padding: 14px 25px; color: #f1f1f1; text-decoration: none;
+            margin: 8px 10px; border-radius: 8px; font-weight: 500;
+            transition: all 0.2s ease; white-space: nowrap;
+        }
+        .sidebar nav ul li a:hover, .sidebar nav ul li a.active {
+            background-color: #ffc107; color: #111;
+        }
+        .sidebar nav ul li a i {
+            margin-right: 20px; font-size: 18px;
+            min-width: 30px; text-align: center;
+        }
+        .sidebar.collapsed nav ul li a span { display: none; }
+        .sidebar.collapsed nav ul li a i { margin-right: 0; }
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+        /* --- Header --- */
+        .header {
+            position: fixed; top: 0; left: 0; width: 100%; height: 80px;
+            background-color: #000; color: white;
+            display: flex; align-items: center;
+            padding: 0 20px; border-bottom: 3px solid #007BFF;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 1000; box-sizing: border-box;
+        }
+        .header-left { display: flex; align-items: center; flex-shrink: 0; }
+        .header-center { flex-grow: 1; display: flex; justify-content: right; min-width: 150px; }
+        .header-right { display: flex; align-items: center; gap: 20px; }
+        #menu-toggle {
+            background: none; border: none; color: white;
+            font-size: 24px; cursor: pointer; margin-right: 20px;
+        }
+        .logo-container { height: 65px; }
+        .logo-container img { height: 100%; width: auto; }
+        .search-bar { position: relative; width: 100%; max-width: 400px; }
+        .search-bar input {
+            width: 95%; padding: 10px 40px 10px 15px;
+            border: 1px solid #555; border-radius: 25px; background-color: #fff;
+            font-size: 15px; box-sizing: border-box;
+        }
+        .search-bar .search-icon {
+            position: absolute; right: 35px; top: 50%;
+            transform: translateY(-50%); color: #555; font-size: 18px;
+        }
+        .header-right .icon-btn { font-size: 22px; cursor: pointer; color: #fff; transition: color 0.3s; }
+        .header-right .icon-btn:hover { color: #ffc107; }
 
-    <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+        /* --- Main Content --- */
+        .main-content { width: 100%; padding-top: 90px; padding-left: 250px; transition: padding-left 0.3s; }
+        .sidebar.collapsed ~ .main-content { padding-left: 70px; }
+        .content { padding: 30px; animation: fadeIn 0.5s ease-in; }
+        .dashboard-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .dashboard-card {
+            background: #fff; padding: 25px; border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s;
+        }
+        .dashboard-card:hover { transform: translateY(-5px); }
+        .dashboard-card h3 { margin: 0 0 10px; font-size: 18px; color: #007BFF; }
+        .dashboard-card p { font-size: 14px; margin: 0; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
+    </style>
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+    <div class="main-container">
+        {{-- Header --}}
+        <header class="header">
+            <div class="header-left">
+                <button id="menu-toggle"><i class="fas fa-bars"></i></button>
+                <div class="logo-container">
+                    <img src="{{ asset('images/rby-logo2.png') }}" alt="Company Logo">
                 </div>
             </div>
-        </nav>
+            <div class="header-center">
+                <div class="search-bar">
+                    <input type="text" placeholder="Telusuri">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+            </div>
+            <div class="header-right">
+                <a href="{{ route('profile') }}" class="icon-btn"><i class="fas fa-user"></i></a>
+            </div>
+        </header>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+        {{-- Sidebar --}}
+        <aside class="sidebar" id="sidebar">
+            <nav>
+                <ul>
+                    <li><a href="#" class="active"><i class="fas fa-user-cog"></i><span> Admin</span></a></li>
+                    <li><a href="#"><i class="fas fa-clipboard-list"></i><span> Surveyor</span></a></li>
+                    <li><a href="#"><i class="fas fa-desktop"></i><span> EDP</span></a></li>
+                    <li><a href="{{ route('finance') }}"><i class="fas fa-file-invoice-dollar"></i><span> Finance</span></a></li>
+                    <li><a href="#"><i class="fas fa-server"></i><span> IT</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        {{-- Konten Dinamis --}}
+        <div class="main-content" id="main-content">
+            <main class="content">
+                @yield('content')
+            </main>
+        </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const sidebar = document.getElementById('sidebar');
+            menuToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('collapsed');
+            });
+        });
+    </script>
 </body>
 </html>
