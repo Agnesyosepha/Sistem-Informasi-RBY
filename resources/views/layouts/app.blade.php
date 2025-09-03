@@ -98,7 +98,9 @@
             <div class="header-left">
                 <button id="menu-toggle"><i class="fas fa-bars"></i></button>
                 <div class="logo-container">
-                    <img src="{{ asset('images/rby-logo2.png') }}" alt="Company Logo">
+                    <a href="{{ route('dashboard') }}" class="{{ Route::is('dashboard') ? 'active' : '' }}">
+                        <img src="{{ asset('images/rby-logo2.png') }}" alt="Company Logo">
+                    </a>
                 </div>
             </div>
             <div class="header-center">
