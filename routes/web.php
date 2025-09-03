@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/it', function () {
+    return view('layouts.it');
+})->name('it');
+
 Route::get('/finance', function () {
     return view('layouts.finance');
 })->name('finance');
