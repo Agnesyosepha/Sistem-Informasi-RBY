@@ -253,7 +253,7 @@
         <aside class="sidebar" id="sidebar">
             <nav>
                 <ul>
-                    <li><a href="#" class="active"><i class="fas fa-home"></i><span> Home</span></a></li>
+                    <li><a href="{{ route('dashboard') }}" class="active"><i class="fas fa-home"></i><span> Home</span></a></li>
                     <li><a href="#" class="active"><i class="fas fa-user-cog"></i><span> Admin</span></a></li>
                     <li><a href="{{ route('surveyor') }}"><i class="fas fa-clipboard-list"></i><span> Surveyor</span></a></li>
                     <li><a href="{{ route('edp') }}"><i class="fas fa-desktop"></i><span> EDP</span></a></li>
