@@ -134,7 +134,7 @@
         }
 
         .logo-container {
-            height: 55px;
+            height: 65px;
         }
         .logo-container img {
             height: 100%;
