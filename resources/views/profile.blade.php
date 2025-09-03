@@ -31,7 +31,7 @@
             color: #ffffff;
             display: flex;
             align-items: center;
-            padding: 0 20px; /* disamakan dengan dashboard */
+            padding: 0 20px;
             box-sizing: border-box;
             z-index: 1000;
             border-bottom: 3px solid #007BFF;
@@ -104,7 +104,7 @@
         }
 
         .sidebar.collapsed {
-            width: 80px; /* disamakan dengan dashboard */
+            width: 80px;
         }
 
         .sidebar nav ul {
@@ -116,10 +116,10 @@
         .sidebar nav ul li a {
             display: flex;
             align-items: center;
-            padding: 14px 25px;   /* disamakan dengan dashboard */
+            padding: 14px 25px;
             color: #f1f1f1;
             text-decoration: none;
-            margin: 8px 10px;     /* disamakan dengan dashboard */
+            margin: 8px 10px;
             border-radius: 8px;
             font-weight: 500;
             transition: all 0.2s ease;
@@ -137,9 +137,9 @@
         }
 
         .sidebar nav ul li a i {
-            margin-right: 20px;   /* disamakan dengan dashboard */
+            margin-right: 20px;
             font-size: 18px;
-            min-width: 30px;      /* disamakan dengan dashboard */
+            min-width: 30px;
             text-align: center;
         }
 
@@ -157,11 +157,11 @@
             width: 100%;
             box-sizing: border-box;
             transition: padding-left 0.3s ease-in-out;
-            padding-left: 250px; /* sama dengan dashboard */
+            padding-left: 250px;
         }
 
         .sidebar.collapsed ~ .profile-container {
-            padding-left: 70px; /* samakan kalau mau 80px juga bisa */
+            padding-left: 70px;
         }
 
         .profile-photo {
@@ -315,12 +315,36 @@
     <aside class="sidebar" id="sidebar">
         <nav>
             <ul>
-                <li><a href="{{ route('dashboard') }}"><i class="fas fa-home"></i><span> Home</span></a></li>
-                <li><a href="#" class="active"><i class="fas fa-user-cog"></i><span> Admin</span></a></li>
-                <li><a href="#"><i class="fas fa-clipboard-list"></i><span> Surveyor</span></a></li>
-                <li><a href="#"><i class="fas fa-desktop"></i><span> EDP</span></a></li>
-                <li><a href="#"><i class="fas fa-file-invoice-dollar"></i><span> Finance</span></a></li>
-                <li><a href="#"><i class="fas fa-server"></i><span> IT</span></a></li>
+                <li>
+                    <a href="{{ route('dashboard') }}" class="{{ Route::is('dashboard') ? 'active' : '' }}">
+                        <i class="fas fa-home"></i><span> Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin') }}" class="{{ Route::is('admin') ? 'active' : '' }}">
+                        <i class="fas fa-user-cog"></i><span> Admin</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('surveyor') }}" class="{{ Route::is('surveyor') ? 'active' : '' }}">
+                        <i class="fas fa-clipboard-list"></i><span> Surveyor</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('edp') }}" class="{{ Route::is('edp') ? 'active' : '' }}">
+                        <i class="fas fa-desktop"></i><span> EDP</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('finance') }}" class="{{ Route::is('finance') ? 'active' : '' }}">
+                        <i class="fas fa-file-invoice-dollar"></i><span> Finance</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('it') }}" class="{{ Route::is('it') ? 'active' : '' }}">
+                        <i class="fas fa-server"></i><span> IT</span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </aside>
