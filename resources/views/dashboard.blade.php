@@ -113,7 +113,7 @@
         .header-center {
             flex-grow: 1; /* Mengambil ruang kosong di tengah */
             display: flex;
-            justify-content: center; /* Pusatkan search bar di tengah */
+            justify-content: right; /* Pusatkan search bar di tengah */
             min-width: 150px; /* Lebar minimum agar tidak terlalu kecil */
         }
         
@@ -148,7 +148,7 @@
         }
 
         .search-bar input {
-            width: 100%;
+            width: 95%;
             padding: 10px 40px 10px 15px;
             border: 1px solid #555;
             border-radius: 25px;
@@ -158,7 +158,7 @@
         }
         .search-bar .search-icon {
             position: absolute;
-            right: 15px;
+            right: 35px;
             top: 50%;
             transform: translateY(-50%);
             color: #555;
