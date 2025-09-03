@@ -251,18 +251,48 @@
         </header>
 
         <aside class="sidebar" id="sidebar">
-            <nav>
-                <ul>
-                    <li><a href="{{ route('dashboard') }}" class="active"><i class="fas fa-home"></i><span> Home</span></a></li>
-                    <li><a href="{{ route('admin') }}" class="active"><i class="fas fa-user-cog"></i><span> Admin</span></a></li>
-                    <li><a href="{{ route('surveyor') }}"><i class="fas fa-clipboard-list"></i><span> Surveyor</span></a></li>
-                    <li><a href="{{ route('edp') }}"><i class="fas fa-desktop"></i><span> EDP</span></a></li>
-                    <li><a href="{{ route('finance') }}"><i class="fas fa-file-invoice-dollar"></i><span> Finance</span></a></li>
-                    <li><a href="{{ route('it') }}"><i class="fas fa-server"></i><span> IT</span></a>
-</li>
-                </ul>
-            </nav>
-        </aside>
+    <nav>
+        <ul>
+            <li>
+                <a href="{{ route('dashboard') }}" 
+                   class="{{ Route::is('dashboard') ? 'active' : '' }}">
+                   <i class="fas fa-home"></i><span> Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin') }}" 
+                   class="{{ Route::is('admin') ? 'active' : '' }}">
+                   <i class="fas fa-user-cog"></i><span> Admin</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('surveyor') }}" 
+                   class="{{ Route::is('surveyor') ? 'active' : '' }}">
+                   <i class="fas fa-clipboard-list"></i><span> Surveyor</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('edp') }}" 
+                   class="{{ Route::is('edp') ? 'active' : '' }}">
+                   <i class="fas fa-desktop"></i><span> EDP</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('finance') }}" 
+                   class="{{ Route::is('finance') ? 'active' : '' }}">
+                   <i class="fas fa-file-invoice-dollar"></i><span> Finance</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('it') }}" 
+                   class="{{ Route::is('it') ? 'active' : '' }}">
+                   <i class="fas fa-server"></i><span> IT</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</aside>
+
 
         <div class="main-content" id="main-content">
             <main class="content">
