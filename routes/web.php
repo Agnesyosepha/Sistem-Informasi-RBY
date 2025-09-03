@@ -31,6 +31,11 @@ Route::get('/profile', function () {
     return view('profile');
 })->name('profile')->middleware('auth');
 
+// Admin
+Route::get('/admin', function () {
+    return view('layouts.admin');
+})->name('admin');
+
 // Surveyor
 Route::get('/surveyor', function () {
     return view('layouts.surveyor');
