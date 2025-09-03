@@ -31,7 +31,7 @@
             color: #ffffff;
             display: flex;
             align-items: center;
-            padding: 0 30px;
+            padding: 0 20px; /* disamakan dengan dashboard */
             box-sizing: border-box;
             z-index: 1000;
             border-bottom: 3px solid #007BFF;
@@ -97,13 +97,14 @@
             height: calc(100% - 80px);
             background: linear-gradient(180deg, #111, #222);
             padding-top: 20px;
-            transition: width 0.3s ease;
+            transition: width 0.3s ease-in-out;
             z-index: 999;
             box-shadow: 2px 0 8px rgba(0,0,0,0.3);
+            overflow-x: hidden;
         }
 
         .sidebar.collapsed {
-            width: 70px;
+            width: 80px; /* disamakan dengan dashboard */
         }
 
         .sidebar nav ul {
@@ -115,33 +116,35 @@
         .sidebar nav ul li a {
             display: flex;
             align-items: center;
-            padding: 14px 20px;
+            padding: 14px 25px;   /* disamakan dengan dashboard */
             color: #f1f1f1;
             text-decoration: none;
-            margin: 8px 15px;
+            margin: 8px 10px;     /* disamakan dengan dashboard */
             border-radius: 8px;
             font-weight: 500;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             white-space: nowrap;
-            overflow: hidden;
         }
 
         .sidebar nav ul li a:hover,
         .sidebar nav ul li a.active {
             background-color: #ffc107;
             color: #111;
-            transform: translateX(5px);
-        }
-
-        .sidebar nav ul li a i {
-            margin-right: 12px;
-            font-size: 18px;
-            min-width: 24px;
-            text-align: center;
         }
 
         .sidebar.collapsed nav ul li a span {
             display: none;
+        }
+
+        .sidebar nav ul li a i {
+            margin-right: 20px;   /* disamakan dengan dashboard */
+            font-size: 18px;
+            min-width: 30px;      /* disamakan dengan dashboard */
+            text-align: center;
+        }
+
+        .sidebar.collapsed nav ul li a i {
+            margin-right: 0;
         }
 
         /* --- Profile Content --- */
@@ -153,12 +156,12 @@
             align-items: center;
             width: 100%;
             box-sizing: border-box;
-            transition: padding-left 0.3s ease;
-            padding-left: 250px;
+            transition: padding-left 0.3s ease-in-out;
+            padding-left: 250px; /* sama dengan dashboard */
         }
 
         .sidebar.collapsed ~ .profile-container {
-            padding-left: 70px;
+            padding-left: 70px; /* samakan kalau mau 80px juga bisa */
         }
 
         .profile-photo {
