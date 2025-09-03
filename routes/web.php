@@ -5,13 +5,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/it', function () {
-    return view('layouts.it');
-})->name('it');
-
-Route::get('/finance', function () {
-    return view('layouts.finance');
-})->name('finance');
 
 Route::get('/login', function () {
     return view('auth.login');
@@ -37,6 +30,26 @@ Route::get('/dashboard', function () {
 Route::get('/profile', function () {
     return view('profile');
 })->name('profile')->middleware('auth');
+
+// Surveyor
+Route::get('/surveyor', function () {
+    return view('layouts.surveyor');
+})->name('surveyor');
+
+// EDP
+Route::get('/edp', function () {
+    return view('layouts.edp');
+})->name('edp');
+
+// Finance
+Route::get('/finance', function () {
+    return view('layouts.finance');
+})->name('finance');
+
+// IT
+Route::get('/it', function () {
+    return view('layouts.it');
+})->name('it');
 
 // Logout
 Route::post('/logout', function (Request $request) {

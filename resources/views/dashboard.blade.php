@@ -254,8 +254,8 @@
             <nav>
                 <ul>
                     <li><a href="#" class="active"><i class="fas fa-user-cog"></i><span> Admin</span></a></li>
-                    <li><a href="#"><i class="fas fa-clipboard-list"></i><span> Surveyor</span></a></li>
-                    <li><a href="#"><i class="fas fa-desktop"></i><span> EDP</span></a></li>
+                    <li><a href="{{ route('surveyor') }}"><i class="fas fa-clipboard-list"></i><span> Surveyor</span></a></li>
+                    <li><a href="{{ route('edp') }}"><i class="fas fa-desktop"></i><span> EDP</span></a></li>
                     <li><a href="{{ route('finance') }}"><i class="fas fa-file-invoice-dollar"></i><span> Finance</span></a></li>
                     <li><a href="{{ route('it') }}"><i class="fas fa-server"></i><span> IT</span></a>
 </li>
