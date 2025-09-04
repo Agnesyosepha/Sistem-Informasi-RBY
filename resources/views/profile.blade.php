@@ -37,6 +37,19 @@
             border-bottom: 3px solid #007BFF;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
+        .warn-icon {
+            width: 100px;
+            height: 100px;
+            border: 4px solid #e6b17a;   /* warna lingkaran */
+            border-radius: 50%;          /* biar bulat */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;             /* ukuran tanda seru */
+            font-weight: bold;
+            color: #e6b17a;              /* warna tanda seru */
+            margin: 0 auto 20px auto;    /* biar center */
+        }
 
         .header-left {
             display: flex;
@@ -111,6 +124,23 @@
             list-style: none;
             padding: 0;
             margin: 0;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 26px;
+            font-weight: bold;
+            color: #666;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        
+        .close-btn:hover {
+            color: #000;
         }
 
         .sidebar nav ul li a {
@@ -252,6 +282,7 @@
         }
 
         .modal-box {
+            position: relative;
             background: #fff;
             padding: 25px 35px;
             border-radius: 15px;
@@ -388,6 +419,12 @@
     <!-- Modal Logout -->
     <div id="logoutModal" class="modal-overlay">
         <div class="modal-box">
+            <button class="close-btn" id="closeLogout">&times;</button>
+
+            <div class="warn-icon">
+                !
+            </div>
+
             <h3>Apakah Anda yakin ingin keluar?</h3>
             <div class="modal-actions">
                 <button class="btn-yes" id="confirmLogout">Ya</button>
@@ -416,6 +453,7 @@
             const cancelLogout = document.getElementById('cancelLogout');
             const confirmLogout = document.getElementById('confirmLogout');
             const logoutForm = document.getElementById('logoutForm');
+            const closeLogout = document.getElementById('closeLogout');
 
             logoutBtn.addEventListener('click', () => {
                 logoutModal.style.display = 'flex';
@@ -427,6 +465,10 @@
 
             confirmLogout.addEventListener('click', () => {
                 logoutForm.submit();
+            });
+
+            closeLogout.addEventListener('click', () => {
+                logoutModal.style.display = 'none';
             });
         });
     </script>
