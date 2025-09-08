@@ -71,19 +71,19 @@
         margin-top: 15px;
         width: 100%;
         padding: 12px;
-        background: #F7CC51;   /* warna emas utama */
+        background: #F7CC51;
         border: none;
         border-radius: 8px;
         font-weight: 600;
         font-size: 15px;
         cursor: pointer;
         transition: all 0.3s ease;
-        color: #000; /* teks hitam biar kontras */
+        color: #000;
         box-shadow: 0 3px 6px rgba(0,0,0,0.2);
     }
 
     .btn-login:hover {
-        background: #e6b842;  /* versi lebih gelap dari #F7CC51 */
+        background: #e6b842;
         transform: translateY(-2px);
         box-shadow: 0 6px 12px rgba(0,0,0,0.3);
     }
@@ -112,27 +112,26 @@
     <h2>Login</h2>
     <img src="{{ asset('images/rby-logo.png') }}" alt="RBY Logo">
     
-    <form method="POST" action="{{ route('login') }}">
+    <!-- autocomplete dimatikan -->
+    <form method="POST" action="{{ route('login') }}" autocomplete="off">
       @csrf
       <div class="form-group">
         <span class="icon"><i class="fa-solid fa-user"></i></span>
-        <input type="text" name="username" placeholder="Username" required>
+        <input type="text" name="username" placeholder="Username" required autocomplete="off">
       </div>
 
       <div class="form-group">
         <span class="icon"><i class="fa-solid fa-lock"></i></span>
-        <input type="password" name="password" placeholder="Password" required>
+        <input type="password" name="password" placeholder="Password" required autocomplete="new-password">
       </div>
 
       <button type="submit" class="btn-login">Masuk</button>
-      
-</p>
-
     </form>
 
     <p style="margin-top:15px; color:#fff; font-size:14px;">
-    Belum punya akun?
-    <a href="{{ route('register') }}" style="color:#F7CC51; font-weight:600;">Register</a>
+      Belum punya akun?
+      <a href="{{ route('register') }}" style="color:#F7CC51; font-weight:600;">Register</a>
+    </p>
   </div>
 
 </body>
