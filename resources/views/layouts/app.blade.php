@@ -124,12 +124,14 @@
                    <i class="fas fa-home"></i><span> Home</span>
                 </a>
             </li>
-            <li>
+            
+            {{--<li>
                 <a href="{{ route('admin') }}" 
                    class="{{ Route::is('admin') ? 'active' : '' }}">
                    <i class="fas fa-user-cog"></i><span> Admin</span>
                 </a>
-            </li>
+            </li>--}}
+            
             <li>
                 <a href="{{ route('surveyor') }}" 
                    class="{{ Route::is('surveyor') ? 'active' : '' }}">
