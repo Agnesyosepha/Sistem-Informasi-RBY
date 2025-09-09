@@ -13,8 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Hapus yang pakai name & email
-        // Sesuaikan dengan kolom yang ada (username, password)
+        
         User::create([
             'username' => 'user',
             'password' => Hash::make('123456'),
@@ -24,7 +23,6 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('abcdef'),
         ]);
 
-        // atau kalau mau pakai UserSeeder
-        // $this->call(UserSeeder::class);
+
     }
 }
