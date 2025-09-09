@@ -40,7 +40,7 @@
     }
 
     .form-group {
-      margin-bottom: 15px;
+      margin-bottom: 10px;
       position: relative;
     }
 
@@ -65,6 +65,14 @@
       transform: translateY(-50%);
       font-size: 16px;
       color: #444;
+      pointer-events: none;
+    }
+
+    .error-text {
+      font-size: 12px;
+      color: red;
+      margin: 5px 0 10px 5px;
+      text-align: left;
     }
 
     .btn-login {
@@ -115,15 +123,27 @@
     <!-- autocomplete dimatikan -->
     <form method="POST" action="{{ route('login') }}" autocomplete="off">
       @csrf
+
       <div class="form-group">
         <span class="icon"><i class="fa-solid fa-user"></i></span>
         <input type="text" name="username" placeholder="Username" required autocomplete="off">
       </div>
+      @if ($errors->has('username'))
+        <p class="error-text">{{ $errors->first('username') }}</p>
+      @endif
 
       <div class="form-group">
         <span class="icon"><i class="fa-solid fa-lock"></i></span>
         <input type="password" name="password" placeholder="Password" required autocomplete="new-password">
       </div>
+      @if ($errors->has('password'))
+        <p class="error-text">{{ $errors->first('password') }}</p>
+      @endif
+
+      <!-- Error umum (misalnya username / password salah) -->
+      @if(session('error'))
+        <p class="error-text">{{ session('error') }}</p>
+      @endif
 
       <button type="submit" class="btn-login">Masuk</button>
     </form>
