@@ -432,8 +432,6 @@
     <!-- Modal Logout -->
     <div id="logoutModal" class="modal-overlay">
         <div class="modal-box">
-            <button class="close-btn" id="closeLogout">&times;</button>
-
             <div class="warn-icon">
                 !
             </div>
