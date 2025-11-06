@@ -27,6 +27,10 @@
             <h3><i class="fas fa-clock"></i> Tugas Tertunda</h3>
             <p><strong>3 Tugas</strong></p>
         </div>
+        <div class="dashboard-card">
+            <h3><i class="fas fa-tasks"></i> Working Paper</h3>
+            <p><strong>11 Dokumen</strong></p>
+        </div>
     </div>
 
     <div class="dashboard-card" style="margin-top:30px;">
