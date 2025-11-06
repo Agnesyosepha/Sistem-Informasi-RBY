@@ -8,7 +8,7 @@
 
     <div class="dashboard-cards">
         <div class="dashboard-card">
-            <h3><i class="fas fa-server"></i> Dokumen Revisi</h3>
+            <h3><i class="fas fa-server"></i> Data Aktif</h3>
             <p><strong>8 Server</strong></p>
         </div>
         <div class="dashboard-card">
