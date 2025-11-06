@@ -12,7 +12,7 @@
 
     .content {
         width: 100%;
-        max-width: 1100px;          /* agar tidak terlalu lebar */
+        max-width: 1100px;         
     }
 
     .dashboard-cards {
