@@ -20,16 +20,8 @@
             <p><strong>15 PC</strong></p>
         </div>
         <div class="dashboard-card">
-            <h3><i class="fas fa-users-cog"></i> Komputer Digunakan</h3>
-            <p><strong>11 PC Aktif</strong></p>
-        </div>
-        <div class="dashboard-card">
             <h3><i class="fas fa-laptop"></i> Total Laptop</h3>
             <p><strong>10 Laptop</strong></p>
-        </div>
-        <div class="dashboard-card">
-            <h3><i class="fas fa-users-cog"></i> Laptop Digunakan</h3>
-            <p><strong>8 Laptop Aktif</strong></p>
         </div>
     </div>
 
