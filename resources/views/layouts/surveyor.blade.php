@@ -43,17 +43,24 @@
             </thead>
             <tbody>
                 <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">Surveyor 1</td>
+                    <td style="padding:10px;">Dazai</td>
                     <td style="padding:10px;">05 Sep 2025</td>
                     <td style="padding:10px;">Jakarta</td>
-                    <td style="padding:10px;">Survey Jaringan Fiber</td>
+                    <td style="padding:10px;">Survey Tanah dan Rumah</td>
                     <td style="padding:10px; text-align:center; color:green; font-weight:600;">Selesai</td>
                 </tr>
                 <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">Surveyor 2</td>
-                    <td style="padding:10px;">07 Sep 2025</td>
+                    <td style="padding:10px;">Ranpo</td>
+                    <td style="padding:10px;">07 Okt 2025</td>
                     <td style="padding:10px;">Bandung</td>
-                    <td style="padding:10px;">Survey Infrastruktur</td>
+                    <td style="padding:10px;">Survey Tanah Kosong</td>
+                    <td style="padding:10px; text-align:center; color:orange; font-weight:600;">Proses</td>
+                </tr>
+                <tr style="border-bottom:1px solid #ddd;">
+                    <td style="padding:10px;">Naomi</td>
+                    <td style="padding:10px;">01 Nov 2025</td>
+                    <td style="padding:10px;">Bekasi</td>
+                    <td style="padding:10px;">Survey Bangunan</td>
                     <td style="padding:10px; text-align:center; color:orange; font-weight:600;">Proses</td>
                 </tr>
             </tbody>
