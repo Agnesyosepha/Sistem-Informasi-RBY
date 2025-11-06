@@ -11,14 +11,18 @@
 
         <table style="width:100%; border-collapse: collapse; margin-top:15px;">
             <thead style="background:#007BFF; color:white;">
-                <tr>
-                    <th style="padding:10px; text-align:left;">Tanggal</th>
-                    <th style="padding:10px; text-align:left;">Nama Klien</th>
-                    <th style="padding:10px; text-align:left;">Yang Bertugas</th>
-                    <th style="padding:10px; text-align:right;">Biaya Jalan</th>
-                    <th style="padding:10px; text-align:right;">Total Klaim</th>
-                    <th style="padding:10px; text-align:center;">Status</th>
-                    <th style="padding:10px; text-align:center;">Aksi</th>
+                 <tr style="background:#007BFF; color:white;">
+                    <th rowspan="2" style="padding:10px; text-align:left;">Tanggal</th>
+                    <th rowspan="2" style="padding:10px; text-align:left;">Nama Klien</th>
+                    <th rowspan="2" style="padding:10px; text-align:left;">Yang Bertugas</th>
+                    <th colspan="2" style="padding:10px; text-align:center;">Biaya Jalan</th> <!-- HEADER TINGKAT 1 -->
+                    <th rowspan="2" style="padding:10px; text-align:right;">Total Klaim</th>
+                    <th rowspan="2" style="padding:10px; text-align:center;">Status</th>
+                    <th rowspan="2" style="padding:10px; text-align:center;">Aksi</th>
+                </tr>
+                <tr style="background:#007BFF; color:white;">
+                    <th style="padding:10px; text-align:right;">Penilai</th>
+                    <th style="padding:10px; text-align:right;">Pelaksana Inspeksi</th>
                 </tr>
             </thead>
             <tbody>
