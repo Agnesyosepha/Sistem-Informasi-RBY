@@ -3,7 +3,7 @@
 @section('title', 'EDP')
 
 @section('content')
-    <h1><i class="fas fa-desktop"></i> Dashboard EDP</h1>
+    <h1><i class="fas fa-desktop"></i> Dashboard Reviewer</h1>
     <p>Ringkasan aktivitas Electronic Data Processing (EDP).</p>
 
     <div class="dashboard-cards">

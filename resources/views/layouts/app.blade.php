@@ -145,6 +145,12 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('reviewer') }}" 
+                   class="{{ Route::is('reviewer') ? 'active' : '' }}">
+                   <i class="fas fa-desktop"></i><span> Reviewer</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('finance') }}" 
                    class="{{ Route::is('finance') ? 'active' : '' }}">
                    <i class="fas fa-file-invoice-dollar"></i><span> Finance</span>

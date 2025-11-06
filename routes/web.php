@@ -46,6 +46,11 @@ Route::get('/edp', function () {
     return view('layouts.edp');
 })->name('edp');
 
+// Reviewer
+Route::get('/reviewer', function () {
+    return view('layouts.reviewer');
+})->name('reviewer');
+
 // Finance
 Route::get('/finance', function () {
     return view('layouts.finance');
