@@ -418,12 +418,16 @@
 
                 <div class="profile-field">
                     <label>Divisi</label>
-                    <input type="text" value="IT Support" readonly>
+                    <input type="text" value="IT" readonly>
                 </div>
 
                 <div class="profile-field">
                     <label>Jabatan</label>
                     <input type="text" value="Admin" readonly>
+                </div>
+                <div class="profile-field">
+                    <label>Nomor MAPPI</label>
+                    <input type="text" value="1234567890" readonly>
                 </div>
             </div>
         </div>
