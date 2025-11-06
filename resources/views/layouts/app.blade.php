@@ -147,7 +147,7 @@
             <li>
                 <a href="{{ route('reviewer') }}" 
                    class="{{ Route::is('reviewer') ? 'active' : '' }}">
-                   <i class="fas fa-desktop"></i><span> Reviewer</span>
+                   <i class="fas fa-file-signature"></i><span> Reviewer</span>
                 </a>
             </li>
             <li>

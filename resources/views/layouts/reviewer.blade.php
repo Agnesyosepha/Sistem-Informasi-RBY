@@ -3,17 +3,13 @@
 @section('title', 'EDP')
 
 @section('content')
-    <h1><i class="fas fa-desktop"></i> Dashboard Reviewer</h1>
+    <h1><i class="fas fa-file-signature"></i> Dashboard Reviewer</h1>
     <p>Ringkasan aktivitas Electronic Data Processing (EDP).</p>
 
     <div class="dashboard-cards">
         <div class="dashboard-card">
             <h3><i class="fas fa-server"></i> Dokumen Revisi</h3>
             <p><strong>8 Server</strong></p>
-        </div>
-        <div class="dashboard-card">
-            <h3><i class="fas fa-database"></i> Dokumen Final</h3>
-            <p><strong>15 Database</strong></p>
         </div>
     </div>
 
