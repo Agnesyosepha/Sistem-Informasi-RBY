@@ -103,170 +103,142 @@
 
         /* --- Sidebar --- */
         .sidebar {
-            position: fixed;
-            top: 80px;
-            left: 0;
-            width: 250px;
-            height: calc(100% - 80px);
+            position: fixed; top: 80px; left: 0;
+            width: 250px; height: calc(100% - 80px);
             background: linear-gradient(180deg, #111, #222);
             padding-top: 20px;
             transition: width 0.3s ease-in-out;
-            z-index: 999;
-            box-shadow: 2px 0 8px rgba(0,0,0,0.3);
+            z-index: 999; box-shadow: 2px 0 8px rgba(0,0,0,0.3);
             overflow-x: hidden;
         }
-
-        .sidebar.collapsed {
-            width: 80px;
-        }
-
-        .sidebar nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 26px;
-            font-weight: bold;
-            color: #666;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        
-        .close-btn:hover {
-            color: #000;
-        }
-
+        .sidebar.collapsed { width: 80px; }
+        .sidebar nav ul { list-style: none; padding: 0; margin: 0; }
         .sidebar nav ul li a {
-            display: flex;
-            align-items: center;
-            padding: 14px 25px;
-            color: #f1f1f1;
-            text-decoration: none;
-            margin: 8px 10px;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            white-space: nowrap;
+            display: flex; align-items: center;
+            padding: 14px 25px; color: #f1f1f1; text-decoration: none;
+            margin: 8px 10px; border-radius: 8px; font-weight: 500;
+            transition: all 0.2s ease; white-space: nowrap;
         }
-
-        .sidebar nav ul li a:hover,
-        .sidebar nav ul li a.active {
-            background-color: #ffc107;
-            color: #111;
+        .sidebar nav ul li a:hover, .sidebar nav ul li a.active {
+            background-color: #ffc107; color: #111;
         }
-
-        .sidebar.collapsed nav ul li a span {
-            display: none;
-        }
-
         .sidebar nav ul li a i {
-            margin-right: 20px;
-            font-size: 18px;
-            min-width: 30px;
-            text-align: center;
+            margin-right: 20px; font-size: 18px;
+            min-width: 30px; text-align: center;
         }
-
-        .sidebar.collapsed nav ul li a i {
-            margin-right: 0;
-        }
-
-        /* --- Profile Content --- */
-        .profile-container {
-            margin-top: 120px;
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            box-sizing: border-box;
-            transition: padding-left 0.3s ease-in-out;
-            padding-left: 250px;
-        }
+        .sidebar.collapsed nav ul li a span { display: none; }
+        .sidebar.collapsed nav ul li a i { margin-right: 0; }
 
         .sidebar.collapsed ~ .profile-container {
             padding-left: 70px;
         }
 
-        .profile-photo {
-            width: 200px;
-            height: 200px;
-            border: 5px solid #ffffff;
-            border-radius: 50%;
+        /* Profile Section */
+        .profile-container {
+            margin-left: 250px;
+            margin-top: 100px;
+            padding: 40px;
             display: flex;
             justify-content: center;
-            align-items: center;
-            background: #e0e0e0;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1), 0 5px 10px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
+        }
+
+        .profile-card {
+            display: flex;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-        .profile-photo:hover {
-            transform: scale(1.05);
-        }
-        .profile-photo i {
-            font-size: 110px;
-            color: #555;
-        }
-        .profile-photo img {
+            max-width: 900px;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            padding: 30px;
+            gap: 40px;
         }
 
-        .profile-details {
-            width: 100%;
-            max-width: 500px;
+        .profile-left {
+            flex: 1;
             text-align: center;
-            margin-bottom: 30px;
+            border-right: 2px solid #eee;
+            padding-right: 30px;
         }
 
-        .profile-details .field {
-            background: #ffffff;
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 15px 20px;
-            font-size: 18px;
-            font-weight: 500;
-            color: #333;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-            transition: box-shadow 0.3s ease;
-        }
-        .profile-details .field:hover {
-            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid #e6b17a;
+            margin: 0 auto 20px;
+            background: #f0f0f0;
         }
 
-        .edit-container {
-            width: 100%;
-            max-width: 500px;
-            text-align: right;
+        .profile-photo i {
+            font-size: 100px;
+            color: #aaa;
+            line-height: 180px;
         }
-        
+
+        .profile-left h3 {
+            margin: 10px 0 5px;
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .profile-left p {
+            color: #666;
+            font-size: 14px;
+        }
+
         .edit-btn {
-            display: inline-block;
-            background-color: #E0A800;
-            color: #000000;
+            background: #e6b17a;
+            color: #000;
             border: none;
-            padding: 14px 30px;
-            border-radius: 30px;
+            padding: 10px 20px;
+            border-radius: 20px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(224, 168, 0, 0.4);
-            letter-spacing: 0.5px;
+            transition: 0.3s;
         }
+
         .edit-btn:hover {
-            background-color: #ffc107;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 193, 7, 0.5);
+            background: #ffc107;
+        }
+
+        .profile-right {
+            flex: 2;
+        }
+
+        .profile-right h4 {
+            margin-bottom: 20px;
+            font-weight: 600;
+            border-bottom: 2px solid #e6b17a;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .profile-field {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+        .profile-field label {
+            width: 120px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .profile-field input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: #f9fafb;
+        }
+
+        .profile-field input:focus {
+            outline: none;
+            border-color: #e6b17a;
+            background: #fff;
         }
 
         /* --- Modal Logout --- */
@@ -342,43 +314,57 @@
 </head>
 <body>
     
-    <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-        <nav>
-            <ul>
-                <li>
-                    <a href="{{ route('dashboard') }}" class="{{ Route::is('dashboard') ? 'active' : '' }}">
-                        <i class="fas fa-home"></i><span> Home</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('admin') }}" class="{{ Route::is('admin') ? 'active' : '' }}">
-                        <i class="fas fa-user-cog"></i><span> Admin</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('surveyor') }}" class="{{ Route::is('surveyor') ? 'active' : '' }}">
-                        <i class="fas fa-clipboard-list"></i><span> Surveyor</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('edp') }}" class="{{ Route::is('edp') ? 'active' : '' }}">
-                        <i class="fas fa-desktop"></i><span> EDP</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('finance') }}" class="{{ Route::is('finance') ? 'active' : '' }}">
-                        <i class="fas fa-file-invoice-dollar"></i><span> Finance</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('it') }}" class="{{ Route::is('it') ? 'active' : '' }}">
-                        <i class="fas fa-server"></i><span> IT</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </aside>
+    {{-- Sidebar --}}
+        <aside class="sidebar" id="sidebar">
+    <nav>
+        <ul>
+            <li>
+                <a href="{{ route('dashboard') }}" 
+                   class="{{ Route::is('dashboard') ? 'active' : '' }}">
+                   <i class="fas fa-home"></i><span> Home</span>
+                </a>
+            </li>
+            
+            {{--<li>
+                <a href="{{ route('admin') }}" 
+                   class="{{ Route::is('admin') ? 'active' : '' }}">
+                   <i class="fas fa-user-cog"></i><span> Admin</span>
+                </a>
+            </li>--}}
+            
+            <li>
+                <a href="{{ route('surveyor') }}" 
+                   class="{{ Route::is('surveyor') ? 'active' : '' }}">
+                   <i class="fas fa-clipboard-list"></i><span> Surveyor</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('edp') }}" 
+                   class="{{ Route::is('edp') ? 'active' : '' }}">
+                   <i class="fas fa-desktop"></i><span> EDP</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('reviewer') }}" 
+                   class="{{ Route::is('reviewer') ? 'active' : '' }}">
+                   <i class="fas fa-file-signature"></i><span> Reviewer</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('finance') }}" 
+                   class="{{ Route::is('finance') ? 'active' : '' }}">
+                   <i class="fas fa-file-invoice-dollar"></i><span> Finance</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('it') }}" 
+                   class="{{ Route::is('it') ? 'active' : '' }}">
+                   <i class="fas fa-server"></i><span> IT</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</aside>
 
     <!-- Header -->
     <header class="header">
@@ -403,18 +389,44 @@
 
     <!-- Profile Content -->
     <div class="profile-container">
-        <div class="profile-photo">
-            <i class="fas fa-user"></i>
-        </div>
-        <div class="profile-details">
-            <div class="field">Nama</div>
-            <div class="field">Alamat</div>
-            <div class="field">No.HP</div>
-            <div class="field">Divisi</div>
-            <div class="field">Jabatan</div>
-        </div>
+        <div class="profile-card">
+            <div class="profile-left">
+                <div class="profile-photo">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h3>Keza Felice</h3>
+                <p>admin@web.app</p>
+            </div>
 
-        
+            <div class="profile-right">
+                <h4>Profil</h4>
+
+                <div class="profile-field">
+                    <label>Nama</label>
+                    <input type="text" value="Keza Felice" readonly>
+                </div>
+
+                <div class="profile-field">
+                    <label>Alamat</label>
+                    <input type="text" value="Jl. Mawar No. 5" readonly>
+                </div>
+
+                <div class="profile-field">
+                    <label>No. HP</label>
+                    <input type="text" value="08123456789" readonly>
+                </div>
+
+                <div class="profile-field">
+                    <label>Divisi</label>
+                    <input type="text" value="IT Support" readonly>
+                </div>
+
+                <div class="profile-field">
+                    <label>Jabatan</label>
+                    <input type="text" value="Admin" readonly>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Modal Logout -->
