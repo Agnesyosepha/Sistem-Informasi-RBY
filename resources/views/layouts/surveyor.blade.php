@@ -30,6 +30,7 @@
         <table style="width:100%; border-collapse: collapse; margin-top:15px;">
             <thead style="background:#007BFF; color:white;">
                 <tr>
+                    <th style="padding:10px; text-align:left;">Surveyor</th>
                     <th style="padding:10px; text-align:left;">Tanggal</th>
                     <th style="padding:10px; text-align:left;">Lokasi</th>
                     <th style="padding:10px; text-align:left;">Deskripsi</th>
@@ -38,12 +39,14 @@
             </thead>
             <tbody>
                 <tr style="border-bottom:1px solid #ddd;">
+                    <td style="padding:10px;">Surveyor 1</td>
                     <td style="padding:10px;">05 Sep 2025</td>
                     <td style="padding:10px;">Jakarta</td>
                     <td style="padding:10px;">Survey Jaringan Fiber</td>
                     <td style="padding:10px; text-align:center; color:green; font-weight:600;">Selesai</td>
                 </tr>
                 <tr style="border-bottom:1px solid #ddd;">
+                    <td style="padding:10px;">Surveyor 2</td>
                     <td style="padding:10px;">07 Sep 2025</td>
                     <td style="padding:10px;">Bandung</td>
                     <td style="padding:10px;">Survey Infrastruktur</td>

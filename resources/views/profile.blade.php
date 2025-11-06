@@ -407,13 +407,14 @@
             <i class="fas fa-user"></i>
         </div>
         <div class="profile-details">
-            <div class="field">Name Surname</div>
+            <div class="field">Nama</div>
+            <div class="field">Alamat</div>
+            <div class="field">No.HP</div>
             <div class="field">Divisi</div>
+            <div class="field">Jabatan</div>
         </div>
 
-        <div class="edit-container">
-            <button class="edit-btn">Edit Profil</button>
-        </div>
+        
     </div>
 
     <!-- Modal Logout -->
