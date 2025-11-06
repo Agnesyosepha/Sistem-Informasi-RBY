@@ -8,48 +8,60 @@
 
     <div class="dashboard-cards">
         <div class="dashboard-card">
-            <h3><i class="fas fa-network-wired"></i> Server Aktif</h3>
-            <p><strong>12 / 12 Online</strong></p>
+            <h3><i class="fas fa-database"></i> Aset</h3>
+            <p><strong>Total 33</strong></p>
         </div>
         <div class="dashboard-card">
-            <h3><i class="fas fa-database"></i> Database Health</h3>
-            <p><strong>Normal</strong></p>
+            <h3><i class="fas fa-network-wired"></i> Server</h3>
+            <p><strong>12</strong></p>
         </div>
         <div class="dashboard-card">
-            <h3><i class="fas fa-shield-alt"></i> Keamanan</h3>
-            <p><strong>99% Threats Blocked</strong></p>
+            <h3><i class="fas fa-computer"></i> Total Komputer</h3>
+            <p><strong>15 PC</strong></p>
         </div>
         <div class="dashboard-card">
-            <h3><i class="fas fa-users-cog"></i> User Support</h3>
-            <p><strong>25 Tiket Aktif</strong></p>
+            <h3><i class="fas fa-users-cog"></i> Komputer Digunakan</h3>
+            <p><strong>11 PC Aktif</strong></p>
+        </div>
+        <div class="dashboard-card">
+            <h3><i class="fas fa-laptop"></i> Total Laptop</h3>
+            <p><strong>10 Laptop</strong></p>
+        </div>
+        <div class="dashboard-card">
+            <h3><i class="fas fa-users-cog"></i> Laptop Digunakan</h3>
+            <p><strong>8 Laptop Aktif</strong></p>
         </div>
     </div>
 
     <div class="dashboard-card" style="margin-top:30px;">
-        <h3><i class="fas fa-tasks"></i> Aktivitas Terbaru</h3>
+        <h3><i class="fas fa-file-contract"></i> Form Penggunaan Aset IT</h3>
         <table style="width:100%; border-collapse: collapse; margin-top:15px;">
             <thead style="background:#007BFF; color:white;">
                 <tr>
                     <th style="padding:10px; text-align:left;">Tanggal</th>
-                    <th style="padding:10px; text-align:left;">Aktivitas</th>
+                    <th style="padding:10px; text-align:left;">Jenis</th>
+                    <th style="padding:10px; text-align:left;">Keterangan</th>
                     <th style="padding:10px; text-align:center;">Status</th>
                 </tr>
             </thead>
             <tbody>
                 <tr style="border-bottom:1px solid #ddd;">
                     <td style="padding:10px;">01 Sep 2025</td>
+                    <td style="padding:10px;">Laptop</td>
                     <td style="padding:10px;">Update Security Patch Server</td>
                     <td style="padding:10px; text-align:center; color:green; font-weight:600;">Selesai</td>
                 </tr>
                 <tr style="border-bottom:1px solid #ddd;">
                     <td style="padding:10px;">02 Sep 2025</td>
+                    <td style="padding:10px;">Laptop</td>
                     <td style="padding:10px;">Backup Database Mingguan</td>
                     <td style="padding:10px; text-align:center; color:orange; font-weight:600;">Proses</td>
                 </tr>
                 <tr style="border-bottom:1px solid #ddd;">
                     <td style="padding:10px;">03 Sep 2025</td>
+                    <td style="padding:10px;">Komputer</td>
                     <td style="padding:10px;">Perbaikan Jaringan Kantor</td>
-                    <td style="padding:10px; text-align:center; color:red; font-weight:600;">Pending</td>
+                    <td style="padding:10px; text-align:center; color:green; font-weight:600;">Selesai</td>
                 </tr>
             </tbody>
         </table>

@@ -12,6 +12,10 @@
             <p><strong>25 Lokasi</strong></p>
         </div>
         <div class="dashboard-card">
+            <h3><i class="fas fa-user"></i> Surveyor</h3>
+            <p><strong>6 Surveyor</strong></p>
+        </div>
+        <div class="dashboard-card">
             <h3><i class="fas fa-tasks"></i> Proyek Berjalan</h3>
             <p><strong>12 Proyek</strong></p>
         </div>
