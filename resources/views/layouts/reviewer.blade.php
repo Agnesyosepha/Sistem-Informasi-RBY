@@ -11,8 +11,12 @@
             <h3><i class="fas fa-server"></i> Dokumen Revisi</h3>
             <p><strong>8 Server</strong></p>
         </div>
+        <div class="dashboard-card">
+            <h3><i class="fas fa-server"></i> Dokumen Final</h3>
+            <p><strong>8 Server</strong></p>
+        </div>
     </div>
-
+    
     <div class="dashboard-card" style="margin-top:30px;">
         <h3><i class="fas fa-history"></i> Log Aktivitas</h3>
         <table style="width:100%; border-collapse: collapse; margin-top:15px;">

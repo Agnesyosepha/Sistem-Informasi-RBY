@@ -9,10 +9,10 @@
     <div class="dashboard-cards">
         <div class="dashboard-card">
             <h3><i class="fas fa-server"></i> Data Aktif</h3>
-            <p><strong>8 Server</strong></p>
+            <p><strong>8 Data Aktif</strong></p>
         </div>
         <div class="dashboard-card">
-            <h3><i class="fas fa-database"></i> Dokumen Final</h3>
+            <h3><i class="fas fa-database"></i> Data Mentah</h3>
             <p><strong>15 Database</strong></p>
         </div>
     </div>

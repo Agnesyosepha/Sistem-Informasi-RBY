@@ -11,10 +11,10 @@
             <h3><i class="fas fa-map-marker-alt"></i> Lokasi Survei</h3>
             <p><strong>25 Lokasi</strong></p>
         </div>
-        <div class="dashboard-card">
+        <a href="{{ route('surveyor.tim') }}" class="dashboard-card" style="display:block; color:inherit; text-decoration:none;">
             <h3><i class="fas fa-user"></i> Surveyor</h3>
             <p><strong>6 Surveyor</strong></p>
-        </div>
+        </a>
         <div class="dashboard-card">
             <h3><i class="fas fa-tasks"></i> Proyek Berjalan</h3>
             <p><strong>12 Proyek</strong></p>

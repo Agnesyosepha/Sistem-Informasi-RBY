@@ -67,6 +67,8 @@ Route::get('/it', function () {
     return view('layouts.it');
 })->name('it');
 
+Route::get('/surveyor/tim', [\App\Http\Controllers\SurveyorController::class, 'tim'])->name('surveyor.tim');
+
 // Logout
 Route::post('/logout', function (Request $request) {
     Auth::logout();
