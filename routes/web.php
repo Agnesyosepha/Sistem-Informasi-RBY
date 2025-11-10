@@ -50,6 +50,9 @@ Route::get('/admin', function () {
 
 Route::get('/admin/surat-tugas', [\App\Http\Controllers\AdminController::class, 'suratTugas'])->name('admin.suratTugas');
 
+Route::get('/admin/tugas-harian', [\App\Http\Controllers\AdminController::class, 'tugasHarian'])->name('admin.tugasHarian');
+
+
 // Surveyor
 Route::get('/surveyor', function () {
     return view('layouts.surveyor');

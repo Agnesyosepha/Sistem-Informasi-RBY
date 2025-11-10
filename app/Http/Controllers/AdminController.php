@@ -22,4 +22,17 @@ class AdminController extends Controller
 
         return view('admin.suratTugas', compact('suratTugas'));
     }
+    public function tugasHarian()
+    {
+      $tugasHarian = [
+        ['role' => 'Admin Utama', 'tugas' => 'Memverifikasi data surveyor', 'status' => 'Selesai', 'tanggal' => '10 Nov 2025'],
+        ['role' => 'Surveyor', 'tugas' => 'Melakukan survey lapangan di Bekasi', 'status' => 'Proses', 'tanggal' => '10 Nov 2025'],
+        ['role' => 'EDP', 'tugas' => 'Backup database dan update sistem', 'status' => 'Proses', 'tanggal' => '09 Nov 2025'],
+        ['role' => 'Keuangan', 'tugas' => 'Menyiapkan laporan pembayaran surveyor', 'status' => 'Belum Mulai', 'tanggal' => '11 Nov 2025'],
+        ['role' => 'Manager', 'tugas' => 'Meninjau laporan proyek mingguan', 'status' => 'Selesai', 'tanggal' => '08 Nov 2025'],
+      ];
+
+      return view('admin.tugasHarian', compact('tugasHarian'));
+    }
+
 }
