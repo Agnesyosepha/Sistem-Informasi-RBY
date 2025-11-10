@@ -6,6 +6,8 @@
     <h1><i class="fas fa-users"></i> Tim Reviewer</h1>
     <p>Daftar anggota tim reviewer EDP yang aktif saat ini.</p>
 
+    <div class="dashboard-card" style="margin-top:30px;">
+      <h3><i class="fas fa-person"></i> Anggota Reviewer</h3>
     <table style="width:100%; border-collapse: collapse; margin-top:15px;">
         <thead style="background:#007BFF; color:white;">
             <tr>
@@ -27,6 +29,7 @@
             @endforeach
         </tbody>
     </table>
+</div>
 
     
 @endsection
