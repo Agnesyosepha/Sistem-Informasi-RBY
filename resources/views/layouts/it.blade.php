@@ -30,7 +30,6 @@
         <a href="{{ route('it.formpeminjaman') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card" style="cursor:pointer;">
                 <h3><i class="fas fa-laptop"></i> Form Peminjaman</h3>
-                <p><strong>10 Laptop</strong></p>
             </div>
         </a>
     </div>
