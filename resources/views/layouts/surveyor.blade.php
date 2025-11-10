@@ -39,7 +39,8 @@
                 <p><strong>11 Dokumen</strong></p>
             </div>
         </a>
-
+    </div>
+    
     <div class="dashboard-card" style="margin-top:30px;">
         <h3><i class="fas fa-calendar-alt"></i> Jadwal Surveyor</h3>
         <table style="width:100%; border-collapse: collapse; margin-top:15px;">
