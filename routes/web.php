@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SurveyorController;
+use App\Http\Controllers\ReviewerController;
 
 Route::get('/surveyor/proyek-selesai', [SurveyorController::class, 'proyekSelesai'])->name('surveyor.proyekSelesai');
 Route::get('/surveyor/tugas-tertunda', [SurveyorController::class, 'tugasTertunda'])->name('surveyor.tugastertunda');
@@ -62,6 +63,8 @@ Route::get('/edp', function () {
 Route::get('/reviewer', function () {
     return view('layouts.reviewer');
 })->name('reviewer');
+
+Route::get('/reviewer/tim', [\App\Http\Controllers\ReviewerController::class, 'tim'])->name('reviewer.tim');
 
 // Finance
 Route::get('/finance', function () {

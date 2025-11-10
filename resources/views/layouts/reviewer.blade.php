@@ -7,13 +7,20 @@
     <p>Ringkasan aktivitas Electronic Data Processing (EDP).</p>
 
     <div class="dashboard-cards">
+        <a href="{{ route('reviewer.tim') }}" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-users"></i> Reviewer</h3>
+                <p><strong>8 Reviewer</strong></p>
+            </div>
+        </a>
+
         <div class="dashboard-card">
             <h3><i class="fas fa-server"></i> Dokumen Revisi</h3>
-            <p><strong>8 Server</strong></p>
+            <p><strong>8 Dokumen</strong></p>
         </div>
         <div class="dashboard-card">
             <h3><i class="fas fa-server"></i> Dokumen Final</h3>
-            <p><strong>8 Server</strong></p>
+            <p><strong>8 Dokumen</strong></p>
         </div>
     </div>
     
