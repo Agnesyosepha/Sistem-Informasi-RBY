@@ -35,4 +35,31 @@ class AdminController extends Controller
       return view('admin.tugasHarian', compact('tugasHarian'));
     }
 
+    public function proposal()
+{
+    $proposal = [
+        ['judul' => 'Penilaian Properti Komersial', 'pengaju' => 'Surveyor 01', 'tanggal' => '01 Nov 2025', 'status' => 'Disetujui'],
+        ['judul' => 'Analisis Lahan Industri', 'pengaju' => 'Surveyor 02', 'tanggal' => '03 Nov 2025', 'status' => 'Menunggu Review'],
+        ['judul' => 'Evaluasi Aset Perusahaan', 'pengaju' => 'Surveyor 03', 'tanggal' => '05 Nov 2025', 'status' => 'Direvisi'],
+        ['judul' => 'Penilaian Tanah Kosong', 'pengaju' => 'Surveyor 04', 'tanggal' => '07 Nov 2025', 'status' => 'Disetujui'],
+        ['judul' => 'Analisis Nilai Bangunan', 'pengaju' => 'Surveyor 05', 'tanggal' => '09 Nov 2025', 'status' => 'Proses'],
+    ];
+
+    return view('admin.proposal', compact('proposal'));
+}
+
+public function adendum()
+{
+    $adendum = [
+        ['nomor' => 'AD-001', 'proyek' => 'Penilaian Gedung A', 'tanggal' => '01 Nov 2025', 'deskripsi' => 'Perpanjangan waktu proyek hingga 30 Nov 2025', 'status' => 'Disetujui'],
+        ['nomor' => 'AD-002', 'proyek' => 'Survey Tanah Kosong', 'tanggal' => '03 Nov 2025', 'deskripsi' => 'Penambahan area survey di Bekasi', 'status' => 'Menunggu Persetujuan'],
+        ['nomor' => 'AD-003', 'proyek' => 'Analisis Properti Komersial', 'tanggal' => '05 Nov 2025', 'deskripsi' => 'Revisi nilai appraisal sesuai data baru', 'status' => 'Direvisi'],
+        ['nomor' => 'AD-004', 'proyek' => 'Penilaian Aset Pabrik', 'tanggal' => '07 Nov 2025', 'deskripsi' => 'Perubahan tim surveyor lapangan', 'status' => 'Disetujui'],
+        ['nomor' => 'AD-005', 'proyek' => 'Evaluasi Bangunan Kantor', 'tanggal' => '09 Nov 2025', 'deskripsi' => 'Penambahan waktu laporan final', 'status' => 'Proses'],
+    ];
+
+    return view('admin.adendum', compact('adendum'));
+}
+
+
 }

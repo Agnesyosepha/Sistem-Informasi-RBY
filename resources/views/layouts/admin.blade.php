@@ -20,14 +20,18 @@
                 <p><strong>5 Role Utama</strong></p>
             </div>
         </a>
-        <div class="dashboard-card">
-            <h3><i class="fas fa-lightbulb"></i> Proposal</h3>
-            <p><strong>120.000 Record</strong></p>
-        </div>
-        <div class="dashboard-card">
-            <h3><i class="fas fa-plus-square"></i> Adendum</h3>
-            <p><strong style="color:green;">Online</strong></p>
-        </div>
+        <a href="{{ route('admin.proposal') }}" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-lightbulb"></i> Proposal</h3>
+                <p><strong>120.000 Record</strong></p>
+            </div>
+        </a>
+        <a href="{{ route('admin.adendum') }}" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-plus-square"></i> Adendum</h3>
+                <p><strong style="color:green;">Online</strong></p>
+            </div>
+        </a>
     </div>
 
     <!-- Tabel Aktivitas -->
