@@ -41,10 +41,11 @@ Route::get('/surveyor', function () {
     return view('layouts.surveyor');
 })->name('surveyor');
 
-Route::get('/surveyor/lokasisurvei', function () {
-    return view('surveyor.lokasisurvei');
-})->name('surveyor.lokasisurvei');
+Route::get('/surveyor/lokasisurvei', [\App\Http\Controllers\SurveyorController::class, 'lokasisurvei'])->name('surveyor.lokasisurvei');
 
+Route::get('/surveyor/tim', [\App\Http\Controllers\SurveyorController::class, 'tim'])->name('surveyor.tim');
+
+Route::get('/surveyor/proyekberjalan', [\App\Http\Controllers\SurveyorController::class, 'proyekberjalan'])->name('surveyor.proyekberjalan');
 
 
 // EDP
@@ -67,7 +68,7 @@ Route::get('/it', function () {
     return view('layouts.it');
 })->name('it');
 
-Route::get('/surveyor/tim', [\App\Http\Controllers\SurveyorController::class, 'tim'])->name('surveyor.tim');
+
 
 // Logout
 Route::post('/logout', function (Request $request) {

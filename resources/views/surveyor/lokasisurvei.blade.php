@@ -20,7 +20,7 @@
             </thead>
             <tbody>
                 <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">Edgar</td>
+                    <td style="padding:10px;">Dazai</td>
                     <td style="padding:10px;">05 Sep 2025</td>
                     <td style="padding:10px;">Jakarta</td>
                     <td style="padding:10px;">Survey Tanah dan Rumah</td>

@@ -7,18 +7,22 @@
     <p>Ringkasan aktivitas surveyor bulan ini.</p>
 
     <div class="dashboard-cards">
-        <div class="dashboard-card" onclick="window.location='{{ route('surveyor.lokasisurvei') }}'" style="cursor:pointer;">
-            <h3><i class="fas fa-map-marker-alt"></i> Lokasi Survei</h3>
-            <p><strong>25 Lokasi</strong></p>
-        </div>
+        <a href="{{ route('surveyor.lokasisurvei') }}" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card" style="cursor:pointer;">
+                <h3><i class="fas fa-map-marker-alt"></i> Lokasi Survei</h3>
+                <p><strong>25 Lokasi</strong></p>
+            </div>
+        </a>
         <a href="{{ route('surveyor.tim') }}" class="dashboard-card" style="display:block; color:inherit; text-decoration:none;">
             <h3><i class="fas fa-user"></i> Surveyor</h3>
             <p><strong>6 Surveyor</strong></p>
         </a>
-        <div class="dashboard-card">
-            <h3><i class="fas fa-tasks"></i> Proyek Berjalan</h3>
-            <p><strong>12 Proyek</strong></p>
-        </div>
+        <a href="{{ route('surveyor.proyekberjalan') }}" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card" style="cursor:pointer;">
+                <h3><i class="fas fa-tasks"></i> Proyek Berjalan</h3>
+                <p><strong>12 Proyek</strong></p>
+            </div>
+        </a>
         <div class="dashboard-card">
             <h3><i class="fas fa-check-circle"></i> Proyek Selesai</h3>
             <p><strong>18 Proyek</strong></p>

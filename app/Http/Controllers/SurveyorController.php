@@ -23,4 +23,26 @@ class SurveyorController extends Controller
         return view('surveyor.timsurveyor', compact('tim'));
     }
 
+    public function lokasiSurvei()
+    {
+        $lokasi = [
+            ['nama' => 'Perumahan Del Vista', 'kota' => 'Medan', 'tanggal' => '02 Okt 2025', 'keterangan' => 'Survey Bangunan Rumah'],
+            ['nama' => 'Ruko Simanjuntak', 'kota' => 'Balige', 'tanggal' => '10 Okt 2025', 'keterangan' => 'Survey Properti Komersial'],
+            ['nama' => 'Taman Hijau Indah', 'kota' => 'Jakarta', 'tanggal' => '20 Okt 2025', 'keterangan' => 'Survey Lahan Kosong'],
+        ];
+
+        return view('surveyor.lokasisurvei', compact('lokasi'));
+    }
+
+    public function proyekBerjalan()
+    {
+        $proyek = [
+            ['nama' => 'Penilaian Gedung Perkantoran', 'lokasi' => 'Jakarta', 'surveyor' => 'Dazai', 'tanggal_mulai' => '15 Okt 2025', 'progress' => 'On Progress'],
+            ['nama' => 'Survey Rumah Komersial', 'lokasi' => 'Bandung', 'surveyor' => 'Ranpo', 'tanggal_mulai' => '22 Okt 2025', 'progress' => 'On Progress'],
+            ['nama' => 'Evaluasi Tanah Kosong', 'lokasi' => 'Medan', 'surveyor' => 'Naomi', 'tanggal_mulai' => '30 Okt 2025', 'progress' => 'Done'],
+        ];
+
+        return view('surveyor.proyekberjalan', compact('proyek'));
+    }
+
 }
