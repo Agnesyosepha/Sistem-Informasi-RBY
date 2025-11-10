@@ -115,7 +115,7 @@
         </header>
 
         {{-- Sidebar --}}
-        <aside class="sidebar collapsed" id="sidebar">
+        <aside class="sidebar" id="sidebar">
     <nav>
         <ul>
             <li>
