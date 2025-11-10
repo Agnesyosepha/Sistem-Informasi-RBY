@@ -7,7 +7,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SurveyorController;
 use App\Http\Controllers\ReviewerController;
 use App\Http\Controllers\EdpController;
+use App\Http\Controllers\ITController;
 
+Route::get('/it/form-peminjaman', [ITController::class, 'formPeminjaman'])
+     ->name('it.formpeminjaman');
 Route::get('/edp/staff', [EdpController::class, 'staff'])->name('edp.staff');
 
 Route::get('/surveyor/proyek-selesai', [SurveyorController::class, 'proyekSelesai'])->name('surveyor.proyekSelesai');
