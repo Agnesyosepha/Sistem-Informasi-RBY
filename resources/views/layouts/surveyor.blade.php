@@ -15,7 +15,7 @@
         </a>
         <a href="{{ route('surveyor.tim') }}" class="dashboard-card" style="display:block; color:inherit; text-decoration:none;">
             <h3><i class="fas fa-user"></i> Surveyor</h3>
-            <p><strong>6 Surveyor</strong></p>
+            <p><strong>10 Staff</strong></p>
         </a>
         <a href="{{ route('surveyor.proyekberjalan') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card" style="cursor:pointer;">

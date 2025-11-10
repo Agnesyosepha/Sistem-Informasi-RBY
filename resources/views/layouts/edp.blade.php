@@ -18,7 +18,7 @@
         <a href="{{ route('edp.staff') }}" style="text-decoration:none; color:inherit;">
                 <div class="dashboard-card" style="cursor:pointer;">
                     <h3><i class="fas fa-users"></i> EDP</h3>
-                    <p><strong>4 Staff</strong></p>
+                    <p><strong>3 Staff</strong></p>
                 </div>
         </a>
 
