@@ -1,37 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Surveyor')
+@section('title', 'Lokasi Survei')
 
 @section('content')
-    <h1><i class="fas fa-clipboard-list"></i> Dashboard Surveyor</h1>
-    <p>Ringkasan aktivitas surveyor bulan ini.</p>
-
-    <div class="dashboard-cards">
-        <div class="dashboard-card" onclick="window.location='{{ route('surveyor.lokasisurvei') }}'" style="cursor:pointer;">
-            <h3><i class="fas fa-map-marker-alt"></i> Lokasi Survei</h3>
-            <p><strong>25 Lokasi</strong></p>
-        </div>
-        <div class="dashboard-card">
-            <h3><i class="fas fa-user"></i> Surveyor</h3>
-            <p><strong>6 Surveyor</strong></p>
-        </div>
-        <div class="dashboard-card">
-            <h3><i class="fas fa-tasks"></i> Proyek Berjalan</h3>
-            <p><strong>12 Proyek</strong></p>
-        </div>
-        <div class="dashboard-card">
-            <h3><i class="fas fa-check-circle"></i> Proyek Selesai</h3>
-            <p><strong>18 Proyek</strong></p>
-        </div>
-        <div class="dashboard-card">
-            <h3><i class="fas fa-clock"></i> Tugas Tertunda</h3>
-            <p><strong>3 Tugas</strong></p>
-        </div>
-        <div class="dashboard-card">
-            <h3><i class="fas fa-tasks"></i> Working Paper</h3>
-            <p><strong>11 Dokumen</strong></p>
-        </div>
-    </div>
+    <h1><i class="fas fa-map-marker-alt"></i> Daftar Lokasi Survei</h1>
+    <p>Daftar lokasi survei yang akan dilakukan:</p>
 
     <div class="dashboard-card" style="margin-top:30px;">
         <h3><i class="fas fa-calendar-alt"></i> Jadwal Surveyor</h3>
@@ -47,7 +20,7 @@
             </thead>
             <tbody>
                 <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">Dazai</td>
+                    <td style="padding:10px;">Edgar</td>
                     <td style="padding:10px;">05 Sep 2025</td>
                     <td style="padding:10px;">Jakarta</td>
                     <td style="padding:10px;">Survey Tanah dan Rumah</td>

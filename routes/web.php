@@ -41,6 +41,11 @@ Route::get('/surveyor', function () {
     return view('layouts.surveyor');
 })->name('surveyor');
 
+Route::get('/surveyor/lokasisurvei', function () {
+    return view('surveyor.lokasisurvei');
+})->name('surveyor.lokasisurvei');
+
+
 
 // EDP
 Route::get('/edp', function () {
