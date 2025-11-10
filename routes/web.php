@@ -13,7 +13,8 @@ use App\Http\Controllers\AdminController;
 Route::get('/it/form-peminjaman', [ITController::class, 'formPeminjaman'])
      ->name('it.formpeminjaman');
 Route::get('/edp/staff', [EdpController::class, 'staff'])->name('edp.staff');
-
+Route::get('/edp/datamentah', [\App\Http\Controllers\EDPController::class, 'dataMentah'])->name('edp.dataMentah');
+Route::post('/edp/datamentah/upload', [\App\Http\Controllers\EDPController::class, 'uploadData'])->name('edp.uploadData');
 Route::get('/surveyor/proyek-selesai', [SurveyorController::class, 'proyekSelesai'])->name('surveyor.proyekSelesai');
 Route::get('/surveyor/tugas-tertunda', [SurveyorController::class, 'tugasTertunda'])->name('surveyor.tugastertunda');
 Route::get('/surveyor/working-paper', [SurveyorController::class, 'workingPaper'])->name('surveyor.workingpaper');

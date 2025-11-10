@@ -11,10 +11,12 @@
             <h3><i class="fas fa-server"></i> Data Aktif</h3>
             <p><strong>8 Data Aktif</strong></p>
         </div>
-        <div class="dashboard-card">
-            <h3><i class="fas fa-database"></i> Data Mentah</h3>
-            <p><strong>15 Database</strong></p>
-        </div>
+        <a href="{{ route('edp.dataMentah') }}" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card" style="cursor:pointer;">
+                <h3><i class="fas fa-database"></i> Data Mentah</h3>
+                <p><strong>Lihat Data</strong></p>
+            </div>
+        </a>
         <a href="{{ route('edp.staff') }}" style="text-decoration:none; color:inherit;">
                 <div class="dashboard-card" style="cursor:pointer;">
                     <h3><i class="fas fa-users"></i> EDP</h3>
