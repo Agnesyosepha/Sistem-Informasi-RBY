@@ -56,5 +56,15 @@ class SurveyorController extends Controller
 
         return view('surveyor.proyekselesai', compact('proyek'));
     }
+    public function tugasTertunda()
+    {
+        $tasks = [
+            ['nama' => 'Survey Tanah Kosong', 'lokasi' => 'Depok', 'deadline' => '10 Nov 2025'],
+            ['nama' => 'Survey Rumah', 'lokasi' => 'Cikarang', 'deadline' => '15 Nov 2025'],
+            ['nama' => 'Survey Jalan Raya', 'lokasi' => 'Tangerang', 'deadline' => '20 Nov 2025'],
+        ];
+
+        return view('surveyor.tugastertunda', compact('tasks'));
+    }
 
 }

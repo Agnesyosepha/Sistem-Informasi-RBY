@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SurveyorController;
 
 Route::get('/surveyor/proyek-selesai', [SurveyorController::class, 'proyekSelesai'])->name('surveyor.proyekSelesai');
+Route::get('/surveyor/tugas-tertunda', [SurveyorController::class, 'tugasTertunda'])->name('surveyor.tugastertunda');
 
 Route::get('/login', function () {
     return view('auth.login');

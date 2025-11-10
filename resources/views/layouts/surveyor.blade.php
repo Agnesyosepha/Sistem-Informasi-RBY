@@ -27,10 +27,13 @@
             <h3><i class="fas fa-check-circle"></i> Proyek Selesai</h3>
             <p><strong>18 Proyek</strong></p>
         </a>
-        <div class="dashboard-card">
-            <h3><i class="fas fa-clock"></i> Tugas Tertunda</h3>
-            <p><strong>3 Tugas</strong></p>
-        </div>
+        <a href="{{ route('surveyor.tugastertunda') }}" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card" style="cursor:pointer;">
+                <h3><i class="fas fa-clock"></i> Tugas Tertunda</h3>
+                <p><strong>3 Tugas</strong></p>
+            </div>
+        </a>
+
         <div class="dashboard-card">
             <h3><i class="fas fa-tasks"></i> Working Paper</h3>
             <p><strong>11 Dokumen</strong></p>
