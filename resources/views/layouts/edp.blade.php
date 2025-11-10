@@ -7,10 +7,12 @@
     <p>Ringkasan aktivitas Electronic Data Processing (EDP).</p>
 
     <div class="dashboard-cards">
-        <div class="dashboard-card">
-            <h3><i class="fas fa-server"></i> Data Aktif</h3>
-            <p><strong>8 Data Aktif</strong></p>
-        </div>
+        <a href="{{ route('edp.dataAktif') }}" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card" style="cursor:pointer;">
+                <h3><i class="fas fa-server"></i> Data Aktif</h3>
+                <p><strong>8 Data Aktif</strong></p>
+            </div>
+        </a>
         <a href="{{ route('edp.dataMentah') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card" style="cursor:pointer;">
                 <h3><i class="fas fa-database"></i> Data Mentah</h3>

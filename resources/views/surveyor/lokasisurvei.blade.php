@@ -14,7 +14,7 @@
                     <th style="padding:10px; text-align:left;">Surveyor</th>
                     <th style="padding:10px; text-align:left;">Tanggal</th>
                     <th style="padding:10px; text-align:left;">Lokasi</th>
-                    <th style="padding:10px; text-align:left;">Deskripsi</th>
+                    <th style="padding:10px; text-align:left;">Nama Objek</th>
                     <th style="padding:10px; text-align:center;">Status</th>
                 </tr>
             </thead>

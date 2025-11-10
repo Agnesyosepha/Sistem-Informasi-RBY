@@ -37,4 +37,33 @@ class EdpController extends Controller
 
         return redirect()->route('edp.dataMentah')->with('success', 'Data berhasil diupload.');
     }
+    public function dataAktif()
+{
+    // contoh data sementara
+    $dataAktif = [
+        [
+            'tanggal' => '10 Nov 2025',
+            'jenis' => 'Lelang',
+            'pemberi' => 'PT Mandiri Tbk',
+            'pengguna' => 'PT Mandiri Tbk',
+            'status' => 'Proses'
+        ],
+        [
+            'tanggal' => '11 Nov 2025',
+            'jenis' => 'Laporan Keuangan',
+            'pemberi' => 'PT BNI',
+            'pengguna' => 'PT BNI',
+            'status' => 'Selesai'
+        ],
+        [
+            'tanggal' => '12 Nov 2025',
+            'jenis' => 'Penjaminan Utang',
+            'pemberi' => 'PT Bank Pan Indonesia Tbk',
+            'pengguna' => 'PT Bank Pan Indonesia Tbk',
+            'status' => 'Gagal'
+        ],
+    ];
+
+    return view('EDP.dataAktif', compact('dataAktif'));
+}
 }
