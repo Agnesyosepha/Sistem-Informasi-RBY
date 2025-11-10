@@ -24,7 +24,7 @@
                 <td style="padding:10px;">Jakarta</td>
                 <td style="padding:10px;">Firdaus Ginting</td>
                 <td style="padding:10px;">15 Okt 2025</td>
-                <td style="padding:10px;">On Progress</td>
+                <td style="padding:10px; color:orange; font-weight:600;">On Progress</td>
             </tr>
             <tr style="border-bottom:1px solid #ddd;">
                 <td style="padding:10px;">2</td>
@@ -32,7 +32,7 @@
                 <td style="padding:10px;">Bandung</td>
                 <td style="padding:10px;">Fajar Hariyadi</td>
                 <td style="padding:10px;">22 Okt 2025</td>
-                <td style="padding:10px;">On Progress</td>
+                <td style="padding:10px; color:orange; font-weight:600;">On Progress</td>
             </tr>
             <tr style="border-bottom:1px solid #ddd;">
                 <td style="padding:10px;">3</td>
@@ -40,7 +40,7 @@
                 <td style="padding:10px;">Medan</td>
                 <td style="padding:10px;">Jasmani Ginting</td>
                 <td style="padding:10px;">30 Okt 2025</td>
-                <td style="padding:10px;">Done</td>
+                <td style="padding:10px; color:green; font-weight:600;">Done</td>
             </tr>
         </tbody>
     </table>
