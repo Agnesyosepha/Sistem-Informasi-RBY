@@ -8,6 +8,7 @@ use App\Http\Controllers\SurveyorController;
 use App\Http\Controllers\ReviewerController;
 use App\Http\Controllers\EdpController;
 use App\Http\Controllers\ITController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/it/form-peminjaman', [ITController::class, 'formPeminjaman'])
      ->name('it.formpeminjaman');
@@ -46,6 +47,8 @@ Route::get('/profile', function () {
 Route::get('/admin', function () {
     return view('layouts.admin');
 })->name('admin');
+
+Route::get('/admin/surat-tugas', [\App\Http\Controllers\AdminController::class, 'suratTugas'])->name('admin.suratTugas');
 
 // Surveyor
 Route::get('/surveyor', function () {
