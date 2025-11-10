@@ -10,7 +10,7 @@
         <h3><i class="fas fa-user-friends"></i> Tim Surveyor</h3>
 
         <table style="width:100%; border-collapse: collapse; margin-top:15px;">
-            <thead style="background:#2F6FED; color:white;">
+            <thead style="background:#E49BA6; color:black;">
                 <tr>
                     <th style="padding:12px; text-align:left;">Nama Surveyor</th>
                     <th style="padding:12px; text-align:left;">Nomor HP</th>

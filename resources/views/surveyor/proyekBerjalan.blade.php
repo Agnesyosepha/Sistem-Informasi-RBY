@@ -6,8 +6,9 @@
     <h1><i class="fas fa-tasks"></i> Daftar Proyek Berjalan</h1>
     <p>Berikut adalah daftar proyek yang sedang dikerjakan oleh tim surveyor:</p>
 
+    <div class="dashboard-card" style="margin-top:30px;">
     <table style="width:100%; border-collapse: collapse; margin-top:20px;">
-        <thead style="background:#007BFF; color:white;">
+        <thead style="background:#ABE7B2; color:black;">
             <tr>
                 <th style="padding:10px; text-align:left;">No</th>
                 <th style="padding:10px; text-align:left;">Nama Proyek</th>
@@ -44,4 +45,5 @@
             </tr>
         </tbody>
     </table>
+</div>
 @endsection

@@ -9,7 +9,7 @@
     <div class="dashboard-card" style="margin-top:25px; border-radius:10px; overflow:hidden; border:1px solid #e5e5e5;">
         <table style="width:100%; border-collapse:collapse;">
             <thead>
-                <tr style="background:#2F6FED; color:white;">
+                <tr style="background:#FFCF71; color:black;">
                     <th style="padding:14px; text-align:left;">Nama Proyek</th>
                     <th style="padding:14px; text-align:left;">Lokasi</th>
                     <th style="padding:14px; text-align:left;">User</th>
