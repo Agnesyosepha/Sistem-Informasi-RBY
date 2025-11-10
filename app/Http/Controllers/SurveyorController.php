@@ -74,16 +74,8 @@ class SurveyorController extends Controller
     }
 
     public function workingPaper()
-{
-    $workingPapers = [
-        ['judul' => 'Analisis Properti Jakarta Selatan', 'tanggal' => '05 Sep 2025', 'status' => 'Selesai'],
-        ['judul' => 'Evaluasi Bangunan Bandung Barat', 'tanggal' => '12 Okt 2025', 'status' => 'Proses'],
-        ['judul' => 'Studi Lahan Bekasi', 'tanggal' => '20 Okt 2025', 'status' => 'Selesai'],
-        ['judul' => 'Laporan Survey Perumahan Depok', 'tanggal' => '01 Nov 2025', 'status' => 'Proses'],
-    ];
-
-    return view('surveyor.workingpaper', compact('workingPapers'));
-}
-
+    {
+        return view('surveyor.workingpaper');
+    }
 
 }

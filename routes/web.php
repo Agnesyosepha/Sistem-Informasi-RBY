@@ -12,6 +12,7 @@ Route::get('/edp/staff', [EdpController::class, 'staff'])->name('edp.staff');
 
 Route::get('/surveyor/proyek-selesai', [SurveyorController::class, 'proyekSelesai'])->name('surveyor.proyekSelesai');
 Route::get('/surveyor/tugas-tertunda', [SurveyorController::class, 'tugasTertunda'])->name('surveyor.tugastertunda');
+Route::get('/surveyor/working-paper', [SurveyorController::class, 'workingPaper'])->name('surveyor.workingpaper');
 
 Route::get('/login', function () {
     return view('auth.login');
