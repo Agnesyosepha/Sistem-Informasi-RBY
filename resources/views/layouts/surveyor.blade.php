@@ -23,10 +23,10 @@
                 <p><strong>12 Proyek</strong></p>
             </div>
         </a>
-        <div class="dashboard-card">
+        <a href="{{ route('surveyor.proyekSelesai') }}" class="dashboard-card" style="display:block; color:inherit; text-decoration:none;">
             <h3><i class="fas fa-check-circle"></i> Proyek Selesai</h3>
             <p><strong>18 Proyek</strong></p>
-        </div>
+        </a>
         <div class="dashboard-card">
             <h3><i class="fas fa-clock"></i> Tugas Tertunda</h3>
             <p><strong>3 Tugas</strong></p>

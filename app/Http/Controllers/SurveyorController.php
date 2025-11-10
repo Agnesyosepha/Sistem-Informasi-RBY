@@ -45,4 +45,16 @@ class SurveyorController extends Controller
         return view('surveyor.proyekberjalan', compact('proyek'));
     }
 
+    public function proyekSelesai()
+    {
+        $proyek = [
+            ['nama' => 'Survey Tanah Rumah', 'lokasi' => 'Jakarta', 'user' => 'Dazai'],
+            ['nama' => 'Survey Lahan Kosong', 'lokasi' => 'Bogor', 'user' => 'Ranpo'],
+            ['nama' => 'Survey Bangunan', 'lokasi' => 'Bekasi', 'user' => 'Naomi'],
+            ['nama' => 'Survey Jalan Raya', 'lokasi' => 'Bandung', 'user' => 'Chuuya'],
+        ];
+
+        return view('surveyor.proyekselesai', compact('proyek'));
+    }
+
 }
