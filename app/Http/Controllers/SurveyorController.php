@@ -14,9 +14,13 @@ class SurveyorController extends Controller
     public function tim()
     {
         $tim = [
+            ['nama' => 'Richard Barus', 'nohp' => '0812-2981-1849', 'status' => 'Aktif'],
+            ['nama' => 'Robbi Sugara Ginting', 'nohp' => '0812-2981-1849', 'status' => 'Aktif'],
             ['nama' => 'Firdaus Ginting', 'nohp' => '0812-2981-1849', 'status' => 'Aktif'],
+            ['nama' => 'Amri Simbolon', 'nohp' => '0812-2981-1849', 'status' => 'Aktif'],
             ['nama' => 'Fajar Hariyadi', 'nohp' => '0821-7894-1175', 'status' => 'Cuti'],
             ['nama' => 'Jasmani Ginting', 'nohp' => '0853-4568-9845', 'status' => 'Aktif'],
+            ['nama' => 'Santo Cornelius Ginting', 'nohp' => '0853-4568-9845', 'status' => 'Aktif'],
             ['nama' => 'Pretty Balerina Br Bangun', 'nohp' => '0813-8841-2781', 'status' => 'Aktif'],
             ['nama' => 'Benhur Sumanraja Sembiring', 'nohp' => '0877-9547-0175', 'status' => 'Aktif'],
             ['nama' => 'Elma Agnes Silitonga', 'nohp' => '0822-7844-1947', 'status' => 'Aktif'],
