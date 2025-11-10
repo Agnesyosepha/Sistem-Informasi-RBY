@@ -83,6 +83,11 @@ Route::get('/it', function () {
     return view('layouts.it');
 })->name('it');
 
+Route::get('/it/aset', [\App\Http\Controllers\ITController::class, 'aset'])->name('it.aset');
+
+Route::get('/it/server', [\App\Http\Controllers\ITController::class, 'server'])->name('it.server');
+
+Route::get('/it/formpeminjaman', [\App\Http\Controllers\ITController::class, 'formPeminjaman'])->name('it.formpeminjaman');
 
 
 // Logout
