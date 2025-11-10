@@ -43,9 +43,9 @@ class SurveyorController extends Controller
     public function proyekBerjalan()
     {
         $proyek = [
-            ['nama' => 'Penilaian Gedung Perkantoran', 'lokasi' => 'Jakarta', 'surveyor' => 'Dazai', 'tanggal_mulai' => '15 Okt 2025', 'progress' => 'On Progress'],
-            ['nama' => 'Survey Rumah Komersial', 'lokasi' => 'Bandung', 'surveyor' => 'Ranpo', 'tanggal_mulai' => '22 Okt 2025', 'progress' => 'On Progress'],
-            ['nama' => 'Evaluasi Tanah Kosong', 'lokasi' => 'Medan', 'surveyor' => 'Naomi', 'tanggal_mulai' => '30 Okt 2025', 'progress' => 'Done'],
+            ['nama' => 'Penilaian Gedung Perkantoran', 'lokasi' => 'Jakarta', 'surveyor' => 'Firdaus Ginting', 'tanggal_mulai' => '15 Okt 2025', 'progress' => 'On Progress'],
+            ['nama' => 'Survey Rumah Komersial', 'lokasi' => 'Bandung', 'surveyor' => 'Fajar Hariyadi', 'tanggal_mulai' => '22 Okt 2025', 'progress' => 'On Progress'],
+            ['nama' => 'Evaluasi Tanah Kosong', 'lokasi' => 'Medan', 'surveyor' => 'Jasmani Ginting', 'tanggal_mulai' => '30 Okt 2025', 'progress' => 'Done'],
         ];
 
         return view('surveyor.proyekberjalan', compact('proyek'));
@@ -54,10 +54,10 @@ class SurveyorController extends Controller
     public function proyekSelesai()
     {
         $proyek = [
-            ['nama' => 'Survey Tanah Rumah', 'lokasi' => 'Jakarta', 'user' => 'Dazai'],
-            ['nama' => 'Survey Lahan Kosong', 'lokasi' => 'Bogor', 'user' => 'Ranpo'],
-            ['nama' => 'Survey Bangunan', 'lokasi' => 'Bekasi', 'user' => 'Naomi'],
-            ['nama' => 'Survey Jalan Raya', 'lokasi' => 'Bandung', 'user' => 'Chuuya'],
+            ['nama' => 'Survey Tanah Rumah', 'lokasi' => 'Jakarta', 'user' => 'Firdaus Ginting'],
+            ['nama' => 'Survey Lahan Kosong', 'lokasi' => 'Bogor', 'user' => 'Fajar Hariyadi'],
+            ['nama' => 'Survey Bangunan', 'lokasi' => 'Bekasi', 'user' => 'Jasmani Ginting'],
+            ['nama' => 'Survey Jalan Raya', 'lokasi' => 'Bandung', 'user' => 'Benhur Sumanraja Sembiring'],
         ];
 
         return view('surveyor.proyekselesai', compact('proyek'));

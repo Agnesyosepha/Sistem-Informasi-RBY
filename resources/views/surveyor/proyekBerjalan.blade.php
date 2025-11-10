@@ -22,7 +22,7 @@
                 <td style="padding:10px;">1</td>
                 <td style="padding:10px;">Proyek Penilaian Gedung Perkantoran</td>
                 <td style="padding:10px;">Jakarta</td>
-                <td style="padding:10px;">Dazai</td>
+                <td style="padding:10px;">Firdaus Ginting</td>
                 <td style="padding:10px;">15 Okt 2025</td>
                 <td style="padding:10px;">On Progress</td>
             </tr>
@@ -30,7 +30,7 @@
                 <td style="padding:10px;">2</td>
                 <td style="padding:10px;">Proyek Survey Rumah Komersial</td>
                 <td style="padding:10px;">Bandung</td>
-                <td style="padding:10px;">Ranpo</td>
+                <td style="padding:10px;">Fajar Hariyadi</td>
                 <td style="padding:10px;">22 Okt 2025</td>
                 <td style="padding:10px;">On Progress</td>
             </tr>
@@ -38,7 +38,7 @@
                 <td style="padding:10px;">3</td>
                 <td style="padding:10px;">Proyek Evaluasi Tanah Kosong</td>
                 <td style="padding:10px;">Medan</td>
-                <td style="padding:10px;">Naomi</td>
+                <td style="padding:10px;">Jasmani Ginting</td>
                 <td style="padding:10px;">30 Okt 2025</td>
                 <td style="padding:10px;">Done</td>
             </tr>
