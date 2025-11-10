@@ -89,6 +89,10 @@ Route::get('/it/server', [\App\Http\Controllers\ITController::class, 'server'])-
 
 Route::get('/it/formpeminjaman', [\App\Http\Controllers\ITController::class, 'formPeminjaman'])->name('it.formpeminjaman');
 
+Route::get('/it/total-komputer', [\App\Http\Controllers\ItController::class, 'totalKomputer'])->name('it.totalKomputer');
+
+Route::get('/it/total-laptop', [\App\Http\Controllers\ItController::class, 'totalLaptop'])->name('it.totalLaptop');
+
 
 // Logout
 Route::post('/logout', function (Request $request) {

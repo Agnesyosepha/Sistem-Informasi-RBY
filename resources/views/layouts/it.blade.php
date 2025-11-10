@@ -19,14 +19,18 @@
                 <p><strong>12</strong></p>
             </div>
         </a>
-        <div class="dashboard-card">
-            <h3><i class="fas fa-computer"></i> Total Komputer</h3>
-            <p><strong>15 PC</strong></p>
-        </div>
-        <div class="dashboard-card">
-            <h3><i class="fas fa-laptop"></i> Total Laptop</h3>
-            <p><strong>10 Laptop</strong></p>
-        </div>
+        <a href="{{ route('it.totalKomputer') }}" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-computer"></i> Total Komputer</h3>
+                <p><strong>15 PC</strong></p>
+            </div>
+        </a>
+        <a href="{{ route('it.totalLaptop') }}" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-laptop"></i> Total Laptop</h3>
+                <p><strong>10 Laptop</strong></p>
+            </div>
+        </a>
         <a href="{{ route('it.formpeminjaman') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card" style="cursor:pointer;">
                 <h3><i class="fas fa-laptop"></i> Form Peminjaman</h3>

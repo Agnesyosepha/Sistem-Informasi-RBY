@@ -36,4 +36,30 @@ class ITController extends Controller
 
         return view('it.server', compact('servers'));
     }
+
+    public function totalKomputer()
+    {
+        $komputers = [
+            ['nama' => 'PC-01', 'pengguna' => 'Elise', 'lokasi' => 'Kantor Utama', 'status' => 'Aktif'],
+            ['nama' => 'PC-02', 'pengguna' => 'Kenji', 'lokasi' => 'Finance', 'status' => 'Aktif'],
+            ['nama' => 'PC-03', 'pengguna' => 'Rika', 'lokasi' => 'HRD', 'status' => 'Perbaikan'],
+            ['nama' => 'PC-04', 'pengguna' => 'Tomi', 'lokasi' => 'IT Support', 'status' => 'Aktif'],
+            ['nama' => 'PC-05', 'pengguna' => 'Nana', 'lokasi' => 'Marketing', 'status' => 'Aktif'],
+        ];
+
+        return view('it.totalKomputer', compact('komputers'));
+    }
+
+    public function totalLaptop()
+    {
+        $laptops = [
+            ['nama' => 'PC-01', 'pengguna' => 'Elise', 'lokasi' => 'Kantor Utama', 'status' => 'Aktif'],
+            ['nama' => 'PC-02', 'pengguna' => 'Kenji', 'lokasi' => 'Finance', 'status' => 'Aktif'],
+            ['nama' => 'PC-03', 'pengguna' => 'Rika', 'lokasi' => 'HRD', 'status' => 'Perbaikan'],
+            ['nama' => 'PC-04', 'pengguna' => 'Tomi', 'lokasi' => 'IT Support', 'status' => 'Aktif'],
+            ['nama' => 'PC-05', 'pengguna' => 'Nana', 'lokasi' => 'Marketing', 'status' => 'Aktif'],
+        ];
+
+        return view('it.totalLaptop', compact('laptops'));
+    }
 }
