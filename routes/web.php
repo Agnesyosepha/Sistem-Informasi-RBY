@@ -50,6 +50,8 @@ Route::get('/surveyor/tim', [\App\Http\Controllers\SurveyorController::class, 't
 
 Route::get('/surveyor/proyekberjalan', [\App\Http\Controllers\SurveyorController::class, 'proyekberjalan'])->name('surveyor.proyekberjalan');
 
+Route::get('/surveyor/workingpaper', [\App\Http\Controllers\SurveyorController::class, 'workingPaper'])->name('surveyor.workingpaper');
+
 
 // EDP
 Route::get('/edp', function () {

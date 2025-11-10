@@ -33,12 +33,12 @@
                 <p><strong>3 Tugas</strong></p>
             </div>
         </a>
-
-        <div class="dashboard-card">
-            <h3><i class="fas fa-tasks"></i> Working Paper</h3>
-            <p><strong>11 Dokumen</strong></p>
-        </div>
-    </div>
+        <a href="{{ route('surveyor.workingpaper') }}" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-tasks"></i> Working Paper</h3>
+                <p><strong>11 Dokumen</strong></p>
+            </div>
+        </a>
 
     <div class="dashboard-card" style="margin-top:30px;">
         <h3><i class="fas fa-calendar-alt"></i> Jadwal Surveyor</h3>
