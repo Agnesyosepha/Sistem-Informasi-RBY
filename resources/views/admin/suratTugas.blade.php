@@ -3,12 +3,37 @@
 @section('title', 'Surat Tugas')
 
 @section('content')
+<style>
+    .add-btn {
+        background: #007BFF;
+        color: white;
+        padding: 9px 16px;
+        border-radius: 6px;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: 0.25s;
+    }
+
+    .add-btn:hover {
+        background: #2ecc71;
+        transform: translateY(-1px);
+    }
+</style>
+
     <h1><i class="fas fa-file-signature"></i> Daftar Surat Tugas</h1>
     <p>Berikut daftar surat tugas yang telah diterbitkan untuk surveyor.</p>
 
     
     
     <div class="dashboard-card" style="margin-top:30px;">
+            <button class="add-btn" >
+                <i class="fas fa-add"></i> Tambah Surat Tugas
+            </button>
+            
     <table style="width:100%; border-collapse: collapse; margin-top:15px;">
         <thead style="background:#007BFF; color:white;">
             <tr>
