@@ -37,9 +37,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard')->middleware('auth');
 
-// Profile (contoh tambahan)
+// Profile
 Route::get('/profile', function () {
-    return view('profile');
+    return view('/profile/profile');
 })->name('profile')->middleware('auth');
 
 // Admin
