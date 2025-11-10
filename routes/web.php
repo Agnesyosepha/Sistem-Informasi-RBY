@@ -56,7 +56,7 @@ Route::get('/admin/tugas-harian', [\App\Http\Controllers\AdminController::class,
 
 Route::get('/admin/proposal', [\App\Http\Controllers\AdminController::class, 'proposal'])->name('admin.proposal');
 
-Route::get('/admin/adendum', [AdminController::class, 'adendum'])->name('admin.adendum');
+Route::get('/admin/adendum', [\App\Http\Controllers\AdminController::class, 'adendum'])->name('admin.adendum');
 
 
 // Surveyor

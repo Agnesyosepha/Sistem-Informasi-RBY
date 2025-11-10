@@ -25,11 +25,11 @@ class AdminController extends Controller
     public function tugasHarian()
     {
       $tugasHarian = [
-        ['role' => 'Admin Utama', 'tugas' => 'Memverifikasi data surveyor', 'status' => 'Selesai', 'tanggal' => '10 Nov 2025'],
-        ['role' => 'Surveyor', 'tugas' => 'Melakukan survey lapangan di Bekasi', 'status' => 'Proses', 'tanggal' => '10 Nov 2025'],
-        ['role' => 'EDP', 'tugas' => 'Backup database dan update sistem', 'status' => 'Proses', 'tanggal' => '09 Nov 2025'],
-        ['role' => 'Keuangan', 'tugas' => 'Menyiapkan laporan pembayaran surveyor', 'status' => 'Belum Mulai', 'tanggal' => '11 Nov 2025'],
-        ['role' => 'Manager', 'tugas' => 'Meninjau laporan proyek mingguan', 'status' => 'Selesai', 'tanggal' => '08 Nov 2025'],
+        ['pemberitugas' => 'Admin Utama', 'debitur' => 'Memverifikasi data surveyor', 'noppjp' => 'Selesai', 'tanggal' => '10 Nov 2025', 'timlapangan' => 'Tim PM'],
+        ['pemberitugas' => 'Surveyor', 'debitur' => 'Melakukan survey lapangan di Bekasi', 'noppjp' => 'Proses', 'tanggal' => '10 Nov 2025', 'timlapangan' => 'Tim PM'],
+        ['pemberitugas' => 'EDP', 'debitur' => 'Backup database dan update sistem', 'noppjp' => 'Proses', 'tanggal' => '09 Nov 2025', 'timlapangan' => 'Tim PM'],
+        ['pemberitugas' => 'Keuangan', 'debitur' => 'Menyiapkan laporan pembayaran surveyor', 'noppjp' => 'Belum Mulai', 'tanggal' => '11 Nov 2025', 'timlapangan' => 'Tim PM'],
+        ['pemberitugas' => 'Manager', 'debitur' => 'Meninjau laporan proyek mingguan', 'noppjp' => 'Selesai', 'tanggal' => '08 Nov 2025', 'timlapangan' => 'Tim PM'],
       ];
 
       return view('admin.tugasHarian', compact('tugasHarian'));
