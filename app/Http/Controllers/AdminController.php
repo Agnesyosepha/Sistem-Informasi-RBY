@@ -23,18 +23,7 @@ class AdminController extends Controller
 
         return view('admin.suratTugas', compact('suratTugas'));
     }
-    public function tugasHarian()
-    {
-      $tugasHarian = [
-        ['pemberitugas' => 'Admin Utama', 'debitur' => 'Memverifikasi data surveyor', 'noppjp' => 'Selesai', 'tanggal' => '10 Nov 2025', 'timlapangan' => 'Tim PM'],
-        ['pemberitugas' => 'Surveyor', 'debitur' => 'Melakukan survey lapangan di Bekasi', 'noppjp' => 'Proses', 'tanggal' => '10 Nov 2025', 'timlapangan' => 'Tim PM'],
-        ['pemberitugas' => 'EDP', 'debitur' => 'Backup database dan update sistem', 'noppjp' => 'Proses', 'tanggal' => '09 Nov 2025', 'timlapangan' => 'Tim PM'],
-        ['pemberitugas' => 'Keuangan', 'debitur' => 'Menyiapkan laporan pembayaran surveyor', 'noppjp' => 'Belum Mulai', 'tanggal' => '11 Nov 2025', 'timlapangan' => 'Tim PM'],
-        ['pemberitugas' => 'Manager', 'debitur' => 'Meninjau laporan proyek mingguan', 'noppjp' => 'Selesai', 'tanggal' => '08 Nov 2025', 'timlapangan' => 'Tim PM'],
-      ];
-
-      return view('admin.tugasHarian', compact('tugasHarian'));
-    }
+    
 
     public function proposal()
 {

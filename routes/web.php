@@ -54,8 +54,6 @@ Route::get('/admin', function () {
 
 Route::get('/admin/surat-tugas', [\App\Http\Controllers\AdminController::class, 'suratTugas'])->name('admin.suratTugas');
 
-Route::get('/admin/tugas-harian', [\App\Http\Controllers\AdminController::class, 'tugasHarian'])->name('admin.tugasHarian');
-
 Route::get('/admin/proposal', [\App\Http\Controllers\AdminController::class, 'proposal'])->name('admin.proposal');
 
 Route::get('/admin/adendum', [\App\Http\Controllers\AdminController::class, 'adendum'])->name('admin.adendum');

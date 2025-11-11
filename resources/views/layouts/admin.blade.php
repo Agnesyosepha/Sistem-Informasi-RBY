@@ -26,12 +26,6 @@
                 <p><strong>350</strong></p>
             </div>
         </a>
-        <a href="{{ route('admin.tugasHarian') }}" style="text-decoration:none; color:inherit;">
-            <div class="dashboard-card">
-                <h3><i class="fas fa-tasks"></i> Tugas Harian</h3>
-                <p><strong>5 Role Utama</strong></p>
-            </div>
-        </a>
         <a href="{{ route('admin.draftResume') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-file"></i> Draft Resume</h3>
