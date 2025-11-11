@@ -37,28 +37,33 @@
     <table style="width:100%; border-collapse: collapse; margin-top:15px;">
         <thead style="background:#007BFF; color:white;">
             <tr>
-                <th style="padding:10px; text-align:left;">Nomor Surat</th>
+                <th style="padding:10px; text-align:left;">Nomor PPJP</th>
                 <th style="padding:10px; text-align:left;">Tanggal</th>
-                <th style="padding:10px; text-align:left;">Penanggung Jawab</th>
+                <th style="padding:10px; text-align:left;">Pemberi Tugas</th>
+                <th style="padding:10px; text-align:center;">Nama Penilai</th>
+                <th style="padding:10px; text-align:center;">Adendum</th>
                 <th style="padding:10px; text-align:center;">Status</th>
             </tr>
         </thead>
         <tbody>
             @foreach($suratTugas as $surat)
                 <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">{{ $surat['nomor'] }}</td>
+                    <td style="padding:10px;">{{ $surat['no_ppjp'] }}</td>
                     <td style="padding:10px;">{{ $surat['tanggal'] }}</td>
-                    <td style="padding:10px;">{{ $surat['penanggung_jawab'] }}</td>
+                    <td style="padding:10px;">{{ $surat['pemberi_tugas'] }}</td>
+                    <td style="padding:10px; text-align:center;">{{ $surat['nama_penilai'] }}</td>
+                    <td style="padding:10px; text-align:center;">{{ $surat['adendum'] }}</td>
                     <td style="padding:10px; text-align:center; font-weight:600;
-                        color: 
-                            {{ $surat['status'] == 'Selesai' ? 'green' : 
-                               ($surat['status'] == 'Proses' ? 'orange' : 'blue') }};
+                        color:
+                            {{ $surat['status'] == 'Selesai' ? 'green' :
+                            ($surat['status'] == 'Proses' ? 'orange' : 'blue') }};
                     ">
                         {{ $surat['status'] }}
                     </td>
                 </tr>
             @endforeach
         </tbody>
+
     </table>
     </div>
     

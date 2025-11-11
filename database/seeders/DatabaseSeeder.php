@@ -32,6 +32,5 @@ class DatabaseSeeder extends Seeder
             'password' => 'grace123',
         ]);
 
-
     }
 }

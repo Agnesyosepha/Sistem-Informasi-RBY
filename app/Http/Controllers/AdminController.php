@@ -187,7 +187,7 @@ public function laporanFinal()
             'pemberi_tugas' => 'PT Sinar Properti',
             'nomor_ppjp' => 'PPJP/010/SP/2025',
             'tgl_pengiriman' => '01 Nov 2025',
-            'jenis_penilaian' => 'Properti Komersial',
+            'jenis_penilaian' => 'Rumah Tinggal',
             'status' => 'Disetujui'
         ],
         [
@@ -201,28 +201,28 @@ public function laporanFinal()
             'pemberi_tugas' => 'PT Delta Energi',
             'nomor_ppjp' => 'PPJP/012/DEL/2025',
             'tgl_pengiriman' => '03 Nov 2025',
-            'jenis_penilaian' => 'Mesin Industri',
+            'jenis_penilaian' => 'Gudang',
             'status' => 'Direvisi'
         ],
         [
             'pemberi_tugas' => 'Bank Mandiri',
             'nomor_ppjp' => 'PPJP/013/MND/2025',
             'tgl_pengiriman' => '04 Nov 2025',
-            'jenis_penilaian' => 'Aset Kantor',
+            'jenis_penilaian' => 'Tanah Kosong',
             'status' => 'Arsip'
         ],
         [
             'pemberi_tugas' => 'PT Graha Sentosa',
             'nomor_ppjp' => 'PPJP/014/GS/2025',
             'tgl_pengiriman' => '05 Nov 2025',
-            'jenis_penilaian' => 'Kendaraan Operasional',
+            'jenis_penilaian' => 'Mesin dan peralatan',
             'status' => 'Disetujui'
         ],
         [
             'pemberi_tugas' => 'Bank BTN',
             'nomor_ppjp' => 'PPJP/015/BTN/2025',
             'tgl_pengiriman' => '07 Nov 2025',
-            'jenis_penilaian' => 'Rumah Tapak',
+            'jenis_penilaian' => 'Tanah dan Bangunan',
             'status' => 'Disetujui'
         ],
     ];
