@@ -10,8 +10,8 @@
         <table style="width:100%; border-collapse: collapse; margin-top:15px;">
             <thead style="background:#007BFF; color:white;">
                 <tr>
-                    <th style="padding:10px; text-align:left;">Judul Proposal</th>
-                    <th style="padding:10px; text-align:left;">Pengajuan</th>
+                    <th style="padding:10px; text-align:left;">Nama Objek</th>
+                    <th style="padding:10px; text-align:left;">Debitur</th>
                     <th style="padding:10px; text-align:left;">Tanggal Pengajuan</th>
                     <th style="padding:10px; text-align:left;">Tanggal Disetujui</th>
                     <th style="padding:10px; text-align:left;">Deadline</th>

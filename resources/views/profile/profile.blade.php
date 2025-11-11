@@ -394,8 +394,8 @@
                 <div class="profile-photo">
                     <i class="fas fa-user"></i>
                 </div>
-                <h3>Keza Felice</h3>
-                <p>admin@web.app</p>
+                <h3>Shafa</h3>
+                <p>adminbekasi@gmail.com</p>
             </div>
 
             <div class="profile-right">
@@ -403,7 +403,7 @@
 
                 <div class="profile-field">
                     <label>Nama</label>
-                    <input type="text" value="Keza Felice" readonly>
+                    <input type="text" value="Shafa" readonly>
                 </div>
 
                 <div class="profile-field">
@@ -418,16 +418,16 @@
 
                 <div class="profile-field">
                     <label>Divisi</label>
-                    <input type="text" value="IT" readonly>
+                    <input type="text" value="Admin" readonly>
                 </div>
 
                 <div class="profile-field">
                     <label>Jabatan</label>
-                    <input type="text" value="Admin" readonly>
+                    <input type="text" value="Staff" readonly>
                 </div>
                 <div class="profile-field">
                     <label>Nomor MAPPI</label>
-                    <input type="text" value="1234567890" readonly>
+                    <input type="text" value="8815629468" readonly>
                 </div>
             </div>
         </div>
