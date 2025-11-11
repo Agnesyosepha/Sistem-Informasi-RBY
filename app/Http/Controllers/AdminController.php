@@ -61,5 +61,92 @@ public function adendum()
     return view('admin.adendum', compact('adendum'));
 }
 
+public function draftResume()
+{
+    $resume = [
+        [
+            'pemberi_tugas' => 'PT Nusantara Properti',
+            'objek_penilaian' => 'Gedung Perkantoran Jakarta',
+            'nilai_pasar' => 12500000000,
+            'nilai_wajar' => 12000000000,
+            'nilai_likuidasi' => 9500000000,
+            'tanggal' => '01 Nov 2025',
+            'tanggal_pengiriman' => '05 Nov 2025',
+            'status' => 'Terkirim'
+        ],
+        [
+            'pemberi_tugas' => 'Bank Mandiri Tbk',
+            'objek_penilaian' => 'Tanah & Bangunan Komersial',
+            'nilai_pasar' => 8900000000,
+            'nilai_wajar' => 8700000000,
+            'nilai_likuidasi' => 7300000000,
+            'tanggal' => '02 Nov 2025',
+            'tanggal_pengiriman' => '06 Nov 2025',
+            'status' => 'Final'
+        ],
+        [
+            'pemberi_tugas' => 'PT Delta Energi',
+            'objek_penilaian' => 'Gudang & Peralatan Industri',
+            'nilai_pasar' => 6500000000,
+            'nilai_wajar' => 6200000000,
+            'nilai_likuidasi' => 5000000000,
+            'tanggal' => '03 Nov 2025',
+            'tanggal_pengiriman' => '07 Nov 2025',
+            'status' => 'Pending'
+        ],
+        [
+            'pemberi_tugas' => 'Bank BRI',
+            'objek_penilaian' => 'Rumah Tinggal Premium',
+            'nilai_pasar' => 3200000000,
+            'nilai_wajar' => 3100000000,
+            'nilai_likuidasi' => 2500000000,
+            'tanggal' => '05 Nov 2025',
+            'tanggal_pengiriman' => '09 Nov 2025',
+            'status' => 'Disetujui'
+        ],
+    ];
+
+    return view('admin.draftResume', compact('resume'));
+}
+
+
+public function draftLaporan()
+{
+    $laporan = [
+        [
+            'pemberi_tugas' => 'PT Nusantara Properti',
+            'nomor_ppjp' => 'PPJP/001/NP/2025',
+            'tgl_proposal' => '01 Nov 2025',
+            'tgl_pengiriman' => '05 Nov 2025',
+            'status' => 'Pending'
+        ],
+        [
+            'pemberi_tugas' => 'Bank Mandiri Tbk',
+            'nomor_ppjp' => 'PPJP/002/MND/2025',
+            'tgl_proposal' => '02 Nov 2025',
+            'tgl_pengiriman' => '06 Nov 2025',
+            'status' => 'Final'
+        ],
+        [
+            'pemberi_tugas' => 'PT Delta Energi',
+            'nomor_ppjp' => 'PPJP/003/DELTA/2025',
+            'tgl_proposal' => '03 Nov 2025',
+            'tgl_pengiriman' => '07 Nov 2025',
+            'status' => 'Disetujui'
+        ],
+        [
+            'pemberi_tugas' => 'Bank BRI',
+            'nomor_ppjp' => 'PPJP/004/BRI/2025',
+            'tgl_proposal' => '04 Nov 2025',
+            'tgl_pengiriman' => '09 Nov 2025',
+            'status' => 'Ditolak'
+        ],
+    ];
+
+    return view('admin.draftLaporan', compact('laporan'));
+}
+
+
+
 
 }

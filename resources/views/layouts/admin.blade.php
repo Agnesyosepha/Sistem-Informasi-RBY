@@ -8,6 +8,18 @@
 
     <!-- Statistik Utama -->
     <div class="dashboard-cards">
+        <a href="{{ route('admin.proposal') }}" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-lightbulb"></i> Proposal</h3>
+                <p><strong>120.000 Record</strong></p>
+            </div>
+        </a>
+        <a href="{{ route('admin.adendum') }}" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-plus-square"></i> Adendum</h3>
+                <p><strong style="color:green;">Online</strong></p>
+            </div>
+        </a>
         <a href="{{ route('admin.suratTugas') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-file-signature"></i> Surat Tugas</h3>
@@ -20,16 +32,16 @@
                 <p><strong>5 Role Utama</strong></p>
             </div>
         </a>
-        <a href="{{ route('admin.proposal') }}" style="text-decoration:none; color:inherit;">
+        <a href="{{ route('admin.draftResume') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
-                <h3><i class="fas fa-lightbulb"></i> Proposal</h3>
-                <p><strong>120.000 Record</strong></p>
+                <h3><i class="fas fa-file"></i> Draft Resume</h3>
+                <p><strong>2 dokumen</strong></p>
             </div>
         </a>
-        <a href="{{ route('admin.adendum') }}" style="text-decoration:none; color:inherit;">
+        <a href="{{ route('admin.draftLaporan') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
-                <h3><i class="fas fa-plus-square"></i> Adendum</h3>
-                <p><strong style="color:green;">Online</strong></p>
+                <h3><i class="fas fa-file"></i> Draft Laporan</h3>
+                <p><strong >2 dokumen</strong></p>
             </div>
         </a>
     </div>

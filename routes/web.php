@@ -58,6 +58,11 @@ Route::get('/admin/proposal', [\App\Http\Controllers\AdminController::class, 'pr
 
 Route::get('/admin/adendum', [\App\Http\Controllers\AdminController::class, 'adendum'])->name('admin.adendum');
 
+Route::get('/admin/draftResume', [\App\Http\Controllers\AdminController::class, 'draftResume'])->name('admin.draftResume');
+
+Route::get('/admin/draftLaporan', [\App\Http\Controllers\AdminController::class, 'draftLaporan'])->name('admin.draftLaporan');
+
+
 
 // Surveyor
 Route::get('/surveyor', function () {
