@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -38,15 +39,59 @@ class AdminController extends Controller
     public function proposal()
 {
     $proposal = [
-        ['judul' => 'Penilaian Properti Komersial', 'pengaju' => 'Surveyor 01', 'tanggal' => '01 Nov 2025', 'status' => 'Disetujui'],
-        ['judul' => 'Analisis Lahan Industri', 'pengaju' => 'Surveyor 02', 'tanggal' => '03 Nov 2025', 'status' => 'Menunggu Review'],
-        ['judul' => 'Evaluasi Aset Perusahaan', 'pengaju' => 'Surveyor 03', 'tanggal' => '05 Nov 2025', 'status' => 'Direvisi'],
-        ['judul' => 'Penilaian Tanah Kosong', 'pengaju' => 'Surveyor 04', 'tanggal' => '07 Nov 2025', 'status' => 'Disetujui'],
-        ['judul' => 'Analisis Nilai Bangunan', 'pengaju' => 'Surveyor 05', 'tanggal' => '09 Nov 2025', 'status' => 'Proses'],
+        [
+            'judul' => 'Penilaian Gedung Utama',
+            'pengaju' => 'Surveyor A',
+            'tanggal' => '01 Nov 2025',
+            'tgl_disetujui' => '03 Nov 2025',
+            'tgl_berakhir' => '10 Nov 2025',
+            'status' => 'Disetujui'
+        ],
+        [
+            'judul' => 'Survey Lahan Perumahan',
+            'pengaju' => 'Surveyor B',
+            'tanggal' => '04 Nov 2025',
+            'tgl_disetujui' => '06 Nov 2025',
+            'tgl_berakhir' => '13 Nov 2025',
+            'status' => 'Menunggu Review'
+        ],
+        [
+            'judul' => 'Penilaian Properti Komersial',
+            'pengaju' => 'Surveyor C',
+            'tanggal' => '05 Nov 2025',
+            'tgl_disetujui' => '07 Nov 2025',
+            'tgl_berakhir' => '14 Nov 2025',
+            'status' => 'Direvisi'
+        ],
+        [
+            'judul' => 'Evaluasi Gudang Logistik',
+            'pengaju' => 'Surveyor D',
+            'tanggal' => '06 Nov 2025',
+            'tgl_disetujui' => '08 Nov 2025',
+            'tgl_berakhir' => '15 Nov 2025',
+            'status' => 'Disetujui'
+        ],
+        [
+            'judul' => 'Proposal Penilaian Aset Kantor Cabang',
+            'pengaju' => 'Surveyor E',
+            'tanggal' => '08 Nov 2025',
+            'tgl_disetujui' => '09 Nov 2025',
+            'tgl_berakhir' => '16 Nov 2025',
+            'status' => 'Menunggu Review'
+        ],
     ];
+
+    // Hitung deadline otomatis (selisih hari dari disetujui ke berakhir)
+    foreach ($proposal as &$p) {
+        $tgl1 = \Carbon\Carbon::parse($p['tgl_disetujui']);
+        $tgl2 = \Carbon\Carbon::parse($p['tgl_berakhir']);
+        $selisih = $tgl1->diffInDays($tgl2);
+        $p['deadline'] = $selisih . ' hari';
+    }
 
     return view('admin.proposal', compact('proposal'));
 }
+
 
 public function adendum()
 {
