@@ -78,4 +78,61 @@ class SurveyorController extends Controller
         return view('surveyor.workingpaper');
     }
 
+    public function laporanPenilaian()
+{
+    $laporanPenilaian = [
+        [
+            'nomor_laporan' => 'LP/001/SP/2025',
+            'klien' => 'PT Sinar Properti',
+            'jenis_aset' => 'Tanah dan Bangunan',
+            'nilai_penilaian' => 1500000000,
+            'tgl_laporan' => '01 Nov 2025',
+            'status' => 'Final'
+        ],
+        [
+            'nomor_laporan' => 'LP/002/BCA/2025',
+            'klien' => 'Bank BCA',
+            'jenis_aset' => 'Rumah Tinggal',
+            'nilai_penilaian' => 850000000,
+            'tgl_laporan' => '02 Nov 2025',
+            'status' => 'Disetujui'
+        ],
+        [
+            'nomor_laporan' => 'LP/003/MND/2025',
+            'klien' => 'Bank Mandiri',
+            'jenis_aset' => 'Ruko 2 Lantai',
+            'nilai_penilaian' => 1200000000,
+            'tgl_laporan' => '03 Nov 2025',
+            'status' => 'Draft'
+        ],
+        [
+            'nomor_laporan' => 'LP/004/DEL/2025',
+            'klien' => 'PT Delta Energi',
+            'jenis_aset' => 'Pabrik & Mesin',
+            'nilai_penilaian' => 3400000000,
+            'tgl_laporan' => '04 Nov 2025',
+            'status' => 'Final'
+        ],
+        [
+            'nomor_laporan' => 'LP/005/BTN/2025',
+            'klien' => 'Bank BTN',
+            'jenis_aset' => 'Apartemen',
+            'nilai_penilaian' => 2300000000,
+            'tgl_laporan' => '05 Nov 2025',
+            'status' => 'Disetujui'
+        ],
+        [
+            'nomor_laporan' => 'LP/006/GS/2025',
+            'klien' => 'PT Graha Sentosa',
+            'jenis_aset' => 'Tanah Kosong',
+            'nilai_penilaian' => 670000000,
+            'tgl_laporan' => '06 Nov 2025',
+            'status' => 'Final'
+        ],
+    ];
+
+    return view('surveyor.laporanPenilaian', compact('laporanPenilaian'));
+}
+
+
 }

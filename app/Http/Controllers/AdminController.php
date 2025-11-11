@@ -146,6 +146,55 @@ public function draftLaporan()
     return view('admin.draftLaporan', compact('laporan'));
 }
 
+public function laporanFinal()
+{
+    $laporanFinal = [
+        [
+            'pemberi_tugas' => 'PT Sinar Properti',
+            'nomor_ppjp' => 'PPJP/010/SP/2025',
+            'tgl_pengiriman' => '01 Nov 2025',
+            'jenis_penilaian' => 'Properti Komersial',
+            'status' => 'Disetujui'
+        ],
+        [
+            'pemberi_tugas' => 'Bank BCA',
+            'nomor_ppjp' => 'PPJP/011/BCA/2025',
+            'tgl_pengiriman' => '02 Nov 2025',
+            'jenis_penilaian' => 'Tanah & Bangunan',
+            'status' => 'Disetujui'
+        ],
+        [
+            'pemberi_tugas' => 'PT Delta Energi',
+            'nomor_ppjp' => 'PPJP/012/DEL/2025',
+            'tgl_pengiriman' => '03 Nov 2025',
+            'jenis_penilaian' => 'Mesin Industri',
+            'status' => 'Direvisi'
+        ],
+        [
+            'pemberi_tugas' => 'Bank Mandiri',
+            'nomor_ppjp' => 'PPJP/013/MND/2025',
+            'tgl_pengiriman' => '04 Nov 2025',
+            'jenis_penilaian' => 'Aset Kantor',
+            'status' => 'Arsip'
+        ],
+        [
+            'pemberi_tugas' => 'PT Graha Sentosa',
+            'nomor_ppjp' => 'PPJP/014/GS/2025',
+            'tgl_pengiriman' => '05 Nov 2025',
+            'jenis_penilaian' => 'Kendaraan Operasional',
+            'status' => 'Disetujui'
+        ],
+        [
+            'pemberi_tugas' => 'Bank BTN',
+            'nomor_ppjp' => 'PPJP/015/BTN/2025',
+            'tgl_pengiriman' => '07 Nov 2025',
+            'jenis_penilaian' => 'Rumah Tapak',
+            'status' => 'Disetujui'
+        ],
+    ];
+
+    return view('admin.laporanFinal', compact('laporanFinal'));
+}
 
 
 

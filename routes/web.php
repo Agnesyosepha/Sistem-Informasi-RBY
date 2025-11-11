@@ -62,6 +62,7 @@ Route::get('/admin/draftResume', [\App\Http\Controllers\AdminController::class, 
 
 Route::get('/admin/draftLaporan', [\App\Http\Controllers\AdminController::class, 'draftLaporan'])->name('admin.draftLaporan');
 
+Route::get('/admin/laporan-final', [AdminController::class, 'laporanFinal'])->name('admin.laporanFinal');
 
 
 // Surveyor
@@ -76,6 +77,8 @@ Route::get('/surveyor/tim', [\App\Http\Controllers\SurveyorController::class, 't
 Route::get('/surveyor/proyekberjalan', [\App\Http\Controllers\SurveyorController::class, 'proyekberjalan'])->name('surveyor.proyekberjalan');
 
 Route::get('/surveyor/workingpaper', [\App\Http\Controllers\SurveyorController::class, 'workingPaper'])->name('surveyor.workingpaper');
+
+Route::get('/surveyor/laporan-penilaian', [SurveyorController::class, 'laporanPenilaian'])->name('surveyor.laporanPenilaian');
 
 
 // EDP

@@ -39,6 +39,12 @@
                 <p><strong>11 Dokumen</strong></p>
             </div>
         </a>
+        <a href="{{ route('surveyor.laporanPenilaian') }}" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-file"></i> Laporan Penilaian</h3>
+                <p><strong >6 dokumen</strong></p>
+            </div>
+        </a>
     </div>
     
     <div class="dashboard-card" style="margin-top:30px;">
