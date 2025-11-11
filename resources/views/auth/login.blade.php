@@ -10,22 +10,54 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #fff;
-      font-family: 'Poppins', sans-serif;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
+    body {
+      height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+
+    /* ===== Background utama ===== */
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: url("{{ asset('images/home.jpg') }}") center/cover no-repeat;
+      filter: blur(6px);
+      z-index: 0;
+    }
+
+    /* ===== Overlay hitam semi transparan agar kontras ===== */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(0,0,0,0.3);
+      z-index: 1;
+    }
+
+    /* ===== Popup Login (kode kamu tetap sama) ===== */
     .login-container {
+        position: relative;
+        z-index: 2;
         background: #000;
         padding: 40px 25px;   
         border-radius: 12px;
         width: 320px;
         text-align: center;
         box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        margin: auto;
+        top: 50%;
+        transform: translateY(-50%);
     }
 
     .login-container h2 {
@@ -116,11 +148,15 @@
 </head>
 <body>
 
+  <!-- Background dan overlay -->
+  <div class="background"></div>
+  <div class="overlay"></div>
+
+  <!-- Popup login -->
   <div class="login-container">
     <h2>Login</h2>
     <img src="{{ asset('images/rby-logo.png') }}" alt="RBY Logo">
     
-    <!-- autocomplete dimatikan -->
     <form method="POST" action="{{ route('login') }}" autocomplete="off">
       @csrf
 
@@ -140,7 +176,6 @@
         <p class="error-text">{{ $errors->first('password') }}</p>
       @endif
 
-      <!-- Error umum (misalnya username / password salah) -->
       @if(session('error'))
         <p class="error-text">{{ session('error') }}</p>
       @endif
