@@ -54,21 +54,25 @@
 
     <!-- Tabel Aktivitas -->
     <div class="dashboard-card" style="margin-top:30px;">
-        <h3><i class="fas fa-clipboard-list"></i> Log Aktivitas Terakhir</h3>
+        <h3><i class="fas fa-clipboard-list"></i> Tugas Harian</h3>
         <table style="width:100%; border-collapse: collapse; margin-top:15px;">
             <thead style="background:#007BFF; color:white;">
                 <tr>
-                    <th style="padding:10px; text-align:left;">Tanggal</th>
-                    <th style="padding:10px; text-align:left;">User</th>
-                    <th style="padding:10px; text-align:left;">Aksi</th>
+                    <th style="padding:10px; text-align:left;">Pemberi Tugas</th>
+                    <th style="padding:10px; text-align:left;">Debitur</th>
+                    <th style="padding:10px; text-align:left;">No. PPJP</th>
+                    <th style="padding:10px; text-align:center;">Tanggal Survei</th>
+                    <th style="padding:10px; text-align:center;">Tim Lapangan</th>
                     <th style="padding:10px; text-align:center;">Status</th>
                 </tr>
             </thead>
             <tbody>
                 <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">01 Sep 2025</td>
-                    <td style="padding:10px;">Admin Utama</td>
-                    <td style="padding:10px;">Menambahkan user baru</td>
+                    <td style="padding:10px;">PT Caturkarda Depo Bangunan, Tbk</td>
+                    <td style="padding:10px;">PT Caturkarda Depo Bangunan, Tbk</td>
+                    <td style="padding:10px;">00166/RBY-PPJP/BKS/VIII/2024</td>
+                    <td style="padding:10px;">17 Agustus 2023</td>
+                    <td style="padding:10px;">Fajar</td>
                     <td style="padding:10px; text-align:center; color:green; font-weight:600;">Sukses</td>
                 </tr>
                 <tr style="border-bottom:1px solid #ddd;">
