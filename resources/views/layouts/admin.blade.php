@@ -76,16 +76,20 @@
                     <td style="padding:10px; text-align:center; color:green; font-weight:600;">Sukses</td>
                 </tr>
                 <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">02 Sep 2025</td>
-                    <td style="padding:10px;">Surveyor01</td>
-                    <td style="padding:10px;">Login ke sistem</td>
-                    <td style="padding:10px; text-align:center; color:blue; font-weight:600;">Info</td>
+                    <td style="padding:10px;">Port Mori Corporation</td>
+                    <td style="padding:10px;">Port Mori Corporation</td>
+                    <td style="padding:10px;">01026/RBY-PPJP/BKS/VII/2024</td>
+                    <td style="padding:10px;">24 Juli 2024</td>
+                    <td style="padding:10px;">Jasmani</td>
+                    <td style="padding:10px; text-align:center; color:green; font-weight:600;">Sukses</td>
                 </tr>
                 <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">02 Sep 2025</td>
-                    <td style="padding:10px;">EDP02</td>
-                    <td style="padding:10px;">Gagal update data</td>
-                    <td style="padding:10px; text-align:center; color:red; font-weight:600;">Error</td>
+                    <td style="padding:10px;">PT Bahagia Biru</td>
+                    <td style="padding:10px;">PT Bahagia Biru</td>
+                    <td style="padding:10px;">00199/RBY-PPJP/BKS/VI/2024</td>
+                    <td style="padding:10px;">08 Oktober 2025</td>
+                    <td style="padding:10px;">Santo</td>
+                    <td style="padding:10px; text-align:center; color:green; font-weight:600;">Sukses</td>
                 </tr>
             </tbody>
         </table>
