@@ -36,6 +36,11 @@
                 <h3><i class="fas fa-laptop"></i> Form Peminjaman</h3>
             </div>
         </a>
+        <a href="{{ route('it.laporanpenilaian') }}" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card" style="cursor:pointer;">
+                <h3><i class="fas fa-laptop"></i> Laporan Penilaian</h3>
+            </div>
+        </a>
     </div>
 
     <div class="dashboard-card" style="margin-top:30px;">

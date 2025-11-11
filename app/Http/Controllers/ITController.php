@@ -10,12 +10,16 @@ class ITController extends Controller
     {
         return view('IT.formpeminjaman');
     }
+    public function laporanPenilaian()
+    {
+        return view('IT.laporanpenilaian');
+    }
 
     public function aset()
     {
         $asets = [
             ['nama' => 'Server Dell PowerEdge R740', 'kategori' => 'Server', 'lokasi' => 'Ruang Server', 'status' => 'Aktif'],
-            ['nama' => 'Laptop Lenovo ThinkPad X1', 'kategori' => 'Laptop', 'lokasi' => 'Divisi Keuangan', 'status' => 'Aktif'],
+            ['nama' => 'Laptop Lenovo Intell(R) Celeron(R) N4020', 'kategori' => 'Laptop', 'lokasi' => 'Divisi Keuangan', 'status' => 'Aktif'],
             ['nama' => 'PC Asus ExpertCenter', 'kategori' => 'Komputer', 'lokasi' => 'Divisi HRD', 'status' => 'Aktif'],
             ['nama' => 'Switch Cisco 2960', 'kategori' => 'Jaringan', 'lokasi' => 'Ruang IT', 'status' => 'Aktif'],
             ['nama' => 'Printer Canon LBP6030', 'kategori' => 'Printer', 'lokasi' => 'Divisi Umum', 'status' => 'Rusak'],

@@ -12,6 +12,8 @@ use App\Http\Controllers\AdminController;
 
 Route::get('/it/form-peminjaman', [ITController::class, 'formPeminjaman'])
      ->name('it.formpeminjaman');
+Route::get('/it/laporan-penilaian', [ITController::class,'laporanpenilaian'])
+     ->name('it.laporanpenilaian');
 Route::get('/edp/staff', [EdpController::class, 'staff'])->name('edp.staff');
 Route::get('/edp/datamentah', [\App\Http\Controllers\EDPController::class, 'dataMentah'])->name('edp.dataMentah');
 Route::post('/edp/datamentah/upload', [\App\Http\Controllers\EDPController::class, 'uploadData'])->name('edp.uploadData');
