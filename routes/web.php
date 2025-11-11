@@ -47,6 +47,7 @@ Route::get('/profile', function () {
     return view('/profile/profile');
 })->name('profile')->middleware('auth');
 
+
 // Admin
 Route::get('/admin', function () {
     return view('layouts.admin');
@@ -86,6 +87,7 @@ Route::get('/edp', function () {
     return view('layouts.edp');
 })->name('edp');
 
+
 // Reviewer
 Route::get('/reviewer', function () {
     return view('layouts.reviewer');
@@ -93,10 +95,12 @@ Route::get('/reviewer', function () {
 
 Route::get('/reviewer/tim', [\App\Http\Controllers\ReviewerController::class, 'tim'])->name('reviewer.tim');
 
+
 // Finance
 Route::get('/finance', function () {
     return view('layouts.finance');
 })->name('finance');
+
 
 // IT
 Route::get('/it', function () {
@@ -112,6 +116,8 @@ Route::get('/it/formpeminjaman', [\App\Http\Controllers\ITController::class, 'fo
 Route::get('/it/total-komputer', [\App\Http\Controllers\ItController::class, 'totalKomputer'])->name('it.totalKomputer');
 
 Route::get('/it/total-laptop', [\App\Http\Controllers\ItController::class, 'totalLaptop'])->name('it.totalLaptop');
+
+Route::get('/it/laporan-penilaian', [\App\Http\Controllers\ItController::class, 'laporanPenilaian'])->name('it.laporanPenilaian');
 
 
 // Logout
