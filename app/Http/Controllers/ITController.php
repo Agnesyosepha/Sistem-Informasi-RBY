@@ -69,21 +69,32 @@ class ITController extends Controller
         return view('it.totalLaptop', compact('laptops'));
     }
 
-    public function uploadForm()
+    public function uploadFormPage()
     {
-        return view('it.uploadForm'); // pastikan nama blade sesuai: resources/views/it/uploadForm.blade.php
+        // Ambil semua file yang sudah diupload dari storage/app/formpeminjaman
+        $files = [];
+        $dir = storage_path('app/formpeminjaman');
+        if(is_dir($dir)){
+            foreach(scandir($dir) as $file){
+                if($file === '.' || $file === '..') continue;
+                $files[] = ['nama' => $file, 'tanggal' => date('Y-m-d H:i:s', filemtime($dir.'/'.$file))];
+            }
+        }
+        return view('it.uploadForm', compact('files'));
     }
 
-    // Aksi Upload Form (POST)
+    // Aksi Upload Form
     public function uploadFormStore(Request $request)
     {
         $request->validate([
-            'file' => 'required|mimes:pdf,doc,docx,jpg,png|max:2048',
+            'file' => 'required|mimes:pdf|max:2048'
         ]);
 
         $file = $request->file('file');
-        $filename = time() . '_' . $file->getClientOriginalName();
-        $file->storeAs('public/uploads', $filename);
+        $filename = time().'_'.$file->getClientOriginalName();
+
+        // Simpan di folder storage/app/formpeminjaman
+        $file->move(storage_path('app/formpeminjaman'), $filename);
 
         return back()->with('success', 'File berhasil diunggah!');
     }

@@ -140,7 +140,7 @@ Route::get('/it/total-laptop', [\App\Http\Controllers\ItController::class, 'tota
 
 Route::get('/it/laporan-penilaian', [\App\Http\Controllers\ItController::class, 'laporanPenilaian'])->name('it.laporanPenilaian');
 
-Route::get('/it/upload-form', [ITController::class, 'uploadForm'])->name('it.uploadForm');
+Route::get('/it/upload-form', [ITController::class, 'uploadFormPage'])->name('it.uploadForm');
 Route::post('/it/upload-form', [ITController::class, 'uploadFormStore'])->name('it.uploadForm.store');
 // Logout
 Route::post('/logout', function (Request $request) {
