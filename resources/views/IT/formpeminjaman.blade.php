@@ -8,6 +8,7 @@
 
 <div class="fp-container">
 
+    <!-- CARD DOWNLOAD TEMPLATE -->
     <div class="fp-card">
         <div class="fp-info">
             <h3 class="fp-title"><i class="fas fa-file-pdf"></i> Form Peminjaman Aset</h3>
@@ -19,6 +20,15 @@
         </a>
     </div>
 
+    <!-- CARD UPLOAD FORM -->
+    <div class="fp-card upload-card" onclick="window.location.href='{{ route('it.uploadForm') }}'">
+        <div class="fp-info">
+            <h3 class="fp-title" style="color:#28a745;"><i class="fas fa-upload"></i> Upload Form Peminjaman</h3>
+            <p class="fp-desc">Klik di sini untuk mengunggah form peminjaman yang telah diisi dan ditandatangani.</p>
+        </div>
+    </div>
+
+    <!-- NOTE -->
     <div class="fp-note">
         <i class="fas fa-info-circle"></i> Pastikan form terisi lengkap sebelum dikirim ke bagian IT.
     </div>
@@ -45,6 +55,7 @@
     align-items: center;
     box-shadow: 0px 2px 8px rgba(0,0,0,0.05);
     transition: 0.2s ease;
+    cursor: pointer;
 }
 
 .fp-card:hover {
@@ -75,10 +86,12 @@
     display: flex;
     align-items: center;
     gap: 6px;
+    border: none;
+    cursor: pointer;
 }
 
 .fp-btn:hover {
-    background: #0069d9;
+    opacity: 0.9;
 }
 
 .fp-note {

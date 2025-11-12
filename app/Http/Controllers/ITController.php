@@ -6,16 +6,16 @@ use Illuminate\Http\Request;
 
 class ITController extends Controller
 {
+    // Halaman form peminjaman
     public function formPeminjaman()
     {
-        return view('IT.formpeminjaman');
+        return view('it.formpeminjaman');
     }
 
     public function laporanPenilaian()
-{
-
-    return view('it.laporanPenilaian');
-}
+    {
+        return view('it.laporanPenilaian');
+    }
 
     public function aset()
     {
@@ -59,13 +59,33 @@ class ITController extends Controller
     public function totalLaptop()
     {
         $laptops = [
-            ['nama' => 'PC-01', 'pengguna' => 'Elise', 'lokasi' => 'Kantor Utama', 'status' => 'Aktif'],
-            ['nama' => 'PC-02', 'pengguna' => 'Kenji', 'lokasi' => 'Finance', 'status' => 'Aktif'],
-            ['nama' => 'PC-03', 'pengguna' => 'Rika', 'lokasi' => 'HRD', 'status' => 'Perbaikan'],
-            ['nama' => 'PC-04', 'pengguna' => 'Tomi', 'lokasi' => 'IT Support', 'status' => 'Aktif'],
-            ['nama' => 'PC-05', 'pengguna' => 'Nana', 'lokasi' => 'Marketing', 'status' => 'Aktif'],
+            ['nama' => 'Laptop-01', 'pengguna' => 'Elise', 'lokasi' => 'Kantor Utama', 'status' => 'Aktif'],
+            ['nama' => 'Laptop-02', 'pengguna' => 'Kenji', 'lokasi' => 'Finance', 'status' => 'Aktif'],
+            ['nama' => 'Laptop-03', 'pengguna' => 'Rika', 'lokasi' => 'HRD', 'status' => 'Perbaikan'],
+            ['nama' => 'Laptop-04', 'pengguna' => 'Tomi', 'lokasi' => 'IT Support', 'status' => 'Aktif'],
+            ['nama' => 'Laptop-05', 'pengguna' => 'Nana', 'lokasi' => 'Marketing', 'status' => 'Aktif'],
         ];
 
         return view('it.totalLaptop', compact('laptops'));
     }
+
+    public function uploadForm()
+    {
+        return view('it.uploadForm'); // pastikan nama blade sesuai: resources/views/it/uploadForm.blade.php
+    }
+
+    // Aksi Upload Form (POST)
+    public function uploadFormStore(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:pdf,doc,docx,jpg,png|max:2048',
+        ]);
+
+        $file = $request->file('file');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $file->storeAs('public/uploads', $filename);
+
+        return back()->with('success', 'File berhasil diunggah!');
+    }
+
 }
