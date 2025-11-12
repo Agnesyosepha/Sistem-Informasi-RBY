@@ -111,15 +111,15 @@ public function updateProyek()
             'noppjp' => 'PPJP-001',
             'debitur' => 'PT Nusantara Properti',
             'lokasi' => 'Jakarta Selatan',
-            'surveyor' => 'Dazai',
+            'surveyor' => 'Firdaus Ginting',
             'tgl_inspeksi' => '2025-10-15',
             'progres' => 'On Progress'
         ],
         [
             'noppjp' => 'PPJP-002',
             'debitur' => 'CV Sejahtera Makmur',
-            'lokasi' => 'Medan',
-            'surveyor' => 'Ranpo',
+            'lokasi' => 'Jakarta',
+            'surveyor' => 'Fajar Hariyadi	',
             'tgl_inspeksi' => '2025-10-20',
             'progres' => 'Review'
         ],
@@ -127,7 +127,7 @@ public function updateProyek()
             'noppjp' => 'PPJP-003',
             'debitur' => 'Bpk. Antonius',
             'lokasi' => 'Bandung',
-            'surveyor' => 'Naomi',
+            'surveyor' => 'Jasmani Ginting',
             'tgl_inspeksi' => '2025-10-25',
             'progres' => 'On Progress'
         ],
@@ -138,24 +138,24 @@ public function updateProyek()
     [
         'noppjp' => 'PPJP-001',
         'debitur' => 'PT Sumber Makmur',
-        'lokasi' => 'Medan',
-        'surveyor' => 'Budi Santoso',
+        'lokasi' => 'Jakarta',
+        'surveyor' => 'Santo Cornelius Ginting',
         'tgl_selesai' => '2025-08-10',
         'progres' => 'Selesai'
     ],
     [
         'noppjp' => 'PPJP-001',
         'debitur' => 'PT Sumber Makmur',
-        'lokasi' => 'Binjai',
-        'surveyor' => 'Teguh Simanjuntak',
+        'lokasi' => 'Tangerang',
+        'surveyor' => 'Robbi Sugara Ginting',
         'tgl_selesai' => '2025-08-12',
         'progres' => 'Selesai'
     ],
     [
         'noppjp' => 'PPJP-002',
         'debitur' => 'CV Andalan',
-        'lokasi' => 'Pematangsiantar',
-        'surveyor' => 'Lina Sihombing',
+        'lokasi' => 'Jakarta',
+        'surveyor' => 'Pretty Balerina Br Bangun',
         'tgl_selesai' => '2025-07-29',
         'progres' => 'Selesai'
     ]
@@ -167,8 +167,8 @@ public function updateProyek()
     [
         'noppjp' => 'PPJP-010',
         'debitur' => 'PT Cahaya Baru',
-        'lokasi' => 'Medan',
-        'surveyor' => 'Andi Simanjuntak',
+        'lokasi' => 'Bekasi',
+        'surveyor' => 'Robbi Sugara Ginting',
         'tgl_inspeksi' => '2025-08-14',
         'alasan' => 'Menunggu konfirmasi dari klien',
         'progres' => 'Pending'
@@ -177,7 +177,7 @@ public function updateProyek()
         'noppjp' => 'PPJP-011',
         'debitur' => 'CV Nusantara Jaya',
         'lokasi' => 'Jakarta',
-        'surveyor' => 'Lina Sihombing',
+        'surveyor' => 'Pretty Balerina Br Bangun',
         'tgl_inspeksi' => '2025-08-16',
         'alasan' => 'Cuaca tidak memungkinkan',
         'progres' => 'Pending'
