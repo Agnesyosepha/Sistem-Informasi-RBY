@@ -5,14 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use App\Models\User;
+use App\Mail\RegisterSuccessMail; // ⬅️ tambahkan ini
 
 class AuthController extends Controller
 {
     // 🟢 Tampilkan form login
     public function showLoginForm()
     {
-        return view('auth.login'); // file: resources/views/auth/login.blade.php
+        return view('auth.login');
     }
 
     // 🟢 Proses login
@@ -21,7 +23,7 @@ class AuthController extends Controller
         $credentials = $request->only('username', 'password');
 
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate(); // biar aman
+            $request->session()->regenerate();
             return redirect()->intended('dashboard');
         }
 
@@ -33,7 +35,7 @@ class AuthController extends Controller
     // 🟢 Tampilkan form register
     public function showRegisterForm()
     {
-        return view('auth.register'); // file: resources/views/auth/register.blade.php
+        return view('auth.register');
     }
 
     // 🟢 Proses register
@@ -43,19 +45,22 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users,email',
             'username' => 'required|unique:users,username',
             'divisi' => 'required',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|min:6',
         ]);
 
-        // Simpan user baru
-        User::create([
+        // 1️⃣ Simpan user baru
+        $user = User::create([
             'email' => $request->email,
             'username' => $request->username,
             'divisi' => $request->divisi,
             'password' => Hash::make($request->password),
         ]);
 
-        // Setelah daftar → langsung ke login
-        return redirect()->route('login')->with('success', 'Registrasi berhasil, silakan login.');
+        // 2️⃣ Kirim email notifikasi register berhasil
+        Mail::to($user->email)->send(new RegisterSuccessMail($user->username));
+
+        // 3️⃣ Redirect ke login dengan pesan sukses
+        return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan cek email Anda.');
     }
 
     // 🟢 Logout

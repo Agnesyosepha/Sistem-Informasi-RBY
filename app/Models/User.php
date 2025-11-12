@@ -10,30 +10,17 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    /**
-     * Kolom yang bisa diisi mass-assignment.
-     *
-     * @var list<string>
-     */
     protected $fillable = [
         'username',
+        'email',
+        'divisi',
         'password',
     ];
 
-    /**
-     * Kolom yang disembunyikan saat serialisasi (misalnya ke JSON).
-     *
-     * @var list<string>
-     */
     protected $hidden = [
         'password',
     ];
 
-    /**
-     * Casting atribut ke tipe data tertentu.
-     *
-     * @return array<string, string>
-     */
     protected function casts(): array
     {
         return [
@@ -41,9 +28,6 @@ class User extends Authenticatable
         ];
     }
 
-    /**
-     * Gunakan username untuk autentikasi, bukan email.
-     */
     public function getAuthIdentifierName()
     {
         return 'username';
