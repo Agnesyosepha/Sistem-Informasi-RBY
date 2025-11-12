@@ -15,10 +15,30 @@ class AdminController extends Controller
     public function suratTugas()
     {
         $suratTugas = [
-            ['nomor' => 'ST-001', 'tanggal' => '01 Sep 2025', 'penanggung_jawab' => 'Dazai', 'status' => 'Selesai'],
-            ['nomor' => 'ST-002', 'tanggal' => '03 Sep 2025', 'penanggung_jawab' => 'Ranpo', 'status' => 'Proses'],
-            ['nomor' => 'ST-003', 'tanggal' => '06 Sep 2025', 'penanggung_jawab' => 'Naomi', 'status' => 'Dijadwalkan'],
-            ['nomor' => 'ST-004', 'tanggal' => '10 Sep 2025', 'penanggung_jawab' => 'Chuuya', 'status' => 'Selesai'],
+            [
+                'no_ppjp' => '00166/RBY-PPJP/BKS/VIII/2024',
+                'tanggal' => '17 Agustus 2024',
+                'pemberi_tugas' => 'PT Caturkarda Depo Bangunan, Tbk',
+                'nama_penilai' => 'Fajar',
+                'adendum' => 'Adendum #11',
+                'status' => 'Selesai'
+            ],
+            [
+                'no_ppjp' => '01026/RBY-PPJP/BKS/VII/2024',
+                'tanggal' => '24 Juli 2024',
+                'pemberi_tugas' => 'Port Mori Corporation',
+                'nama_penilai' => 'Jasmani',
+                'adendum' => 'Adendum #01',
+                'status' => 'Proses'
+            ],
+            [
+                'no_ppjp' => '00199/RBY-PPJP/BKS/VI/2024',
+                'tanggal' => '08 Oktober 2025',
+                'pemberi_tugas' => 'PT Bahagia Biru',
+                'nama_penilai' => 'Santo',
+                'adendum' => 'Adendum #51',
+                'status' => 'Pending'
+            ],
         ];
 
         return view('admin.suratTugas', compact('suratTugas'));
