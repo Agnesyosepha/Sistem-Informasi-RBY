@@ -90,7 +90,13 @@ Route::get('/edp/datamentah', [\App\Http\Controllers\EDPController::class, 'data
 
 Route::post('/edp/datamentah/upload', [\App\Http\Controllers\EDPController::class, 'uploadData'])->name('edp.uploadData');
 
-Route::get('/edp/data-aktif', [EdpController::class, 'dataAktif'])->name('edp.dataAktif');
+Route::get('/edp/data-aktif', [\App\Http\Controllers\EdpController::class, 'dataAktif'])->name('edp.dataAktif');
+
+Route::get('/edp/dokumen-final', [\App\Http\Controllers\EdpController::class, 'dokumenFinal'])->name('edp.dokumenFinal');
+
+Route::post('/edp/dokumen-final/upload', [\App\Http\Controllers\EdpController::class, 'uploadDokumenFinal'])->name('edp.uploadDokumenFinal');
+
+Route::delete('/edp/dokumen-final/delete/{filename}', [\App\Http\Controllers\EdpController::class, 'deleteDokumenFinal'])->name('edp.deleteDokumenFinal');
 
 
 // Reviewer

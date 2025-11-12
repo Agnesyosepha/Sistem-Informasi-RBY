@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
+
 
 class EdpController extends Controller
 {
   public function staff()
   {
       $staff = [
-          ['nama' => 'Aprilius Ginting', 'nohp' => '0812-2981-1849', 'status' => 'Aktif'],
+            ['nama' => 'Aprilius Ginting', 'nohp' => '0812-2981-1849', 'status' => 'Aktif'],
             ['nama' => 'Michael Brema Pinem', 'nohp' => '0812-2981-1849', 'status' => 'Aktif'],
             ['nama' => 'Yohanes Kroll Koten', 'nohp' => '0812-2981-1849', 'status' => 'Aktif'],
       ];
@@ -66,4 +69,67 @@ class EdpController extends Controller
 
     return view('EDP.dataAktif', compact('dataAktif'));
 }
+
+public function dokumenFinal(Request $request)
+    {
+        // Ambil file dari storage/app/public/dokumen_final
+        $files = Storage::disk('public')->files('dokumen_final');
+
+        // Buat daftar file dengan tanggal upload
+        $dokumenFinal = collect($files)->map(function ($file) {
+            return [
+                'nama' => $file,
+                'tanggal' => Carbon::createFromTimestamp(Storage::disk('public')->lastModified($file)),
+            ];
+        });
+
+        // Filter berdasarkan search
+        if ($request->filled('search')) {
+            $dokumenFinal = $dokumenFinal->filter(function ($item) use ($request) {
+                return stripos(basename($item['nama']), $request->search) !== false;
+            });
+        }
+
+        // Filter berdasarkan bulan
+        if ($request->filled('bulan')) {
+            $dokumenFinal = $dokumenFinal->filter(function ($item) use ($request) {
+                return Carbon::parse($item['tanggal'])->month == $request->bulan;
+            });
+        }
+
+        // Urutkan berdasarkan tanggal terbaru
+        $dokumenFinal = $dokumenFinal->sortByDesc('tanggal')->values();
+
+        return view('EDP.dokumenFinal', ['dokumenFinal' => $dokumenFinal]);
+    }
+
+    public function uploadDokumenFinal(Request $request)
+    {
+        $request->validate([
+            'data_zip' => 'required|mimes:zip|max:20480', // max 20MB
+        ]);
+
+        $file = $request->file('data_zip');
+        $originalName = $file->getClientOriginalName();
+
+        // Simpan ke storage/app/public/dokumen_final
+        $file->storeAs('dokumen_final', $originalName, 'public');
+
+        return redirect()->route('edp.dokumenFinal')->with('success', 'Dokumen berhasil diupload.');
+    }
+
+    public function deleteDokumenFinal($filename)
+    {
+        $path = 'dokumen_final/' . $filename;
+
+        if (Storage::disk('public')->exists($path)) {
+            Storage::disk('public')->delete($path);
+            return redirect()->route('edp.dokumenFinal')->with('success', 'Dokumen berhasil dihapus.');
+        }
+
+        return redirect()->route('edp.dokumenFinal')->with('error', 'Dokumen tidak ditemukan.');
+    }
+
+
+
 }

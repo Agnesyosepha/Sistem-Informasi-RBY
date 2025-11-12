@@ -13,12 +13,14 @@
                 <p><strong>8 Data Aktif</strong></p>
             </div>
         </a>
-        <a href="{{ route('edp.dataMentah') }}" style="text-decoration:none; color:inherit;">
+        <a href="{{ route('edp.dokumenFinal') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card" style="cursor:pointer;">
-                <h3><i class="fas fa-database"></i> Data Mentah</h3>
-                <p><strong>Lihat Data</strong></p>
+                <h3><i class="fas fa-file-archive"></i> Dokumen Final</h3>
+                <p><strong>Lihat Dokumen</strong></p>
             </div>
         </a>
+        
+        
         <a href="{{ route('edp.staff') }}" style="text-decoration:none; color:inherit;">
                 <div class="dashboard-card" style="cursor:pointer;">
                     <h3><i class="fas fa-users"></i> EDP</h3>
