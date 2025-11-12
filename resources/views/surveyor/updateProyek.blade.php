@@ -36,7 +36,9 @@
             @endforeach
         </tbody>
     </table>
+    </div>
 
+    <div class="dashboard-card" style="margin-top:25px; padding:20px; border-radius:10px; border:1px solid #e5e5e5;">
     {{-- Bagian 2: Proyek Selesai --}}
     <h2 style="color:#28A745; margin-top:30px;"><i class="fas fa-check-circle"></i> Proyek Selesai</h2>
     <p>Proyek yang telah selesai dan disetujui oleh klien.</p>
@@ -60,7 +62,9 @@
             @endforeach
         </tbody>
     </table>
+    </div>
 
+    <div class="dashboard-card" style="margin-top:25px; padding:20px; border-radius:10px; border:1px solid #e5e5e5;">
     {{-- Bagian 3: Tugas Tertunda --}}
     <h2 style="color:#C62828; margin-top:30px;"><i class="fas fa-clock"></i> Tugas Tertunda</h2>
     <p>Tugas yang masih menunggu pelaksanaan atau penyelesaian.</p>

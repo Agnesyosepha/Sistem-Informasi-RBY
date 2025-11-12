@@ -11,26 +11,31 @@ use App\Http\Controllers\ITController;
 use App\Http\Controllers\AdminController;
 
 
-
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
-
-Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
-Route::post('/register', [AuthController::class, 'register'])->name('register.store');
-
 Route::get('/', function () {
     return redirect()->route('login.form');
 });
 
-// Login routes
+// Login
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
+
 Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+
+// Register
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+
+Route::post('/register', [AuthController::class, 'register'])->name('register.store');
+
 
 // Dashboard (hanya bisa diakses setelah login)
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard')->middleware('auth');
+
 
 // Profile
 Route::get('/profile', function () {
