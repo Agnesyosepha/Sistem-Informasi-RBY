@@ -84,14 +84,6 @@ Route::get('/edp', function () {
     return view('layouts.edp');
 })->name('edp');
 
-
-// Reviewer
-Route::get('/reviewer', function () {
-    return view('layouts.reviewer');
-})->name('reviewer');
-
-Route::get('/reviewer/tim', [\App\Http\Controllers\ReviewerController::class, 'tim'])->name('reviewer.tim');
-
 Route::get('/edp/staff', [EdpController::class, 'staff'])->name('edp.staff');
 
 Route::get('/edp/datamentah', [\App\Http\Controllers\EDPController::class, 'dataMentah'])->name('edp.dataMentah');
@@ -99,6 +91,14 @@ Route::get('/edp/datamentah', [\App\Http\Controllers\EDPController::class, 'data
 Route::post('/edp/datamentah/upload', [\App\Http\Controllers\EDPController::class, 'uploadData'])->name('edp.uploadData');
 
 Route::get('/edp/data-aktif', [EdpController::class, 'dataAktif'])->name('edp.dataAktif');
+
+
+// Reviewer
+Route::get('/reviewer', function () {
+    return view('layouts.reviewer');
+})->name('reviewer');
+
+Route::get('/reviewer/tim', [\App\Http\Controllers\ReviewerController::class, 'tim'])->name('reviewer.tim');
 
 
 // Finance
