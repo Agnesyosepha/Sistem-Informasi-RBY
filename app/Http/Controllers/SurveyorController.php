@@ -107,26 +107,85 @@ public function updateProyek()
 {
     // Proyek Berjalan
     $proyekBerjalan = [
-        ['nama' => 'Penilaian Gedung Perkantoran', 'lokasi' => 'Jakarta', 'surveyor' => 'Firdaus Ginting', 'tanggal' => '15 Okt 2025', 'status' => 'On Progress'],
-        ['nama' => 'Survey Rumah Komersial', 'lokasi' => 'Bandung', 'surveyor' => 'Fajar Hariyadi', 'tanggal' => '22 Okt 2025', 'status' => 'On Progress'],
-        ['nama' => 'Evaluasi Tanah Kosong', 'lokasi' => 'Medan', 'surveyor' => 'Jasmani Ginting', 'tanggal' => '30 Okt 2025', 'status' => 'Review'],
+        [
+            'noppjp' => 'PPJP-001',
+            'debitur' => 'PT Nusantara Properti',
+            'lokasi' => 'Jakarta Selatan',
+            'surveyor' => 'Dazai',
+            'tgl_inspeksi' => '2025-10-15',
+            'progres' => 'On Progress'
+        ],
+        [
+            'noppjp' => 'PPJP-002',
+            'debitur' => 'CV Sejahtera Makmur',
+            'lokasi' => 'Medan',
+            'surveyor' => 'Ranpo',
+            'tgl_inspeksi' => '2025-10-20',
+            'progres' => 'Review'
+        ],
+        [
+            'noppjp' => 'PPJP-003',
+            'debitur' => 'Bpk. Antonius',
+            'lokasi' => 'Bandung',
+            'surveyor' => 'Naomi',
+            'tgl_inspeksi' => '2025-10-25',
+            'progres' => 'On Progress'
+        ],
     ];
 
     // Proyek Selesai
     $proyekSelesai = [
-        ['nama' => 'Survey Tanah Rumah', 'lokasi' => 'Jakarta', 'user' => 'Firdaus Ginting', 'status' => 'Selesai'],
-        ['nama' => 'Survey Lahan Kosong', 'lokasi' => 'Bogor', 'user' => 'Fajar Hariyadi', 'status' => 'Selesai'],
-        ['nama' => 'Survey Bangunan', 'lokasi' => 'Bekasi', 'user' => 'Jasmani Ginting', 'status' => 'Selesai'],
-    ];
+    [
+        'noppjp' => 'PPJP-001',
+        'debitur' => 'PT Sumber Makmur',
+        'lokasi' => 'Medan',
+        'surveyor' => 'Budi Santoso',
+        'tgl_selesai' => '2025-08-10',
+        'progres' => 'Selesai'
+    ],
+    [
+        'noppjp' => 'PPJP-001',
+        'debitur' => 'PT Sumber Makmur',
+        'lokasi' => 'Binjai',
+        'surveyor' => 'Teguh Simanjuntak',
+        'tgl_selesai' => '2025-08-12',
+        'progres' => 'Selesai'
+    ],
+    [
+        'noppjp' => 'PPJP-002',
+        'debitur' => 'CV Andalan',
+        'lokasi' => 'Pematangsiantar',
+        'surveyor' => 'Lina Sihombing',
+        'tgl_selesai' => '2025-07-29',
+        'progres' => 'Selesai'
+    ]
+];
 
-    // Tugas Tertunda
-    $tugasTertunda = [
-        ['nama' => 'Survey Tanah Kosong', 'lokasi' => 'Depok', 'deadline' => '10 Nov 2025', 'status' => 'Pending'],
-        ['nama' => 'Survey Rumah', 'lokasi' => 'Cikarang', 'deadline' => '15 Nov 2025', 'status' => 'Pending'],
-        ['nama' => 'Survey Jalan Raya', 'lokasi' => 'Tangerang', 'deadline' => '20 Nov 2025', 'status' => 'Pending'],
-    ];
 
-    return view('surveyor.updateProyek', compact('proyekBerjalan', 'proyekSelesai', 'tugasTertunda'));
+    // Proyek Pending
+    $proyekPending = [
+    [
+        'noppjp' => 'PPJP-010',
+        'debitur' => 'PT Cahaya Baru',
+        'lokasi' => 'Medan',
+        'surveyor' => 'Andi Simanjuntak',
+        'tgl_inspeksi' => '2025-08-14',
+        'alasan' => 'Menunggu konfirmasi dari klien',
+        'progres' => 'Pending'
+    ],
+    [
+        'noppjp' => 'PPJP-011',
+        'debitur' => 'CV Nusantara Jaya',
+        'lokasi' => 'Jakarta',
+        'surveyor' => 'Lina Sihombing',
+        'tgl_inspeksi' => '2025-08-16',
+        'alasan' => 'Cuaca tidak memungkinkan',
+        'progres' => 'Pending'
+    ]
+];
+
+
+    return view('surveyor.updateProyek', compact('proyekBerjalan', 'proyekSelesai', 'proyekPending'));
 }
 
 

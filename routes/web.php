@@ -11,14 +11,14 @@ use App\Http\Controllers\ITController;
 use App\Http\Controllers\AdminController;
 
 
-Route::get('/', function () {
-    return redirect()->route('login.form');
-});
-
 // Login
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
+
+Route::get('/', function () {
+    return redirect()->route('login.form');
+});
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
 
