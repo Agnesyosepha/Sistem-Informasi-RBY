@@ -230,6 +230,17 @@ public function laporanFinal()
     return view('admin.laporanFinal', compact('laporanFinal'));
 }
 
+public function tim()
+    {
+        $tim = [
+            ['nama' => 'Shafa Az-zahra Eriana', 'username' => 'shamin', 'email' => 'shazamm@delcom.org', 'status' => 'Aktif'],
+            ['nama' => 'Mieke Dearni Br Tarigan', 'username' => 'jonadmin', 'email' => 'jon@delcom.org', 'status' => 'Cuti'],
+            ['nama' => 'Sinta Br. Gultom', 'username' => 'sinta_admin', 'email' => 'sinta@delcom.org', 'status' => 'Aktif'],
+            ['nama' => 'Andreas Simanjuntak', 'username' => 'andreas_it', 'email' => 'andreas@delcom.org', 'status' => 'Aktif'],
+        ];
+
+        return view('admin.timAdmin', compact('tim'));
+    }
 
 
 }

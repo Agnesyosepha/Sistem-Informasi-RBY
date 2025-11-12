@@ -60,6 +60,8 @@ Route::get('/admin/draftLaporan', [\App\Http\Controllers\AdminController::class,
 
 Route::get('/admin/laporan-final', [AdminController::class, 'laporanFinal'])->name('admin.laporanFinal');
 
+Route::get('/tim', [AdminController::class, 'tim'])->name('admin.tim');
+
 
 // Surveyor
 Route::get('/surveyor', function () {
@@ -85,7 +87,7 @@ Route::get('/edp', function () {
 })->name('edp');
 
 Route::get('/edp/staff', [EdpController::class, 'staff'])->name('edp.staff');
-//seharusnya data mentah ini diganti jadi dokumen final, tapi jadi kubuat rute baru untuk dokuem final ehe, ini disini untuk jaga2 aja
+    //seharusnya data mentah ini diganti jadi dokumen final, tapi jadi kubuat rute baru untuk dokuem final ehe, ini disini untuk jaga2 aja
 Route::get('/edp/datamentah', [\App\Http\Controllers\EDPController::class, 'dataMentah'])->name('edp.dataMentah');
 
 Route::post('/edp/datamentah/upload', [\App\Http\Controllers\EDPController::class, 'uploadData'])->name('edp.uploadData');
@@ -141,7 +143,10 @@ Route::get('/it/total-laptop', [\App\Http\Controllers\ItController::class, 'tota
 Route::get('/it/laporan-penilaian', [\App\Http\Controllers\ItController::class, 'laporanPenilaian'])->name('it.laporanPenilaian');
 
 Route::get('/it/upload-form', [ITController::class, 'uploadFormPage'])->name('it.uploadForm');
+
 Route::post('/it/upload-form', [ITController::class, 'uploadFormStore'])->name('it.uploadForm.store');
+
+
 // Logout
 Route::post('/logout', function (Request $request) {
     Auth::logout();
