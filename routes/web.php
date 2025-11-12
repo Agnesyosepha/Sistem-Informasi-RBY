@@ -85,7 +85,7 @@ Route::get('/edp', function () {
 })->name('edp');
 
 Route::get('/edp/staff', [EdpController::class, 'staff'])->name('edp.staff');
-
+//seharusnya data mentah ini diganti jadi dokumen final, tapi jadi kubuat rute baru untuk dokuem final ehe, ini disini untuk jaga2 aja
 Route::get('/edp/datamentah', [\App\Http\Controllers\EDPController::class, 'dataMentah'])->name('edp.dataMentah');
 
 Route::post('/edp/datamentah/upload', [\App\Http\Controllers\EDPController::class, 'uploadData'])->name('edp.uploadData');
@@ -105,6 +105,10 @@ Route::get('/reviewer', function () {
 })->name('reviewer');
 
 Route::get('/reviewer/tim', [\App\Http\Controllers\ReviewerController::class, 'tim'])->name('reviewer.tim');
+
+Route::get('/reviewer/dokumen-revisi', [\App\Http\Controllers\ReviewerController::class, 'dokumenRevisi'])->name('reviewer.dokumenRevisi');
+
+Route::get('/reviewer/dokumen-final', [\App\Http\Controllers\ReviewerController::class, 'dokumenFinal'])->name('reviewer.dokumenFinal');
 
 
 // Finance
