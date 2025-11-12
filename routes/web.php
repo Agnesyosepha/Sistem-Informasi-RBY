@@ -10,17 +10,7 @@ use App\Http\Controllers\EdpController;
 use App\Http\Controllers\ITController;
 use App\Http\Controllers\AdminController;
 
-Route::get('/it/form-peminjaman', [ITController::class, 'formPeminjaman'])
-     ->name('it.formpeminjaman');
-Route::get('/it/laporan-penilaian', [ITController::class,'laporanpenilaian'])
-     ->name('it.laporanpenilaian');
-Route::get('/edp/staff', [EdpController::class, 'staff'])->name('edp.staff');
-Route::get('/edp/datamentah', [\App\Http\Controllers\EDPController::class, 'dataMentah'])->name('edp.dataMentah');
-Route::post('/edp/datamentah/upload', [\App\Http\Controllers\EDPController::class, 'uploadData'])->name('edp.uploadData');
-Route::get('/edp/data-aktif', [EdpController::class, 'dataAktif'])->name('edp.dataAktif');
-Route::get('/surveyor/proyek-selesai', [SurveyorController::class, 'proyekSelesai'])->name('surveyor.proyekSelesai');
-Route::get('/surveyor/tugas-tertunda', [SurveyorController::class, 'tugasTertunda'])->name('surveyor.tugastertunda');
-Route::get('/surveyor/working-paper', [SurveyorController::class, 'workingPaper'])->name('surveyor.workingpaper');
+
 
 Route::get('/login', function () {
     return view('auth.login');
@@ -75,11 +65,13 @@ Route::get('/surveyor/lokasisurvei', [\App\Http\Controllers\SurveyorController::
 
 Route::get('/surveyor/tim', [\App\Http\Controllers\SurveyorController::class, 'tim'])->name('surveyor.tim');
 
-Route::get('/surveyor/proyekberjalan', [\App\Http\Controllers\SurveyorController::class, 'proyekberjalan'])->name('surveyor.proyekberjalan');
+Route::get('/surveyor/update-proyek', [\App\Http\Controllers\SurveyorController::class, 'updateProyek'])->name('surveyor.updateProyek');
 
 Route::get('/surveyor/workingpaper', [\App\Http\Controllers\SurveyorController::class, 'workingPaper'])->name('surveyor.workingpaper');
 
 Route::get('/surveyor/laporan-penilaian', [SurveyorController::class, 'laporanPenilaian'])->name('surveyor.laporanPenilaian');
+
+Route::get('/surveyor/working-paper', [SurveyorController::class, 'workingPaper'])->name('surveyor.workingpaper');
 
 
 // EDP
@@ -95,6 +87,14 @@ Route::get('/reviewer', function () {
 
 Route::get('/reviewer/tim', [\App\Http\Controllers\ReviewerController::class, 'tim'])->name('reviewer.tim');
 
+Route::get('/edp/staff', [EdpController::class, 'staff'])->name('edp.staff');
+
+Route::get('/edp/datamentah', [\App\Http\Controllers\EDPController::class, 'dataMentah'])->name('edp.dataMentah');
+
+Route::post('/edp/datamentah/upload', [\App\Http\Controllers\EDPController::class, 'uploadData'])->name('edp.uploadData');
+
+Route::get('/edp/data-aktif', [EdpController::class, 'dataAktif'])->name('edp.dataAktif');
+
 
 // Finance
 Route::get('/finance', function () {
@@ -106,6 +106,12 @@ Route::get('/finance', function () {
 Route::get('/it', function () {
     return view('layouts.it');
 })->name('it');
+
+Route::get('/it/form-peminjaman', [ITController::class, 'formPeminjaman'])
+     ->name('it.formpeminjaman');
+
+Route::get('/it/laporan-penilaian', [ITController::class,'laporanpenilaian'])
+     ->name('it.laporanpenilaian');
 
 Route::get('/it/aset', [\App\Http\Controllers\ITController::class, 'aset'])->name('it.aset');
 

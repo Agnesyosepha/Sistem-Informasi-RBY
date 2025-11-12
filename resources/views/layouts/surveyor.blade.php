@@ -17,20 +17,10 @@
             <h3><i class="fas fa-user"></i> Surveyor</h3>
             <p><strong>10 Staff</strong></p>
         </a>
-        <a href="{{ route('surveyor.proyekberjalan') }}" style="text-decoration:none; color:inherit;">
+        <a href="{{ route('surveyor.updateProyek') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card" style="cursor:pointer;">
-                <h3><i class="fas fa-tasks"></i> Proyek Berjalan</h3>
-                <p><strong>12 Proyek</strong></p>
-            </div>
-        </a>
-        <a href="{{ route('surveyor.proyekSelesai') }}" class="dashboard-card" style="display:block; color:inherit; text-decoration:none;">
-            <h3><i class="fas fa-check-circle"></i> Proyek Selesai</h3>
-            <p><strong>18 Proyek</strong></p>
-        </a>
-        <a href="{{ route('surveyor.tugastertunda') }}" style="text-decoration:none; color:inherit;">
-            <div class="dashboard-card" style="cursor:pointer;">
-                <h3><i class="fas fa-clock"></i> Tugas Tertunda</h3>
-                <p><strong>3 Tugas</strong></p>
+                <h3><i class="fas fa-sync-alt"></i> Update Proyek</h3>
+                <p><strong>Ringkasan Semua Status Proyek</strong></p>
             </div>
         </a>
         <a href="{{ route('surveyor.workingpaper') }}" style="text-decoration:none; color:inherit;">

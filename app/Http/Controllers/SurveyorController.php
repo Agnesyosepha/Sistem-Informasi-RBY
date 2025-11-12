@@ -40,38 +40,7 @@ class SurveyorController extends Controller
         return view('surveyor.lokasisurvei', compact('lokasi'));
     }
 
-    public function proyekBerjalan()
-    {
-        $proyek = [
-            ['nama' => 'Penilaian Gedung Perkantoran', 'lokasi' => 'Jakarta', 'surveyor' => 'Firdaus Ginting', 'tanggal_mulai' => '15 Okt 2025', 'progress' => 'On Progress'],
-            ['nama' => 'Survey Rumah Komersial', 'lokasi' => 'Bandung', 'surveyor' => 'Fajar Hariyadi', 'tanggal_mulai' => '22 Okt 2025', 'progress' => 'On Progress'],
-            ['nama' => 'Evaluasi Tanah Kosong', 'lokasi' => 'Medan', 'surveyor' => 'Jasmani Ginting', 'tanggal_mulai' => '30 Okt 2025', 'progress' => 'Done'],
-        ];
-
-        return view('surveyor.proyekberjalan', compact('proyek'));
-    }
-
-    public function proyekSelesai()
-    {
-        $proyek = [
-            ['nama' => 'Survey Tanah Rumah', 'lokasi' => 'Jakarta', 'user' => 'Firdaus Ginting'],
-            ['nama' => 'Survey Lahan Kosong', 'lokasi' => 'Bogor', 'user' => 'Fajar Hariyadi'],
-            ['nama' => 'Survey Bangunan', 'lokasi' => 'Bekasi', 'user' => 'Jasmani Ginting'],
-            ['nama' => 'Survey Jalan Raya', 'lokasi' => 'Bandung', 'user' => 'Benhur Sumanraja Sembiring'],
-        ];
-
-        return view('surveyor.proyekselesai', compact('proyek'));
-    }
-    public function tugasTertunda()
-    {
-        $tasks = [
-            ['nama' => 'Survey Tanah Kosong', 'lokasi' => 'Depok', 'deadline' => '10 Nov 2025'],
-            ['nama' => 'Survey Rumah', 'lokasi' => 'Cikarang', 'deadline' => '15 Nov 2025'],
-            ['nama' => 'Survey Jalan Raya', 'lokasi' => 'Tangerang', 'deadline' => '20 Nov 2025'],
-        ];
-
-        return view('surveyor.tugastertunda', compact('tasks'));
-    }
+    
 
     public function workingPaper()
     {
@@ -132,6 +101,32 @@ class SurveyorController extends Controller
     ];
 
     return view('surveyor.laporanPenilaian', compact('laporanPenilaian'));
+}
+
+public function updateProyek()
+{
+    // Proyek Berjalan
+    $proyekBerjalan = [
+        ['nama' => 'Penilaian Gedung Perkantoran', 'lokasi' => 'Jakarta', 'surveyor' => 'Firdaus Ginting', 'tanggal' => '15 Okt 2025', 'status' => 'On Progress'],
+        ['nama' => 'Survey Rumah Komersial', 'lokasi' => 'Bandung', 'surveyor' => 'Fajar Hariyadi', 'tanggal' => '22 Okt 2025', 'status' => 'On Progress'],
+        ['nama' => 'Evaluasi Tanah Kosong', 'lokasi' => 'Medan', 'surveyor' => 'Jasmani Ginting', 'tanggal' => '30 Okt 2025', 'status' => 'Review'],
+    ];
+
+    // Proyek Selesai
+    $proyekSelesai = [
+        ['nama' => 'Survey Tanah Rumah', 'lokasi' => 'Jakarta', 'user' => 'Firdaus Ginting', 'status' => 'Selesai'],
+        ['nama' => 'Survey Lahan Kosong', 'lokasi' => 'Bogor', 'user' => 'Fajar Hariyadi', 'status' => 'Selesai'],
+        ['nama' => 'Survey Bangunan', 'lokasi' => 'Bekasi', 'user' => 'Jasmani Ginting', 'status' => 'Selesai'],
+    ];
+
+    // Tugas Tertunda
+    $tugasTertunda = [
+        ['nama' => 'Survey Tanah Kosong', 'lokasi' => 'Depok', 'deadline' => '10 Nov 2025', 'status' => 'Pending'],
+        ['nama' => 'Survey Rumah', 'lokasi' => 'Cikarang', 'deadline' => '15 Nov 2025', 'status' => 'Pending'],
+        ['nama' => 'Survey Jalan Raya', 'lokasi' => 'Tangerang', 'deadline' => '20 Nov 2025', 'status' => 'Pending'],
+    ];
+
+    return view('surveyor.updateProyek', compact('proyekBerjalan', 'proyekSelesai', 'tugasTertunda'));
 }
 
 
