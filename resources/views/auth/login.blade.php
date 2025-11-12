@@ -47,18 +47,36 @@
 
     /* ===== Popup Login (kode kamu tetap sama) ===== */
     .login-container {
-        position: relative;
-        z-index: 2;
-        background: #000;
-        padding: 40px 25px;   
-        border-radius: 12px;
-        width: 320px;
-        text-align: center;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        margin: auto;
-        top: 50%;
-        transform: translateY(-50%);
-    }
+    position: relative;
+    z-index: 2;
+    background: #000;
+    padding: 40px 25px;   
+    border-radius: 12px;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+    margin: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+/* Border gradient keemasan */
+.login-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #cacacb, #c4c4c6, #cacacb);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    z-index: -1;
+}
 
     .login-container h2 {
       color: #fff;
