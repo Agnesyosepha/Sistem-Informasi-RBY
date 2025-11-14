@@ -48,6 +48,8 @@ Route::get('/admin', function () {
     return view('superadmin.dashboard');
 })->name('admin')->middleware('auth');
 
+// Divisi Admin
+
 Route::get('/admin/surat-tugas', [\App\Http\Controllers\AdminController::class, 'suratTugas'])->name('admin.suratTugas');
 
 Route::get('/admin/proposal', [\App\Http\Controllers\AdminController::class, 'proposal'])->name('admin.proposal');
