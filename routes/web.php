@@ -46,9 +46,10 @@ Route::get('/profile', function () {
 // ingat nama 'admin' itu divisi
 
 // Superadmin
-Route::get('/superadmin', function () {
+
+Route::get('/superadmin/dashboard', function () {
     return view('superadmin.dashboard');
-})->name('superadmin')->middleware('auth');
+})->name('superadmin.dashboard')->middleware('auth');
 
 
 // Divisi Admin

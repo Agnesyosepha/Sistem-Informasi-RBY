@@ -29,7 +29,7 @@ class AuthController extends Controller
 
             // 1️⃣ SUPERADMIN
             if ($user->username === 'admin') {
-                return redirect()->route('superadmin');
+                return redirect()->route('superadmin.dashboard');
             }
 
             // 2️⃣ USER BIASA (divisi apa pun)
