@@ -46,7 +46,7 @@
         </a>
         <a href="{{ route('admin.tim') }}" class="dashboard-card" style="display:block; color:inherit; text-decoration:none;">
             <h3><i class="fas fa-user"></i> Admin</h3>
-            <p><strong>10 Staff</strong></p>
+            <p><strong>2 Staff</strong></p>
         </a>
     </div>
 
