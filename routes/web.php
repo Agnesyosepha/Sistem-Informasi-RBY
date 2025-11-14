@@ -43,12 +43,19 @@ Route::get('/profile', function () {
 })->name('profile')->middleware('auth');
 
 
+// ingat nama 'admin' itu divisi
+
 // Admin
 Route::get('/admin', function () {
     return view('superadmin.dashboard');
 })->name('admin')->middleware('auth');
 
+
 // Divisi Admin
+
+Route::get('/admin', function () {
+    return view('layouts.admin');
+})->name('admin')->middleware('auth');
 
 Route::get('/admin/surat-tugas', [\App\Http\Controllers\AdminController::class, 'suratTugas'])->name('admin.suratTugas');
 
