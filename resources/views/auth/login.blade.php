@@ -22,9 +22,10 @@
       height: 100vh;
       font-family: 'Poppins', sans-serif;
       overflow: hidden;
+      background: #000;
     }
 
-    /* ===== Background utama ===== */
+    /* ===== Background utama (jernih, tidak blur) ===== */
     .background {
       position: fixed;
       top: 0;
@@ -32,82 +33,99 @@
       width: 100%;
       height: 100vh;
       background: url("{{ asset('images/home.jpg') }}") center/cover no-repeat;
-      filter: blur(6px);
       z-index: 0;
     }
 
-    /* ===== Overlay hitam semi transparan ===== */
+    /* ===== Overlay premium (soft gold + blur tipis) ===== */
     .overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100vh;
-      background: rgba(0,0,0,0.3);
+      background: linear-gradient(
+        rgba(247, 204, 81, 0.18),
+        rgba(247, 204, 81, 0.05)
+      );
+      backdrop-filter: blur(2px); 
       z-index: 1;
     }
 
-    /* ===== Popup Login ===== */
+    /* ===== Spotlight agar fokus ke popup ===== */
+    .spotlight {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: radial-gradient(
+        circle at center,
+        rgba(255, 255, 255, 0.25) 0%,
+        rgba(0,0,0,0.65) 100%
+      );
+      opacity: 0.35;
+      z-index: 1.5;
+    }
+
+    /* ===== Popup Login (Glassmorphism premium) ===== */
     .login-container {
       position: relative;
-      z-index: 2;
-      background: #000;
-      padding: 40px 25px;
-      border-radius: 12px;
-      width: 320px;
-      text-align: center;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+      z-index: 3;
+      width: 330px;
+      padding: 35px 28px;
       margin: auto;
       top: 50%;
       transform: translateY(-50%);
-      border: 2px solid transparent;
-      background-clip: padding-box;
+      text-align: center;
+
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+
+      border-radius: 14px;
+      border: 1.5px solid rgba(247, 204, 81, 0.45);
+
+      box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+      animation: fadeInPopup 0.7s ease;
     }
 
-    /* Border gradient keemasan */
-    .login-container::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      padding: 2px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #cacacb, #c4c4c6, #cacacb);
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-              mask-composite: exclude;
-      z-index: -1;
+    @keyframes fadeInPopup {
+      from { opacity: 0; transform: translateY(-45%); }
+      to { opacity: 1; transform: translateY(-50%); }
     }
 
     .login-container h2 {
       color: #fff;
       margin-bottom: 15px;
       font-weight: 600;
+      letter-spacing: 1px;
     }
 
     .login-container img {
-      width: 200px;
+      width: 190px;
       margin-bottom: 25px;
     }
 
     .form-group {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       position: relative;
     }
 
     .form-group input {
       width: 100%;
       padding: 12px 12px 12px 40px;
-      border: 1px solid #ddd;
+      border: 1px solid rgba(255,255,255,0.25);
       border-radius: 8px;
       outline: none;
       font-size: 14px;
-      box-sizing: border-box; 
+
+      color: white;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(4px);
     }
 
     .form-group input::placeholder {
-      color: #aaa;
+      color: #ddd;
     }
 
     .form-group .icon {
@@ -116,14 +134,14 @@
       top: 50%;
       transform: translateY(-50%);
       font-size: 16px;
-      color: #444;
+      color: #e6e6e6;
       pointer-events: none;
     }
 
     .error-text {
       font-size: 12px;
-      color: red;
-      margin: 5px 0 10px 5px;
+      color: #ff6d6d;
+      margin: 5px 0 10px 3px;
       text-align: left;
     }
 
@@ -137,32 +155,27 @@
       font-weight: 600;
       font-size: 15px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: 0.3s ease;
       color: #000;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
     }
 
     .btn-login:hover {
-      background: #e6b842;
+      background: #e7bd47;
       transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.35);
     }
 
     .register-link {
       margin-top: 18px;
       font-size: 14px;
-      color: #ccc;
+      color: #ddd;
     }
 
     .register-link a {
       color: #F7CC51;
       font-weight: 600;
       text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .register-link a:hover {
-      color: #e6b842;
     }
 
     /* Animasi notifikasi */
@@ -177,28 +190,26 @@
     }
 
     .alert-success {
-      background-color: rgba(247, 204, 81, 0.15);
+      background-color: rgba(247, 204, 81, 0.2);
       color: #F7CC51;
       border: 1px solid #F7CC51;
       padding: 12px;
       border-radius: 8px;
       margin-bottom: 15px;
       font-size: 14px;
-      text-align: center;
       animation: fadeIn 0.8s ease-in-out;
+      backdrop-filter: blur(4px);
     }
   </style>
 </head>
 
 <body>
-  <!-- Background dan overlay -->
   <div class="background"></div>
   <div class="overlay"></div>
+  <div class="spotlight"></div>
 
-  <!-- Popup login -->
   <div class="login-container">
 
-    {{-- ✅ Notifikasi sukses setelah registrasi --}}
     @if (session('success'))
       <div class="alert-success" id="success-alert">
         <i class="fa-solid fa-circle-check" style="margin-right:6px;"></i>
@@ -208,7 +219,7 @@
 
     <h2>Login</h2>
     <img src="{{ asset('images/rby-logo.png') }}" alt="RBY Logo">
-    
+
     <form method="POST" action="{{ route('login') }}" autocomplete="off">
       @csrf
 
@@ -235,21 +246,21 @@
       <button type="submit" class="btn-login">Masuk</button>
     </form>
 
-    <p style="margin-top:15px; color:#fff; font-size:14px;">
+    <p class="register-link">
       Belum punya akun?
-      <a href="{{ route('register') }}" style="color:#F7CC51; font-weight:600;">Register</a>
+      <a href="{{ route('register') }}">Register</a>
     </p>
   </div>
 
-  <!-- Script untuk auto-hide notifikasi -->
   <script>
     const alertBox = document.getElementById('success-alert');
     if (alertBox) {
       setTimeout(() => {
         alertBox.style.animation = 'fadeOut 0.8s ease-in-out forwards';
         setTimeout(() => alertBox.remove(), 800);
-      }, 4000); // hilang setelah 4 detik
+      }, 3500);
     }
   </script>
+
 </body>
 </html>
