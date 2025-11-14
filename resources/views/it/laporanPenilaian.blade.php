@@ -14,8 +14,8 @@
             <h3 class="wp-title">Laporan Penilaian Tahun 2022</h3>
             <p class="wp-desc">Dokumen laporan untuk penilaian tahun 2022.</p>
         </div>
-        <a href="{{ asset('templates/2022.xlsx') }}" download class="wp-btn">
-            <i class="fas fa-download"></i> Download Template
+        <a href="{{ asset('templates/Database 2022.xlsx') }}" download class="wp-btn">
+            <i class="fas fa-download"></i> Download
         </a>
     </div>
 
@@ -25,8 +25,8 @@
             <h3 class="wp-title">Laporan Penilaian Tahun 2023</h3>
             <p class="wp-desc">Dokumen laporan untuk penilaian tahun 2023.</p>
         </div>
-        <a href="{{ asset('templates/2023.xlsx') }}" download class="wp-btn">
-            <i class="fas fa-download"></i> Download Template
+        <a href="{{ asset('templates/Database 2023.xlsx') }}" download class="wp-btn">
+            <i class="fas fa-download"></i> Download
         </a>
     </div>
 
@@ -36,8 +36,8 @@
             <h3 class="wp-title">Laporan Penilaian Tahun 2024</h3>
             <p class="wp-desc">Dokumen laporan untuk penilaian tahun 2024.</p>
         </div>
-        <a href="{{ asset('templates/2024.xlsx') }}" download class="wp-btn">
-            <i class="fas fa-download"></i> Download Template
+        <a href="{{ asset('templates/Database 2024.xlsx') }}" download class="wp-btn">
+            <i class="fas fa-download"></i> Download
         </a>
     </div>
 
