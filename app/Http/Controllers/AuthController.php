@@ -25,20 +25,23 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
 
             $request->session()->regenerate();
-
             $user = Auth::user();
 
+            // 1️⃣ SUPERADMIN
             if ($user->username === 'admin') {
-                return redirect()->route('admin');
+                return redirect()->route('superadmin');
             }
 
+            // 2️⃣ USER BIASA (divisi apa pun)
             return redirect()->route('dashboard');
         }
 
+        // Jika gagal login
         return back()->withErrors([
             'username' => 'Username atau password salah.',
         ])->withInput();
     }
+
 
     // 🟢 Tampilkan form register
     public function showRegisterForm()

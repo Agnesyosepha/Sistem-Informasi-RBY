@@ -45,10 +45,10 @@ Route::get('/profile', function () {
 
 // ingat nama 'admin' itu divisi
 
-// Admin
-Route::get('/admin', function () {
+// Superadmin
+Route::get('/superadmin', function () {
     return view('superadmin.dashboard');
-})->name('admin')->middleware('auth');
+})->name('superadmin')->middleware('auth');
 
 
 // Divisi Admin
