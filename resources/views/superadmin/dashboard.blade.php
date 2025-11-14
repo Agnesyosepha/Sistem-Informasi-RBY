@@ -230,7 +230,7 @@
             <button id="menu-toggle"><i class="fas fa-bars"></i></button>
             <div class="logo-container">
                 <a href="{{ route('dashboard') }}" >
-                <img src="{{ asset('images/rby-logo2.png') }}" alt="Company Logo">
+                <img src="{{ asset('images/rby-logo3.jpg') }}" alt="Company Logo">
                 </a>
             </div>
         </div>
