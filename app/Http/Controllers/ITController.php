@@ -99,4 +99,23 @@ class ITController extends Controller
         return back()->with('success', 'File berhasil diunggah!');
     }
 
+    public function tim()
+    {
+        // Data staff IT (sementara hardcode)
+        $staffIT = [
+            [
+                'nama' => 'Aldi Jhon Travolta',
+                'jabatan' => 'IT Sstaff',
+                'email' => 'aldi@company.com',
+            ],
+            [
+                'nama' => 'Rachman Nainggolan',
+                'jabatan' => 'IT Support',
+                'email' => 'rachman@company.com',
+            ]
+        ];
+
+        return view('it.timIT', compact('staffIT'));
+    }
+
 }

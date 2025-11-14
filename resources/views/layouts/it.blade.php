@@ -41,6 +41,12 @@
                 <h3><i class="fas fa-square-check"></i> Laporan Penilaian</h3>
             </div>
         </a>
+        <a href="{{ route('it.tim') }}" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-user"></i> Staff</h3>
+                <p><strong>2 Staff</strong></p>
+            </div>
+        </a>
     </div>
 
     <div class="dashboard-card" style="margin-top:30px;">
