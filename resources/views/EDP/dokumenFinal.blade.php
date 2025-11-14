@@ -180,7 +180,7 @@
         <tr>
             <th style="width:60px;">No</th>
             <th style="text-align:left;">Nama File</th>
-            <th style="text-align:left;">Bulan</th>
+            <th style="text-align:left;">Tanggal</th>
             <th style="width:180px; text-align:center;">Aksi</th>
         </tr>
     </thead>
@@ -189,7 +189,7 @@
         <tr>
             <td>{{ $index + 1 }}</td>
             <td>{{ basename($file['nama']) }}</td>
-            <td>{{ \Carbon\Carbon::parse($file['tanggal'])->translatedFormat('F Y') }}</td>
+            <td>{{ \Carbon\Carbon::parse($file['tanggal'])->translatedFormat('d F Y') }}</td>
             <td style="text-align:center;">
                 <div class="action-links">
                     <a class="download-link" href="{{ asset('storage/'.$file['nama']) }}" download>
