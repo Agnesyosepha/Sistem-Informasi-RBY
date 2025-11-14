@@ -3,8 +3,8 @@
 @section('title', 'Finance')
 
 @section('content')
-    <h1><i class="fas fa-file-invoice-dollar"></i> Klaim dan Surat Tugas</h1>
-    <p>Daftar klaim perjalanan dan surat tugas yang perlu divalidasi.</p>
+    <h1><i class="fas fa-file-invoice-dollar"></i> Dashbaord Finance</h1>
+    <p>Data - data keuangan yang perlu divalidasi.</p>
 
     <div class="dashboard-card" style="margin-top:20px;">
         <h3><i class="fas fa-receipt"></i> Data Klaim Perjalanan</h3>

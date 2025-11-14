@@ -4,7 +4,7 @@
 
 @section('content')
     <h1><i class="fas fa-file-signature"></i> Dashboard Reviewer</h1>
-    <p>Ringkasan aktivitas Electronic Data Processing (EDP).</p>
+    <p>Ringkasan aktivitas Reviewer.</p>
 
     <div class="dashboard-cards">
         <a href="{{ route('reviewer.tim') }}" style="text-decoration:none; color:inherit;">

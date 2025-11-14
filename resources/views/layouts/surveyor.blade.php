@@ -4,7 +4,7 @@
 
 @section('content')
     <h1><i class="fas fa-clipboard-list"></i> Dashboard Surveyor</h1>
-    <p>Ringkasan aktivitas surveyor bulan ini.</p>
+    <p>Ringkasan aktivitas surveyor.</p>
 
     <div class="dashboard-cards">
         <a href="{{ route('surveyor.lokasisurvei') }}" style="text-decoration:none; color:inherit;">
