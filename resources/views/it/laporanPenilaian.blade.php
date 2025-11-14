@@ -3,40 +3,58 @@
 @section('title', 'Laporan Penilaian')
 
 @section('content')
-    <h1><i class="fas fa-file-alt"></i> Laporan Penilaian</h1>
-    <p>Daftar laporan hasil penilaian yang telah dibuat oleh tim surveyor.</p>
+<h1 class="fw-bold mb-2"><i class="fas fa-file-alt"></i> Laporan Penilaian</h1>
+<p class="text-muted mb-4">Daftar laporan hasil penilaian yang telah dibuat oleh tim surveyor.</p>
 
-    <div class="wp-wrapper">
+<div class="lp-wrapper">
 
     {{-- 2022 --}}
-    <div class="wp-card">
-        <div class="wp-info">
-            <h3 class="wp-title">Laporan Penilaian Tahun 2022</h3>
-            <p class="wp-desc">Dokumen laporan untuk penilaian tahun 2022.</p>
+    <div class="lp-card">
+        <div class="lp-left">
+            <div class="lp-icon">
+                <i class="fas fa-folder-open"></i>
+            </div>
+            <div class="lp-info">
+                <h3 class="lp-title">Laporan Penilaian Tahun 2022</h3>
+                <p class="lp-desc">Dokumen laporan resmi untuk penilaian tahun 2022.</p>
+            </div>
         </div>
-        <a href="{{ asset('templates/Database 2022.xlsx') }}" download class="wp-btn">
+
+        <a href="{{ asset('templates/Database 2022.xlsx') }}" download class="lp-btn">
             <i class="fas fa-download"></i> Download
         </a>
     </div>
 
     {{-- 2023 --}}
-    <div class="wp-card">
-        <div class="wp-info">
-            <h3 class="wp-title">Laporan Penilaian Tahun 2023</h3>
-            <p class="wp-desc">Dokumen laporan untuk penilaian tahun 2023.</p>
+    <div class="lp-card">
+        <div class="lp-left">
+            <div class="lp-icon">
+                <i class="fas fa-folder-open"></i>
+            </div>
+            <div class="lp-info">
+                <h3 class="lp-title">Laporan Penilaian Tahun 2023</h3>
+                <p class="lp-desc">Dokumen laporan resmi untuk penilaian tahun 2023.</p>
+            </div>
         </div>
-        <a href="{{ asset('templates/Database 2023.xlsx') }}" download class="wp-btn">
+
+        <a href="{{ asset('templates/Database 2023.xlsx') }}" download class="lp-btn">
             <i class="fas fa-download"></i> Download
         </a>
     </div>
 
     {{-- 2024 --}}
-    <div class="wp-card">
-        <div class="wp-info">
-            <h3 class="wp-title">Laporan Penilaian Tahun 2024</h3>
-            <p class="wp-desc">Dokumen laporan untuk penilaian tahun 2024.</p>
+    <div class="lp-card">
+        <div class="lp-left">
+            <div class="lp-icon">
+                <i class="fas fa-folder-open"></i>
+            </div>
+            <div class="lp-info">
+                <h3 class="lp-title">Laporan Penilaian Tahun 2024</h3>
+                <p class="lp-desc">Dokumen laporan resmi untuk penilaian tahun 2024.</p>
+            </div>
         </div>
-        <a href="{{ asset('templates/Database 2024.xlsx') }}" download class="wp-btn">
+
+        <a href="{{ asset('templates/Database 2024.xlsx') }}" download class="lp-btn">
             <i class="fas fa-download"></i> Download
         </a>
     </div>
@@ -44,65 +62,87 @@
 </div>
 
 <style>
-.wp-wrapper {
+body {
+    background: #f5f7fb;
+}
+
+.lp-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 20px;
     margin-top: 20px;
 }
 
-.wp-card {
+.lp-card {
     background: #ffffff;
-    padding: 22px 28px;
-    border-radius: 10px;
-    border: 1px solid #e6e9ef;
+    padding: 22px 26px;
+    border-radius: 14px;
+    border: 1px solid #e5e8ef;
     display: flex;
     justify-content: space-between;
     align-items: center;
     transition: .25s ease;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.04);
 }
 
-.wp-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+.lp-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.08);
 }
 
-.wp-info {
+.lp-left {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+.lp-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    background: #e9f2ff;
+    color: #2e63d3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+}
+
+.lp-info {
     display: flex;
     flex-direction: column;
-    gap: 2px;
 }
 
-.wp-title {
+.lp-title {
     margin: 0;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 18px;
+    color: #303640;
 }
 
-.wp-desc {
-    margin: 0;
-    color: #6c757d;
+.lp-desc {
+    margin: 4px 0 0;
+    color: #6c7480;
     font-size: 14px;
 }
 
-.wp-btn {
-    background: #007bff;
+.lp-btn {
+    background: #2e63d3;
     color: white !important;
     padding: 10px 18px;
-    border-radius: 7px;
+    border-radius: 10px;
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
     display: flex;
     align-items: center;
-    gap: 8px;
-    transition: .2s;
+    gap: 6px;
+    transition: .2s ease;
 }
 
-.wp-btn:hover {
-    background: #005fcc;
+.lp-btn:hover {
+    background: #244fa8;
 }
 </style>
-    
+
 @endsection
