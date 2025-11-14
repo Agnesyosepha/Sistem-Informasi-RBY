@@ -10,7 +10,7 @@
         <h3><i class="fas fa-user-friends"></i> Tim Admin</h3>
 
         <table style="width:100%; border-collapse: collapse; margin-top:15px;">
-            <thead style="background:#007BFF; color:white;">
+            <thead style="background:#E49BA6; color:white;">
                 <tr>
                     <th style="padding:12px; text-align:left;">Nama Admin</th>
                     <th style="padding:12px; text-align:left;">Username</th>

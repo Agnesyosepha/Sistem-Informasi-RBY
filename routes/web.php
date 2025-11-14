@@ -60,7 +60,7 @@ Route::get('/admin/draftLaporan', [\App\Http\Controllers\AdminController::class,
 
 Route::get('/admin/laporan-final', [AdminController::class, 'laporanFinal'])->name('admin.laporanFinal');
 
-Route::get('/tim', [AdminController::class, 'tim'])->name('admin.tim');
+Route::get('/admin/tim', [AdminController::class, 'tim'])->name('admin.tim');
 
 
 // Surveyor
@@ -87,6 +87,7 @@ Route::get('/edp', function () {
 })->name('edp');
 
 Route::get('/edp/staff', [EdpController::class, 'staff'])->name('edp.staff');
+
     //seharusnya data mentah ini diganti jadi dokumen final, tapi jadi kubuat rute baru untuk dokuem final ehe, ini disini untuk jaga2 aja
 Route::get('/edp/datamentah', [\App\Http\Controllers\EDPController::class, 'dataMentah'])->name('edp.dataMentah');
 

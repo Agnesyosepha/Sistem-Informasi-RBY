@@ -7,8 +7,10 @@
 <p>Daftar staf IT yang bertugas saat ini.</p>
 
 <div class="dashboard-card" style="margin-top:30px;">
+  <h3><i class="fas fa-user-friends"></i> Tim IT</h3>
+
 <table style="width:100%; border-collapse: collapse; margin-top:15px;">
-    <thead style="background:#007BFF; color:white;">
+    <thead style="background:#E49BA6; color:white;">
         <tr>
             <th style="padding:10px; text-align:left;">Nama</th>
             <th style="padding:10px; text-align:left;">Jabatan</th>
