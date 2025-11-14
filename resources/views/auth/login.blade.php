@@ -69,25 +69,27 @@
 
     /* ===== Popup Login (Glassmorphism premium) ===== */
     .login-container {
-      position: relative;
-      z-index: 3;
-      width: 330px;
-      padding: 35px 28px;
-      margin: auto;
-      top: 50%;
-      transform: translateY(-50%);
-      text-align: center;
+    position: relative;
+    z-index: 3;
+    width: 330px;
+    padding: 35px 28px;
+    margin: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
 
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.18); /* lebih terang */
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
 
-      border-radius: 14px;
-      border: 1.5px solid rgba(247, 204, 81, 0.45);
+    border-radius: 14px;
 
-      box-shadow: 0 8px 25px rgba(0,0,0,0.35);
-      animation: fadeInPopup 0.7s ease;
-    }
+    /* PERUBAHAN utama — GARIS emas lebih jelas */
+    border: 2px solid rgba(247, 204, 81, 0.7);
+
+    box-shadow: 0 10px 28px rgba(0,0,0,0.45);
+    animation: fadeInPopup 0.7s ease;
+  }
 
     @keyframes fadeInPopup {
       from { opacity: 0; transform: translateY(-45%); }
@@ -95,12 +97,22 @@
     }
 
     .login-container h2 {
-      color: #fff;
+       color: #151515;;
       margin-bottom: 15px;
       font-weight: 600;
       letter-spacing: 1px;
+      position: relative;
     }
 
+    .login-container h2::after {
+      content: "";
+      display: block;
+      width: 60%;
+      margin: 10px auto 0 auto;
+      height: 2px;
+      background: linear-gradient(to right, transparent, #F7CC51, transparent);
+      opacity: 0.9;
+    }
     .login-container img {
       width: 190px;
       margin-bottom: 25px;
@@ -112,20 +124,22 @@
     }
 
     .form-group input {
-      width: 100%;
+       width: 100%;
       padding: 12px 12px 12px 40px;
-      border: 1px solid rgba(255,255,255,0.25);
+      border: 1.8px solid rgba(255,255,255,0.55);
       border-radius: 8px;
       outline: none;
       font-size: 14px;
 
-      color: white;
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(4px);
+      color: #fff; /* teks putih lebih kontras */
+      background: rgba(0,0,0,0.35);  /* lebih gelap → tulisan lebih jelas */
+      backdrop-filter: blur(5px);
     }
 
     .form-group input::placeholder {
-      color: #ddd;
+      color: #fff; 
+      font-weight: 500;
+      text-shadow: 0 0 6px rgba(0,0,0,0.6);
     }
 
     .form-group .icon {
@@ -133,9 +147,15 @@
       left: 12px;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 16px;
-      color: #e6e6e6;
-      pointer-events: none;
+      font-size: 17px;
+
+      color: #FFD76A; 
+      font-weight: 700;
+
+      text-shadow:
+          0 0 3px rgba(0,0,0,1),
+          0 0 5px rgba(0,0,0,0.9),
+          0 0 7px rgba(247, 225, 56, 0.8);
     }
 
     .error-text {
