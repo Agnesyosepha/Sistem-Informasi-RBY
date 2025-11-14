@@ -3,36 +3,50 @@
 @section('title', 'Laporan Final')
 
 @section('content')
-    <h1><i class="fas fa-file-alt"></i> Laporan Final</h1>
-    <p>Daftar laporan akhir penilaian yang telah disetujui atau selesai dikirim ke klien.</p>
+    <h1><i class="fas fa-file-alt"></i> Buku Laporan Final</h1>
+    <p>Daftar laporan akhir penilaian berdasarkan status pengiriman.</p>
 
     <div class="dashboard-card" style="margin-top:30px;">
     <table style="width:100%; border-collapse: collapse; margin-top:15px;">
         <thead style="background:#007BFF; color:white;">
             <tr>
-                <th style="padding:10px; text-align:left;">Nama Pemberi Tugas</th>
-                <th style="padding:10px; text-align:left;">Nomor PPJP</th>
-                <th style="padding:10px; text-align:left;">Tanggal Pengiriman</th>
+                <th style="padding:10px; text-align:left;">Pemberi Tugas</th>
                 <th style="padding:10px; text-align:left;">Jenis Penilaian</th>
-                <th style="padding:10px; text-align:center;">Status</th>
+                <th style="padding:10px; text-align:left;">Nama Pengirim</th>
+                <th style="padding:10px; text-align:left;">No. Laporan</th>
+                <th style="padding:10px; text-align:left;">Status Pengiriman</th>
+                <th style="padding:10px; text-align:center;">Copy</th>
             </tr>
         </thead>
+
         <tbody>
             @foreach($laporanFinal as $item)
-                <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">{{ $item['pemberi_tugas'] }}</td>
-                    <td style="padding:10px;">{{ $item['nomor_ppjp'] }}</td>
-                    <td style="padding:10px;">{{ $item['tgl_pengiriman'] }}</td>
-                    <td style="padding:10px;">{{ $item['jenis_penilaian'] }}</td>
-                    <td style="padding:10px; text-align:center; font-weight:600;
-                        color:
-                            {{ $item['status'] == 'Disetujui' ? 'green' :
-                               ($item['status'] == 'Direvisi' ? 'orange' :
-                               ($item['status'] == 'Arsip' ? 'gray' : 'red')) }};
-                    ">
-                        {{ $item['status'] }}
-                    </td>
-                </tr>
+            <tr style="border-bottom:1px solid #ddd;">
+                <td style="padding:10px;">{{ $item['pemberi_tugas'] }}</td>
+                <td style="padding:10px;">{{ $item['jenis_penilaian'] }}</td>
+                <td style="padding:10px;">{{ $item['pengirim'] }}</td>
+                <td style="padding:10px;">{{ $item['nomor_laporan'] }}</td>
+
+                <td style="padding:10px; font-weight:600;
+                    color:
+                        {{ $item['status_pengiriman'] == 'Sudah Dikirim' ? 'green' : 'red' }};
+                ">
+                    {{ $item['status_pengiriman'] }}
+                </td>
+
+                <!-- Kolom Copy -->
+                <td style="padding:10px; text-align:center;">
+                    <label style="margin-right:10px;">
+                        <input type="checkbox" name="softcopy_{{ $loop->index }}">
+                        Softcopy
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="hardcopy_{{ $loop->index }}">
+                        Hardcopy
+                    </label>
+                </td>
+            </tr>
             @endforeach
         </tbody>
     </table>

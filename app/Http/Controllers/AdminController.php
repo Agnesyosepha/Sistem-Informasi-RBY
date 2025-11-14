@@ -205,50 +205,45 @@ public function laporanFinal()
     $laporanFinal = [
         [
             'pemberi_tugas' => 'PT Sinar Properti',
-            'nomor_ppjp' => 'PPJP/010/SP/2025',
-            'tgl_pengiriman' => '01 Nov 2025',
             'jenis_penilaian' => 'Rumah Tinggal',
-            'status' => 'Disetujui'
+            'pengirim' => 'Fajar',
+            'nomor_laporan' => 'LAP/010/SP/2025',
+            'status_pengiriman' => 'Sudah Dikirim',
+            'softcopy' => true,
+            'hardcopy' => true
         ],
         [
             'pemberi_tugas' => 'Bank BCA',
-            'nomor_ppjp' => 'PPJP/011/BCA/2025',
-            'tgl_pengiriman' => '02 Nov 2025',
             'jenis_penilaian' => 'Tanah & Bangunan',
-            'status' => 'Disetujui'
+            'pengirim' => 'Jasmani',
+            'nomor_laporan' => 'LAP/011/BCA/2025',
+            'status_pengiriman' => 'Sudah Dikirim',
+            'softcopy' => true,
+            'hardcopy' => false
         ],
         [
             'pemberi_tugas' => 'PT Delta Energi',
-            'nomor_ppjp' => 'PPJP/012/DEL/2025',
-            'tgl_pengiriman' => '03 Nov 2025',
             'jenis_penilaian' => 'Gudang',
-            'status' => 'Direvisi'
+            'pengirim' => 'Santo',
+            'nomor_laporan' => 'LAP/012/DEL/2025',
+            'status_pengiriman' => 'Belum Dikirim',
+            'softcopy' => false,
+            'hardcopy' => false
         ],
         [
             'pemberi_tugas' => 'Bank Mandiri',
-            'nomor_ppjp' => 'PPJP/013/MND/2025',
-            'tgl_pengiriman' => '04 Nov 2025',
             'jenis_penilaian' => 'Tanah Kosong',
-            'status' => 'Arsip'
-        ],
-        [
-            'pemberi_tugas' => 'PT Graha Sentosa',
-            'nomor_ppjp' => 'PPJP/014/GS/2025',
-            'tgl_pengiriman' => '05 Nov 2025',
-            'jenis_penilaian' => 'Mesin dan peralatan',
-            'status' => 'Disetujui'
-        ],
-        [
-            'pemberi_tugas' => 'Bank BTN',
-            'nomor_ppjp' => 'PPJP/015/BTN/2025',
-            'tgl_pengiriman' => '07 Nov 2025',
-            'jenis_penilaian' => 'Tanah dan Bangunan',
-            'status' => 'Disetujui'
+            'pengirim' => 'Rania',
+            'nomor_laporan' => 'LAP/013/MND/2025',
+            'status_pengiriman' => 'Sudah Dikirim',
+            'softcopy' => true,
+            'hardcopy' => true
         ],
     ];
 
     return view('admin.laporanFinal', compact('laporanFinal'));
 }
+
 
 public function tim()
     {
