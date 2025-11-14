@@ -197,10 +197,7 @@
                     </a>
                     <form action="{{ route('edp.deleteDokumenFinal', basename($file['nama'])) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus dokumen ini?');">
                         @csrf
-                        @method('DELETE')
-                        <button type="submit" class="delete-link">
-                            <i class="fas fa-trash"></i> Hapus
-                        </button>
+                        
                     </form>
                 </div>
             </td>
