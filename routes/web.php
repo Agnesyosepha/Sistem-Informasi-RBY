@@ -45,8 +45,8 @@ Route::get('/profile', function () {
 
 // Admin
 Route::get('/admin', function () {
-    return view('layouts.admin');
-})->name('admin');
+    return view('superadmin.dashboard');
+})->name('admin')->middleware('auth');
 
 Route::get('/admin/surat-tugas', [\App\Http\Controllers\AdminController::class, 'suratTugas'])->name('admin.suratTugas');
 

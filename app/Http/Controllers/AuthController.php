@@ -17,14 +17,22 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    // 🟢 Proses login
+    
     public function login(Request $request)
     {
         $credentials = $request->only('username', 'password');
 
         if (Auth::attempt($credentials)) {
+
             $request->session()->regenerate();
-            return redirect()->intended('dashboard');
+
+            $user = Auth::user();
+
+            if ($user->username === 'admin') {
+                return redirect()->route('admin');
+            }
+
+            return redirect()->route('dashboard');
         }
 
         return back()->withErrors([
