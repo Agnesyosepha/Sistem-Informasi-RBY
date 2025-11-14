@@ -4,322 +4,189 @@
 
 @section('content')
 <style>
-    .hero-banner {
-        width: 100%;
-        height: 480px;
-        background: url("{{ asset('images/kjpp.jpg') }}") center/cover no-repeat;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        color: #000; /* Bisa diganti putih kalau mau */
+    body {
+        background: linear-gradient(to bottom, #f0f4f8, #ffffff);
+    }
+
+    .layout-two-col {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 35px;
+        margin-bottom: 50px;
+    }
+
+    @media(max-width: 900px) {
+        .layout-two-col {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .left-box, .right-box {
+        background: #ffffff;
+        padding: 35px;
+        border-radius: 18px;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.06);
         position: relative;
-        margin-bottom: 30px;
     }
 
-    /* Tambahkan overlay biar gambar tidak mengganggu teks */
-    .hero-banner::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: rgba(255, 255, 255, 0.45); /* transparan putih */
-        border-radius: 12px;
+    .left-box::before {
+        content:"";
+        position:absolute;
+        top:0; left:0;
+        width:100%; height:100%;
+        background:url('{{ asset('images/home.jpg') }}');
+        background-size:cover;
+        background-position:center;
+        opacity:0.07;
+        border-radius:18px;
     }
 
-    .hero-content {
+    .left-content {
         position: relative;
         z-index: 2;
     }
 
-    .hero-content h1 {
-        font-size: 32px;
-        font-weight: 700;
-        margin-bottom: 8px;
+    .section-divider {
+        margin: 25px 0;
+        border: none;
+        height: 2px;
+        background: linear-gradient(to right, #cbd5e1, #94a3b8, #cbd5e1);
+        border-radius: 5px;
     }
 
-    .hero-content h3 {
-        font-size: 22px;
-        margin-bottom: 10px;
+    .title-accent {
+        width: 55px;
+        height: 5px;
+        background: #d4a017;
+        border-radius: 5px;
+        margin-bottom: 12px;
+    }
+
+    .divisi-btn {
+        padding: 14px 18px;
+        background: #f3f4f6;
+        border-radius: 10px;
         font-weight: 600;
+        color: #111;
+        text-decoration: none;
+        border: 1px solid #e5e7eb;
+        transition: .2s;
+        display: block;
     }
 
-    .hero-content p {
-        margin: 0;
-        font-size: 15px;
-        line-height: 1.5;
+    .divisi-btn:hover {
+        background:#e5e7eb;
+        transform: translateX(3px);
     }
-
-    @media (max-width: 768px) {
-        .hero-banner {
-            height: 260px;
-        }
-        .hero-content h1 {
-            font-size: 24px;
-        }
-        .hero-content h3 {
-            font-size: 18px;
-        }
-    }
-    .choose-us-section {
-    text-align: center;
-    margin: 60px 0;
-    }
-
-    .choose-us-title {
-        font-size: 30px;
-        font-weight: 700;
-        margin-bottom: 30px;
-    }
-
-    .choose-box {
-        max-width: 750px;
-        margin: auto;
-        padding: 30px;
-        border-radius: 12px;
-        background: #f9f9f9;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .choose-box::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: url("{{ asset('images/kompetensi.jpg') }}") center/cover no-repeat;
-        opacity: 0.18;
-    }
-
-    .choose-box-content {
-        position: relative;
-        z-index: 2;
-    }
-
-    .choose-box-icon {
-        font-size: 70px;
-        margin-bottom: 15px;
-    }
-
-    .choose-box-title {
-        font-size: 24px;
-        font-weight: 700;
-        margin-bottom: 15px;
-    }
-    .choose-us-section {
-    text-align: center;
-    margin: 70px 0;
-}
-
-.choose-us-title {
-    font-size: 32px;
-    font-weight: 700;
-    margin-bottom: 50px;
-}
-
-.choose-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 35px;
-    align-items: stretch;
-}
-
-.choose-box {
-    padding: 30px 25px;
-    border-radius: 12px;
-    background: #f9f9f9;
-    position: relative;
-    overflow: hidden;
-    min-height: 350px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-.choose-box::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.20;
-}
-
-/* Atur gambar background masing2 box */
-.choose-integritas::before {
-    background-image: url("{{ asset('images/Integritas.jpg') }}");
-}
-.choose-kompetensi::before {
-    background-image: url("{{ asset('images/kompetensi.jpg') }}");
-}
-.choose-profesional::before {
-    background-image: url("{{ asset('images/Profesional.jpg') }}");
-}
-
-.choose-box-content {
-    position: relative;
-    z-index: 2;
-}
-
-.choose-box-icon {
-    font-size: 60px;
-    margin-bottom: 15px;
-}
-
-.choose-box-title {
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 12px;
-}
-
-@media(max-width: 900px) {
-    .choose-grid {
-        grid-template-columns: 1fr;
-    }
-}
-.office-section {
-    text-align: center;
-    margin: 70px 0;
-}
-
-.office-title {
-    font-size: 32px;
-    font-weight: 700;
-    margin-bottom: 50px;
-}
-
-.office-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 35px;
-}
-
-.office-box h3 {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 12px;
-}
-
-.office-box p {
-    margin: 3px 0;
-    line-height: 1.4;
-}
-
-/* Responsive */
-@media(max-width: 950px) {
-    .office-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 25px;
-    }
-}
-
-@media(max-width: 600px) {
-    .office-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-
 </style>
 
-<div class="hero-banner">
-    <div class="hero-content">
-        <h3>WELCOME TO</h3>
-        <h1>KJPP RUDDY BARUS YENNY DAN REKAN</h1>
+<div class="layout-two-col">
 
-        <p>NIKJPP : 2.17.0144</p>
-        <p>No. KMK : 728/KM.1/2022</p>
-        <p>STTD OJK : STTD-PP-212/PM.223/2022</p>
-        <p>ATR BPN : 1166/SK-PT.01.01/VIII/2022</p>
+    <!-- LEFT CONTENT -->
+    <div class="left-box">
+        <div class="left-content">
+
+            <div class="title-accent"></div>
+            <h2 style="font-weight:800; margin-bottom:8px;">WELCOME TO</h2>
+            <h3 style="font-size:26px; font-weight:700; margin-bottom:18px;">
+                KJPP RUDDY BARUS YENNY DAN REKAN
+            </h3>
+
+            <div class="info-list" style="margin-bottom:20px;">
+                <p>📌 NIKJPP : 2.17.0144</p>
+                <p>📌 No. KMK : 728/KM.1/2022</p>
+                <p>📌 STTD OJK : STTD-PP-212/PM.223/2022</p>
+                <p>📌 ATR BPN : 1166/SK-PT.01.01/VIII/2022</p>
+            </div>
+
+            <hr class="section-divider">
+
+            <h3 style="font-size:22px; font-weight:700; margin-bottom:12px;">Informasi Umum</h3>
+            <p style="line-height:1.75; color:#4b5563; font-size:15px;">
+                Sistem ini dirancang untuk mendukung proses kerja tim KJPP RBY dalam pengelolaan data, 
+                dokumen, dan pelaporan secara lebih efisien. Gunakan menu yang tersedia untuk menjalankan 
+                tugas administrasi dan operasional harian.
+            </p>
+
+        </div>
     </div>
-</div>
-<div class="choose-us-section">
-    <h2 class="choose-us-title">Why Choose Us?</h2>
 
-    <div class="choose-grid">
+    <!-- RIGHT CONTENT -->
+    <div class="right-box">
+        <h3 style="font-weight:700; margin-bottom:18px;">Tugas Harian</h3>
 
-        <!-- INTEGRITAS -->
-        <div class="choose-box choose-integritas">
-            <div class="choose-box-content">
-                <h3 class="choose-box-title">Integritas</h3>
-                <p>
-                    Bertindak dengan mengutamakan kejujuran, objektif, dapat dipercaya,
-                    tidak memihak dan bertanggung jawab penuh terhadap pemberi tugas,
-                    pengguna laporan dan seluruh pihak terkait lainnya.
-                </p>
-            </div>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+
+            <a href="{{ route('surveyor') }}" class="divisi-btn">🗺️ Surveyor</a>
+            <a href="{{ route('edp') }}" class="divisi-btn">💾 EDP</a>
+            <a href="{{ route('reviewer') }}" class="divisi-btn">📝 Reviewer</a>
+            <a href="{{ route('finance') }}" class="divisi-btn">💰 Finance</a>
+            <a href="{{ route('it') }}" class="divisi-btn">🖥️ IT Department</a>
+
         </div>
-
-        <!-- KOMPETENSI -->
-        <div class="choose-box choose-kompetensi">
-            <div class="choose-box-content">
-                <h3 class="choose-box-title">Kompetensi</h3>
-                <p>
-                    Seluruh SDM KJPP RBY memiliki syarat serta pengetahuan yang memadai,
-                    baik softskill maupun hardskill, dan terus mengupdate kemampuan melalui
-                    pelatihan serta kegiatan profesional terkait penilaian.
-                </p>
-            </div>
-        </div>
-
-        <!-- PROFESIONAL -->
-        <div class="choose-box choose-profesional">
-            <div class="choose-box-content">
-                <h3 class="choose-box-title">Profesional</h3>
-                <p>
-                    Menjunjung tinggi hukum, kode etik, serta standar penilaian yang berlaku.
-                    Menyampaikan hasil penilaian secara objektif dan menjaga kerahasiaan
-                    seluruh pemangku kepentingan.
-                </p>
-            </div>
-        </div>
-
     </div>
+
 </div>
 
-<div class="office-section">
-    <h2 class="office-title">Our Office</h2>
 
-    <div class="office-grid">
+{{-- FOOTER --}}
+<footer style="
+    background:#f8f9fa;
+    padding:40px 10px;
+    margin-top:40px;
+    border-top:1px solid #e5e5e5;
+">
 
-        <!-- Head Office -->
-        <div class="office-box">
-            <h3>Head Office</h3>
-            <p>Jalan DI. Panjaitan No. 39 Rejosari, RT.005/013, Kel. Gilingan, Kec. Banjarsari, Surakarta, Jawa Tengah</p>
-            <p>📞 0271-2921061</p>
-            <p>📱 085694160999</p>
-            <p>📠 0271-717672</p>
-            <p>📧 adminpusat@kjpprby.com</p>
+    <div class="container">
+
+        <h2 style="
+            text-align:center;
+            font-size:26px;
+            font-weight:700;
+            margin-bottom:30px;">
+            Our Office
+        </h2>
+
+        <div class="footer-grid" style="
+            display:grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap:20px;
+            margin-bottom:30px;
+        ">
+            @php
+                $offices = [
+                    ['name' => 'Head Office', 'loc' => 'Jl. DI. Panjaitan No. 39, Surakarta', 'tel' => '0271-2921061', 'hp' => '085694160999', 'email' => 'adminpusat@kjpprby.com'],
+                    ['name' => 'Bekasi Branch', 'loc' => 'Grand Galaxy City, Bekasi', 'tel' => '021-38711327', 'hp' => '08128582445', 'email' => 'adminbekasi@kjpprby.com'],
+                    ['name' => 'Jakarta Branch', 'loc' => 'Ciplaz Klender, Jakarta Timur', 'tel' => '021-48672642', 'hp' => '081385466610', 'email' => 'adminjakarta@kjpprby.com'],
+                    ['name' => 'Semarang Branch', 'loc' => 'Puri Anjasmoro, Semarang Barat', 'tel' => '024-76434980', 'hp' => '08156705690', 'email' => 'adminsemarang@kjpprby.com']
+                ];
+            @endphp
+
+            @foreach($offices as $o)
+            <div style="
+                background:#ffffff;
+                padding:18px;
+                border-radius:12px;
+                border:1px solid #e5e7eb;
+                box-shadow:0 3px 10px rgba(0,0,0,0.05);
+            ">
+                <h3 style="font-size:18px; font-weight:700; margin-bottom:8px;">
+                    {{ $o['name'] }}
+                </h3>
+                <p>📍 {{ $o['loc'] }}</p>
+                <p>☎️ {{ $o['tel'] }}</p>
+                <p>📱 {{ $o['hp'] }}</p>
+                <p>✉️ {{ $o['email'] }}</p>
+            </div>
+            @endforeach
         </div>
 
-        <!-- Bekasi Branch -->
-        <div class="office-box">
-            <h3>Bekasi Branch Office</h3>
-            <p>Grand Galaxy City, Jl. Rose Garden Boulevard Blok RRGB No. 35, Jakasetia, Bekasi Selatan, Kota Bekasi</p>
-            <p>📞 021-38711327</p>
-            <p>📱 08128582445</p>
-            <p>📧 adminbekasi@kjpprby.com</p>
-        </div>
-
-        <!-- Jakarta Branch -->
-        <div class="office-box">
-            <h3>Jakarta Branch Office</h3>
-            <p>Perkantoran Ciplaz Klender, Jl. I Gusti Ngurah Rai Blok B3 No. 25, RT.008/006, Kel. Klender, Kec. Duren Sawit, Jakarta Timur</p>
-            <p>📞 021-48672642</p>
-            <p>📱 081385466610</p>
-            <p>📧 adminjakarta@kjpprby.com</p>
-        </div>
-
-        <!-- Semarang Branch -->
-        <div class="office-box">
-            <h3>Semarang Branch Office</h3>
-            <p>Puri Anjasmoro Blok EE 1 No. 6 – 7, Tawangsari, Semarang Barat</p>
-            <p>📞 024-76434980</p>
-            <p>📱 08156705690</p>
-            <p>📧 adminsemarang@kjpprby.com</p>
-        </div>
+        <p style="text-align:center; font-size:14px; color:#666;">
+            © {{ date('Y') }} KJPP RBY – All Rights Reserved
+        </p>
 
     </div>
-</div>
-
+</footer>
 
 @endsection
