@@ -105,7 +105,7 @@
         .sidebar {
             position: fixed; top: 80px; left: 0;
             width: 250px; height: calc(100% - 80px);
-            background: linear-gradient(180deg, #4FB7B3, #222);
+            background: linear-gradient(180deg, #4FB7B3, #0C2B4E);
             padding-top: 20px;
             transition: width 0.3s ease-in-out;
             z-index: 999; box-shadow: 2px 0 8px rgba(0,0,0,0.3);
@@ -229,7 +229,7 @@
         <div class="header-left">
             <button id="menu-toggle"><i class="fas fa-bars"></i></button>
             <div class="logo-container">
-                <a href="{{ route('dashboard') }}" >
+                <a href="{{ route('superadmin.dashboard') }}" >
                 <img src="{{ asset('images/rby-logo3.jpg') }}" alt="Company Logo">
                 </a>
             </div>
