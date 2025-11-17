@@ -157,7 +157,14 @@
                     </a>
                 </li>
 
-                {{-- Tambahkan menu superadmin lainnya di sini --}}
+                <li>
+                    <a href="{{ route('superadmin.admin') }}"
+                       class="{{ Route::is('superadmin.admin') ? 'active' : '' }}">
+                        <i class="fas fa-user-cog"></i> <span>Admin</span>
+                    </a>
+                </li>
+
+                
             </ul>
         </nav>
     </aside>

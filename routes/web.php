@@ -52,6 +52,16 @@ Route::get('/superadmin/dashboard', function () {
 })->name('superadmin.dashboard')->middleware('auth');
 
 
+// Divisi Admin di Superadmin
+
+Route::get('/superadmin/admin', function () {
+    return view('superadmin.divisiAdmin');
+})->name('superadmin.admin')->middleware('auth');
+
+
+
+
+
 // Divisi Admin
 
 Route::get('/admin', function () {
