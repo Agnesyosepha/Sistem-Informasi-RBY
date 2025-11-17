@@ -238,7 +238,7 @@
     @endif
 
     <h2>Login</h2>
-    <img src="{{ asset('images/rby-logo.png') }}" alt="RBY Logo">
+    <img src="{{ asset('images/rby-logo3.jpg') }}" alt="RBY Logo">
 
     <form method="POST" action="{{ route('login') }}" autocomplete="off">
       @csrf
