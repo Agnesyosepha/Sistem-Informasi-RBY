@@ -101,6 +101,16 @@
             transition: 0.3s;
         }
         .sidebar.collapsed ~ .content-area { margin-left: 100px; }
+        .content { padding: 30px; animation: fadeIn 0.5s ease-in; }
+        .dashboard-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .dashboard-card {
+            background: #fff; padding: 25px; border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s;
+        }
+        .dashboard-card:hover { transform: translateY(-5px); }
+        .dashboard-card h3 { margin: 0 0 10px; font-size: 18px; color: #007BFF; }
+        .dashboard-card p { font-size: 14px; margin: 0; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
 
         /* --- Logout Modal --- */
         .modal-overlay {

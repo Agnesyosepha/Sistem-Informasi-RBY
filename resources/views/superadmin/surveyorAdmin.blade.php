@@ -4,32 +4,37 @@
 
 @section('content')
 
-<h1 style="font-weight:700; font-size:28px; margin-bottom:10px; color:#0C2B4E;">
-    Surveyor
-</h1>
+<h1><i class="fas fa-clipboard-list"></i> Surveyor Admin</h1>
 
-<p style="color:#555; margin-bottom:25px;">
-    Daftar seluruh admin yang terdaftar di sistem.
-</p>
-
-<div style="
-    background:white; padding:20px; 
-    border-radius:12px; 
-    box-shadow:0 4px 15px rgba(0,0,0,0.08);
-">
-    <table style="width:100%; border-collapse:collapse;">
-        <thead style="background:#4FB7B3; color:white;">
-            <tr>
-                <th style="padding:12px; text-align:left;">Nama</th>
-                <th style="padding:12px; text-align:left;">Username</th>
-                <th style="padding:12px; text-align:left;">Email</th>
-                <th style="padding:12px; text-align:center;">Aksi</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            
-    </table>
+<div class="dashboard-cards">
+    <a href="" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card" style="cursor:pointer;">
+                <h3><i class="fas fa-map-marker-alt"></i> Lokasi Survei</h3>
+                <p><strong>25 Lokasi</strong></p>
+            </div>
+        </a>
+        <a href="" class="dashboard-card" style="display:block; color:inherit; text-decoration:none;">
+            <h3><i class="fas fa-user"></i> Surveyor</h3>
+            <p><strong>10 Staff</strong></p>
+        </a>
+        <a href="" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card" style="cursor:pointer;">
+                <h3><i class="fas fa-sync-alt"></i> Update Proyek</h3>
+                <p><strong>Ringkasan Semua Status Proyek</strong></p>
+            </div>
+        </a>
+        <a href="" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-tasks"></i> Working Paper</h3>
+                <p><strong>11 Dokumen</strong></p>
+            </div>
+        </a>
+        <a href="" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-file"></i> Laporan Penilaian</h3>
+                <p><strong >6 dokumen</strong></p>
+            </div>
+        </a>
 </div>
 
 
