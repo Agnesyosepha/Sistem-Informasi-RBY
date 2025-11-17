@@ -40,7 +40,7 @@
         .warn-icon {
             width: 100px;
             height: 100px;
-            border: 4px solid #e6b17a;   /* warna lingkaran */
+            border: 4px solid #e6b17a;   
             border-radius: 50%;          /* biar bulat */
             display: flex;
             align-items: center;
@@ -135,11 +135,24 @@
 
         /* Profile Section */
         .profile-container {
-            margin-left: 250px;
-            margin-top: 100px;
+           margin-left: 250px;
+            margin-top: 120px;
             padding: 40px;
             display: flex;
             justify-content: center;
+        }
+
+        .profile-card.upgraded {
+            display: flex;
+            background: #ffffff;
+            border-radius: 25px;
+            padding: 40px 50px;
+            gap: 50px;
+            width: 100%;
+            max-width: 950px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            border: 1px solid #ececec;
+            animation: fadeSlideUp 0.4s ease;
         }
 
         .profile-card {
@@ -157,10 +170,96 @@
         .profile-left {
             flex: 1;
             text-align: center;
-            border-right: 2px solid #eee;
-            padding-right: 30px;
+            border-right: 2px dashed #e8e8e8;
+            padding-right: 40px;
         }
+        .upgraded-photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+    background: linear-gradient(135deg, #d4a15a, #f7d9a1);
+    color: #fff;
+    font-size: 85px;
+    border: 6px solid #fff;
+    box-shadow: 0 5px 20px rgba(212,161,90,0.4);
+}
+.name-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.email-text {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.upgrade-edit {
+    background: #e6b17a;
+    padding: 10px 25px;
+    border-radius: 25px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.upgrade-edit:hover {
+    background: #ffcb6b;
+}
+
+/* Right */
+.profile-right {
+    flex: 2;
+}
+.section-title {
+    font-size: 20px;
+    font-weight: 700;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    border-bottom: 3px solid #e6b17a;
+    width: fit-content;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 40px;
+}
+
+.info-item label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #5d5d5d;
+}
+
+.info-item p {
+    margin-top: 5px;
+    background: #f8f9fb;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid #ececec;
+    font-size: 14px;
+    color: #444;
+}
+
+/* Animation */
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
         .profile-photo {
             width: 180px;
             height: 180px;
@@ -389,49 +488,59 @@
 
     <!-- Profile Content -->
     <div class="profile-container">
-        <div class="profile-card">
-            <div class="profile-left">
-                <div class="profile-photo">
-                    <i class="fas fa-user"></i>
-                </div>
-                <h3>Shafa</h3>
-                <p>adminbekasi@gmail.com</p>
+    <div class="profile-card upgraded">
+        
+        <!-- Left -->
+        <div class="profile-left">
+            <div class="profile-photo upgraded-photo">
+                <i class="fas fa-user"></i>
             </div>
 
-            <div class="profile-right">
-                <h4>Profil</h4>
+            <h3 class="name-title">Shafa</h3>
+            <p class="email-text">adminbekasi@gmail.com</p>
 
-                <div class="profile-field">
+            <button class="edit-btn upgrade-edit">Edit Profil</button>
+        </div>
+
+        <!-- Right -->
+        <div class="profile-right">
+            <h4 class="section-title">Informasi Akun</h4>
+
+            <div class="profile-grid">
+                <div class="info-item">
                     <label>Nama</label>
-                    <input type="text" value="Shafa" readonly>
+                    <p>Shafa</p>
                 </div>
 
-                <div class="profile-field">
+                <div class="info-item">
                     <label>Alamat</label>
-                    <input type="text" value="Jl. Mawar No. 5" readonly>
+                    <p>Jl. Mawar No. 5</p>
                 </div>
 
-                <div class="profile-field">
+                <div class="info-item">
                     <label>No. HP</label>
-                    <input type="text" value="08123456789" readonly>
+                    <p>08123456789</p>
                 </div>
 
-                <div class="profile-field">
+                <div class="info-item">
                     <label>Divisi</label>
-                    <input type="text" value="Admin" readonly>
+                    <p>Admin</p>
                 </div>
 
-                <div class="profile-field">
+                <div class="info-item">
                     <label>Jabatan</label>
-                    <input type="text" value="Staff" readonly>
+                    <p>Staff</p>
                 </div>
-                <div class="profile-field">
+
+                <div class="info-item">
                     <label>Nomor MAPPI</label>
-                    <input type="text" value="8815629468" readonly>
+                    <p>8815629468</p>
                 </div>
             </div>
         </div>
+
     </div>
+</div>
 
     <!-- Modal Logout -->
     <div id="logoutModal" class="modal-overlay">
