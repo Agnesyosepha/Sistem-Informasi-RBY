@@ -43,6 +43,9 @@ Route::get('/profile', function () {
 })->name('profile')->middleware('auth');
 
 
+
+// ------------------------------------------------------------------------------------------------------------------------- //
+
 // ingat nama 'admin' itu divisi
 
 // Superadmin
@@ -59,7 +62,42 @@ Route::get('/superadmin/admin', function () {
 })->name('superadmin.admin')->middleware('auth');
 
 
+// Surevor di Superadmin
 
+Route::get('/superadmin/surveyor', function () {
+    return view('superadmin.surveyorAdmin');
+})->name('superadmin.surveyor')->middleware('auth');
+
+
+// EDP di Superadmin
+
+Route::get('/superadmin/edp', function () {
+    return view('superadmin.edpAdmin');
+})->name('superadmin.edp')->middleware('auth');
+
+
+// Reviewer di Superadmin
+
+Route::get('/superadmin/reviewer', function () {
+    return view('superadmin.reviewerAdmin');
+})->name('superadmin.reviewer')->middleware('auth');
+
+
+// Finance di Superadmin
+
+Route::get('/superadmin/finance', function () {
+    return view('superadmin.financeAdmin');
+})->name('superadmin.finance')->middleware('auth');
+
+
+// IT di Superadmin
+
+Route::get('/superadmin/it', function () {
+    return view('superadmin.itAdmin');
+})->name('superadmin.it')->middleware('auth');
+
+
+// ------------------------------------------------------------------------------------------------------------------------- //
 
 
 // Divisi Admin
@@ -168,6 +206,10 @@ Route::get('/it/upload-form', [ITController::class, 'uploadFormPage'])->name('it
 Route::post('/it/upload-form', [ITController::class, 'uploadFormStore'])->name('it.uploadForm.store');
 
 Route::get('/it/tim', [App\Http\Controllers\ITController::class, 'tim'])->name('it.tim');
+
+
+
+
 
 
 // Logout

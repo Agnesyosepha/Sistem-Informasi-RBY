@@ -163,7 +163,36 @@
                         <i class="fas fa-user-cog"></i> <span>Admin</span>
                     </a>
                 </li>
-
+                <li>
+                <a href="{{ route('superadmin.surveyor') }}" 
+                   class="{{ Route::is('superadmin.surveyor') ? 'active' : '' }}">
+                   <i class="fas fa-clipboard-list"></i><span> Surveyor</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('superadmin.edp') }}" 
+                   class="{{ Route::is('superadmin.edp') ? 'active' : '' }}">
+                   <i class="fas fa-desktop"></i><span> EDP</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('superadmin.reviewer') }}" 
+                   class="{{ Route::is('superadmin.reviewer') ? 'active' : '' }}">
+                   <i class="fas fa-file-signature"></i><span> Reviewer</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('superadmin.finance') }}" 
+                   class="{{ Route::is('superadmin.finance') ? 'active' : '' }}">
+                   <i class="fas fa-file-invoice-dollar"></i><span> Finance</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('superadmin.it') }}" 
+                   class="{{ Route::is('it') ? 'active' : '' }}">
+                   <i class="fas fa-server"></i><span> IT</span>
+                </a>
+            </li>
                 
             </ul>
         </nav>
