@@ -27,14 +27,14 @@
             left: 0;
             width: 100%;
             height: 80px;
-            background-color: #000000;
+            background-color: #0E2148; color: white;
             color: #ffffff;
             display: flex;
             align-items: center;
             padding: 0 20px;
             box-sizing: border-box;
             z-index: 1000;
-            border-bottom: 3px solid #007BFF;
+            border-bottom: 3px solid #C5172E;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         .warn-icon {
@@ -105,7 +105,7 @@
         .sidebar {
             position: fixed; top: 80px; left: 0;
             width: 250px; height: calc(100% - 80px);
-            background: linear-gradient(180deg, #111, #222);
+            background: linear-gradient(180deg, #0E2148, #3C467B);
             padding-top: 20px;
             transition: width 0.3s ease-in-out;
             z-index: 999; box-shadow: 2px 0 8px rgba(0,0,0,0.3);
@@ -372,7 +372,7 @@
             <button id="menu-toggle"><i class="fas fa-bars"></i></button>
             <div class="logo-container">
                 <a href="{{ route('dashboard') }}" >
-                <img src="{{ asset('images/rby-logo2.png') }}" alt="Company Logo">
+                <img src="{{ asset('images/rby-logo3.jpg') }}" alt="Company Logo">
                 </a>
             </div>
         </div>
