@@ -21,7 +21,7 @@
         .sidebar {
             position: fixed; top: 80px; left: 0;
             width: 250px; height: calc(100% - 80px);
-            background: linear-gradient(180deg, #6E8CFB, #3C467B);
+            background: linear-gradient(180deg, #0E2148, #3C467B);
             padding-top: 20px;
             transition: width 0.3s ease-in-out;
             z-index: 999; box-shadow: 2px 0 8px rgba(0,0,0,0.3);
@@ -48,7 +48,7 @@
         /* --- Header --- */
         .header {
             position: fixed; top: 0; left: 0; width: 100%; height: 80px;
-            background-color: #6E8CFB; color: white;
+            background-color: #0E2148; color: white;
             display: flex; align-items: center;
             padding: 0 20px; border-bottom: 3px solid #FFDBB6;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
