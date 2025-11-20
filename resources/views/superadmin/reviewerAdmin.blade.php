@@ -4,33 +4,31 @@
 
 @section('content')
 
-<h1 style="font-weight:700; font-size:28px; margin-bottom:10px; color:#0C2B4E;">
-    Reviewer
-</h1>
+<h1><i class="fas fa-file-signature"></i> Reviewer Admin</h1>
+    <p>Ringkasan aktivitas Reviewer.</p>
 
-<p style="color:#555; margin-bottom:25px;">
-    Daftar seluruh admin yang terdaftar di sistem.
-</p>
+    <div class="dashboard-cards">
+        <a href="" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-users"></i> Reviewer</h3>
+                <p><strong>1 Staff</strong></p>
+            </div>
+        </a>
 
-<div style="
-    background:white; padding:20px; 
-    border-radius:12px; 
-    box-shadow:0 4px 15px rgba(0,0,0,0.08);
-">
-    <table style="width:100%; border-collapse:collapse;">
-        <thead style="background:#4FB7B3; color:white;">
-            <tr>
-                <th style="padding:12px; text-align:left;">Nama</th>
-                <th style="padding:12px; text-align:left;">Username</th>
-                <th style="padding:12px; text-align:left;">Email</th>
-                <th style="padding:12px; text-align:center;">Aksi</th>
-            </tr>
-        </thead>
+        <a href="" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-server"></i> Dokumen Revisi</h3>
+                <p><strong>8 Dokumen</strong></p>
+            </div>
+        </a>
 
-        <tbody>
-            
-    </table>
-</div>
+        <a href="" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-server"></i> Dokumen Final</h3>
+                <p><strong>8 Dokumen</strong></p>
+            </div>
+        </a>
+    </div>
 
 
 

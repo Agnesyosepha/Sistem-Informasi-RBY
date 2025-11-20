@@ -4,33 +4,51 @@
 
 @section('content')
 
-<h1 style="font-weight:700; font-size:28px; margin-bottom:10px; color:#0C2B4E;">
-    IT
-</h1>
+<h1><i class="fas fa-server"></i> Dashboard IT</h1>
+    <p>Ringkasan status infrastruktur dan aktivitas IT perusahaan.</p>
 
-<p style="color:#555; margin-bottom:25px;">
-    Daftar seluruh admin yang terdaftar di sistem.
-</p>
-
-<div style="
-    background:white; padding:20px; 
-    border-radius:12px; 
-    box-shadow:0 4px 15px rgba(0,0,0,0.08);
-">
-    <table style="width:100%; border-collapse:collapse;">
-        <thead style="background:#4FB7B3; color:white;">
-            <tr>
-                <th style="padding:12px; text-align:left;">Nama</th>
-                <th style="padding:12px; text-align:left;">Username</th>
-                <th style="padding:12px; text-align:left;">Email</th>
-                <th style="padding:12px; text-align:center;">Aksi</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            
-    </table>
-</div>
+    <div class="dashboard-cards">
+        <a href="" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-database"></i> Aset</h3>
+                <p><strong>Total 33</strong></p>
+            </div>
+        </a>
+        <a href="" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-network-wired"></i> Server</h3>
+                <p><strong>12</strong></p>
+            </div>
+        </a>
+        <a href="" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-computer"></i> Total Komputer</h3>
+                <p><strong>15 PC</strong></p>
+            </div>
+        </a>
+        <a href="" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-laptop"></i> Total Laptop</h3>
+                <p><strong>10 Laptop</strong></p>
+            </div>
+        </a>
+        <a href="" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card" style="cursor:pointer;">
+                <h3><i class="fas fa-list"></i> Form Peminjaman</h3>
+            </div>
+        </a>
+        <a href="" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card" style="cursor:pointer;">
+                <h3><i class="fas fa-square-check"></i> Laporan Penilaian</h3>
+            </div>
+        </a>
+        <a href="" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-user"></i> Staff</h3>
+                <p><strong>2 Staff</strong></p>
+            </div>
+        </a>
+    </div>
 
 
 
