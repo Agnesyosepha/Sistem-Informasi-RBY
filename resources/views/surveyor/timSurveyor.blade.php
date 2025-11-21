@@ -12,7 +12,7 @@
         <table style="width:100%; border-collapse: collapse; margin-top:15px;">
             <thead style="background:#E49BA6; color:black;">
                 <tr>
-                    <th style="padding:12px; text-align:left;">Nama Surveyor</th>
+                    <th style="padding:12px; text-align:left;">Nama Staff</th>
                     <th style="padding:12px; text-align:left;">Nomor HP</th>
                     <th style="padding:12px; text-align:left;">Email</th>
                     <th style="padding:12px; text-align:left;">Status</th>
