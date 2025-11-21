@@ -19,26 +19,23 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($resume as $item)
+            @foreach($resume as $ar)
                 <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">{{ $item['pemberi_tugas'] }}</td>
-                    <td style="padding:10px;">{{ $item['objek_penilaian'] }}</td>
+                    <td style="padding:10px;">{{ $ar['pemberi_tugas'] }}</td>
+                    <td style="padding:10px;">{{ $ar['objek_penilaian'] }}</td>
                     <td style="padding:10px;">
                         <ul style="margin:0; padding-left:15px;">
-                            <li><strong>Nilai Pasar:</strong> Rp {{ number_format($item['nilai_pasar'], 0, ',', '.') }}</li>
-                            <li><strong>Nilai Wajar:</strong> Rp {{ number_format($item['nilai_wajar'], 0, ',', '.') }}</li>
-                            <li><strong>Nilai Likuidasi:</strong> Rp {{ number_format($item['nilai_likuidasi'], 0, ',', '.') }}</li>
+                            <li><strong>Nilai Pasar:</strong> Rp {{ number_format($ar['nilai_pasar'], 0, ',', '.') }}</li>
+                            <li><strong>Nilai Wajar:</strong> Rp {{ number_format($ar['nilai_wajar'], 0, ',', '.') }}</li>
+                            <li><strong>Nilai Likuidasi:</strong> Rp {{ number_format($ar['nilai_likuidasi'], 0, ',', '.') }}</li>
                         </ul>
                     </td>
-                    <td style="padding:10px;">{{ $item['tanggal'] }}</td>
-                    <td style="padding:10px;">{{ $item['tanggal_pengiriman'] }}</td>
-                    <td style="padding:10px; text-align:center; font-weight:600;
-                        color:
-                            {{ $item['status'] == 'Disetujui' ? 'green' :
-                               ($item['status'] == 'Final' ? 'blue' :
-                               ($item['status'] == 'Terkirim' ? 'orange' : 'red')) }};
-                    ">
-                        {{ $item['status'] }}
+                    <td style="padding:10px;">{{ $ar['tanggal'] }}</td>
+                    <td style="padding:10px;">{{ $ar['tanggal_pengiriman'] }}</td>
+                    <td style="padding:10px; font-weight:bold; text-align:center;">
+                        <span class="status-label" data-status="{{ $ar->status }}">
+                            {{ $ar->status }}
+                        </span>
                     </td>
                 </tr>
             @endforeach
@@ -47,4 +44,27 @@
     </div>
 
     
+@endsection
+
+@section('scripts')
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".status-label").forEach(function(label) {
+        const value = label.getAttribute("data-status");
+
+        if (value === "Disetujui") {
+            label.style.color = "green";
+        } 
+        else if (value === "Final") {
+            label.style.color = "orange";
+        } 
+        else if (value === "Terkirim") {
+            label.style.color = "blue";
+        } 
+        else {
+            label.style.color = "red"; // default untuk status lain
+        }
+    });
+});
+</script>
 @endsection

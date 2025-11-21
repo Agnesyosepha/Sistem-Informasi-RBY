@@ -27,7 +27,7 @@
                 <p><strong>350</strong></p>
             </div>
         </a>
-        <a href="" style="text-decoration:none; color:inherit;">
+        <a href="{{ route('superadmin.admin.SAdraftResume') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-file"></i> Draft Resume</h3>
                 <p><strong>2 dokumen</strong></p>
