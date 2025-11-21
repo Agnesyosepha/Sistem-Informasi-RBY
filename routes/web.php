@@ -83,6 +83,11 @@ Route::post('/superadmin/admin/superadmin-draftResume/update-status/{id}',
     [AdminController::class, 'updateStatusSAdraftResume']
 )->name('superadmin.admin.SAdraftResume.updateStatus');
 
+Route::get('/superadmin/admin/draftLaporan', [\App\Http\Controllers\AdminController::class, 'SAdraftLaporan'])->name('superadmin.admin.SAdraftLaporan');
+Route::post('/superadmin/admin/draftLaporan/store',[AdminController::class, 'storeSAdraftLaporan'])->name('superadmin.admin.SAdraftLaporan.store');
+Route::post('/superadmin/admin/draftlaporan/update-status/{id}',[AdminController::class, 'updateDraftStatus']);
+
+
 // Surveyor di Superadmin
 
 Route::get('/superadmin/surveyor', function () {
@@ -151,7 +156,6 @@ Route::post('/admin/proposal/update-status/{id}',
 );
 
 Route::get('/admin/adendum', [\App\Http\Controllers\AdminController::class, 'adendum'])->name('admin.adendum');
-
 
 Route::get('/admin/draftResume', [\App\Http\Controllers\AdminController::class, 'draftResume'])->name('admin.draftResume');
 

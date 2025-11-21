@@ -8,6 +8,7 @@ use App\Models\Proposal;
 use App\Models\Adendum;
 use App\Models\SuratTugas;
 use App\Models\DraftResume;
+use App\Models\DraftLaporan;
 
 class AdminController extends Controller
 {
@@ -194,40 +195,49 @@ public function updateStatusSAdraftResume(Request $request, $id)
 // Draft Laporan
 public function draftLaporan()
 {
-    $laporan = [
-        [
-            'pemberi_tugas' => 'PT Nusantara Properti',
-            'nomor_ppjp' => 'PPJP/001/NP/2025',
-            'tgl_proposal' => '01 Nov 2025',
-            'tgl_pengiriman' => '05 Nov 2025',
-            'status' => 'Pending'
-        ],
-        [
-            'pemberi_tugas' => 'Bank Mandiri Tbk',
-            'nomor_ppjp' => 'PPJP/002/MND/2025',
-            'tgl_proposal' => '02 Nov 2025',
-            'tgl_pengiriman' => '06 Nov 2025',
-            'status' => 'Final'
-        ],
-        [
-            'pemberi_tugas' => 'PT Delta Energi',
-            'nomor_ppjp' => 'PPJP/003/DELTA/2025',
-            'tgl_proposal' => '03 Nov 2025',
-            'tgl_pengiriman' => '07 Nov 2025',
-            'status' => 'Disetujui'
-        ],
-        [
-            'pemberi_tugas' => 'Bank BRI',
-            'nomor_ppjp' => 'PPJP/004/BRI/2025',
-            'tgl_proposal' => '04 Nov 2025',
-            'tgl_pengiriman' => '09 Nov 2025',
-            'status' => 'Ditolak'
-        ],
-    ];
-
+    $laporan = \App\Models\DraftLaporan::all();
     return view('admin.draftLaporan', compact('laporan'));
 }
+public function SAdraftLaporan()
+{
+    $laporan = \App\Models\DraftLaporan::all();
 
+    return view('admin.SAdraftLaporan', compact('laporan'));
+}
+public function storeSAdraftLaporan(Request $request)
+{
+    // Validasi
+    $request->validate([
+        'pemberi_tugas' => 'required|string',
+        'nomor_ppjp' => 'required|string',
+        'tgl_proposal' => 'required|date',
+        'tgl_pengiriman' => 'required|date',
+        'status' => 'required|string',
+    ]);
+
+    // Simpan ke database
+    \App\Models\DraftLaporan::create([
+        'pemberi_tugas' => $request->pemberi_tugas,
+        'nomor_ppjp' => $request->nomor_ppjp,
+        'tgl_proposal' => $request->tgl_proposal,
+        'tgl_pengiriman' => $request->tgl_pengiriman,
+        'status' => $request->status,
+    ]);
+
+    return redirect()->back()->with('success', 'Data draft laporan berhasil ditambahkan!');
+}
+
+public function updateDraftStatus(Request $request, $id)
+{
+    $laporan = Laporan::findOrFail($id);
+    $laporan->status = $request->status;
+    $laporan->save();
+
+    return response()->json(['success' => true]);
+}
+
+
+// Laporan Final
 public function laporanFinal()
 {
     $laporanFinal = [
