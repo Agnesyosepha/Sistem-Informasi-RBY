@@ -11,7 +11,7 @@
     <div class="dashboard-cards">
         <a href="{{ route('superadmin.admin.SAproposal') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
-                <h3><i class="fas fa-lightbulb"></i> Daftar Proposal</h3>
+                <h3><i class="fas fa-file-invoice"></i> Daftar Proposal</h3>
                 <p><strong>{{ $jumlahProposal }} Record</strong></p>
             </div>
         </a>
@@ -41,7 +41,7 @@
         </a>
         <a href="" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
-                <h3><i class="fas fa-file"></i> Buku Laporan Final</h3>
+                <h3><i class="fas fa-book"></i> Buku Laporan Final</h3>
                 <p><strong >6 dokumen</strong></p>
             </div>
         </a>
