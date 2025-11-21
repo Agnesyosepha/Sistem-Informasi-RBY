@@ -4,7 +4,7 @@
 
 @section('content')
 <h1><i class="fas fa-user"></i> Staff IT</h1>
-<p>Daftar staf IT yang bertugas saat ini.</p>
+<p>Berikut adalah staff divisi IT yang terdaftar saat ini.</p>
 
 <div class="dashboard-card" style="margin-top:30px;">
   <h3><i class="fas fa-user-friends"></i> Tim IT</h3>

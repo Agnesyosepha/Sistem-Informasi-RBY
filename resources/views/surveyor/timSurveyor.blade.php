@@ -4,7 +4,7 @@
 
 @section('content')
     <h1><i class="fas fa-users"></i> Daftar Tim Surveyor</h1>
-    <p>Berikut adalah nama-nama staff surveyor yang terdaftar.</p>
+    <p>Berikut adalah staff divisi Surveyor yang terdaftar saat ini.</p>
 
     <div class="dashboard-card" style="margin-top:25px;">
         <h3><i class="fas fa-user-friends"></i> Tim Surveyor</h3>

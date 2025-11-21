@@ -4,7 +4,7 @@
 
 @section('content')
     <h1><i class="fas fa-users-cog"></i> Daftar Tim Admin</h1>
-    <p>Berikut adalah daftar staff administrator yang terdaftar dalam sistem.</p>
+    <p>Berikut adalah staff divisi Admin yang terdaftar saat ini.</p>
 
     <div class="dashboard-card" style="margin-top:25px;">
         <h3><i class="fas fa-user-friends"></i> Tim Admin</h3>

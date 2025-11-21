@@ -4,7 +4,7 @@
 
 @section('content')
     <h1><i class="fas fa-users"></i> Daftar Staff EDP</h1>
-    <p>Berikut adalah daftar staff EDP yang bertugas :</p>
+    <p>Berikut adalah staff divisi EDP yang terdaftar saat ini.</p>
 
     <div class="dashboard-card" style="margin-top:25px;">
 <h3><i class="fas fa-user-friends"></i> Tim EDP</h3>
@@ -13,6 +13,7 @@
         <tr>
             <th style="padding:10px; text-align:left;">Nama</th>
             <th style="padding:10px; text-align:left;">No HP</th>
+            <th style="padding:10px; text-align:left;">Email</th>
             <th style="padding:10px; text-align:left;">Status</th>
         </tr>
     </thead>
@@ -22,7 +23,7 @@
         <tr style="border-bottom:1px solid #ddd;">
             <td style="padding:10px; text-align:left;">{{ $s['nama'] }}</td>
             <td style="padding:10px; text-align:left;">{{ $s['nohp'] }}</td>
-
+            <td style="padding:10px; text-align:left;">{{ $s['email'] }}</td> <!-- menampilkan email -->
             <td style="
                 padding:10px; 
                 text-align:left; 
@@ -36,6 +37,5 @@
     </tbody>
 </table>
 </div>
-
-    </div>
+</div>
 @endsection

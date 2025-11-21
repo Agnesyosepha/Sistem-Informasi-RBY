@@ -10,15 +10,15 @@ use Carbon\Carbon;
 class EdpController extends Controller
 {
   public function staff()
-  {
-      $staff = [
-            ['nama' => 'Aprilius Ginting', 'nohp' => '0812-2981-1849', 'status' => 'Aktif'],
-            ['nama' => 'Michael Brema Pinem', 'nohp' => '0812-2981-1849', 'status' => 'Aktif'],
-            ['nama' => 'Yohanes Kroll Koten', 'nohp' => '0812-2981-1849', 'status' => 'Aktif'],
-      ];
+    {
+        $staff = [
+            ['nama' => 'Aprilius Ginting', 'nohp' => '0821-2230-2387', 'email' => 'rutsahanayasembiring@gmail.com', 'status' => 'Aktif'],
+            ['nama' => 'Michael Brema Pinem', 'nohp' => '0895-3387-33453', 'email' => 'michaelbp3105@gmail.com', 'status' => 'Aktif'],
+            ['nama' => 'Yohanes Kroll Koten', 'nohp' => '0896-7574-0893', 'email' => 'yohaneskrollkoten@gmail.com', 'status' => 'Aktif'],
+        ];
 
-      return view('EDP.edp', compact('staff'));
-  }
+        return view('EDP.edp', compact('staff'));
+    }
   public function dataMentah()
     {
         // ambil list file yang sudah diupload
