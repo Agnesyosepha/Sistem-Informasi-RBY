@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('superadmin.app2')
 
 @section('title', 'Proposal')
 
@@ -6,7 +6,11 @@
     <h1><i class="fas fa-lightbulb"></i> Daftar Proposal</h1>
     <p>Berikut adalah daftar proposal yang diajukan oleh para surveyor untuk penilaian aset.</p>
 
-    
+    <!-- Tombol Tambah Proposal -->
+    <button onclick="document.getElementById('modalTambah').style.display='block'"
+        style="background:#28a745; color:white; padding:10px 18px; border:none; border-radius:6px; cursor:pointer; margin-top:20px;">
+        + Tambah Proposal
+    </button>
 
     <!-- Modal -->
     <div id="modalTambah" style="

@@ -9,9 +9,9 @@
 
     <!-- Statistik Utama -->
     <div class="dashboard-cards">
-        <a href="" style="text-decoration:none; color:inherit;">
+        <a href="{{ route('superadmin.admin.SAproposal') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
-                <h3><i class="fas fa-lightbulb"></i> Proposal</h3>
+                <h3><i class="fas fa-lightbulb"></i> Daftar Proposal</h3>
                 <p><strong>120.000 Record</strong></p>
             </div>
         </a>

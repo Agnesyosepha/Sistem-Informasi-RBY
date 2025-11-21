@@ -276,6 +276,7 @@
             confirmLogout.addEventListener('click', () => logoutForm.submit());
         });
     </script>
+    @yield('scripts')
 
 </body>
 </html>

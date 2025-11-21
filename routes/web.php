@@ -54,6 +54,12 @@ Route::get('/superadmin/dashboard', function () {
     return view('superadmin.dashboard');
 })->name('superadmin.dashboard')->middleware('auth');
 
+Route::get('/superadmin/admin/superadmin-proposal', [\App\Http\Controllers\AdminController::class, 'SAproposal'])->name('superadmin.admin.SAproposal');
+Route::post('/superadmin/admin/superadmin-proposal/store', [AdminController::class, 'storeProposal'])->name('superadmin.admin.SAproposal.store');
+Route::post('/superadmin/admin/superadmin-proposal/update-status/{id}', 
+    [App\Http\Controllers\AdminController::class, 'updateStatus']
+);
+
 
 // Divisi Admin di Superadmin
 
@@ -109,6 +115,11 @@ Route::get('/admin', function () {
 Route::get('/admin/surat-tugas', [\App\Http\Controllers\AdminController::class, 'suratTugas'])->name('admin.suratTugas');
 
 Route::get('/admin/proposal', [\App\Http\Controllers\AdminController::class, 'proposal'])->name('admin.proposal');
+Route::post('/admin/proposal/store', [AdminController::class, 'storeProposal'])->name('admin.proposal.store');
+Route::post('/admin/proposal/update-status/{id}', 
+    [App\Http\Controllers\AdminController::class, 'updateStatus']
+);
+
 
 Route::get('/admin/adendum', [\App\Http\Controllers\AdminController::class, 'adendum'])->name('admin.adendum');
 
