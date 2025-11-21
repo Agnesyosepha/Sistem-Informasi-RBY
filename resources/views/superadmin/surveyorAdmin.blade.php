@@ -7,7 +7,7 @@
 <h1><i class="fas fa-clipboard-list"></i> Surveyor Admin</h1>
 
 <div class="dashboard-cards">
-    <a href="" style="text-decoration:none; color:inherit;">
+     <a href="{{ route('superadmin.admin.SAlokasiSurvei') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card" style="cursor:pointer;">
                 <h3><i class="fas fa-map-marker-alt"></i> Lokasi Survei</h3>
                 <p><strong>25 Lokasi</strong></p>
@@ -36,8 +36,5 @@
             </div>
         </a>
 </div>
-
-
-
 
 @endsection

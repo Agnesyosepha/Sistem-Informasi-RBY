@@ -82,12 +82,24 @@ Route::post('/superadmin/admin/surat-tugas/store',
     [AdminController::class, 'storeSuratTugas']
 )->name('superadmin.admin.SAsuratTugas.store');
 
-// Surevor di Superadmin
+// Surveyor di Superadmin
 
 Route::get('/superadmin/surveyor', function () {
     return view('superadmin.surveyorAdmin');
 })->name('superadmin.surveyor')->middleware('auth');
-
+Route::get(
+    '/superadmin/admin/lokasi-survei',
+    [SurveyorController::class, 'lokasiSurveiAdmin']
+)->name('superadmin.admin.SAlokasiSurvei');
+Route::post(
+    '/superadmin/admin/lokasi-survei/store',
+    [SurveyorController::class, 'storeLokasiSurveiAdmin']
+)->name('superadmin.admin.SAlokasiSurvei.store');
+Route::post(
+    '/superadmin/admin/lokasi-survei/update-status/{id}',
+    [SurveyorController::class, 'updateStatusAdmin']
+)->name('superadmin.admin.SAlokasiSurvei.updateStatus');
+Route::get('/surveyor/lokasisurvei', [SurveyorController::class, 'lokasiSurvei'])->name('surveyor.lokasisurvei');
 
 // EDP di Superadmin
 

@@ -19,27 +19,18 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($lokasi as $l)
                 <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">Firdaus Ginting</td>
-                    <td style="padding:10px;">05 Sep 2025</td>
-                    <td style="padding:10px;">Jakarta</td>
-                    <td style="padding:10px;">Survey Tanah dan Rumah</td>
-                    <td style="padding:10px; text-align:center; color:green; font-weight:600;">Selesai</td>
+                    <td style="padding:10px;">{{ $l->surveyor }}</td>
+                    <td style="padding:10px;">{{ $l->tanggal }}</td>
+                    <td style="padding:10px;">{{ $l->lokasi }}</td>
+                    <td style="padding:10px;">{{ $l->nama_objek }}</td>
+                    <td style="padding:10px; text-align:center; font-weight:600;
+                        color: {{ $l->status == 'Selesai' ? 'green' : 'orange' }};">
+                        {{ $l->status }}
+                    </td>
                 </tr>
-                <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">Fajar Hariyadi</td>
-                    <td style="padding:10px;">07 Okt 2025</td>
-                    <td style="padding:10px;">Bandung</td>
-                    <td style="padding:10px;">Survey Tanah Kosong</td>
-                    <td style="padding:10px; text-align:center; color:orange; font-weight:600;">Proses</td>
-                </tr>
-                <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">Jasmani Ginting</td>
-                    <td style="padding:10px;">01 Nov 2025</td>
-                    <td style="padding:10px;">Bekasi</td>
-                    <td style="padding:10px;">Survey Bangunan</td>
-                    <td style="padding:10px; text-align:center; color:orange; font-weight:600;">Proses</td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

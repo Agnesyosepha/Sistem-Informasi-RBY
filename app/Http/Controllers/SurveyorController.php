@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\LokasiSurvei;
 
 class SurveyorController extends Controller
 {
@@ -31,16 +32,43 @@ class SurveyorController extends Controller
 
     public function lokasiSurvei()
     {
-        $lokasi = [
-            ['nama' => 'Perumahan Del Vista', 'kota' => 'Medan', 'tanggal' => '02 Okt 2025', 'keterangan' => 'Survey Bangunan Rumah'],
-            ['nama' => 'Ruko Simanjuntak', 'kota' => 'Balige', 'tanggal' => '10 Okt 2025', 'keterangan' => 'Survey Properti Komersial'],
-            ['nama' => 'Taman Hijau Indah', 'kota' => 'Jakarta', 'tanggal' => '20 Okt 2025', 'keterangan' => 'Survey Lahan Kosong'],
-        ];
-
+        $lokasi = LokasiSurvei::all();  
         return view('surveyor.lokasisurvei', compact('lokasi'));
     }
 
-    
+    public function lokasiSurveiAdmin()
+    {
+        $lokasi = LokasiSurvei::all();
+        return view('surveyor.SAlokasisurvei', compact('lokasi'));
+    }
+
+    public function storeLokasiSurveiAdmin(Request $request)
+    {
+        $request->validate([
+            'surveyor' => 'required|string',
+            'tanggal' => 'required|date',
+            'lokasi' => 'required|string',
+            'nama_objek' => 'required|string',
+            'status' => 'required|in:Proses,Selesai',
+        ]);
+
+        LokasiSurvei::create($request->only('surveyor','tanggal','lokasi','nama_objek','status'));
+
+        return back()->with('success', 'Lokasi survei berhasil ditambahkan.');
+    }
+
+    public function updateStatusAdmin(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|in:Proses,Selesai',
+        ]);
+
+        $lokasi = LokasiSurvei::findOrFail($id);
+        $lokasi->status = $request->status;
+        $lokasi->save();
+
+        return response()->json(['success' => true, 'status' => $lokasi->status]);
+    }
 
     public function workingPaper()
     {
