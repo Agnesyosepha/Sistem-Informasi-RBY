@@ -13,7 +13,7 @@
             <thead style="background:#E49BA6; color:white;">
                 <tr>
                     <th style="padding:12px; text-align:left;">Nama Admin</th>
-                    <th style="padding:12px; text-align:left;">Username</th>
+                    <th style="padding:12px; text-align:left;">No. HP</th>
                     <th style="padding:12px; text-align:left;">Email</th>
                     <th style="padding:12px; text-align:left;">Status</th>
                 </tr>
@@ -22,7 +22,7 @@
                 @foreach ($tim as $t)
                     <tr style="border-bottom:1px solid #e2e2e2;">
                         <td style="padding:12px;">{{ $t['nama'] }}</td>
-                        <td style="padding:12px;">{{ $t['username'] }}</td>
+                        <td style="padding:12px;">{{ $t['nohp'] }}</td>
                         <td style="padding:12px;">{{ $t['email'] }}</td>
                         <td style="padding:12px;">
                             @if($t['status'] == 'Aktif')

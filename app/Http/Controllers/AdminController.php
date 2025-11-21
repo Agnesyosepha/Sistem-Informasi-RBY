@@ -273,11 +273,18 @@ public function laporanFinal()
 }
 
 
+// Anggota Admin
 public function tim()
     {
         $tim = [
-            ['nama' => 'Shafa Az-zahra Eriana', 'username' => 'shamin', 'email' => 'shazamm@delcom.org', 'status' => 'Aktif'],
-            ['nama' => 'Mieke Dearni Br Tarigan', 'username' => 'jonadmin', 'email' => 'jon@delcom.org', 'status' => 'Cuti'],
+            ['nama' => 'Shafa Az-zahra Eriana', 
+            'nohp' => '0895312180247', 
+            'email' => 'shafaeriana@gmail.com', 
+            'status' => 'Aktif'],
+            ['nama' => 'Mieke Dearni Br Tarigan', 
+            'nohp' => '082288508800', 
+            'email' => 'mieketarigan@gmail.com', 
+            'status' => 'Aktif'],
         ];
 
         return view('admin.timAdmin', compact('tim'));
