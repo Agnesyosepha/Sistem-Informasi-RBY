@@ -12,7 +12,7 @@
         <a href="{{ route('superadmin.admin.SAproposal') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-lightbulb"></i> Daftar Proposal</h3>
-                <p><strong>120.000 Record</strong></p>
+                <p><strong>{{ $jumlahProposal }} Record</strong></p>
             </div>
         </a>
         <a href="" style="text-decoration:none; color:inherit;">

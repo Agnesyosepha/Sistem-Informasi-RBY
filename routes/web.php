@@ -58,8 +58,10 @@ Route::get('/superadmin/dashboard', function () {
 // Divisi Admin di Superadmin
 
 Route::get('/superadmin/admin', function () {
-    return view('superadmin.divisiAdmin');
+    $jumlahProposal = \App\Models\Proposal::count();
+    return view('superadmin.divisiAdmin', compact('jumlahProposal'));
 })->name('superadmin.admin')->middleware('auth');
+
 Route::get('/superadmin/admin/superadmin-proposal', [\App\Http\Controllers\AdminController::class, 'SAproposal'])->name('superadmin.admin.SAproposal');
 Route::post('/superadmin/admin/superadmin-proposal/store', [AdminController::class, 'storeProposal'])->name('superadmin.admin.SAproposal.store');
 Route::post('/superadmin/admin/superadmin-proposal/update-status/{id}', 
@@ -108,7 +110,8 @@ Route::get('/superadmin/it', function () {
 // Divisi Admin
 
 Route::get('/admin', function () {
-    return view('layouts.admin');
+    $jumlahProposal = \App\Models\Proposal::count();
+    return view('layouts.admin', compact('jumlahProposal'));
 })->name('admin')->middleware('auth');
 
 Route::get('/admin/surat-tugas', [\App\Http\Controllers\AdminController::class, 'suratTugas'])->name('admin.suratTugas');

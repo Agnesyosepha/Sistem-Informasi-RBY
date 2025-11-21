@@ -50,6 +50,7 @@ class AdminController extends Controller
     public function proposal()
 {
     $proposal = Proposal::all();
+    $jumlahProposal = Proposal::count();
 
     // Hitung deadline otomatis
     foreach ($proposal as &$p) {
@@ -63,8 +64,9 @@ class AdminController extends Controller
     }
 
     
-    return view('admin.proposal', compact('proposal'));
+    return view('admin.proposal', compact('proposal', 'jumlahProposal'));
 }
+
 public function storeProposal(Request $request)
 {
     Proposal::create([
@@ -87,9 +89,11 @@ public function updateStatus(Request $request, $id)
 
     return response()->json(['message' => 'Status updated']);
 }
+
 public function SAproposal()
 {
     $proposal = Proposal::all();
+    $jumlahProposal = Proposal::count();
 
     foreach ($proposal as $p) {
         if ($p->tanggal_disetujui && $p->tanggal_berakhir) {
@@ -101,7 +105,7 @@ public function SAproposal()
         }
     }
 
-    return view('admin.SAproposal', compact('proposal'));
+    return view('admin.SAproposal', compact('proposal', 'jumlahProposal'));
 }
 
 
