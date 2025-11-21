@@ -94,23 +94,22 @@
                         <td style="padding:10px;">{{ $p['deadline'] }}</td>
                         <td style="padding:10px;">{{ $p['tanggal_berakhir'] }}</td>
                         <td style="padding:10px; text-align:center;">
-    <select 
-        onchange="updateStatus({{ $p->id }}, this)" 
-        style="padding:6px; border-radius:5px; border:1px solid #ccc; font-weight:600;"
-        class="status-select"
-        data-status="{{ $p->status }}"
-    >
-        <option value="Menunggu Review" {{ $p->status == 'Menunggu Review' ? 'selected' : '' }}>Menunggu Review</option>
-        <option value="Disetujui" {{ $p->status == 'Disetujui' ? 'selected' : '' }}>Disetujui</option>
-        <option value="Direvisi" {{ $p->status == 'Direvisi' ? 'selected' : '' }}>Direvisi</option>
-        <option value="Proses" {{ $p->status == 'Proses' ? 'selected' : '' }}>Proses</option>
-    </select>
-</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+                          <select 
+                            onchange="updateStatus({{ $p->id }}, this)" 
+                            style="padding:6px; border-radius:5px; border:1px solid #ccc; font-weight:600;"
+                            class="status-select"
+                            data-status="{{ $p->status }}">
+                            <option value="Menunggu Review" {{ $p->status == 'Menunggu Review' ? 'selected' : '' }}>Menunggu Review</option>
+                            <option value="Disetujui" {{ $p->status == 'Disetujui' ? 'selected' : '' }}>Disetujui</option>
+                            <option value="Direvisi" {{ $p->status == 'Direvisi' ? 'selected' : '' }}>Direvisi</option>
+                            <option value="Proses" {{ $p->status == 'Proses' ? 'selected' : '' }}>Proses</option>
+                          </select>
+                        </td>
+                      </tr>
+                  @endforeach
+              </tbody>
+          </table>
+      </div>
 @endsection
 
 @section('scripts')

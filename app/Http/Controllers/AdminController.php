@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Proposal;
+use App\Models\Adendum;
 use Carbon\Carbon;
 
 class AdminController extends Controller
@@ -112,17 +113,43 @@ public function SAproposal()
 // Adendum
 public function adendum()
 {
-    $adendum = [
-        ['nomor' => 'AD-001', 'proyek' => 'Penilaian Gedung A', 'tanggal' => '01 Nov 2025', 'deskripsi' => 'Perpanjangan waktu proyek hingga 30 Nov 2025', 'status' => 'Disetujui'],
-        ['nomor' => 'AD-002', 'proyek' => 'Survey Tanah Kosong', 'tanggal' => '03 Nov 2025', 'deskripsi' => 'Penambahan area survey di Bekasi', 'status' => 'Menunggu Persetujuan'],
-        ['nomor' => 'AD-003', 'proyek' => 'Analisis Properti Komersial', 'tanggal' => '05 Nov 2025', 'deskripsi' => 'Revisi nilai appraisal sesuai data baru', 'status' => 'Direvisi'],
-        ['nomor' => 'AD-004', 'proyek' => 'Penilaian Aset Pabrik', 'tanggal' => '07 Nov 2025', 'deskripsi' => 'Perubahan tim surveyor lapangan', 'status' => 'Disetujui'],
-        ['nomor' => 'AD-005', 'proyek' => 'Evaluasi Bangunan Kantor', 'tanggal' => '09 Nov 2025', 'deskripsi' => 'Penambahan waktu laporan final', 'status' => 'Proses'],
-    ];
-
+    $adendum = Adendum::all();
     return view('admin.adendum', compact('adendum'));
 }
 
+public function SAadendum()
+{
+    $adendum = \App\Models\Adendum::all();
+    return view('admin.SAadendum', compact('adendum'));
+}
+
+public function storeAdendum(Request $request)
+{
+    $request->validate([
+        'nomor' => 'required',
+        'proyek' => 'required',
+        'tanggal' => 'required|date',
+        'deskripsi' => 'required',
+        'status' => 'required',
+    ]);
+
+    \App\Models\Adendum::create($request->all());
+
+    return redirect()->route('superadmin.admin.SAadendum')
+                     ->with('success', 'Adendum Berhasil Ditambahkan');
+}
+public function updateStatusAdendum(Request $request, $id)
+{
+    $adendum = Adendum::findOrFail($id);
+    $adendum->status = $request->status;
+    $adendum->save();
+
+    return response()->json(['message' => 'Status updated']);
+}
+
+
+
+// Draft Resume
 public function draftResume()
 {
     $resume = [
@@ -172,6 +199,7 @@ public function draftResume()
 }
 
 
+// Draft Laporan
 public function draftLaporan()
 {
     $laporan = [

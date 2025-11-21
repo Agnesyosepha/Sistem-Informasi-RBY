@@ -15,7 +15,7 @@
                 <p><strong>{{ $jumlahProposal }} Record</strong></p>
             </div>
         </a>
-        <a href="" style="text-decoration:none; color:inherit;">
+        <a href="{{ route('superadmin.admin.SAadendum') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-plus-square"></i> Adendum</h3>
                 <p><strong style="color:green;">Online</strong></p>

@@ -3,11 +3,14 @@
 @section('title', 'Adendum')
 
 @section('content')
-    <h1><i class="fas fa-plus-square"></i> Daftar Adendum</h1>
-    <p>Daftar adendum atau perubahan yang diajukan terhadap proyek yang sedang berjalan.</p>
+<h1><i class="fas fa-file-contract"></i> Daftar Adendum</h1>
+<p>Berikut adalah daftar adendum yang telah diajukan.</p>
 
-    <div class="dashboard-card" style="margin-top:30px;">
-    <table style="width:100%; border-collapse: collapse; margin-top:15px;">
+
+
+<!-- Tabel -->
+<div class="dashboard-card" style="margin-top:30px;">
+    <table style="width:100%; border-collapse: collapse;">
         <thead style="background:#007BFF; color:white;">
             <tr>
                 <th style="padding:10px; text-align:left;">Nomor</th>
@@ -18,25 +21,44 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($adendum as $item)
+            @foreach($adendum as $a)
                 <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">{{ $item['nomor'] }}</td>
-                    <td style="padding:10px;">{{ $item['proyek'] }}</td>
-                    <td style="padding:10px;">{{ $item['tanggal'] }}</td>
-                    <td style="padding:10px;">{{ $item['deskripsi'] }}</td>
-                    <td style="padding:10px; text-align:center; font-weight:600;
-                        color:
-                            {{ $item['status'] == 'Disetujui' ? 'green' :
-                               ($item['status'] == 'Menunggu Persetujuan' ? 'orange' :
-                               ($item['status'] == 'Direvisi' ? 'red' : 'blue')) }};
-                    ">
-                        {{ $item['status'] }}
+                    <td style="padding:10px;">{{ $a->nomor }}</td>
+                    <td style="padding:10px;">{{ $a->proyek }}</td>
+                    <td style="padding:10px;">{{ $a->tanggal }}</td>
+                    <td style="padding:10px;">{{ $a->deskripsi }}</td>
+                    <td style="padding:10px; font-weight:bold; text-align:center;">
+                        <span class="status-label" data-status="{{ $a->status }}">
+                            {{ $a->status }}
+                        </span>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-    </div>
+</div>
 
-    
+@endsection
+
+@section('scripts')
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".status-label").forEach(function(label) {
+        const value = label.getAttribute("data-status");
+
+        if (value === "Disetujui") {
+            label.style.color = "green";
+        } 
+        else if (value === "Menunggu Persetujuan") {
+            label.style.color = "orange";
+        } 
+        else if (value === "Direvisi") {
+            label.style.color = "blue";
+        } 
+        else if (value === "Proses") {
+            label.style.color = "blue";
+        }
+    });
+});
+</script>
 @endsection

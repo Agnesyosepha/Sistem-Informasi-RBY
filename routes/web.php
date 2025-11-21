@@ -68,6 +68,12 @@ Route::post('/superadmin/admin/superadmin-proposal/update-status/{id}',
     [App\Http\Controllers\AdminController::class, 'updateStatus']
 );
 
+Route::get('/superadmin/admin/superadmin-adendum', [\App\Http\Controllers\AdminController::class, 'SAadendum'])->name('superadmin.admin.SAadendum');
+Route::post('/superadmin/admin/superadmin-adendum/store', [\App\Http\Controllers\AdminController::class, 'storeAdendum'])->name('superadmin.admin.SAadendum.store');
+Route::post('/superadmin/admin/superadmin-adendum/update-status/{id}', 
+    [App\Http\Controllers\AdminController::class, 'updateStatus']
+);
+
 
 // Surevor di Superadmin
 
@@ -122,8 +128,8 @@ Route::post('/admin/proposal/update-status/{id}',
     [App\Http\Controllers\AdminController::class, 'updateStatus']
 );
 
-
 Route::get('/admin/adendum', [\App\Http\Controllers\AdminController::class, 'adendum'])->name('admin.adendum');
+
 
 Route::get('/admin/draftResume', [\App\Http\Controllers\AdminController::class, 'draftResume'])->name('admin.draftResume');
 
