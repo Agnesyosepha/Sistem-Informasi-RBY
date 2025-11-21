@@ -50,7 +50,7 @@
             position: fixed; top: 0; left: 0; width: 100%; height: 80px;
             background-color: #0E2148; color: white;
             display: flex; align-items: center;
-            padding: 0 20px; border-bottom: 3px solid #C5172E;
+            padding: 0 20px; border-bottom: 3px solid #FEC5F6;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             z-index: 1000; box-sizing: border-box;
         }
