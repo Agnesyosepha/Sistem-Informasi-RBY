@@ -39,7 +39,7 @@
         </a>
         <a href="" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card" style="cursor:pointer;">
-                <h3><i class="fas fa-square-check"></i> Laporan Penilaian</h3>
+                <h3><i class="fas fa-file-alt"></i> Laporan Penilaian</h3>
             </div>
         </a>
         <a href="" style="text-decoration:none; color:inherit;">

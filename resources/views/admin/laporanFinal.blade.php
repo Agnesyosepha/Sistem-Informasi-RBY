@@ -3,7 +3,7 @@
 @section('title', 'Laporan Final')
 
 @section('content')
-    <h1><i class="fas fa-file-alt"></i> Buku Laporan Final</h1>
+    <h1><i class="fas fa-book"></i> Buku Laporan Final</h1>
     <p>Daftar laporan akhir penilaian berdasarkan status pengiriman.</p>
 
     <div class="dashboard-card" style="margin-top:30px;">

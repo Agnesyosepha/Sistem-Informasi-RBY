@@ -3,7 +3,7 @@
 @section('title', 'Proposal')
 
 @section('content')
-    <h1><i class="fas fa-lightbulb"></i> Daftar Proposal</h1>
+    <h1><i class="fas fa-file-invoice"></i> Daftar Proposal</h1>
     <p>Berikut adalah daftar proposal yang diajukan oleh para surveyor untuk penilaian aset.</p>
 
     <!-- Tombol Tambah Proposal -->
