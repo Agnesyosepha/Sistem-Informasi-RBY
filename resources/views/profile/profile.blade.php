@@ -34,7 +34,7 @@
             padding: 0 20px;
             box-sizing: border-box;
             z-index: 1000;
-            border-bottom: 3px solid #C5172E;
+            border-bottom: 3px solid #FEC5F6;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         .warn-icon {
