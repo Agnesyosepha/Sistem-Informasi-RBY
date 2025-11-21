@@ -45,7 +45,7 @@ class AdminController extends Controller
         return view('admin.suratTugas', compact('suratTugas'));
     }
     
-
+// Daftar Proposal
     public function proposal()
 {
     $proposal = Proposal::all();
@@ -76,7 +76,7 @@ public function storeProposal(Request $request)
         'status'             => $request->status,
     ]);
 
-    return redirect()->route('admin.proposal')->with('success', 'Proposal berhasil ditambahkan!');
+    return redirect()->route('superadmin.admin.SAproposal')->with('success', 'Proposal berhasil ditambahkan!');
 }
 public function updateStatus(Request $request, $id)
 {
@@ -103,7 +103,7 @@ public function SAproposal()
     return view('admin.SAproposal', compact('proposal'));
 }
 
-
+// Adendum
 public function adendum()
 {
     $adendum = [

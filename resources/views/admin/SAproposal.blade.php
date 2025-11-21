@@ -23,7 +23,7 @@
 
             <h2 style="margin-bottom:15px;">Tambah Proposal</h2>
 
-            <form action="{{ route('admin.proposal.store') }}" method="POST">
+            <form action="{{ route('superadmin.admin.SAproposal.store') }}" method="POST">
                 @csrf
 
                 <label>Nama Objek</label>
