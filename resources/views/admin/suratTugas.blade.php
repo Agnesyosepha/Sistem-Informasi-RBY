@@ -30,9 +30,6 @@
     
     
     <div class="dashboard-card" style="margin-top:30px;">
-            <button class="add-btn" >
-                <i class="fas fa-add"></i> Tambah Surat Tugas
-            </button>
             
     <table style="width:100%; border-collapse: collapse; margin-top:15px;">
         <thead style="background:#007BFF; color:white;">
