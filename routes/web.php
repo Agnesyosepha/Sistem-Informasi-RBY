@@ -54,18 +54,17 @@ Route::get('/superadmin/dashboard', function () {
     return view('superadmin.dashboard');
 })->name('superadmin.dashboard')->middleware('auth');
 
-Route::get('/superadmin/admin/superadmin-proposal', [\App\Http\Controllers\AdminController::class, 'SAproposal'])->name('superadmin.admin.SAproposal');
-Route::post('/superadmin/admin/superadmin-proposal/store', [AdminController::class, 'storeProposal'])->name('superadmin.admin.SAproposal.store');
-Route::post('/superadmin/admin/superadmin-proposal/update-status/{id}', 
-    [App\Http\Controllers\AdminController::class, 'updateStatus']
-);
-
 
 // Divisi Admin di Superadmin
 
 Route::get('/superadmin/admin', function () {
     return view('superadmin.divisiAdmin');
 })->name('superadmin.admin')->middleware('auth');
+Route::get('/superadmin/admin/superadmin-proposal', [\App\Http\Controllers\AdminController::class, 'SAproposal'])->name('superadmin.admin.SAproposal');
+Route::post('/superadmin/admin/superadmin-proposal/store', [AdminController::class, 'storeProposal'])->name('superadmin.admin.SAproposal.store');
+Route::post('/superadmin/admin/superadmin-proposal/update-status/{id}', 
+    [App\Http\Controllers\AdminController::class, 'updateStatus']
+);
 
 
 // Surevor di Superadmin

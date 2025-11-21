@@ -13,6 +13,7 @@ class AdminController extends Controller
         return view('admin.index'); // Halaman utama dashboard admin
     }
 
+    // Surat Tugas
     public function suratTugas()
     {
         $suratTugas = [
@@ -102,6 +103,7 @@ public function SAproposal()
 
     return view('admin.SAproposal', compact('proposal'));
 }
+
 
 // Adendum
 public function adendum()
