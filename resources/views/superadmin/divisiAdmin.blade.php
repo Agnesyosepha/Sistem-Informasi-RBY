@@ -21,7 +21,7 @@
                 <p><strong style="color:green;">Online</strong></p>
             </div>
         </a>
-        <a href="" style="text-decoration:none; color:inherit;">
+        <a href="{{ route('superadmin.admin.SAsuratTugas') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-file-signature"></i> Surat Tugas</h3>
                 <p><strong>350</strong></p>

@@ -74,6 +74,13 @@ Route::post('/superadmin/admin/superadmin-adendum/update-status/{id}',
     [App\Http\Controllers\AdminController::class, 'updateStatus']
 );
 
+Route::get('/superadmin/admin/surat-tugas', 
+    [AdminController::class, 'SAsuratTugas']
+)->name('superadmin.admin.SAsuratTugas');
+
+Route::post('/superadmin/admin/surat-tugas/store', 
+    [AdminController::class, 'storeSuratTugas']
+)->name('superadmin.admin.SAsuratTugas.store');
 
 // Surevor di Superadmin
 
@@ -120,7 +127,9 @@ Route::get('/admin', function () {
     return view('layouts.admin', compact('jumlahProposal'));
 })->name('admin')->middleware('auth');
 
-Route::get('/admin/surat-tugas', [\App\Http\Controllers\AdminController::class, 'suratTugas'])->name('admin.suratTugas');
+Route::get('/admin/surat-tugas', 
+    [AdminController::class, 'suratTugasAdmin']
+)->name('admin.suratTugas');
 
 Route::get('/admin/proposal', [\App\Http\Controllers\AdminController::class, 'proposal'])->name('admin.proposal');
 Route::post('/admin/proposal/store', [AdminController::class, 'storeProposal'])->name('admin.proposal.store');

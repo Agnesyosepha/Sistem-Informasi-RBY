@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Proposal;
 use App\Models\Adendum;
 use Carbon\Carbon;
+use App\Models\SuratTugas;
 
 class AdminController extends Controller
 {
@@ -15,36 +16,40 @@ class AdminController extends Controller
     }
 
     // Surat Tugas
+    public function SAsuratTugas()
+    {
+        $suratTugas = SuratTugas::all();
+        return view('admin.SAsuratTugas', compact('suratTugas'));
+    }
+
+    public function storeSuratTugas(Request $request)
+    {
+        SuratTugas::create([
+            'no_ppjp'       => $request->no_ppjp,
+            'tanggal'       => $request->tanggal,
+            'pemberi_tugas' => $request->pemberi_tugas,
+            'nama_penilai'  => $request->nama_penilai,
+            'adendum'       => $request->adendum,
+            'status'        => $request->status,
+        ]);
+
+        return redirect()->route('superadmin.admin.SAsuratTugas')
+            ->with('success', 'Surat Tugas berhasil ditambahkan!');
+    }
+
+    // =============================
+    // ADMIN – SURAT TUGAS
+    // =============================
+    public function suratTugasAdmin()
+    {
+        $suratTugas = SuratTugas::all();
+        return view('admin.suratTugas', compact('suratTugas'));
+    }
+
+    // Agar route /surat-tugas tetap bisa dipakai
     public function suratTugas()
     {
-        $suratTugas = [
-            [
-                'no_ppjp' => '00166/RBY-PPJP/BKS/VIII/2024',
-                'tanggal' => '17 Agustus 2024',
-                'pemberi_tugas' => 'PT Caturkarda Depo Bangunan, Tbk',
-                'nama_penilai' => 'Fajar',
-                'adendum' => 'Adendum #11',
-                'status' => 'Selesai'
-            ],
-            [
-                'no_ppjp' => '01026/RBY-PPJP/BKS/VII/2024',
-                'tanggal' => '24 Juli 2024',
-                'pemberi_tugas' => 'Port Mori Corporation',
-                'nama_penilai' => 'Jasmani',
-                'adendum' => 'Adendum #01',
-                'status' => 'Proses'
-            ],
-            [
-                'no_ppjp' => '00199/RBY-PPJP/BKS/VI/2024',
-                'tanggal' => '08 Oktober 2025',
-                'pemberi_tugas' => 'PT Bahagia Biru',
-                'nama_penilai' => 'Santo',
-                'adendum' => 'Adendum #51',
-                'status' => 'Pending'
-            ],
-        ];
-
-        return view('admin.suratTugas', compact('suratTugas'));
+        return $this->suratTugasAdmin();
     }
     
 // Daftar Proposal
