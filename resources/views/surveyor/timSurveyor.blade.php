@@ -14,6 +14,7 @@
                 <tr>
                     <th style="padding:12px; text-align:left;">Nama Surveyor</th>
                     <th style="padding:12px; text-align:left;">Nomor HP</th>
+                    <th style="padding:12px; text-align:left;">Email</th>
                     <th style="padding:12px; text-align:left;">Status</th>
                 </tr>
             </thead>
@@ -22,6 +23,7 @@
                     <tr style="border-bottom:1px solid #e2e2e2;">
                         <td style="padding:12px;">{{ $t['nama'] }}</td>
                         <td style="padding:12px;">{{ $t['nohp'] }}</td>
+                        <td style="padding:12px;">{{ $t['email'] }}</td> <!-- Email tampil -->
                         <td style="padding:12px;">
                             @if($t['status'] == 'Aktif')
                                 <span style="color:green; font-weight:600;">Aktif</span>

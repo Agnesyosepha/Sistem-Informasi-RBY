@@ -15,20 +15,71 @@ class SurveyorController extends Controller
     public function tim()
     {
         $tim = [
-            ['nama' => 'Richard Barus', 'nohp' => '0812-2981-1849', 'status' => 'Aktif'],
-            ['nama' => 'Robbi Sugara Ginting', 'nohp' => '0812-2981-1849', 'status' => 'Aktif'],
-            ['nama' => 'Firdaus Ginting', 'nohp' => '0812-2981-1849', 'status' => 'Aktif'],
-            ['nama' => 'Amri Simbolon', 'nohp' => '0812-2981-1849', 'status' => 'Aktif'],
-            ['nama' => 'Fajar Hariyadi', 'nohp' => '0821-7894-1175', 'status' => 'Cuti'],
-            ['nama' => 'Jasmani Ginting', 'nohp' => '0853-4568-9845', 'status' => 'Aktif'],
-            ['nama' => 'Santo Cornelius Ginting', 'nohp' => '0853-4568-9845', 'status' => 'Aktif'],
-            ['nama' => 'Pretty Balerina Br Bangun', 'nohp' => '0813-8841-2781', 'status' => 'Aktif'],
-            ['nama' => 'Benhur Sumanraja Sembiring', 'nohp' => '0877-9547-0175', 'status' => 'Aktif'],
-            ['nama' => 'Elma Agnes Silitonga', 'nohp' => '0822-7844-1947', 'status' => 'Aktif'],
+            [
+                'nama' => 'Richard Barus', 
+                'nohp' => '0812-8636-5116', 
+                'email' => 'richard.barus33@gmail.com',
+                'status' => 'Aktif'
+            ],
+            [
+                'nama' => 'Robbi Sugara Ginting', 
+                'nohp' => '0821-2358-0669',
+                'email' => 'ragaforex88@gmail.com',
+                'status' => 'Aktif'
+            ],
+            [
+                'nama' => 'Firdaus Ginting', 
+                'nohp' => '0813-1246-7274',
+                'email' => 'dausgtg02@gmail.com',
+                'status' => 'Aktif'
+            ],
+            [
+                'nama' => 'Amri Simbolon', 
+                'nohp' => '0811-1214-890',
+                'email' => 'cbnex13@gmail.com',
+                'status' => 'Aktif'
+            ],
+            [
+                'nama' => 'Fajar Hariyadi', 
+                'nohp' => '0838-7009-5867',
+                'email' => '20nya.fajartambunan@gmail.com',
+                'status' => 'Aktif'
+            ],
+            [
+                'nama' => 'Jasmani Ginting', 
+                'nohp' => '0813-6293-0556',
+                'email' => 'jasmanig97@gmail.com',
+                'status' => 'Aktif'
+            ],
+            [
+                'nama' => 'Santo Cornelius Ginting', 
+                'nohp' => '0811-6511-109',
+                'email' => 'antocornelius.g@gmail.com',
+                'status' => 'Aktif'
+            ],
+            [
+                'nama' => 'Pretty Balerina Br Bangun', 
+                'nohp' => '0857-8207-8806',
+                'email' => 'prettybalerina@icloud.com',
+                'status' => 'Aktif'
+            ],
+            [
+                'nama' => 'Benhur Sumanraja Sembiring', 
+                'nohp' => '0858-3097-6179',
+                'email' => 'benhurpopuler2002@gmail.com',
+                'status' => 'Aktif'
+            ],
+            [
+                'nama' => 'Elma Agnes Silitonga', 
+                'nohp' => '0812-8858-1609',
+                'email' => 'elmaagnes02@gmail.com',
+                'status' => 'Aktif'
+            ],
         ];
 
         return view('surveyor.timsurveyor', compact('tim'));
     }
+
 
     public function lokasiSurvei()
     {
