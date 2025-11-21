@@ -105,14 +105,10 @@ class ITController extends Controller
         $staffIT = [
             [
                 'nama' => 'Aldi Jhon Travolta',
-                'jabatan' => 'IT Sstaff',
-                'email' => 'aldi@company.com',
+                'nohp' => '082113266662',
+                'email' => 'aldijhont@gmail.com',
+                'status' => 'Aktif',
             ],
-            [
-                'nama' => 'Rachman Nainggolan',
-                'jabatan' => 'IT Support',
-                'email' => 'rachman@company.com',
-            ]
         ];
 
         return view('it.timIT', compact('staffIT'));

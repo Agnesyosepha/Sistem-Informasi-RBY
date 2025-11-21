@@ -11,10 +11,14 @@ class ReviewerController extends Controller
         return view('reviewer.index');
     }
 
+    // Anggota Reviewer
     public function tim()
     {
         $timReviewer = [
-            ['nama' => 'Mega Br Ginting', 'jabatan' => 'Koordinator Reviewer', 'email' => 'mega@edp.com', 'status' => 'Aktif'],
+            ['nama' => 'Mega Permata Sari Br Ginting', 
+            'nohp' => '082378816319', 
+            'email' => 'MegaPermataSari400@gmail.com', 
+            'status' => 'Aktif'],
         ];
 
         return view('reviewer.timReviewer', compact('timReviewer'));

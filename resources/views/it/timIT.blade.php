@@ -13,8 +13,9 @@
     <thead style="background:#E49BA6; color:white;">
         <tr>
             <th style="padding:10px; text-align:left;">Nama</th>
-            <th style="padding:10px; text-align:left;">Jabatan</th>
+            <th style="padding:10px; text-align:left;">No. HP</th>
             <th style="padding:10px; text-align:left;">Email</th>
+            <th style="padding:10px; text-align:left;">Status</th>
         </tr>
     </thead>
 
@@ -22,8 +23,15 @@
         @foreach ($staffIT as $staff)
         <tr style="border-bottom:1px solid #ddd;">
             <td style="padding:10px;">{{ $staff['nama'] }}</td>
-            <td style="padding:10px;">{{ $staff['jabatan'] }}</td>
+            <td style="padding:10px;">{{ $staff['nohp'] }}</td>
             <td style="padding:10px;">{{ $staff['email'] }}</td>
+            <td style="padding:12px;">
+                @if($staff['status'] == 'Aktif')
+                    <span style="color:green; font-weight:600;">Aktif</span>
+                @else
+                    <span style="color:orange; font-weight:600;">Cuti</span>
+                @endif
+            </td>
         </tr>
         @endforeach
     </tbody>
