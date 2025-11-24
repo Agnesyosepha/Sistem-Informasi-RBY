@@ -240,47 +240,41 @@ public function updateDraftStatus(Request $request, $id)
 // Laporan Final
 public function laporanFinal()
 {
-    $laporanFinal = [
-        [
-            'pemberi_tugas' => 'PT Sinar Properti',
-            'jenis_penilaian' => 'Rumah Tinggal',
-            'pengirim' => 'Fajar',
-            'nomor_laporan' => 'LAP/010/SP/2025',
-            'status_pengiriman' => 'Sudah Dikirim',
-            'softcopy' => true,
-            'hardcopy' => true
-        ],
-        [
-            'pemberi_tugas' => 'Bank BCA',
-            'jenis_penilaian' => 'Tanah & Bangunan',
-            'pengirim' => 'Jasmani',
-            'nomor_laporan' => 'LAP/011/BCA/2025',
-            'status_pengiriman' => 'Sudah Dikirim',
-            'softcopy' => true,
-            'hardcopy' => false
-        ],
-        [
-            'pemberi_tugas' => 'PT Delta Energi',
-            'jenis_penilaian' => 'Gudang',
-            'pengirim' => 'Santo',
-            'nomor_laporan' => 'LAP/012/DEL/2025',
-            'status_pengiriman' => 'Belum Dikirim',
-            'softcopy' => false,
-            'hardcopy' => false
-        ],
-        [
-            'pemberi_tugas' => 'Bank Mandiri',
-            'jenis_penilaian' => 'Tanah Kosong',
-            'pengirim' => 'Rania',
-            'nomor_laporan' => 'LAP/013/MND/2025',
-            'status_pengiriman' => 'Sudah Dikirim',
-            'softcopy' => true,
-            'hardcopy' => true
-        ],
-    ];
-
+    $laporanFinal = \App\Models\LaporanFinal::all();
     return view('admin.laporanFinal', compact('laporanFinal'));
 }
+
+public function SAlaporanFinal()
+{
+    $laporanFinal = \App\Models\LaporanFinal::all();
+    return view('admin.SAlaporanFinal', compact('laporanFinal'));
+}
+
+public function storeSAlaporanFinal(Request $request)
+{
+    $request->validate([
+        'pemberi_tugas' => 'required|string',
+        'jenis_penilaian' => 'required|string',
+        'pengirim' => 'required|string',
+        'nomor_laporan' => 'required|string',
+        'status_pengiriman' => 'required|string',
+        'softcopy' => 'nullable|boolean',
+        'hardcopy' => 'nullable|boolean',
+    ]);
+
+    \App\Models\LaporanFinal::create([
+        'pemberi_tugas' => $request->pemberi_tugas,
+        'jenis_penilaian' => $request->jenis_penilaian,
+        'pengirim' => $request->pengirim,
+        'nomor_laporan' => $request->nomor_laporan,
+        'status_pengiriman' => $request->status_pengiriman,
+        'softcopy' => $request->softcopy ? true : false,
+        'hardcopy' => $request->hardcopy ? true : false
+    ]);
+
+    return redirect()->back()->with('success', 'Data laporan final berhasil ditambahkan!');
+}
+
 
 
 // Anggota Admin
