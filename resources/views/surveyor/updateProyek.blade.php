@@ -3,7 +3,7 @@
 @section('title', 'Update Proyek')
 
 @section('content')
-<h1><i class="fas fa-sync-alt"></i> Update Proyek</h1>
+<h1><i class="fas fa-chart-linet"></i> Update Proyek</h1>
 <p>Berikut merupakan rekapitulasi seluruh proyek berdasarkan statusnya: <strong>On Progress</strong>, <strong>Selesai</strong>, dan <strong>Pending</strong>.</p>
 
 
