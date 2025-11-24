@@ -117,6 +117,9 @@ Route::get('/superadmin/edp', function () {
     return view('superadmin.edpAdmin');
 })->name('superadmin.edp')->middleware('auth');
 
+Route::get('/superadmin/edp/data-aktif', [\App\Http\Controllers\EdpController::class, 'SAdataAktif'])->name('superadmin.edp.SAdataAktif');
+Route::post('/superadmin/edp/data-aktif/store', [\App\Http\Controllers\EdpController::class, 'storeDataAktif'])->name('superadmin.edp.storeDataAktif');
+
 
 // Reviewer di Superadmin
 

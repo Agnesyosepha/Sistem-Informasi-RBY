@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use App\Models\DataAktif;
 
 
 class EdpController extends Controller
@@ -41,45 +42,40 @@ class EdpController extends Controller
         return redirect()->route('edp.dataMentah')->with('success', 'Data berhasil diupload.');
     }
     
+
+    // Data Aktif
     public function dataAktif()
 {
-    $dataAktif = [
-        [
-            'tanggal' => '10 Nov 2025',
-            'jenis' => 'Lelang',
-            'pemberi' => 'PT Mandiri Tbk',
-            'pengguna' => 'PT Mandiri Tbk',
-            'surveyor' => 'Aprilius Ginting',
-            'lokasi' => 'Jakarta Selatan',
-            'objek' => 'Gedung Perkantoran',
-            'status_progres' => 'Proses'
-        ],
-        [
-            'tanggal' => '11 Nov 2025',
-            'jenis' => 'Laporan Keuangan',
-            'pemberi' => 'PT BNI',
-            'pengguna' => 'PT BNI',
-            'surveyor' => 'Michael Brema Pinem',
-            'lokasi' => 'Medan',
-            'objek' => 'Kantor Cabang',
-            'status_progres' => 'Selesai'
-        ],
-        [
-            'tanggal' => '12 Nov 2025',
-            'jenis' => 'Penjaminan Utang',
-            'pemberi' => 'PT Bank Pan Indonesia Tbk',
-            'pengguna' => 'PT Bank Pan Indonesia Tbk',
-            'surveyor' => 'Yohanes Kroll Koten',
-            'lokasi' => 'Surabaya',
-            'objek' => 'Pabrik',
-            'status_progres' => 'Reviewer'
-        ],
-    ];
-
+    $dataAktif = DataAktif::all();
     return view('EDP.dataAktif', compact('dataAktif'));
 }
 
+public function SAdataAktif()
+{
+    $dataAktif = DataAktif::all();
+    return view('EDP.SAdataAktif', compact('dataAktif'));
+}
 
+public function storeDataAktif(Request $request)
+{
+    $request->validate([
+        'tanggal' => 'required|date',
+        'jenis' => 'required|string',
+        'pemberi' => 'required|string',
+        'pengguna' => 'required|string',
+        'surveyor' => 'required|string',
+        'lokasi' => 'required|string',
+        'objek' => 'required|string',
+        'status_progres' => 'required|string',
+    ]);
+
+    DataAktif::create($request->all());
+
+    return redirect()->back()->with('success', 'Data berhasil ditambahkan!');
+}
+
+
+// Dokumen Final
 public function dokumenFinal(Request $request)
     {
         // Ambil file dari storage/app/public/dokumen_final
