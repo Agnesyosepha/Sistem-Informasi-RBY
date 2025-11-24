@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\DokumenRevisi;
 
 class ReviewerController extends Controller
 {
@@ -24,32 +25,36 @@ class ReviewerController extends Controller
         return view('reviewer.timReviewer', compact('timReviewer'));
     }
 
+
+    // Dokumen Revisi
     public function dokumenRevisi()
     {
-        $dokumenRevisi = [
-            [
-                'nama' => 'Laporan Audit Sistem 2025.pdf',
-                'tanggal' => '10 November 2025',
-                'reviewer' => 'Jonathan Pardede',
-                'status' => 'Dalam Revisi'
-            ],
-            [
-                'nama' => 'Dokumen Evaluasi Infrastruktur.docx',
-                'tanggal' => '08 November 2025',
-                'reviewer' => 'Jonathan Pardede',
-                'status' => 'Selesai'
-            ],
-            [
-                'nama' => 'Rencana Pengujian Sistem.xlsx',
-                'tanggal' => '07 November 2025',
-                'reviewer' => 'Jonathan Pardede',
-                'status' => 'Ditolak'
-            ],
-        ];
-
+        $dokumenRevisi = \App\Models\DokumenRevisi::all();
         return view('reviewer.dokumenRevisi', compact('dokumenRevisi'));
     }
 
+    public function SAdokumenRevisi()
+{
+    $dokumenRevisi = \App\Models\DokumenRevisi::all();
+    return view('reviewer.SAdokumenRevisi', compact('dokumenRevisi'));
+}
+
+public function storeDokumenRevisi(Request $request)
+{
+    $request->validate([
+        'nama' => 'required|string',
+        'tanggal' => 'required|date',
+        'reviewer' => 'required|string',
+        'status' => 'required|string'
+    ]);
+
+    \App\Models\DokumenRevisi::create($request->all());
+
+    return redirect()->back()->with('success', 'Dokumen revisi berhasil ditambahkan!');
+}
+
+
+    // Dokumen Final
     public function dokumenFinal()
 {
     $dokumenFinal = [

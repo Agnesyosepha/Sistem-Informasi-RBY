@@ -56,9 +56,10 @@
                 <option value="Disetujui">Disetujui</option>
             </select>
 
-            <button type="submit" style="background:#007BFF; color:white; padding:10px 18px; border:none; border-radius:6px;">Simpan</button>
+            <button type="submit" style="background:#007BFF; color:white; padding:10px 18px; border:none; border-radius:6px; cursor:pointer;">
+                Simpan</button>
             <button type="button" onclick="document.getElementById('modalTambah').style.display='none'"
-                style="background:#dc3545; color:white; padding:10px 18px; border:none; border-radius:6px; margin-left:10px;">
+                style="background:#dc3545; color:white; padding:10px 18px; border:none; border-radius:6px; margin-left:10px; cursor:pointer;">
                 Batal
             </button>
         </form>

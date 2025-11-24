@@ -132,6 +132,9 @@ Route::get('/superadmin/reviewer', function () {
     return view('superadmin.reviewerAdmin');
 })->name('superadmin.reviewer')->middleware('auth');
 
+Route::get('/superadmin/reviewer/dokumen-revisi', [\App\Http\Controllers\ReviewerController::class, 'SAdokumenRevisi'])->name('superadmin.reviewer.SAdokumenRevisi');
+Route::post('/superadmin/reviewer/dokumen-revisi/store', [\App\Http\Controllers\ReviewerController::class, 'storeDokumenRevisi'])->name('superadmin.reviewer.storeDokumenRevisi');
+
 
 // Finance di Superadmin
 

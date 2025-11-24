@@ -15,7 +15,7 @@
             </div>
         </a>
 
-        <a href="" style="text-decoration:none; color:inherit;">
+        <a href="{{ route('superadmin.reviewer.SAdokumenRevisi') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-file-alt"></i> Dokumen Revisi</h3>
                 <p><strong>8 Dokumen</strong></p>
