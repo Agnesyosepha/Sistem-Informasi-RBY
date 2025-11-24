@@ -116,6 +116,12 @@ Route::get('/superadmin/admin/update-proyek',
 Route::post('/superadmin/admin/update-proyek/store',
     [SurveyorController::class, 'storeProyek']
 )->name('superadmin.admin.SAupdateProyek.store');
+
+
+Route::get('/superadmin/laporan-penilaian', [SurveyorController::class, 'laporanPenilaianAdmin'])
+    ->name('superadmin.admin.SAlaporanpenilaianfinal');
+Route::post('/superadmin/laporan-penilaian/store', [SurveyorController::class, 'storeLaporanPenilaian'])
+    ->name('superadmin.admin.SAlaporanpenilaianfinal.store');
 // EDP di Superadmin
 
 Route::get('/superadmin/edp', function () {
@@ -197,7 +203,8 @@ Route::get('/surveyor/update-proyek', [\App\Http\Controllers\SurveyorController:
 
 Route::get('/surveyor/workingpaper', [\App\Http\Controllers\SurveyorController::class, 'workingPaper'])->name('surveyor.workingpaper');
 
-Route::get('/surveyor/laporan-penilaian', [SurveyorController::class, 'laporanPenilaian'])->name('surveyor.laporanPenilaian');
+Route::get('/surveyor/laporan-penilaian', [SurveyorController::class, 'laporanPenilaianUser'])
+    ->name('surveyor.laporanPenilaian');
 
 Route::get('/surveyor/working-paper', [SurveyorController::class, 'workingPaper'])->name('surveyor.workingpaper');
 

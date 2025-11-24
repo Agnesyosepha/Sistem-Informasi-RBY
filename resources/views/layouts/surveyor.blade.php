@@ -32,7 +32,7 @@
         </a>
         <a href="{{ route('surveyor.laporanPenilaian') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
-                <h3><i class="fas fa-file"></i> Laporan Penilaian</h3>
+                <h3><i class="fas fa-file"></i> Laporan Penilaian-Final</h3>
                 <p><strong >6 dokumen</strong></p>
             </div>
         </a>

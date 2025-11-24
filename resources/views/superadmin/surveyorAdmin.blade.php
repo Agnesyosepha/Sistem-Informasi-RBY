@@ -29,7 +29,7 @@
                 <p><strong>11 Dokumen</strong></p>
             </div>
         </a>
-        <a href="" style="text-decoration:none; color:inherit;">
+        <a href="{{ route('superadmin.admin.SAlaporanpenilaianfinal') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-file"></i> Laporan Penilaian</h3>
                 <p><strong >6 dokumen</strong></p>
