@@ -14,10 +14,6 @@
                 <p><strong>25 Lokasi</strong></p>
             </div>
         </a>
-        <a href="{{ route('surveyor.tim') }}" class="dashboard-card" style="display:block; color:inherit; text-decoration:none;">
-            <h3><i class="fas fa-user"></i> Surveyor</h3>
-            <p><strong>10 Staff</strong></p>
-        </a>
         <a href="{{ route('surveyor.updateProyek') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card" style="cursor:pointer;">
                 <h3><i class="fas fa-chart-line"></i> Update Proyek</h3>
@@ -35,6 +31,10 @@
                 <h3><i class="fas fa-file"></i> Laporan Penilaian-Final</h3>
                 <p><strong >6 dokumen</strong></p>
             </div>
+        </a>
+         <a href="{{ route('surveyor.tim') }}" class="dashboard-card" style="display:block; color:inherit; text-decoration:none;">
+            <h3><i class="fas fa-user"></i> Surveyor</h3>
+            <p><strong>10 Staff</strong></p>
         </a>
     </div>
     

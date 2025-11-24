@@ -7,13 +7,6 @@
     <p>Ringkasan aktivitas Reviewer.</p>
 
     <div class="dashboard-cards">
-        <a href="{{ route('reviewer.tim') }}" style="text-decoration:none; color:inherit;">
-            <div class="dashboard-card">
-                <h3><i class="fas fa-users"></i> Reviewer</h3>
-                <p><strong>1 Staff</strong></p>
-            </div>
-        </a>
-
         <a href="{{ route('reviewer.dokumenRevisi') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-file-alt"></i> Dokumen Revisi</h3>
@@ -25,6 +18,12 @@
             <div class="dashboard-card">
                 <h3><i class="fas fa-check-circle"></i> Dokumen Final</h3>
                 <p><strong>8 Dokumen</strong></p>
+            </div>
+        </a>
+        <a href="{{ route('reviewer.tim') }}" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-users"></i> Reviewer</h3>
+                <p><strong>1 Staff</strong></p>
             </div>
         </a>
     </div>
