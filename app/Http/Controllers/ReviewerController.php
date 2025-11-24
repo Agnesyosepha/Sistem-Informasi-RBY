@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DokumenRevisi;
+use App\Models\DokumenFinal;
 
 class ReviewerController extends Controller
 {
@@ -57,13 +58,28 @@ public function storeDokumenRevisi(Request $request)
     // Dokumen Final
     public function dokumenFinal()
 {
-    $dokumenFinal = [
-        ['nama' => 'Laporan Bulanan EDP', 'tanggal' => '09 Nov 2025', 'reviewer' => 'EDP-01', 'status' => 'Final'],
-        ['nama' => 'Analisis Data Keuangan', 'tanggal' => '07 Nov 2025', 'reviewer' => 'EDP-02', 'status' => 'Final'],
-        ['nama' => 'Dokumen Backup Server', 'tanggal' => '05 Nov 2025', 'reviewer' => 'EDP-01', 'status' => 'Final'],
-    ];
-
+    $dokumenFinal = \App\Models\DokumenFinal::all();
     return view('reviewer.dokumenFinal', compact('dokumenFinal'));
+}
+
+public function SAdokumenFinal()
+{
+    $dokumenFinal = \App\Models\DokumenFinal::all();
+    return view('reviewer.SAdokumenFinal', compact('dokumenFinal'));
+}
+
+public function storeDokumenFinal(Request $request)
+{
+    $request->validate([
+        'nama' => 'required|string',
+        'tanggal' => 'required|date',
+        'reviewer' => 'required|string',
+        'status' => 'required|string'
+    ]);
+
+    \App\Models\DokumenFinal::create($request->all());
+
+    return redirect()->back()->with('success', 'Dokumen final berhasil ditambahkan!');
 }
 
 }

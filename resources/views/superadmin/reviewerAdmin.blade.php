@@ -22,7 +22,7 @@
             </div>
         </a>
 
-        <a href="" style="text-decoration:none; color:inherit;">
+        <a href="{{ route('superadmin.reviewer.SAdokumenFinal') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-check-circle"></i> Dokumen Final</h3>
                 <p><strong>8 Dokumen</strong></p>

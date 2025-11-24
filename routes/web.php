@@ -135,6 +135,9 @@ Route::get('/superadmin/reviewer', function () {
 Route::get('/superadmin/reviewer/dokumen-revisi', [\App\Http\Controllers\ReviewerController::class, 'SAdokumenRevisi'])->name('superadmin.reviewer.SAdokumenRevisi');
 Route::post('/superadmin/reviewer/dokumen-revisi/store', [\App\Http\Controllers\ReviewerController::class, 'storeDokumenRevisi'])->name('superadmin.reviewer.storeDokumenRevisi');
 
+Route::get('/superadmin/reviewer/dokumen-final', [\App\Http\Controllers\ReviewerController::class, 'SAdokumenFinal'])->name('superadmin.reviewer.SAdokumenFinal');
+Route::post('/superadmin/reviewer/dokumen-final/store', [\App\Http\Controllers\ReviewerController::class, 'storeDokumenFinal'])->name('reviewer.storeDokumenFinal');
+
 
 // Finance di Superadmin
 
