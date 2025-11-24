@@ -33,11 +33,8 @@ class ITController extends Controller
     public function server()
     {
         $servers = [
-            ['nama' => 'Server 1', 'lokasi' => 'Jakarta', 'status' => 'Aktif', 'ip' => '192.168.0.10'],
-            ['nama' => 'Server 2', 'lokasi' => 'Bandung', 'status' => 'Maintenance', 'ip' => '192.168.0.11'],
-            ['nama' => 'Server 3', 'lokasi' => 'Medan', 'status' => 'Aktif', 'ip' => '192.168.0.12'],
-            ['nama' => 'Server 4', 'lokasi' => 'Surabaya', 'status' => 'Aktif', 'ip' => '192.168.0.13'],
-            ['nama' => 'Server 5', 'lokasi' => 'Balige', 'status' => 'Nonaktif', 'ip' => '192.168.0.14'],
+            ['nama' => 'Server 1', 'lokasi' => 'Bekasi', 'status' => 'Aktif', 'ip' => '192.168.18.88'],
+            
         ];
 
         return view('it.server', compact('servers'));
@@ -46,11 +43,10 @@ class ITController extends Controller
     public function totalKomputer()
     {
         $komputers = [
-            ['nama' => 'PC-01', 'pengguna' => 'Elise', 'lokasi' => 'Kantor Utama', 'status' => 'Aktif'],
-            ['nama' => 'PC-02', 'pengguna' => 'Kenji', 'lokasi' => 'Finance', 'status' => 'Aktif'],
-            ['nama' => 'PC-03', 'pengguna' => 'Rika', 'lokasi' => 'HRD', 'status' => 'Perbaikan'],
-            ['nama' => 'PC-04', 'pengguna' => 'Tomi', 'lokasi' => 'IT Support', 'status' => 'Aktif'],
-            ['nama' => 'PC-05', 'pengguna' => 'Nana', 'lokasi' => 'Marketing', 'status' => 'Aktif'],
+            ['nama' => 'WINDOWS-RHT6GIB', 'pengguna' => 'Shafa Az-zahra Eriana', 'lokasi' => 'Divisi Admin Lt 1', 'status' => 'Aktif'],
+            ['nama' => 'Lius-X', 'pengguna' => 'Aprilius Ginting', 'lokasi' => 'Divisi EDP Lt 1', 'status' => 'Aktif'],
+            ['nama' => 'DEKSTOP-BVN2D0E', 'pengguna' => 'Yohanes Kroll Koten', 'lokasi' => 'Divisi EDP Lt 1', 'status' => 'Aktif'],
+            ['nama' => 'DEKSTOP-EMLBD32', 'pengguna' => 'Michael Brema Pinem', 'lokasi' => 'Divisi EDP Lt 1', 'status' => 'Aktif'],
         ];
 
         return view('it.totalKomputer', compact('komputers'));
@@ -59,11 +55,15 @@ class ITController extends Controller
     public function totalLaptop()
     {
         $laptops = [
-            ['nama' => 'Laptop-01', 'pengguna' => 'Elise', 'lokasi' => 'Kantor Utama', 'status' => 'Aktif'],
-            ['nama' => 'Laptop-02', 'pengguna' => 'Kenji', 'lokasi' => 'Finance', 'status' => 'Aktif'],
-            ['nama' => 'Laptop-03', 'pengguna' => 'Rika', 'lokasi' => 'HRD', 'status' => 'Perbaikan'],
-            ['nama' => 'Laptop-04', 'pengguna' => 'Tomi', 'lokasi' => 'IT Support', 'status' => 'Aktif'],
-            ['nama' => 'Laptop-05', 'pengguna' => 'Nana', 'lokasi' => 'Marketing', 'status' => 'Aktif'],
+            ['nama' => 'Administrasi-Mieke', 'pengguna' => 'Mieke Dearni Br Tarigan	', 'lokasi' => 'Divisi Admin Lt 1', 'status' => 'Aktif'],
+            ['nama' => 'Laptop-3SR1NBHO', 'pengguna' => 'Matta Ega', 'lokasi' => 'Divisi Finance Lt 2', 'status' => 'Aktif'],
+            ['nama' => 'Laptop-PMQLBLTH', 'pengguna' => 'Pretty Balerina Br Bangun', 'lokasi' => 'Divisi Surveyor Lt 2', 'status' => 'Aktif'],
+            ['nama' => 'Laptop-PMQLBLTH', 'pengguna' => 'Mega Permata Sari Br Ginting', 'lokasi' => 'Divisi Reviewer Lt 2', 'status' => 'Aktif'],
+            ['nama' => 'Laptop-PMQLBLTH', 'pengguna' => 'Amri Simbolon', 'lokasi' => 'Divisi Surveyor Lt 2', 'status' => 'Aktif'],
+            ['nama' => 'Laptop-PMQLBLTH', 'pengguna' => 'Santo Cornelius Ginting', 'lokasi' => 'Divisi Surveyor Lt 3', 'status' => 'Aktif'],
+            ['nama' => 'Laptop-PMQLBLTH', 'pengguna' => 'Fajar Hariyadi', 'lokasi' => 'Divisi Surveyor Lt 3', 'status' => 'Aktif'],
+            ['nama' => 'Laptop-PMQLBLTH', 'pengguna' => 'Richard Barus', 'lokasi' => 'Divisi Surveyor Lt 3', 'status' => 'Aktif'],
+            ['nama' => 'Laptop-PMQLBLTH', 'pengguna' => 'Firdaus Ginting', 'lokasi' => 'Divisi Surveyor Lt 3', 'status' => 'Aktif'],
         ];
 
         return view('it.totalLaptop', compact('laptops'));

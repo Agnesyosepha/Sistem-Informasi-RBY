@@ -16,13 +16,13 @@
         <a href="{{ route('it.server') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-network-wired"></i> Server</h3>
-                <p><strong>12</strong></p>
+                <p><strong>1 Server</strong></p>
             </div>
         </a>
         <a href="{{ route('it.totalKomputer') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-computer"></i> Total Komputer</h3>
-                <p><strong>15 PC</strong></p>
+                <p><strong>4 PC</strong></p>
             </div>
         </a>
         <a href="{{ route('it.totalLaptop') }}" style="text-decoration:none; color:inherit;">
@@ -46,7 +46,7 @@
         <a href="{{ route('it.tim') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-user"></i> Staff</h3>
-                <p><strong>2 Staff</strong></p>
+                <p><strong>1 Staff</strong></p>
             </div>
         </a>
     </div>

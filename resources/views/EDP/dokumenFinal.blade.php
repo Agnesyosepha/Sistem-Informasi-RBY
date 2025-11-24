@@ -150,7 +150,7 @@
 
 <div class="page-header">
     <h1><i class="fas fa-file-archive"></i> Dokumen Final</h1>
-    <p class="text-muted">Daftar dokumen final EDP yang telah diupload disesuaikan dengan namaLPA</p>
+    <p class="text-muted">Daftar dokumen final EDP yang telah diupload disesuaikan dengan nama LPA</p>
 </div>
 
 <div class="search-upload-wrapper">
