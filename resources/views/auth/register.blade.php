@@ -7,6 +7,7 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -15,250 +16,236 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
     }
 
     body {
       height: 100vh;
+      font-family: 'Poppins', sans-serif;
       overflow: hidden;
+      background: #000;
     }
 
+    /* Background */
     .background {
       position: fixed;
       inset: 0;
       background: url("{{ asset('images/home.jpg') }}") center/cover no-repeat;
-      filter: blur(8px);
       z-index: 0;
     }
 
+    /* Overlay gold halus */
     .overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.5);
+      background: linear-gradient(
+        rgba(247, 204, 81, 0.18),
+        rgba(247, 204, 81, 0.05)
+      );
+      backdrop-filter: blur(2px);
       z-index: 1;
     }
 
-    .register-wrapper {
-      position: relative;
-      z-index: 2;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    /* Spotlight */
+    .spotlight {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(
+        circle at center,
+        rgba(255, 255, 255, 0.25) 0%,
+        rgba(0,0,0,0.65) 100%
+      );
+      opacity: 0.35;
+      z-index: 1.5;
     }
 
+    /* Container */
     .register-container {
       position: relative;
-      background: rgba(0, 0, 0, 0.75);
-      padding: 40px 35px;
-      border-radius: 16px;
-      width: 380px;
+      z-index: 3;
+      width: 330px;
+      padding: 35px 28px;
+      margin: auto;
+      top: 50%;
+      transform: translateY(-50%);
       text-align: center;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-      border: 2px solid transparent;
+
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(14px);
+      border-radius: 14px;
+      border: 2px solid rgba(247, 204, 81, 0.7);
+
+      box-shadow: 0 10px 28px rgba(0,0,0,0.45);
+      animation: fadeInPopup 0.7s ease;
     }
 
-    .register-container::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      padding: 2px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, #c0c0c0, #ffffff, #d4d4d4);
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-              mask-composite: exclude;
-      z-index: -1;
-    }
-
-    .register-container img {
-      width: 180px;
-      margin-bottom: 20px;
+    @keyframes fadeInPopup {
+      from { opacity: 0; transform: translateY(-45%); }
+      to { opacity: 1; transform: translateY(-50%); }
     }
 
     .register-container h2 {
-      color: #fff;
+      color: #151515;
+      margin-bottom: 15px;
       font-weight: 600;
-      margin-bottom: 20px;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
+      position: relative;
     }
 
-    /* ===== Input fields ===== */
+    .register-container h2::after {
+      content: "";
+      display: block;
+      width: 60%;
+      margin: 10px auto 0 auto;
+      height: 2px;
+      background: linear-gradient(to right, transparent, #F7CC51, transparent);
+      opacity: 0.9;
+    }
+
+    .register-container img {
+      width: 190px;
+      margin-bottom: 25px;
+    }
+
     .form-group {
+      margin-bottom: 12px;
       position: relative;
-      margin-bottom: 18px;
     }
 
     .form-group input,
     .form-group select {
       width: 100%;
-      padding: 12px 14px 12px 42px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      font-size: 14px;
+      padding: 12px 12px 12px 40px;
+      border: 1.8px solid rgba(255,255,255,0.55);
+      border-radius: 8px;
       outline: none;
-      transition: 0.3s;
-      background-color: #fff;
+      font-size: 14px;
+
+      color: #fff;
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(5px);
+
+      /* Hilangkan panah bawaan */
       appearance: none;
       -webkit-appearance: none;
       -moz-appearance: none;
-      color: #333;
     }
 
-    .form-group input:focus,
-    .form-group select:focus {
-      border-color: #f7cc51;
-      box-shadow: 0 0 8px rgba(247, 204, 81, 0.6);
+    .form-group input::placeholder {
+      color: #fff;
+      font-weight: 500;
+      text-shadow: 0 0 6px rgba(0,0,0,0.6);
     }
 
     .form-group .icon {
       position: absolute;
+      left: 12px;
       top: 50%;
-      left: 14px;
       transform: translateY(-50%);
-      color: #555;
-      font-size: 15px;
+      font-size: 17px;
+      color: #FFD76A;
+      font-weight: 700;
+      text-shadow:
+        0 0 3px rgba(0,0,0,1),
+        0 0 5px rgba(0,0,0,0.9),
+        0 0 7px rgba(247, 225, 56, 0.8);
     }
 
-    /* ===== Custom dropdown arrow (1 panah aja) ===== */
-    .form-group.select-group::after {
+    /* Panah custom FA */
+    .select-group::after {
       content: "\f0d7";
       font-family: "Font Awesome 6 Free";
       font-weight: 900;
       position: absolute;
-      right: 14px;
+      right: 12px;
       top: 50%;
       transform: translateY(-50%);
-      color: #f7cc51;
-      font-size: 14px;
+      color: #FFD76A;
+      font-size: 15px;
       pointer-events: none;
     }
 
-    /* ===== Styling khusus dropdown ===== */
-    select {
-      background: linear-gradient(to bottom, #fff, #f5f5f5);
-      border: 1px solid #bbb;
-      border-radius: 8px;
-      padding-right: 35px;
-      cursor: pointer;
-      font-weight: 500;
-    }
-
-    select:hover {
-      border-color: #f7cc51;
-      background: linear-gradient(to bottom, #fff, #faf1d1);
-    }
-
-    option {
-      background: #fff;
-      color: #333;
-      padding: 10px;
-    }
-
-    option:checked {
-      background-color: #f7cc51 !important;
-      color: #000 !important;
-      font-weight: 600;
-    }
-
-    /* ===== Tombol Register ===== */
     .btn-register {
-      margin-top: 8px;
+      margin-top: 15px;
       width: 100%;
       padding: 12px;
-      background: linear-gradient(135deg, #f7cc51, #e6b842);
+      background: #F7CC51;
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       font-weight: 600;
       font-size: 15px;
       cursor: pointer;
       color: #000;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
     }
 
     .btn-register:hover {
-      background: linear-gradient(135deg, #ffe27a, #f7cc51);
+      background: #e7bd47;
       transform: translateY(-2px);
-      box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.35);
     }
 
     .login-link {
       margin-top: 18px;
-      font-size: 13px;
-      color: #eee;
+      font-size: 14px;
+      color: #ddd;
     }
 
     .login-link a {
-      color: #f7cc51;
+      color: #F7CC51;
       font-weight: 600;
       text-decoration: none;
     }
-
-    .login-link a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 420px) {
-      .register-container {
-        width: 90%;
-        padding: 30px 25px;
-      }
-      .register-container img {
-        width: 140px;
-      }
-    }
   </style>
 </head>
+
 <body>
   <div class="background"></div>
   <div class="overlay"></div>
+  <div class="spotlight"></div>
 
-  <div class="register-wrapper">
-    <div class="register-container">
-      <img src="{{ asset('images/rby-logo.png') }}" alt="RBY Logo">
-      <h2>Register</h2>
+  <div class="register-container">
+    <h2>Register</h2>
+    <img src="{{ asset('images/rby-logo3.jpg') }}" alt="RBY Logo">
 
-      <form method="POST" action="{{ route('register') }}">
-        @csrf
+    <form method="POST" action="{{ route('register') }}">
+      @csrf
 
-        <div class="form-group">
-          <span class="icon"><i class="fa-solid fa-envelope"></i></span>
-          <input type="email" name="email" placeholder="Email" required>
-        </div>
-
-        <div class="form-group">
-          <span class="icon"><i class="fa-solid fa-user"></i></span>
-          <input type="text" name="username" placeholder="Username" required>
-        </div>
-
-        <div class="form-group select-group">
-          <span class="icon"><i class="fa-solid fa-users"></i></span>
-          <select name="divisi" required>
-            <option value="" disabled selected>Pilih Divisi</option>
-            <option value="Admin">Admin</option>
-            <option value="Surveyor">Surveyor</option>
-            <option value="EDP">EDP</option>
-            <option value="Finance">Finance</option>
-            <option value="IT">IT</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <span class="icon"><i class="fa-solid fa-lock"></i></span>
-          <input type="password" name="password" placeholder="Password" required>
-        </div>
-
-        <button type="submit" class="btn-register">Daftar</button>
-      </form>
-
-      <div class="login-link">
-        Sudah punya akun? <a href="{{ route('login') }}">Login</a>
+      <div class="form-group">
+        <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+        <input type="email" name="email" placeholder="Email" required>
       </div>
-    </div>
+
+      <div class="form-group">
+        <span class="icon"><i class="fa-solid fa-user"></i></span>
+        <input type="text" name="username" placeholder="Username" required>
+      </div>
+
+      <div class="form-group select-group">
+        <span class="icon"><i class="fa-solid fa-users"></i></span>
+        <select name="divisi" required>
+          <option disabled selected>Pilih Divisi</option>
+          <option value="Admin">Admin</option>
+          <option value="Surveyor">Surveyor</option>
+          <option value="EDP">EDP</option>
+          <option value="Finance">Finance</option>
+          <option value="IT">IT</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <span class="icon"><i class="fa-solid fa-lock"></i></span>
+        <input type="password" name="password" placeholder="Password" required>
+      </div>
+
+      <button class="btn-register" type="submit">Daftar</button>
+    </form>
+
+    <p class="login-link">
+      Sudah punya akun?
+      <a href="{{ route('login') }}">Login</a>
+    </p>
   </div>
+
 </body>
 </html>
