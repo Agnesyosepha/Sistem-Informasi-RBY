@@ -55,7 +55,7 @@
             z-index: 1000; box-sizing: border-box;
         }
         .header-left { display: flex; align-items: center; flex-shrink: 0; }
-        .header-center { flex-grow: 1; display: flex; justify-content: right; min-width: 150px; }
+        .header-center { flex-grow: 1; } /* Tengah kosong, fleksibel */
         .header-right { display: flex; align-items: center; gap: 20px; }
         #menu-toggle {
             background: none; border: none; color: white;
@@ -63,16 +63,6 @@
         }
         .logo-container { height: 65px; }
         .logo-container img { height: 100%; width: auto; }
-        .search-bar { position: relative; width: 100%; max-width: 400px; }
-        .search-bar input {
-            width: 95%; padding: 10px 40px 10px 15px;
-            border: 1px solid #555; border-radius: 25px; background-color: #fff;
-            font-size: 15px; box-sizing: border-box;
-        }
-        .search-bar .search-icon {
-            position: absolute; right: 35px; top: 50%;
-            transform: translateY(-50%); color: #555; font-size: 18px;
-        }
         .header-right .icon-btn { font-size: 22px; cursor: pointer; color: #fff; transition: color 0.3s; }
         .header-right .icon-btn:hover { color: #ffc107; }
 
@@ -104,12 +94,11 @@
                     </a>
                 </div>
             </div>
+
             <div class="header-center">
-                <div class="search-bar">
-                    <input type="text" placeholder="Telusuri">
-                    <i class="fas fa-search search-icon"></i>
-                </div>
+                <!-- Tengah header kosong, bisa diisi konten lain nanti -->
             </div>
+
             <div class="header-right">
                 <a href="{{ route('profile') }}" class="icon-btn"><i class="fas fa-user"></i></a>
             </div>
@@ -117,56 +106,18 @@
 
         {{-- Sidebar --}}
         <aside class="sidebar" id="sidebar">
-    <nav>
-        <ul>
-            <li>
-                <a href="{{ route('dashboard') }}" 
-                   class="{{ Route::is('dashboard') ? 'active' : '' }}">
-                   <i class="fas fa-home"></i><span> Home</span>
-                </a>
-            </li>
-            
-            <li>
-                <a href="{{ route('admin') }}" 
-                   class="{{ Route::is('admin') ? 'active' : '' }}">
-                   <i class="fas fa-user-cog"></i><span> Admin</span>
-                </a>
-            </li>
-            
-            <li>
-                <a href="{{ route('surveyor') }}" 
-                   class="{{ Route::is('surveyor') ? 'active' : '' }}">
-                   <i class="fas fa-clipboard-list"></i><span> Surveyor</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('edp') }}" 
-                   class="{{ Route::is('edp') ? 'active' : '' }}">
-                   <i class="fas fa-desktop"></i><span> EDP</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('reviewer') }}" 
-                   class="{{ Route::is('reviewer') ? 'active' : '' }}">
-                   <i class="fas fa-file-signature"></i><span> Reviewer</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('finance') }}" 
-                   class="{{ Route::is('finance') ? 'active' : '' }}">
-                   <i class="fas fa-file-invoice-dollar"></i><span> Finance</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('it') }}" 
-                   class="{{ Route::is('it') ? 'active' : '' }}">
-                   <i class="fas fa-server"></i><span> IT</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</aside>
-
+            <nav>
+                <ul>
+                    <li><a href="{{ route('dashboard') }}" class="{{ Route::is('dashboard') ? 'active' : '' }}"><i class="fas fa-home"></i><span> Home</span></a></li>
+                    <li><a href="{{ route('admin') }}" class="{{ Route::is('admin') ? 'active' : '' }}"><i class="fas fa-user-cog"></i><span> Admin</span></a></li>
+                    <li><a href="{{ route('surveyor') }}" class="{{ Route::is('surveyor') ? 'active' : '' }}"><i class="fas fa-clipboard-list"></i><span> Surveyor</span></a></li>
+                    <li><a href="{{ route('edp') }}" class="{{ Route::is('edp') ? 'active' : '' }}"><i class="fas fa-desktop"></i><span> EDP</span></a></li>
+                    <li><a href="{{ route('reviewer') }}" class="{{ Route::is('reviewer') ? 'active' : '' }}"><i class="fas fa-file-signature"></i><span> Reviewer</span></a></li>
+                    <li><a href="{{ route('finance') }}" class="{{ Route::is('finance') ? 'active' : '' }}"><i class="fas fa-file-invoice-dollar"></i><span> Finance</span></a></li>
+                    <li><a href="{{ route('it') }}" class="{{ Route::is('it') ? 'active' : '' }}"><i class="fas fa-server"></i><span> IT</span></a></li>
+                </ul>
+            </nav>
+        </aside>
 
         {{-- Konten Dinamis --}}
         <div class="main-content" id="main-content">
