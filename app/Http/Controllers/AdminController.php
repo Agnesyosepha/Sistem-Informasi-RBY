@@ -202,7 +202,7 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Draft Resume berhasil ditambahkan!');
     }
 
-    public function updateStatusSAdraftResume(Request $request, $id)
+    public function updateStatusDraftResume(Request $request, $id)
     {
         $proposal = \App\Models\DraftResume::findOrFail($id);
         $proposal->status = $request->status;
