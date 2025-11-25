@@ -45,10 +45,7 @@
                 <p><strong >6 dokumen</strong></p>
             </div>
         </a>
-        <a href="" class="dashboard-card" style="display:block; color:inherit; text-decoration:none;">
-            <h3><i class="fas fa-user"></i> Admin</h3>
-            <p><strong>2 Staff</strong></p>
-        </a>
+        
     </div>
 
     <!-- Tabel Aktivitas -->

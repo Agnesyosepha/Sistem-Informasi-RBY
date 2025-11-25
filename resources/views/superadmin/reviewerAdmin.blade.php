@@ -8,12 +8,6 @@
     <p>Ringkasan aktivitas Reviewer.</p>
 
     <div class="dashboard-cards">
-        <a href="" style="text-decoration:none; color:inherit;">
-            <div class="dashboard-card">
-                <h3><i class="fas fa-users"></i> Reviewer</h3>
-                <p><strong>1 Staff</strong></p>
-            </div>
-        </a>
 
         <a href="{{ route('superadmin.reviewer.SAdokumenRevisi') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">

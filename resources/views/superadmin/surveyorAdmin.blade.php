@@ -5,6 +5,7 @@
 @section('content')
 
 <h1><i class="fas fa-clipboard-list"></i> Surveyor Admin</h1>
+<p>Ringkasan aktivitas surveyor.</p>
 
 <div class="dashboard-cards">
      <a href="{{ route('superadmin.admin.SAlokasiSurvei') }}" style="text-decoration:none; color:inherit;">
@@ -12,10 +13,6 @@
                 <h3><i class="fas fa-map-marker-alt"></i> Lokasi Survei</h3>
                 <p><strong>25 Lokasi</strong></p>
             </div>
-        </a>
-        <a href="" class="dashboard-card" style="display:block; color:inherit; text-decoration:none;">
-            <h3><i class="fas fa-user"></i> Surveyor</h3>
-            <p><strong>10 Staff</strong></p>
         </a>
        <a href="{{ route('superadmin.admin.SAupdateProyek') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card" style="cursor:pointer;">

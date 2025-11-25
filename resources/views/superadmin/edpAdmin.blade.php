@@ -21,13 +21,6 @@
             </div>
         </a>
         
-        
-        <a href="" style="text-decoration:none; color:inherit;">
-                <div class="dashboard-card" style="cursor:pointer;">
-                    <h3><i class="fas fa-users"></i> EDP</h3>
-                    <p><strong>3 Staff</strong></p>
-                </div>
-        </a>
 
     </div>
 
