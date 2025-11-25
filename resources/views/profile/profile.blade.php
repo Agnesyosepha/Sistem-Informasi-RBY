@@ -20,6 +20,118 @@
             color: #333;
         }
 
+        /* --- MOBILE SMALL (max-width: 576px) --- */
+@media (max-width: 576px) {
+
+    .profile-container {
+        margin-left: 0;
+        padding: 20px;
+        margin-top: 100px;
+    }
+
+    .profile-card {
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .profile-card.upgraded {
+        flex-direction: column;
+        padding: 25px;
+        gap: 25px;
+    }
+
+    .profile-left {
+        border-right: none;
+        padding-right: 0;
+        border-bottom: 2px dashed #e8e8e8;
+        padding-bottom: 20px;
+        text-align: center;
+    }
+
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        width: 200px;
+    }
+
+    #menu-toggle {
+        font-size: 24px;
+    }
+
+    .header {
+        height: 70px;
+        padding: 0 15px;
+    }
+
+    .logo-container img {
+        height: 45px;
+    }
+}
+
+
+/* --- TABLET PORTRAIT & MOBILE LARGE (max-width: 768px) --- */
+@media (max-width: 768px) {
+
+    .sidebar {
+        position: fixed;
+        width: 230px;
+        transform: translateX(-100%);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .profile-container {
+        margin-left: 0;
+        padding: 30px 20px;
+    }
+
+    .profile-card {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .profile-left {
+        border-right: none;
+        padding-right: 0;
+        border-bottom: 2px dashed #e8e8e8;
+        padding-bottom: 20px;
+        text-align: center;
+    }
+}
+/* --- TABLET LANDSCAPE (max-width: 1024px) --- */
+@media (max-width: 1024px) {
+
+    .sidebar {
+        width: 200px;
+    }
+
+    .profile-container {
+        margin-left: 220px;
+        padding: 30px;
+    }
+
+    .profile-card {
+        padding: 25px;
+        gap: 25px;
+    }
+
+    .profile-grid {
+        gap: 18px 25px;
+    }
+}
+/* --- DESKTOP --- */
+@media (min-width: 1025px) {
+    .profile-container {
+        margin-left: 250px;
+    }
+}
+
+
         /* --- Header --- */
         .header {
             position: fixed;
@@ -103,16 +215,29 @@
 
         /* --- Sidebar --- */
         .sidebar {
-            position: fixed; top: 80px; left: 0;
-            width: 250px; height: calc(100% - 80px);
+            position: fixed; 
+            top: 80px; 
+            left: 0;
+            width: 250px; 
+            height: calc(100% - 80px);
             background: linear-gradient(180deg, #0E2148, #3C467B);
             padding-top: 20px;
             transition: width 0.3s ease-in-out;
-            z-index: 999; box-shadow: 2px 0 8px rgba(0,0,0,0.3);
+            z-index: 999; 
+            box-shadow: 2px 0 8px rgba(0,0,0,0.3);
             overflow-x: hidden;
         }
-        .sidebar.collapsed { width: 80px; }
-        .sidebar nav ul { list-style: none; padding: 0; margin: 0; }
+
+        .sidebar.collapsed { 
+            width: 80px; 
+        }
+        
+        .sidebar nav ul { 
+            list-style: none; 
+            padding: 0; 
+            margin: 0; 
+        }
+        
         .sidebar nav ul li a {
             display: flex; align-items: center;
             padding: 14px 25px; color: #f1f1f1; text-decoration: none;
@@ -135,11 +260,10 @@
 
         /* Profile Section */
         .profile-container {
-           margin-left: 250px;
+            margin-left: 250px;
             margin-top: 120px;
             padding: 40px;
-            display: flex;
-            justify-content: center;
+            transition: 0.3s;
         }
 
         .profile-card.upgraded {
@@ -174,25 +298,26 @@
             padding-right: 40px;
         }
         .upgraded-photo {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    margin: 0 auto 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-    background: linear-gradient(135deg, #d4a15a, #f7d9a1);
-    color: #fff;
-    font-size: 85px;
-    border: 6px solid #fff;
-    box-shadow: 0 5px 20px rgba(212,161,90,0.4);
-}
-.name-title {
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 5px;
-}
+            background: linear-gradient(135deg, #d4a15a, #f7d9a1);
+            color: #fff;
+            font-size: 85px;
+            border: 6px solid #fff;
+            box-shadow: 0 5px 20px rgba(212,161,90,0.4);
+        }
+
+        .name-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
 
 .email-text {
     font-size: 14px;
@@ -239,27 +364,27 @@
     color: #5d5d5d;
 }
 
-.info-item p {
-    margin-top: 5px;
-    background: #f8f9fb;
-    padding: 10px 14px;
-    border-radius: 10px;
-    border: 1px solid #ececec;
-    font-size: 14px;
-    color: #444;
-}
+    .info-item p {
+        margin-top: 5px;
+        background: #f8f9fb;
+        padding: 10px 14px;
+        border-radius: 10px;
+        border: 1px solid #ececec;
+        font-size: 14px;
+        color: #444;
+    }
 
-/* Animation */
-@keyframes fadeSlideUp {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
+    /* Animation */
+    @keyframes fadeSlideUp {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
         .profile-photo {
             width: 180px;
             height: 180px;
@@ -408,6 +533,68 @@
         @keyframes fadeIn {
             from {opacity: 0; transform: scale(0.9);}
             to {opacity: 1; transform: scale(1);}
+        }
+
+        /* ========= RESPONSIVE ========= */
+
+        /* MOBILE (≤576px) */
+        @media (max-width: 576px) {
+            .profile-card {
+                flex-direction: column;
+                padding: 25px;
+                gap: 20px;
+            }
+            .profile-left {
+                border-right: none;
+                padding-right: 0;
+                border-bottom: 2px dashed #e8e8e8;
+                padding-bottom: 20px;
+            }
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                width: 230px;
+                transform: translateX(-100%);
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .profile-container {
+                margin-left: 0;
+                padding: 120px 20px;
+            }
+        }
+
+        /* TABLET (576px–768px) */
+        @media (max-width: 768px) {
+            .profile-card {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 230px;
+                transform: translateX(-100%);
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .profile-container {
+                margin-left: 0;
+                padding: 120px 25px;
+            }
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* SMALL DESKTOP (≤1024px) */
+        @media (max-width: 1024px) {
+            .profile-container {
+                margin-left: 200px;
+            }
+            .sidebar {
+                width: 200px;
+            }
         }
     </style>
 </head>
@@ -568,8 +755,20 @@
             const sidebar = document.getElementById('sidebar');
 
             menuToggle.addEventListener('click', function() {
-                sidebar.classList.toggle('collapsed');
+                // Jika layar kecil (mobile)
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.toggle('open');   // gunakan .open untuk mobile
+                } else {
+                    sidebar.classList.toggle('collapsed');  // gunakan .collapsed untuk desktop
+                }
             });
+
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    sidebar.classList.remove('open'); 
+                }
+            });
+
 
             // Modal Logout
             const logoutBtn = document.getElementById('logoutBtn');
