@@ -195,10 +195,10 @@ class SurveyorController extends Controller
     }
 
 
-// Working Paper
+    // Working Paper
     public function workingPaper()
-{
-    return view('surveyor.workingpaper');
-}
+    {
+        return view('surveyor.workingpaper');
+    }
 
 }
