@@ -23,12 +23,6 @@
                 <p><strong>Ringkasan Semua Status Proyek</strong></p>
             </div>
         </a>
-        <a href="{{ route('superadmin.admin.SAupdateProyek') }}" style="text-decoration:none; color:inherit;">
-            <div class="dashboard-card">
-                <h3><i class="fas fa-tasks"></i> Working Paper</h3>
-                <p><strong>11 Dokumen</strong></p>
-            </div>
-        </a>
         <a href="{{ route('superadmin.admin.SAlaporanpenilaianfinal') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-file"></i> Laporan Penilaian</h3>

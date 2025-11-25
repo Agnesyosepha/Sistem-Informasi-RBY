@@ -193,4 +193,12 @@ class SurveyorController extends Controller
 
         return back()->with("success", "Proyek berhasil ditambahkan");
     }
+
+
+// Working Paper
+    public function workingPaper()
+{
+    return view('surveyor.workingpaper');
+}
+
 }
