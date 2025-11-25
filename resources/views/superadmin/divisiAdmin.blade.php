@@ -69,7 +69,7 @@
                     <td style="padding:10px;">00166/RBY-PPJP/BKS/VIII/2024</td>
                     <td style="padding:10px;">17 Agustus 2023</td>
                     <td style="padding:10px;">Fajar</td>
-                    <td style="padding:10px; text-align:center; color:green; font-weight:600;">Sukses</td>
+                    <td style="padding:10px; text-align:center; color:red; font-weight:600;">Sangat Urgent</td>
                 </tr>
                 <tr style="border-bottom:1px solid #ddd;">
                     <td style="padding:10px;">Port Mori Corporation</td>
@@ -77,7 +77,7 @@
                     <td style="padding:10px;">01026/RBY-PPJP/BKS/VII/2024</td>
                     <td style="padding:10px;">24 Juli 2024</td>
                     <td style="padding:10px;">Jasmani</td>
-                    <td style="padding:10px; text-align:center; color:green; font-weight:600;">Sukses</td>
+                    <td style="padding:10px; text-align:center; color:orange; font-weight:600;">Urgent</td>
                 </tr>
                 <tr style="border-bottom:1px solid #ddd;">
                     <td style="padding:10px;">PT Bahagia Biru</td>
@@ -85,7 +85,7 @@
                     <td style="padding:10px;">00199/RBY-PPJP/BKS/VI/2024</td>
                     <td style="padding:10px;">08 Oktober 2025</td>
                     <td style="padding:10px;">Santo</td>
-                    <td style="padding:10px; text-align:center; color:green; font-weight:600;">Sukses</td>
+                    <td style="padding:10px; text-align:center; color:orange; font-weight:600;">Urgent</td>
                 </tr>
             </tbody>
         </table>
