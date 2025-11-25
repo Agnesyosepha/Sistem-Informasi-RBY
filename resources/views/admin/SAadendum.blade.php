@@ -140,9 +140,15 @@ function updateStatus(id, selectElement) {
         body: JSON.stringify({ status: selectElement.value })
     })
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => {
+        if(data.success){
+            console.log(data.message);
+            alert("Status berhasil diperbarui!"); // opsional
+        }
+    })
     .catch(err => console.error(err));
 }
+
 
 </script>
 @endsection

@@ -107,15 +107,15 @@
                           </select>
                         </td>
                         <td style="padding:10px; text-align:center;">
-    <button type="button"
-        onclick="openModal('{{ route('superadmin.admin.SAproposal.destroy', $p->id) }}')"
-        style="background:#dc3545; color:white; padding:6px 12px;
-        border:none; border-radius:5px; cursor:pointer;">
-        Hapus
-    </button>
-</td>
+                            <button type="button"
+                                onclick="openModal('{{ route('superadmin.admin.SAproposal.destroy', $p->id) }}')"
+                                style="background:#dc3545; color:white; padding:6px 12px;
+                                border:none; border-radius:5px; cursor:pointer;">
+                                Hapus
+                            </button>
+                        </td>
 
-                      </tr>
+                    </tr>
                   @endforeach
               </tbody>
           </table>
@@ -149,7 +149,7 @@
             border:none; border-radius:6px; cursor:pointer;">
             Batal
         </button>
-    </form>
+        </form>
 
     </div>
 </div>
