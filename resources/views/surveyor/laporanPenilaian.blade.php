@@ -24,7 +24,7 @@
                     <td style="padding:10px;">{{ $laporan['nomor_laporan'] }}</td>
                     <td style="padding:10px;">{{ $laporan['klien'] }}</td>
                     <td style="padding:10px;">{{ $laporan['jenis_aset'] }}</td>
-                    <td style="padding:10px;">Rp {{ number_format($laporan['nilai_penilaian'], 0, ',', '.') }}</td>
+                    <td style="padding:10px;">{{ $laporan['lokasi'] }}</td>
                     <td style="padding:10px;">{{ $laporan['tgl_laporan'] }}</td>
                     <td style="padding:10px; text-align:center;">
                         @if($laporan->softcopy)
