@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (value === "Disetujui") {
             label.style.color = "green";
         } 
-        else if (value === "Menunggu Persetujuan") {
+        else if (value === "Menunggu Review") {
             label.style.color = "orange";
         } 
         else if (value === "Direvisi") {
