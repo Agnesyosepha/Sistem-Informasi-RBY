@@ -19,6 +19,87 @@
             color: #333;
         }
 
+        /* ===========================
+           MOBILE SCREEN (max-width: 576px)
+           =========================== */
+        @media (max-width: 576px) {
+
+            .sidebar {
+                width: 230px;
+                transform: translateX(-100%);
+                top: 65px;
+                height: calc(100% - 65px);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .header {
+                height: 65px;
+                padding: 0 15px;
+            }
+
+            #menu-toggle {
+                font-size: 26px;
+            }
+
+            .logo-container img {
+                height: 45px;
+            }
+
+            .content-area {
+                margin-left: 0 !important;
+                padding: 85px 15px 20px 15px;
+            }
+
+            .dashboard-cards {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        /* ===========================
+           TABLET (max-width: 768px)
+           =========================== */
+        @media (max-width: 768px) {
+
+            .sidebar {
+                width: 230px;
+                transform: translateX(-100%);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .content-area {
+                margin-left: 0 !important;
+                padding: 90px 20px;
+            }
+        }
+
+        /* ===========================
+           TABLET LARGE (max-width: 1024px)
+           =========================== */
+        @media (max-width: 1024px) {
+
+            .sidebar {
+                width: 200px;
+            }
+
+            .content-area {
+                margin-left: 210px;
+            }
+
+            .sidebar.collapsed ~ .content-area {
+                margin-left: 90px;
+            }
+        }
+
+        /* ===========================
+           DESKTOP (default)
+           =========================== */
+
         /* --- Header --- */
         .header {
             position: fixed; top: 0; left: 0;
@@ -41,19 +122,14 @@
         }
 
         .logo-container { height: 65px; }
-        .logo-container img {
-            height: 100%; width: auto;
-        }
+        .logo-container img { height: 100%; width: auto; }
 
         .header-right {
             display: flex; align-items: center;
             gap: 15px; margin-left: auto;
         }
 
-        .profile-icon {
-            font-size: 22px; cursor: pointer;
-            color: #ffffff;
-        }
+        .profile-icon { font-size: 22px; cursor: pointer; color: #ffffff; }
 
         .logout-btn {
             background: #dc3545; color: #fff;
@@ -80,7 +156,7 @@
             padding: 14px 25px; color: #f1f1f1;
             text-decoration: none; margin: 8px 10px;
             border-radius: 8px; font-weight: 500;
-            transition: all 0.2s ease; white-space: nowrap;
+            transition: 0.2s; white-space: nowrap;
         }
         .sidebar nav ul li a:hover,
         .sidebar nav ul li a.active {
@@ -101,11 +177,17 @@
             transition: 0.3s;
         }
         .sidebar.collapsed ~ .content-area { margin-left: 100px; }
-        .content { padding: 30px; animation: fadeIn 0.5s ease-in; }
-        .dashboard-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+            gap: 20px;
+        }
+
         .dashboard-card {
             background: #fff; padding: 25px; border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: 0.2s;
         }
         .dashboard-card:hover { transform: translateY(-5px); }
         .dashboard-card h3 { margin: 0 0 10px; font-size: 18px; color: #007BFF; }
@@ -260,8 +342,12 @@
             const contentArea = document.querySelector('.content-area');
 
             menuToggle.addEventListener('click', function() {
-                sidebar.classList.toggle('collapsed');
-                contentArea.classList.toggle('collapsed');
+                // Jika layar kecil (mobile)
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.toggle('open');   // gunakan .open untuk mobile
+                } else {
+                    sidebar.classList.toggle('collapsed');  // gunakan .collapsed untuk desktop
+                }
             });
 
             // Modal
