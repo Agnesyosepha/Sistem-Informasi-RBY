@@ -49,14 +49,14 @@ document.addEventListener("DOMContentLoaded", function () {
             label.style.color = "green";
         } 
         else if (value === "Final") {
-            label.style.color = "orange";
-        } 
-        else if (value === "Pending") {
             label.style.color = "blue";
         } 
-        else {
-            label.style.color = "red"; // default untuk status lain
-        }
+        else if (value === "Pending") {
+            label.style.color = "orange";
+        } 
+        else if (value === "Ditolak") {
+            label.style.color = "red";
+        } 
     });
 });
 </script>

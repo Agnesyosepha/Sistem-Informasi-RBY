@@ -113,11 +113,19 @@
 function applyColor(selectElement) {
     const value = selectElement.value;
 
-    selectElement.style.color =
-        value === "Disetujui" ? "green" :
-        value === "Final" ? "blue" :
-        value === "Pending" ? "orange" :
-        "red";
+    if (value === "Disetujui") {
+        selectElement.style.color = "green";
+    }
+    if (value === "Final") {
+        selectElement.style.color = "blue";
+    }
+    if (value === "Pending") {
+        selectElement.style.color = "orange";
+    }
+    if (value === "Ditolak") {
+        selectElement.style.color = "red";
+    }
+    
 }
 
 // Warna saat halaman diload
