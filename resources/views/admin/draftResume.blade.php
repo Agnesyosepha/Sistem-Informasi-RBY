@@ -61,8 +61,8 @@ document.addEventListener("DOMContentLoaded", function () {
         else if (value === "Terkirim") {
             label.style.color = "blue";
         } 
-        else {
-            label.style.color = "red"; // default untuk status lain
+        else if (value === "Pending") {
+            label.style.color = "red";
         }
     });
 });

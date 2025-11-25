@@ -107,8 +107,9 @@
                             class="status-select"
                             data-status="{{ $ar->status }}">
                             <option value="Final" {{ $ar->status == 'Final' ? 'selected' : '' }}>Final</option>
-                            <option value="Disetujui" {{ $ar->status == 'Disetujui' ? 'selected' : '' }}>Disetujui</option>
                             <option value="Terkirim" {{ $ar->status == 'Terkirim' ? 'selected' : '' }}>Terkirim</option>
+                            <option value="Pending" {{ $ar->status == 'Pending' ? 'selected' : '' }}>Pending</option>
+                            <option value="Disetujui" {{ $ar->status == 'Disetujui' ? 'selected' : '' }}>Disetujui</option>
                           </select>
                         </td>
                 </tr>
@@ -132,6 +133,9 @@ function applyColor(selectElement) {
     } 
     else if (value === "Terkirim") {
         selectElement.style.color = "blue";
+    }
+    else if (value === "Pending") {
+        selectElement.style.color = "red";
     }
 }
 

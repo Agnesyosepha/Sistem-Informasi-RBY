@@ -77,7 +77,7 @@ Route::post('/superadmin/admin/surat-tugas/update-status/{id}', [App\Http\Contro
 
 Route::get('/superadmin/admin/superadmin-draftResume', [\App\Http\Controllers\AdminController::class, 'SAdraftResume'])->name('superadmin.admin.SAdraftResume');
 Route::post('/superadmin/admin/superadmin-draftResume/store', [\App\Http\Controllers\AdminController::class, 'SAdraftResumeStore'])->name('superadmin.admin.SAdraftResume.store');
-Route::post('/superadmin/admin/superadmin-draftResume/update-status/{id}', [AdminController::class, 'updateStatusSAdraftResume'])->name('superadmin.admin.SAdraftResume.updateStatus');
+Route::post('/superadmin/admin/superadmin-draftResume/update-status/{id}', [App\Http\Controllers\AdminController::class, 'updateStatusDraftResume'])->name('superadmin.admin.SAdraftResume.updateStatus');
 
 Route::get('/superadmin/admin/draftLaporan', [\App\Http\Controllers\AdminController::class, 'SAdraftLaporan'])->name('superadmin.admin.SAdraftLaporan');
 Route::post('/superadmin/admin/draftLaporan/store',[AdminController::class, 'storeSAdraftLaporan'])->name('superadmin.admin.SAdraftLaporan.store');
