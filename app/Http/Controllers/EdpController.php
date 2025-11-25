@@ -20,7 +20,8 @@ class EdpController extends Controller
 
         return view('EDP.edp', compact('staff'));
     }
-  public function dataMentah()
+  
+    public function dataMentah()
     {
         // ambil list file yang sudah diupload
         $files = \Storage::files('edp_data');
@@ -50,63 +51,63 @@ class EdpController extends Controller
     return view('EDP.dataAktif', compact('dataAktif'));
 }
 
-public function SAdataAktif()
-{
-    $dataAktif = DataAktif::all();
-    return view('EDP.SAdataAktif', compact('dataAktif'));
-}
+    public function SAdataAktif()
+    {
+        $dataAktif = DataAktif::all();
+        return view('EDP.SAdataAktif', compact('dataAktif'));
+    }
 
-public function storeDataAktif(Request $request)
-{
-    $request->validate([
-        'tanggal' => 'required|date',
-        'jenis' => 'required|string',
-        'pemberi' => 'required|string',
-        'pengguna' => 'required|string',
-        'surveyor' => 'required|string',
-        'lokasi' => 'required|string',
-        'objek' => 'required|string',
-        'status_progres' => 'required|string',
-    ]);
+    public function storeDataAktif(Request $request)
+    {
+        $request->validate([
+            'tanggal' => 'required|date',
+            'jenis' => 'required|string',
+            'pemberi' => 'required|string',
+            'pengguna' => 'required|string',
+            'surveyor' => 'required|string',
+            'lokasi' => 'required|string',
+            'objek' => 'required|string',
+            'status_progres' => 'required|string',
+        ]);
 
-    DataAktif::create($request->all());
+        DataAktif::create($request->all());
 
-    return redirect()->back()->with('success', 'Data berhasil ditambahkan!');
-}
+        return redirect()->back()->with('success', 'Data berhasil ditambahkan!');
+    }
 
 
 // Dokumen Final
-public function dokumenFinal(Request $request)
+    public function dokumenFinal(Request $request)
     {
         // Ambil file dari storage/app/public/dokumen_final
-        $files = Storage::disk('public')->files('dokumen_final');
+            $files = Storage::disk('public')->files('dokumen_final');
 
         // Buat daftar file dengan tanggal upload
-        $dokumenFinal = collect($files)->map(function ($file) {
-            return [
-                'nama' => $file,
-                'tanggal' => Carbon::createFromTimestamp(Storage::disk('public')->lastModified($file)),
-            ];
-        });
+            $dokumenFinal = collect($files)->map(function ($file) {
+                return [
+                    'nama' => $file,
+                '   tanggal' => Carbon::createFromTimestamp(Storage::disk('public')->lastModified($file)),
+                ];
+            });
 
         // Filter berdasarkan search
-        if ($request->filled('search')) {
-            $dokumenFinal = $dokumenFinal->filter(function ($item) use ($request) {
-                return stripos(basename($item['nama']), $request->search) !== false;
-            });
-        }
+            if ($request->filled('search')) {
+                $dokumenFinal = $dokumenFinal->filter(function ($item) use ($request) {
+                    return stripos(basename($item['nama']), $request->search) !== false;
+                });
+            }
 
         // Filter berdasarkan bulan
-        if ($request->filled('bulan')) {
-            $dokumenFinal = $dokumenFinal->filter(function ($item) use ($request) {
-                return Carbon::parse($item['tanggal'])->month == $request->bulan;
-            });
-        }
+            if ($request->filled('bulan')) {
+                $dokumenFinal = $dokumenFinal->filter(function ($item) use ($request) {
+                    return Carbon::parse($item['tanggal'])->month == $request->bulan;
+                });
+            }
 
         // Urutkan berdasarkan tanggal terbaru
-        $dokumenFinal = $dokumenFinal->sortByDesc('tanggal')->values();
+            $dokumenFinal = $dokumenFinal->sortByDesc('tanggal')->values();
 
-        return view('EDP.dokumenFinal', ['dokumenFinal' => $dokumenFinal]);
+            return view('EDP.dokumenFinal', ['dokumenFinal' => $dokumenFinal]);
     }
 
     public function uploadDokumenFinal(Request $request)
