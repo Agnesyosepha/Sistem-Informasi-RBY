@@ -17,6 +17,49 @@
         }
         .main-container { display: flex; height: 100vh; }
 
+        /* --- MOBILE SCREEN (max-width: 768px) --- */
+        @media (max-width: 768px) {
+
+            .sidebar {
+                width: 220px;
+                transform: translateX(-100%);
+            }
+
+            #menu-toggle {
+                font-size: 26px;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                padding-left: 0 !important;
+            }
+
+            .header {
+                padding: 0 15px;
+            }
+
+            .logo-container img {
+                height: 50px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+        }
+
+        /* --- TABLET (max-width: 1024px) --- */
+        @media (max-width: 1024px) {
+            .main-content {
+                padding-left: 80px;
+            }
+            .sidebar {
+                width: 200px;
+            }
+        }
+
         /* --- Sidebar --- */
         .sidebar {
             position: fixed; top: 80px; left: 0;
@@ -132,9 +175,17 @@
             const menuToggle = document.getElementById('menu-toggle');
             const sidebar = document.getElementById('sidebar');
             menuToggle.addEventListener('click', function() {
-                sidebar.classList.toggle('collapsed');
+
+                // Jika layar kecil (mobile)
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.toggle('open');   // gunakan .open untuk mobile
+                } else {
+                    sidebar.classList.toggle('collapsed');  // gunakan .collapsed untuk desktop
+                }
+
             });
         });
+
     </script>
     @yield('scripts')
 
