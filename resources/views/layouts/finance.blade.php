@@ -3,7 +3,7 @@
 @section('title', 'Finance')
 
 @section('content')
-    <h1><i class="fas fa-file-invoice-dollar"></i> Dashboard Finance</h1>
+    <h1><i class="fas fa-file-invoice-dollar"></i> Dashboa  rd Finance</h1>
     <p>Data - data keuangan yang perlu divalidasi.</p>
 
     <div class="dashboard-card" style="margin-top:20px;">
