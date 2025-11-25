@@ -82,6 +82,7 @@
                     <th style="padding:10px; text-align:left;">Deadline</th>
                     <th style="padding:10px; text-align:left;">Tanggal Berakhir</th>
                     <th style="padding:10px; text-align:center;">Status</th>
+                    <th style="padding:10px; text-align:center;">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -105,12 +106,56 @@
                             <option value="Proses" {{ $p->status == 'Proses' ? 'selected' : '' }}>Proses</option>
                           </select>
                         </td>
+                        <td style="padding:10px; text-align:center;">
+    <button type="button"
+        onclick="openModal('{{ route('superadmin.admin.SAproposal.destroy', $p->id) }}')"
+        style="background:#dc3545; color:white; padding:6px 12px;
+        border:none; border-radius:5px; cursor:pointer;">
+        Hapus
+    </button>
+</td>
+
                       </tr>
                   @endforeach
               </tbody>
           </table>
       </div>
 @endsection
+<!-- Modal Konfirmasi Hapus -->
+<div id="modalHapus" style="
+    display:none; position:fixed; z-index:2000;
+    left:0; top:0; width:100%; height:100%;
+    background:rgba(0,0,0,0.5); padding-top:60px;">
+    
+    <div style="background:white; margin:auto; padding:20px;
+        border-radius:10px; width:30%; text-align:center;
+        box-shadow:0 4px 12px rgba(0,0,0,0.3);">
+        
+        <h3 style="margin-bottom:15px;">Konfirmasi Hapus</h3>
+        <p>Apakah kamu yakin ingin menghapus proposal ini?</p>
+
+        <form id="formHapus" method="POST" style="display:flex; gap:10px; justify-content:center; margin-top:15px;">
+        @csrf
+        @method('DELETE')
+
+        <button type="submit" 
+            style="background:#dc3545; color:white; padding:10px 18px;
+            border:none; border-radius:6px; cursor:pointer;">
+            Ya, Hapus!
+        </button>
+
+        <button type="button" onclick="closeModal()"
+            style="background:#6c757d; color:white; padding:10px 18px;
+            border:none; border-radius:6px; cursor:pointer;">
+            Batal
+        </button>
+    </form>
+
+    </div>
+</div>
+
+
+
 
 @section('scripts')
 <script>
@@ -151,5 +196,16 @@ function updateStatus(id, selectElement) {
     .then(data => console.log(data))
     .catch(err => console.error(err));
 }
+
+// Hapus
+function openModal(actionUrl) {
+    document.getElementById('formHapus').action = actionUrl;
+    document.getElementById('modalHapus').style.display = 'block';
+}
+
+function closeModal() {
+    document.getElementById('modalHapus').style.display = 'none';
+}
+
 </script>
 @endsection

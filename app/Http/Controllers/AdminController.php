@@ -115,6 +115,15 @@ class AdminController extends Controller
         return view('admin.SAproposal', compact('proposal', 'jumlahProposal'));
     }
 
+    public function destroy($id)
+    {
+        $proposal = \App\Models\Proposal::findOrFail($id);
+        $proposal->delete();
+
+        return redirect()->back()->with('success', 'Proposal berhasil dihapus!');
+    }
+
+
 
 // Adendum
     public function adendum()
