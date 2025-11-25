@@ -86,7 +86,7 @@ class EdpController extends Controller
             $dokumenFinal = collect($files)->map(function ($file) {
                 return [
                     'nama' => $file,
-                '   tanggal' => Carbon::createFromTimestamp(Storage::disk('public')->lastModified($file)),
+                    'tanggal' => Carbon::createFromTimestamp(Storage::disk('public')->lastModified($file)),
                 ];
             });
 
