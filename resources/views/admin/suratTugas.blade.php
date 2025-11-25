@@ -53,8 +53,7 @@
                     <td style="padding:10px; text-align:center; font-weight:600;
                         color:
                             {{ $surat['status'] == 'Selesai' ? 'green' :
-                            ($surat['status'] == 'Proses' ? 'orange' : 'blue') }};
-                    ">
+                            ($surat['status'] == 'Proses' ? 'blue' : 'orange') }};">
                         {{ $surat['status'] }}
                     </td>
                 </tr>

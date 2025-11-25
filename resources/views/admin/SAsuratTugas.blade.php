@@ -92,7 +92,7 @@
                         <td style="padding:10px;">{{ $st->adendum ?? '-' }}</td>
                         <td style="padding:10px; text-align:center;">
                             <select 
-                                onchange="applyColor(this)" 
+                                onchange="updateStatus({{ $st->id }}, this)" 
                                 style="padding:6px; border-radius:5px; border:1px solid #ccc; font-weight:600;"
                                 class="status-select"
                                 data-status="{{ $st->status }}">
@@ -120,5 +120,29 @@ function applyColor(selectElement) {
 
 // Inisialisasi warna saat load
 document.querySelectorAll('.status-select').forEach(select => applyColor(select));
+
+// Update status
+function updateStatus(id, selectElement) {
+
+    applyColor(selectElement);
+
+    fetch(`/superadmin/admin/surat-tugas/update-status/${id}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        },
+        body: JSON.stringify({ status: selectElement.value })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.success){
+            console.log(data.message);
+            alert("Status berhasil diperbarui!"); // opsional
+        }
+    })
+    .catch(err => console.error(err));
+}
 </script>
+
 @endsection

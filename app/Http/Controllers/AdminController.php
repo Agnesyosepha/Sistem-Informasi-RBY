@@ -50,6 +50,15 @@ class AdminController extends Controller
     {
         return $this->suratTugasAdmin();
     }
+
+    public function updateSuratTugas(Request $request, $id)
+    {
+        $suratTugas = \App\Models\SuratTugas::findOrFail($id);
+        $suratTugas->status = $request->status;
+        $suratTugas->save();
+
+        return response()->json(['message' => 'Status updated']);
+    }
     
 
 // Daftar Proposal
