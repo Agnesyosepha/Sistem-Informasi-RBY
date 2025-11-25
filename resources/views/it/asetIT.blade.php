@@ -11,7 +11,7 @@
     <h3><i class="fas fa-box"></i> Data Aset</h3>
 
     <table style="width:100%; border-collapse: collapse; margin-top:15px;">
-        <thead style="background:#898AC4; color:white;">
+        <thead style="background:#239BA7; color:white;">
             <tr>
                 <th style="padding:12px; text-align:left;">Nama Aset</th>
                 <th style="padding:12px; text-align:left;">Kategori</th>

@@ -7,10 +7,9 @@
     <p>Berikut daftar laptop yang digunakan oleh staf perusahaan.</p>
 
     
-    
     <div class="dashboard-card" style="margin-top:30px;">
     <table style="width:100%; border-collapse: collapse; margin-top:15px;">
-        <thead style="background:#DE8F5F; color:white;">
+        <thead style="background:#CDE5FF; color:black;">
             <tr>
                 <th style="padding:10px; text-align:left;">Nama Laptop</th>
                 <th style="padding:10px; text-align:left;">Pengguna</th>

@@ -10,7 +10,7 @@
     
     <div class="dashboard-card" style="margin-top:30px;">
     <table style="width:100%; border-collapse: collapse; margin-top:15px;">
-        <thead style="background:#007BFF; color:white;">
+        <thead style="background:#ABE7B2; color:black;">
             <tr>
                 <th style="padding:10px; text-align:left;">Nama Server</th>
                 <th style="padding:10px; text-align:left;">Alamat IP</th>

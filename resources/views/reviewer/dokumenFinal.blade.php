@@ -10,7 +10,7 @@
   <h3><i class="fas fa-folder-open"></i> Daftar Dokumen Final</h3>
 
   <table style="width:100%; border-collapse:collapse; margin-top:20px; background:white; border-radius:8px; overflow:hidden;">
-      <thead style="background:#007BFF; color:white;">
+      <thead style="background:#ABE7B2; color:black;">
           <tr>
               <th style="padding:12px 14px; text-align:left; width:60px;">No</th>
               <th style="padding:12px 14px; text-align:left;">Nama Dokumen</th>

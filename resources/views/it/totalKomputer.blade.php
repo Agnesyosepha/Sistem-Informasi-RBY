@@ -11,7 +11,7 @@
     <h3><i class="fas fa-desktop"></i> Data Komputer</h3>
 
     <table style="width:100%; border-collapse: collapse; margin-top:15px;">
-        <thead style="background:#55AD9B; color:white;">
+        <thead style="background:#FFE082; color:black;">
             <tr>
                 <th style="padding:12px; text-align:left;">Nama Komputer</th>
                 <th style="padding:12px; text-align:left;">Pengguna</th>
