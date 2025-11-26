@@ -107,11 +107,16 @@
             </tr>
         </thead>
         <tbody>
-            @forelse($files as $index => $file)
+            @php
+                // Pastikan kita membalik urutan dan reindex sehingga item terbaru jadi index 0
+                $filesReversed = collect($files)->reverse()->values();
+            @endphp
+
+            @forelse($filesReversed as $index => $file)
             <tr>
                 <td>{{ $index + 1 }}</td>
                 <td>{{ $file['nama'] }}</td>
-                <td>{{ $file['tanggal'] }}</td>
+                <td>{{ \Carbon\Carbon::parse($file['tanggal'])->format('d-m-Y') }}</td>
                 <td><span class="status-finish">Selesai</span></td>
             </tr>
             @empty
@@ -120,6 +125,7 @@
             </tr>
             @endforelse
         </tbody>
+
     </table>
 </div>
 
