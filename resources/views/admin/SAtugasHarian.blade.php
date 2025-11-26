@@ -86,11 +86,11 @@
         <tbody>
             @foreach($tugasHarian as $tugas)
                 <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">{{ $tugas['pemberi_tugas'] }}</td>
-                    <td style="padding:10px;">{{ $tugas['debitur'] }}</td>
-                    <td style="padding:10px;">{{ $tugas['no_ppjp'] }}</td>
-                    <td style="padding:10px;">{{ $tugas['tanggal_survei'] }}</td>
-                    <td style="padding:10px;">{{ $tugas['tim_lapangan'] }}</td>
+                    <td>{{ $tugas->pemberi_tugas }}</td>
+                    <td>{{ $tugas->debitur }}</td>
+                    <td>{{ $tugas->no_ppjp }}</td>
+                    <td>{{ $tugas->tanggal_survei }}</td>
+                    <td>{{ $tugas->tim_lapangan }}</td>
                     <td style="padding:10px; text-align:center;">
                           <select 
                             onchange="updateStatusTugas({{ $tugas->id }}, this)" 

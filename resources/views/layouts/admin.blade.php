@@ -58,37 +58,31 @@
             <tr>
                 <th style="padding:10px; text-align:left;">Pemberi Tugas</th>
                 <th style="padding:10px; text-align:left;">Debitur</th>
-                <th style="padding:10px; text-align:left;">No. PPJP</th>
-                <th style="padding:10px; text-align:center;">Tanggal Survei</th>
-                <th style="padding:10px; text-align:center;">Tim Lapangan</th>
+                <th style="padding:10px; text-align:left;">No.PPJP</th>
+                <th style="padding:10px; text-align:left;">Tanggal Survei</th>
+                <th style="padding:10px; text-align:left;">Tim Lapangan</th>
                 <th style="padding:10px; text-align:center;">Status</th>
             </tr>
         </thead>
         <tbody>
-            <tr style="border-bottom:1px solid #ddd;">
-                <td style="padding:10px;">PT Caturkarda Depo Bangunan, Tbk</td>
-                <td style="padding:10px;">PT Caturkarda Depo Bangunan, Tbk</td>
-                <td style="padding:10px;">00166/RBY-PPJP/BKS/VIII/2024</td>
-                <td style="padding:10px;">17 Agustus 2023</td>
-                <td style="padding:10px;">Fajar</td>
-                <td style="padding:10px; text-align:center; color:green; font-weight:600;">Sukses</td>
-            </tr>
-            <tr style="border-bottom:1px solid #ddd;">
-                <td style="padding:10px;">Port Mori Corporation</td>
-                <td style="padding:10px;">Port Mori Corporation</td>
-                <td style="padding:10px;">01026/RBY-PPJP/BKS/VII/2024</td>
-                <td style="padding:10px;">24 Juli 2024</td>
-                <td style="padding:10px;">Jasmani</td>
-                <td style="padding:10px; text-align:center; color:green; font-weight:600;">Sukses</td>
-            </tr>
-            <tr style="border-bottom:1px solid #ddd;">
-                <td style="padding:10px;">PT Bahagia Biru</td>
-                <td style="padding:10px;">PT Bahagia Biru</td>
-                <td style="padding:10px;">00199/RBY-PPJP/BKS/VI/2024</td>
-                <td style="padding:10px;">08 Oktober 2025</td>
-                <td style="padding:10px;">Santo</td>
-                <td style="padding:10px; text-align:center; color:green; font-weight:600;">Sukses</td>
-            </tr>
+            @foreach($tugasHarian as $tugas)
+                <tr style="border-bottom:1px solid #ddd;">
+                    <td>{{ $tugas->pemberi_tugas }}</td>
+                    <td>{{ $tugas->debitur }}</td>
+                    <td>{{ $tugas->no_ppjp }}</td>
+                    <td>{{ $tugas->tanggal_survei }}</td>
+                    <td>{{ $tugas->tim_lapangan }}</td>
+                    <td style="padding:10px; text-align:center;">
+                            <span class="status-label" data-status="{{ $tugas->status }}">
+                                {{ $tugas->status }}
+                            </span>
+                        </td>
+                        
+                    <td style="padding:10px; text-align:center; font-weight:600;">
+                        
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 </div>

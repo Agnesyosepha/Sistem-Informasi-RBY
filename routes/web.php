@@ -96,33 +96,17 @@ Route::delete('/superadmin/admin/tugas-harian/{id}', [AdminController::class, 'd
 // Surveyor di Superadmin
 
 Route::get('/superadmin/surveyor', function () {
-    return view('superadmin.surveyorAdmin');
-})->name('superadmin.surveyor')->middleware('auth');
-Route::get(
-    '/superadmin/admin/lokasi-survei',
-    [SurveyorController::class, 'lokasiSurveiAdmin']
-)->name('superadmin.admin.SAlokasiSurvei');
-Route::post(
-    '/superadmin/admin/lokasi-survei/store',
-    [SurveyorController::class, 'storeLokasiSurveiAdmin']
-)->name('superadmin.admin.SAlokasiSurvei.store');
-Route::post(
-    '/superadmin/admin/lokasi-survei/update-status/{id}',
-    [SurveyorController::class, 'updateStatusAdmin']
-)->name('superadmin.admin.SAlokasiSurvei.updateStatus');
+    return view('superadmin.surveyorAdmin');})->name('superadmin.surveyor')->middleware('auth');
+Route::get('/superadmin/admin/lokasi-survei',[SurveyorController::class, 'lokasiSurveiAdmin'])->name('superadmin.admin.SAlokasiSurvei');
+Route::post('/superadmin/admin/lokasi-survei/store',[SurveyorController::class, 'storeLokasiSurveiAdmin'])->name('superadmin.admin.SAlokasiSurvei.store');
+Route::post('/superadmin/admin/lokasi-survei/update-status/{id}',[SurveyorController::class, 'updateStatusAdmin'])->name('superadmin.admin.SAlokasiSurvei.updateStatus');
 Route::get('/surveyor/lokasisurvei', [SurveyorController::class, 'lokasiSurvei'])->name('surveyor.lokasisurvei');
-Route::get('/superadmin/admin/update-proyek',
-    [SurveyorController::class, 'updateProyekAdmin']
-)->name('superadmin.admin.SAupdateProyek');
-Route::post('/superadmin/admin/update-proyek/store',
-    [SurveyorController::class, 'storeProyek']
-)->name('superadmin.admin.SAupdateProyek.store');
+Route::get('/superadmin/admin/update-proyek',[SurveyorController::class, 'updateProyekAdmin'])->name('superadmin.admin.SAupdateProyek');
+Route::post('/superadmin/admin/update-proyek/store',[SurveyorController::class, 'storeProyek'])->name('superadmin.admin.SAupdateProyek.store');
 
 
-Route::get('/superadmin/laporan-penilaian', [SurveyorController::class, 'laporanPenilaianAdmin'])
-    ->name('superadmin.admin.SAlaporanpenilaianfinal');
-Route::post('/superadmin/laporan-penilaian/store', [SurveyorController::class, 'storeLaporanPenilaian'])
-    ->name('superadmin.admin.SAlaporanpenilaianfinal.store');
+Route::get('/superadmin/laporan-penilaian', [SurveyorController::class, 'laporanPenilaianAdmin'])->name('superadmin.admin.SAlaporanpenilaianfinal');
+Route::post('/superadmin/laporan-penilaian/store', [SurveyorController::class, 'storeLaporanPenilaian'])->name('superadmin.admin.SAlaporanpenilaianfinal.store');
 
 Route::get('/superadmin/jadwal-surveyor', 
     [SurveyorController::class, 'jadwalAdmin']
@@ -205,6 +189,10 @@ Route::get('/admin/draftLaporan', [\App\Http\Controllers\AdminController::class,
 Route::get('/admin/laporan-final', [AdminController::class, 'laporanFinal'])->name('admin.laporanFinal');
 
 Route::get('/admin/tim', [AdminController::class, 'tim'])->name('admin.tim');
+
+Route::get('/admin', [AdminController::class, 'index'])
+    ->name('admin')
+    ->middleware('auth');
 
 
 // Surveyor

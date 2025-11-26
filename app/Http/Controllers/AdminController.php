@@ -9,13 +9,19 @@ use App\Models\Adendum;
 use App\Models\SuratTugas;
 use App\Models\DraftResume;
 use App\Models\DraftLaporan;
+use App\Models\TugasHarian;
+
 
 class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.index'); // Halaman utama dashboard admin
+        $jumlahProposal = Proposal::count();
+        $tugasHarian = TugasHarian::all();
+
+        return view('layouts.admin', compact('jumlahProposal', 'tugasHarian'));
     }
+
 
 // Surat Tugas
     public function SAsuratTugas()
@@ -302,39 +308,29 @@ class AdminController extends Controller
     // Tugas Harian
     public function SAtugasHarian()
     {
-        $tugasHarian = \App\Models\TugasHarian::all();
+        $tugasHarian = TugasHarian::all();
         return view('admin.SAtugasHarian', compact('tugasHarian'));
     }
 
     public function storeSAtugasHarian(Request $request)
     {
-        \App\Models\TugasHarian::create([
-            'pemberi_tugas'  => $request->pemberi_tugas,
-            'debitur'       => $request->debitur,
-            'no_ppjp'        => $request->no_ppjp,
-            'tanggal_survei'       => $request->tanggal_survei,
-            'tim_lapangan'   => $request->tim_lapangan,
-            'status'        => $request->status,
-        ]);
-
-        return redirect()->route('superadmin.admin.SAtugasHarian')->with('success', 'Tugas Harian berhasil ditambahkan!');
+        TugasHarian::create($request->all());
+        return back()->with('success', 'Tugas berhasil ditambahkan');
     }
 
     public function updateStatusTugas(Request $request, $id)
     {
-        $tugasHarian = TugasHarian::findOrFail($id);
-        $tugasHarian->status = $request->status;
-        $tugasHarian->save();
+        $task = TugasHarian::findOrFail($id);
+        $task->status = $request->status;
+        $task->save();
 
         return response()->json(['message' => 'Status updated']);
     }
 
     public function destroyTugas($id)
     {
-        $tugasHarian = \App\Models\TugasHarian::findOrFail($id);
-        $tugasHarian->delete();
-
-        return redirect()->back()->with('success', 'Tugas Harian berhasil dihapus!');
+        TugasHarian::findOrFail($id)->delete();
+        return back()->with('success', 'Tugas berhasil dihapus');
     }
 
 
