@@ -44,11 +44,11 @@
     <table style="width:100%; border-collapse: collapse; margin-top:15px;">
         <thead style="background:#007BFF; color:white;">
             <tr>
-                <th style="padding:10px;">Surveyor</th>
-                <th style="padding:10px;">Tanggal</th>
-                <th style="padding:10px;">Lokasi</th>
-                <th style="padding:10px;">Deskripsi</th>
-                <th style="padding:10px; text-align:center;">Status</th>
+                <th style="padding:10px; text-align:left;">Surveyor</th>
+                <th style="padding:10px; text-align:left;">Tanggal</th>
+                <th style="padding:10px; text-align:left;">Lokasi</th>
+                <th style="padding:10px; text-align:left;">Deskripsi</th>
+                <th style="padding:10px; text-align:left;">Status</th>
             </tr>
         </thead>
         <tbody>
@@ -58,9 +58,7 @@
                     <td style="padding:10px;">{{ \Carbon\Carbon::parse($j->tanggal)->format('d M Y') }}</td>
                     <td style="padding:10px;">{{ $j->lokasi }}</td>
                     <td style="padding:10px;">{{ $j->deskripsi }}</td>
-                    <td style="padding:10px; text-align:center;
-                        font-weight:600; 
-                        color:{{ $j->status == 'Selesai' ? 'green' : 'orange' }};">
+                    <td style="padding:10px; font-weight:600; color:{{ $j->status == 'Selesai' ? 'green' : 'orange' }};">
                         {{ $j->status }}
                     </td>
                 </tr>
