@@ -139,14 +139,14 @@
             left: 0;
             width: 100%;
             height: 80px;
-            background-color: #0E2148; color: white;
+            background-color: #898AC4; color: white;
             color: #ffffff;
             display: flex;
             align-items: center;
             padding: 0 20px;
             box-sizing: border-box;
             z-index: 1000;
-            border-bottom: 3px solid #FEC5F6;
+            border-bottom: 3px solid #FF8F8F;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         .warn-icon {
@@ -220,7 +220,7 @@
             left: 0;
             width: 250px; 
             height: calc(100% - 80px);
-            background: linear-gradient(180deg, #0E2148, #3C467B);
+            background: linear-gradient(180deg, #898AC4, #3C467B);
             padding-top: 20px;
             transition: width 0.3s ease-in-out;
             z-index: 999; 

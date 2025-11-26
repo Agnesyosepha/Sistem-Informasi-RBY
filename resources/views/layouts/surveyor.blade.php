@@ -17,7 +17,7 @@
         <a href="{{ route('surveyor.updateProyek') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card" style="cursor:pointer;">
                 <h3><i class="fas fa-chart-line"></i> Update Proyek</h3>
-                <p><strong>Ringkasan Semua Status Proyek</strong></p>
+                <p><strong>Ringkasan Status Proyek</strong></p>
             </div>
         </a>
         <a href="{{ route('surveyor.workingpaper') }}" style="text-decoration:none; color:inherit;">
@@ -28,8 +28,8 @@
         </a>
         <a href="{{ route('surveyor.laporanPenilaian') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
-                <h3><i class="fas fa-file"></i> Laporan Penilaian-Final</h3>
-                <p><strong >6 dokumen</strong></p>
+                <h3><i class="fas fa-file"></i> Laporan Penilaian Final</h3>
+                
             </div>
         </a>
          <a href="{{ route('surveyor.tim') }}" class="dashboard-card" style="display:block; color:inherit; text-decoration:none;">
