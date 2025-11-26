@@ -39,40 +39,38 @@
     </div>
     
     <div class="dashboard-card" style="margin-top:30px;">
-        <h3><i class="fas fa-calendar-alt"></i> Jadwal Surveyor</h3>
-        <table style="width:100%; border-collapse: collapse; margin-top:15px;">
-            <thead style="background:#007BFF; color:white;">
+    <h3><i class="fas fa-calendar-alt"></i> Jadwal Surveyor</h3>
+
+    <table style="width:100%; border-collapse: collapse; margin-top:15px;">
+        <thead style="background:#007BFF; color:white;">
+            <tr>
+                <th style="padding:10px;">Surveyor</th>
+                <th style="padding:10px;">Tanggal</th>
+                <th style="padding:10px;">Lokasi</th>
+                <th style="padding:10px;">Deskripsi</th>
+                <th style="padding:10px; text-align:center;">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($jadwal as $j)
+                <tr style="border-bottom:1px solid #ddd;">
+                    <td style="padding:10px;">{{ $j->nama_surveyor }}</td>
+                    <td style="padding:10px;">{{ \Carbon\Carbon::parse($j->tanggal)->format('d M Y') }}</td>
+                    <td style="padding:10px;">{{ $j->lokasi }}</td>
+                    <td style="padding:10px;">{{ $j->deskripsi }}</td>
+                    <td style="padding:10px; text-align:center;
+                        font-weight:600; 
+                        color:{{ $j->status == 'Selesai' ? 'green' : 'orange' }};">
+                        {{ $j->status }}
+                    </td>
+                </tr>
+            @empty
                 <tr>
-                    <th style="padding:10px; text-align:left;">Surveyor</th>
-                    <th style="padding:10px; text-align:left;">Tanggal</th>
-                    <th style="padding:10px; text-align:left;">Lokasi</th>
-                    <th style="padding:10px; text-align:left;">Deskripsi</th>
-                    <th style="padding:10px; text-align:center;">Status</th>
+                    <td colspan="5" style="text-align:center; padding:15px;">Belum ada jadwal</td>
                 </tr>
-            </thead>
-            <tbody>
-                <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">Dazai</td>
-                    <td style="padding:10px;">05 Sep 2025</td>
-                    <td style="padding:10px;">Jakarta</td>
-                    <td style="padding:10px;">Survey Tanah dan Rumah</td>
-                    <td style="padding:10px; text-align:center; color:green; font-weight:600;">Selesai</td>
-                </tr>
-                <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">Ranpo</td>
-                    <td style="padding:10px;">07 Okt 2025</td>
-                    <td style="padding:10px;">Bandung</td>
-                    <td style="padding:10px;">Survey Tanah Kosong</td>
-                    <td style="padding:10px; text-align:center; color:orange; font-weight:600;">Proses</td>
-                </tr>
-                <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">Naomi</td>
-                    <td style="padding:10px;">01 Nov 2025</td>
-                    <td style="padding:10px;">Bekasi</td>
-                    <td style="padding:10px;">Survey Bangunan</td>
-                    <td style="padding:10px; text-align:center; color:orange; font-weight:600;">Proses</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+            @endforelse
+        </tbody>
+    </table>
+</div>
+
 @endsection

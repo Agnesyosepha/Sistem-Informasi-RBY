@@ -8,15 +8,17 @@ use App\Models\ProyekBerjalan;
 use App\Models\ProyekSelesai;
 use App\Models\ProyekPending;
 use App\Models\LaporanPenilaian;
+use App\Models\JadwalSurveyor;
 
 class SurveyorController extends Controller
 {
     /* ================================
        DASHBOARD SURVEYOR (USER)
     ================================= */
-    public function index()
+     public function dashboard()
     {
-        return view('surveyor.index');
+        $jadwal = JadwalSurveyor::orderBy('tanggal', 'asc')->get();
+        return view('layouts.surveyor', compact('jadwal'));
     }
 
     public function tim()
@@ -195,10 +197,51 @@ class SurveyorController extends Controller
     }
 
 
-    // Working Paper
     public function workingPaper()
     {
         return view('surveyor.workingpaper');
     }
+
+    public function jadwalAdmin()
+    {
+        $jadwal = JadwalSurveyor::orderBy('tanggal', 'asc')->get();
+        return view('surveyor.SAjadwalsurveyor', compact('jadwal'));
+    }
+
+    public function storeJadwal(Request $request)
+    {
+        $request->validate([
+            'nama_surveyor' => 'required',
+            'tanggal' => 'required|date',
+            'lokasi' => 'required',
+            'deskripsi' => 'required',
+            'status' => 'required|in:Selesai,Proses',
+        ]);
+
+        JadwalSurveyor::create($request->all());
+
+        return back()->with('success', 'Jadwal Surveyor berhasil ditambahkan.');
+    }
+
+    
+    public function deleteJadwal($id)
+    {
+        JadwalSurveyor::findOrFail($id)->delete();
+        return back()->with('success', 'Jadwal Surveyor berhasil dihapus.');
+    }
+    public function updateJadwal(Request $request, $id)
+    {
+        $jadwal = JadwalSurveyor::findOrFail($id);
+
+        $jadwal->update([
+            'nama_surveyor' => $request->nama_surveyor,
+            'tanggal' => $request->tanggal,
+            'lokasi' => $request->lokasi,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('superadmin.jadwal.index')->with('success', 'Jadwal berhasil diperbarui');
+    }
+
 
 }

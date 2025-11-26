@@ -26,6 +26,12 @@
                 <p><strong >6 dokumen</strong></p>
             </div>
         </a>
+        <a href="{{ route('superadmin.jadwal.index') }}" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-calendar-alt"></i> Jadwal Surveyor</h3>
+                <p><strong>6 Jadwal</strong></p>
+            </div>
+        </a>
 </div>
 
 @endsection

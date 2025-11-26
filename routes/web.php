@@ -121,6 +121,19 @@ Route::get('/superadmin/laporan-penilaian', [SurveyorController::class, 'laporan
 Route::post('/superadmin/laporan-penilaian/store', [SurveyorController::class, 'storeLaporanPenilaian'])
     ->name('superadmin.admin.SAlaporanpenilaianfinal.store');
 
+Route::get('/superadmin/jadwal-surveyor', 
+    [SurveyorController::class, 'jadwalAdmin']
+)->name('superadmin.jadwal.index');
+
+Route::post('/superadmin/jadwal-surveyor/store',
+    [SurveyorController::class, 'storeJadwal']
+)->name('superadmin.jadwal.store');
+Route::put('/superadmin/jadwal-surveyor/update/{id}',
+    [SurveyorController::class, 'updateJadwal']
+)->name('superadmin.jadwal.update');
+Route::delete('/superadmin/jadwal-surveyor/delete/{id}',
+    [SurveyorController::class, 'deleteJadwal']
+)->name('superadmin.jadwal.delete');
 
 
 // EDP di Superadmin
@@ -192,9 +205,8 @@ Route::get('/admin/tim', [AdminController::class, 'tim'])->name('admin.tim');
 
 
 // Surveyor
-Route::get('/surveyor', function () {
-    return view('layouts.surveyor');
-})->name('surveyor');
+Route::get('/surveyor', [SurveyorController::class, 'dashboard'])
+    ->name('surveyor');
 
 Route::get('/surveyor/lokasisurvei', [\App\Http\Controllers\SurveyorController::class, 'lokasisurvei'])->name('surveyor.lokasisurvei');
 
@@ -208,7 +220,9 @@ Route::get('/surveyor/laporan-penilaian', [SurveyorController::class, 'laporanPe
     ->name('surveyor.laporanPenilaian');
 
 Route::get('/surveyor/working-paper', [SurveyorController::class, 'workingPaper'])->name('surveyor.workingpaper');
-
+Route::get('/surveyor/jadwal', 
+    [SurveyorController::class, 'dashboard']
+)->name('surveyor.jadwal');
 
 // EDP
 Route::get('/edp', function () {
@@ -277,10 +291,6 @@ Route::get('/it/upload-form', [ITController::class, 'uploadFormPage'])->name('it
 Route::post('/it/upload-form', [ITController::class, 'uploadFormStore'])->name('it.uploadForm.store');
 
 Route::get('/it/tim', [App\Http\Controllers\ITController::class, 'tim'])->name('it.tim');
-
-
-
-
 
 
 // Logout
