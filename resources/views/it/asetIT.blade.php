@@ -4,8 +4,8 @@
 
 @section('content')
 
-<h1><i class="fas fa-database"></i> Daftar Aset IT</h1>
-<p>Informasi lengkap mengenai aset infrastruktur IT perusahaan.</p>
+<h1><i class="fas fa-database"></i> Daftar Aset Perusahaan</h1>
+<p>Informasi lengkap mengenai aset infrastruktur perusahaan.</p>
 
 <div class="dashboard-card" style="margin-top:25px;">
     <h3><i class="fas fa-box"></i> Data Aset</h3>

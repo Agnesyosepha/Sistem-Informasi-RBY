@@ -88,9 +88,10 @@
                     <td style="padding:10px;">{{ $l->tgl_laporan }}</td>
                     <td style="padding:10px; text-align:center;">
                         @if($l->softcopy)
-                            <a href="{{ asset('storage/laporan/'.$l->softcopy) }}" target="_blank"
-                               style="color:white; background:#007BFF; padding:5px 10px; border-radius:5px; text-decoration:none;">
-                               PDF
+                            <a href="{{ asset('storage/laporan/'.$l->softcopy) }}" 
+                                target="_blank"
+                                style="color:white; background:#007BFF; padding:5px 10px; border-radius:5px; text-decoration:none;">
+                                PDF
                             </a>
                         @else
                             -
