@@ -37,12 +37,12 @@
                 <!-- Kolom Copy -->
                 <td style="padding:10px; text-align:center;">
                     <label style="margin-right:10px;">
-                        <input type="checkbox" name="softcopy_{{ $loop->index }}">
+                        <input type="checkbox" name="softcopy_{{ $loop->index }}" disabled>
                         Softcopy
                     </label>
 
                     <label>
-                        <input type="checkbox" name="hardcopy_{{ $loop->index }}">
+                        <input type="checkbox" name="hardcopy_{{ $loop->index }}" disabled>
                         Hardcopy
                     </label>
                 </td>
