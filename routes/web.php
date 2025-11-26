@@ -86,6 +86,8 @@ Route::post('/superadmin/admin/draftlaporan/update-status/{id}',[AdminController
 Route::get('/superadmin/admin/laporan-final', [\App\Http\Controllers\AdminController::class, 'SAlaporanFinal'])->name('superadmin.admin.SAlaporanFinal');
 Route::post('/superadmin/admin/laporan-final/store',[AdminController::class, 'storeSAlaporanFinal'])->name('superadmin.admin.SAlaporanFinal.store');
 
+Route::get('/superadmin/admin/tugas-harian', [\App\Http\Controllers\AdminController::class, 'SAtugasHarian'])->name('superadmin.admin.SAtugasHarian');
+
 
 
 // Surveyor di Superadmin
@@ -118,6 +120,9 @@ Route::get('/superadmin/laporan-penilaian', [SurveyorController::class, 'laporan
     ->name('superadmin.admin.SAlaporanpenilaianfinal');
 Route::post('/superadmin/laporan-penilaian/store', [SurveyorController::class, 'storeLaporanPenilaian'])
     ->name('superadmin.admin.SAlaporanpenilaianfinal.store');
+
+
+
 // EDP di Superadmin
 
 Route::get('/superadmin/edp', function () {
