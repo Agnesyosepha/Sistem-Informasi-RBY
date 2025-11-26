@@ -67,11 +67,11 @@
         <tbody>
             @foreach($tugasHarian as $tugas)
                 <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px; text-align:left; font-weight:600;">{{ $tugas->pemberi_tugas }}</td>
-                    <td style="padding:10px; text-align:left; font-weight:600;">{{ $tugas->debitur }}</td>
-                    <td style="padding:10px; text-align:left; font-weight:600;">{{ $tugas->no_ppjp }}</td>
-                    <td style="padding:10px; text-align:left; font-weight:600;">{{ $tugas->tanggal_survei }}</td>
-                    <td style="padding:10px; text-align:left; font-weight:600;">{{ $tugas->tim_lapangan }}</td>
+                    <td style="padding:10px; text-align:left;">{{ $tugas->pemberi_tugas }}</td>
+                    <td style="padding:10px; text-align:left;">{{ $tugas->debitur }}</td>
+                    <td style="padding:10px; text-align:left;">{{ $tugas->no_ppjp }}</td>
+                    <td style="padding:10px; text-align:left;">{{ $tugas->tanggal_survei }}</td>
+                    <td style="padding:10px; text-align:left;">{{ $tugas->tim_lapangan }}</td>
                     <td style="padding:10px; text-align:left; font-weight:600;">
                             <span class="status-label" data-status="{{ $tugas->status }}">
                                 {{ $tugas->status }}
