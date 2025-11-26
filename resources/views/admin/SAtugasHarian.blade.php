@@ -174,10 +174,10 @@ document.querySelectorAll('.status-select').forEach(select => {
     applyColor(select);
 });
 
-function updateStatus(id, selectElement) {
+function updateStatusTugas(id, selectElement) {
     applyColor(selectElement);
 
-    fetch(`/admin/tugas-harian/update-status/${id}`, {
+    fetch(`/superadmin/admin/tugas-harian/update-status/${id}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

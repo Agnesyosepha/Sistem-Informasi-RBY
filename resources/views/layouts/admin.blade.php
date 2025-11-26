@@ -114,6 +114,19 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.main-content').classList.toggle('collapsed');
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".status-label").forEach(function(label) {
+        const value = label.getAttribute("data-status");
+
+        if (value === "Urgent") {
+            label.style.color = "orange";
+        } 
+        else if (value === "Sangat Urgent") {
+            label.style.color = "red";
+        }
+    });
+});
 </script>
 @endsection
 
