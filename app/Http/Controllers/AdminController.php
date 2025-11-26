@@ -299,6 +299,45 @@ class AdminController extends Controller
     }
 
 
+    // Tugas Harian
+    public function SAtugasHarian()
+    {
+        $tugasHarian = \App\Models\TugasHarian::all();
+        return view('admin.SAtugasHarian', compact('tugasHarian'));
+    }
+
+    public function storeSAtugasHarian(Request $request)
+    {
+        \App\Models\TugasHarian::create([
+            'pemberi_tugas'  => $request->pemberi_tugas,
+            'debitur'       => $request->debitur,
+            'no_ppjp'        => $request->no_ppjp,
+            'tanggal_survei'       => $request->tanggal_survei,
+            'tim_lapangan'   => $request->tim_lapangan,
+            'status'        => $request->status,
+        ]);
+
+        return redirect()->route('superadmin.admin.SAtugasHarian')->with('success', 'Tugas Harian berhasil ditambahkan!');
+    }
+
+    public function updateStatusTugas(Request $request, $id)
+    {
+        $tugasHarian = TugasHarian::findOrFail($id);
+        $tugasHarian->status = $request->status;
+        $tugasHarian->save();
+
+        return response()->json(['message' => 'Status updated']);
+    }
+
+    public function destroyTugas($id)
+    {
+        $tugasHarian = \App\Models\TugasHarian::findOrFail($id);
+        $tugasHarian->delete();
+
+        return redirect()->back()->with('success', 'Tugas Harian berhasil dihapus!');
+    }
+
+
 
     // Anggota Admin
     public function tim()

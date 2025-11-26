@@ -87,6 +87,9 @@ Route::get('/superadmin/admin/laporan-final', [\App\Http\Controllers\AdminContro
 Route::post('/superadmin/admin/laporan-final/store',[AdminController::class, 'storeSAlaporanFinal'])->name('superadmin.admin.SAlaporanFinal.store');
 
 Route::get('/superadmin/admin/tugas-harian', [\App\Http\Controllers\AdminController::class, 'SAtugasHarian'])->name('superadmin.admin.SAtugasHarian');
+Route::post('/superadmin/admin/tugas-harian/store', [AdminController::class, 'storeSAtugasHarian'])->name('superadmin.admin.SAtugasHarian.store');
+Route::post('/superadmin/admin/tugas-harian/update-status/{id}', [App\Http\Controllers\AdminController::class, 'updateStatusTugas'])->name('superadmin.admin.SAtugasHarian.updateStatusTugas');
+Route::delete('/superadmin/admin/tugas-harian/{id}', [AdminController::class, 'destroyTugas'])->name('superadmin.admin.SAtugasHarian.destroyTugas');
 
 
 
