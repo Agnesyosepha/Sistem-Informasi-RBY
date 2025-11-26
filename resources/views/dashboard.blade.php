@@ -63,22 +63,51 @@
         margin-bottom: 12px;
     }
 
-    .divisi-btn {
-        padding: 14px 18px;
-        background: #f3f4f6;
-        border-radius: 10px;
-        font-weight: 600;
-        color: #111;
-        text-decoration: none;
-        border: 1px solid #e5e7eb;
-        transition: .2s;
-        display: block;
-    }
+    .tugas-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(6px);
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    text-decoration: none;
+    color: #111;
+    transition: .25s ease;
+    position: relative;
+    overflow: hidden;
+}
 
-    .divisi-btn:hover {
-        background:#e5e7eb;
-        transform: translateX(3px);
-    }
+.tugas-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    background: rgba(255,255,255,0.95);
+}
+
+.tugas-card-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    transition: .25s ease;
+}
+
+.tugas-card:hover .tugas-card-icon {
+    background: #d4a017;
+    color: white;
+}
+
+.tugas-card-title {
+    font-weight: 700;
+    font-size: 16px;
+}
+
 </style>
 
 <div class="layout-two-col">
@@ -114,17 +143,38 @@
 
     <!-- RIGHT CONTENT -->
     <div class="right-box">
-        <h3 style="font-weight:700; margin-bottom:18px;">Tugas Harian</h3>
+    <h3 style="font-weight:700; margin-bottom:18px;">Tugas Harian</h3>
 
-        <div style="display:flex; flex-direction:column; gap:12px;">
+    <div style="display:flex; flex-direction:column; gap:14px;">
 
-            <a href="{{ route('surveyor') }}" class="divisi-btn">🗺️ Surveyor</a>
-            <a href="{{ route('edp') }}" class="divisi-btn">💾 EDP</a>
-            <a href="{{ route('reviewer') }}" class="divisi-btn">📝 Reviewer</a>
-            <a href="{{ route('finance') }}" class="divisi-btn">💰 Finance</a>
-            <a href="{{ route('it') }}" class="divisi-btn">🖥️ IT Department</a>
+        <a href="{{ route('surveyor') }}" class="tugas-card">
+            <div class="tugas-card-icon">🗺️</div>
+            <div class="tugas-card-title">Surveyor</div>
+        </a>
 
-        </div>
+        <a href="{{ route('edp') }}" class="tugas-card">
+            <div class="tugas-card-icon">💾</div>
+            <div class="tugas-card-title">EDP</div>
+        </a>
+
+        <a href="{{ route('reviewer') }}" class="tugas-card">
+            <div class="tugas-card-icon">📝</div>
+            <div class="tugas-card-title">Reviewer</div>
+        </a>
+
+        <a href="{{ route('finance') }}" class="tugas-card">
+            <div class="tugas-card-icon">💰</div>
+            <div class="tugas-card-title">Finance</div>
+        </a>
+
+        <a href="{{ route('it') }}" class="tugas-card">
+            <div class="tugas-card-icon">🖥️</div>
+            <div class="tugas-card-title">IT Department</div>
+        </a>
+
+    </div>
+</div>
+
     </div>
 
 </div>
@@ -175,9 +225,9 @@
                     {{ $o['name'] }}
                 </h3>
                 <p>📍 {{ $o['loc'] }}</p>
-                <p>☎️ {{ $o['tel'] }}</p>
+                <p>☎ {{ $o['tel'] }}</p>
                 <p>📱 {{ $o['hp'] }}</p>
-                <p>✉️ {{ $o['email'] }}</p>
+                <p>✉ {{ $o['email'] }}</p>
             </div>
             @endforeach
         </div>
