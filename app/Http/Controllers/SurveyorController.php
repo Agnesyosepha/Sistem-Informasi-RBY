@@ -120,7 +120,7 @@ class SurveyorController extends Controller
         if ($request->hasFile('softcopy')) {
             $file = $request->file('softcopy');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('public/laporan', $filename);
+            $file->storeAs('laporan', $filename, 'public');
             $laporan->softcopy = $filename;
         }
 
@@ -242,6 +242,5 @@ class SurveyorController extends Controller
 
         return redirect()->route('superadmin.jadwal.index')->with('success', 'Jadwal berhasil diperbarui');
     }
-
 
 }

@@ -252,7 +252,7 @@ class AdminController extends Controller
 
     public function updateDraftStatus(Request $request, $id)
     {
-        $laporan = Laporan::findOrFail($id);
+        $laporan = DraftLaporan::findOrFail($id);
         $laporan->status = $request->status;
         $laporan->save();
 

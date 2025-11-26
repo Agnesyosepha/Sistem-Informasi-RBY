@@ -303,10 +303,7 @@
         </div>
 
         <div class="header-right">
-            <a href="#" class="profile-icon">
-                <i class="fas fa-user"></i>
-            </a>
-
+    
             <button type="button" class="logout-btn" id="logoutBtn">Logout</button>
         </div>
     </header>
