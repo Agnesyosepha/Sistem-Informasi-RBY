@@ -95,23 +95,54 @@
                 <td style="padding:10px;">{{ $item['jenis_penilaian'] }}</td>
                 <td style="padding:10px;">{{ $item['pengirim'] }}</td>
                 <td style="padding:10px;">{{ $item['nomor_laporan'] }}</td>
-
-                <td style="padding:10px; font-weight:600;
-                    color:
-                        {{ $item['status_pengiriman'] == 'Sudah Dikirim' ? 'green' : 'red' }};
-                ">
-                    {{ $item['status_pengiriman'] }}
+                <td style="padding:10px; font-weight:600;">
+                    <select class="update-status status-color"
+                        data-id="{{ $item->id }}"
+                        style="padding:5px; border-radius:5px;">
+                        <option value="Sudah Dikirim" {{ $item->status_pengiriman == 'Sudah Dikirim' ? 'selected' : '' }}>
+                            Sudah Dikirim
+                        </option>
+                        <option value="Belum Dikirim" {{ $item->status_pengiriman == 'Belum Dikirim' ? 'selected' : '' }}>
+                            Belum Dikirim
+                        </option>
+                    </select>
                 </td>
 
                 <!-- Kolom Copy -->
                 <td style="padding:10px; text-align:center;">
                     <label style="margin-right:10px;">
-                        <input type="checkbox" name="softcopy_{{ $loop->index }}">
+                        <input type="checkbox"
+                            class="update-softcopy"
+                            data-id="{{ $item->id }}"
+                            {{ $item->softcopy ? 'checked' : '' }}
+                            style="
+                    /* Memperbesar ukuran kotak checkbox */
+                    transform: scale(1.5); 
+                    /* Menambah margin di kanan kotak untuk memisahkannya dari teks */
+                    margin-right: 8px; 
+                    /* Memberi sudut yang lebih halus */
+                    border-radius: 4px; 
+                    /* Warna dasar kotak (tidak dapat diubah) */
+                    accent-color: #007bff; 
+                ">
                         Softcopy
                     </label>
 
                     <label>
-                        <input type="checkbox" name="hardcopy_{{ $loop->index }}">
+                        <input type="checkbox"
+                            class="update-hardcopy"
+                            data-id="{{ $item->id }}"
+                            {{ $item->hardcopy ? 'checked' : '' }}
+                            style="
+                    /* Memperbesar ukuran kotak checkbox */
+                    transform: scale(1.5); 
+                    /* Menambah margin di kanan kotak untuk memisahkannya dari teks */
+                    margin-right: 8px; 
+                    /* Memberi sudut yang lebih halus */
+                    border-radius: 4px;
+                    /* Warna dasar kotak (tidak dapat diubah) */
+                    accent-color: #28a745;
+                ">
                         Hardcopy
                     </label>
                 </td>
@@ -123,3 +154,64 @@
 
     
 @endsection
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    // FUNGSI GANTI WARNA
+    function applyStatusColor(selectElement) {
+        if (selectElement.value === "Sudah Dikirim") {
+            selectElement.style.color = "green";
+            selectElement.style.fontWeight = "600";
+        } else {
+            selectElement.style.color = "red";
+            selectElement.style.fontWeight = "600";
+        }
+    }
+
+    // SET WARNA SAAT PERTAMA KALI LOAD
+    document.querySelectorAll('.status-color').forEach(select => {
+        applyStatusColor(select); 
+    });
+
+    // UPDATE STATUS + GANTI WARNA
+    document.querySelectorAll('.update-status').forEach(select => {
+        select.addEventListener('change', function () {
+            applyStatusColor(this);
+
+            updateField(this.dataset.id, "status_pengiriman", this.value);
+        });
+    });
+
+    // UPDATE SOFTCOPY & HARDCOPY
+    document.querySelectorAll('.update-softcopy').forEach(cb => {
+        cb.addEventListener('change', function () {
+            updateField(this.dataset.id, "softcopy", this.checked ? 1 : 0);
+        });
+    });
+
+    document.querySelectorAll('.update-hardcopy').forEach(cb => {
+        cb.addEventListener('change', function () {
+            updateField(this.dataset.id, "hardcopy", this.checked ? 1 : 0);
+        });
+    });
+
+    // AJAX UPDATE FIELD
+    function updateField(id, field, value) {
+        fetch(`/superadmin/admin/laporan-final/update/${id}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            },
+            body: JSON.stringify({
+                field: field,
+                value: value
+            })
+        })
+        .then(res => res.json())
+        .then(data => console.log("Updated:", data))
+        .catch(err => console.error(err));
+    }
+});
+</script>

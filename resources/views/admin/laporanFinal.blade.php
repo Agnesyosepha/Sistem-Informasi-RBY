@@ -28,24 +28,58 @@
                 <td style="padding:10px;">{{ $item['nomor_laporan'] }}</td>
 
                 <td style="padding:10px; font-weight:600;
-                    color:
-                        {{ $item['status_pengiriman'] == 'Sudah Dikirim' ? 'green' : 'red' }};
-                ">
-                    {{ $item['status_pengiriman'] }}
-                </td>
+    color:
+        {{ $item['status_pengiriman'] == 'Sudah Dikirim' ? 'green' : 'red' }};
+">
+    {{ $item['status_pengiriman'] }}
+</td>
 
-                <!-- Kolom Copy -->
-                <td style="padding:10px; text-align:center;">
-                    <label style="margin-right:10px;">
-                        <input type="checkbox" name="softcopy_{{ $loop->index }}" disabled>
-                        Softcopy
-                    </label>
+<!-- Kolom Copy -->
+<td style="padding:10px; text-align:center;">
+    <div style="display: flex; justify-content: center; gap: 20px;">
+        
+        <label style="display: flex; align-items: center; color:#333; cursor: default;">
+            <input 
+                type="checkbox" 
+                onclick="return false;" class="update-softcopy" 
+                data-id="{{ $item['id'] }}"
+                {{ $item['softcopy'] ? 'checked' : '' }}
+                style="
+                    /* Memperbesar ukuran kotak checkbox */
+                    transform: scale(1.5); 
+                    /* Menambah margin di kanan kotak untuk memisahkannya dari teks */
+                    margin-right: 8px; 
+                    /* Memberi sudut yang lebih halus */
+                    border-radius: 4px; 
+                    /* Warna aksen untuk Softcopy (Biru) */
+                    accent-color: #007bff; 
+                "
+            >
+            Softcopy
+        </label>
 
-                    <label>
-                        <input type="checkbox" name="hardcopy_{{ $loop->index }}" disabled>
-                        Hardcopy
-                    </label>
-                </td>
+        <label style="display: flex; align-items: center; color:#333; cursor: default;">
+            <input 
+                type="checkbox" 
+                onclick="return false;" class="update-hardcopy" 
+                data-id="{{ $item['id'] }}"
+                {{ $item['hardcopy'] ? 'checked' : '' }}
+                style="
+                    /* Memperbesar ukuran kotak checkbox */
+                    transform: scale(1.5); 
+                    /* Menambah margin di kanan kotak untuk memisahkannya dari teks */
+                    margin-right: 8px; 
+                    /* Memberi sudut yang lebih halus */
+                    border-radius: 4px;
+                    /* Warna aksen untuk Hardcopy (Hijau) */
+                    accent-color: #28a745;
+                "
+            >
+            Hardcopy
+        </label>
+        
+    </div>
+</td>
             </tr>
             @endforeach
         </tbody>

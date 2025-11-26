@@ -85,6 +85,7 @@ Route::post('/superadmin/admin/draftlaporan/update-status/{id}',[AdminController
 
 Route::get('/superadmin/admin/laporan-final', [\App\Http\Controllers\AdminController::class, 'SAlaporanFinal'])->name('superadmin.admin.SAlaporanFinal');
 Route::post('/superadmin/admin/laporan-final/store',[AdminController::class, 'storeSAlaporanFinal'])->name('superadmin.admin.SAlaporanFinal.store');
+Route::post('/superadmin/admin/laporan-final/update/{id}',[AdminController::class, 'updateLaporanFinal'])->name('superadmin.admin.updateSAlaporanFinal');
 
 Route::get('/superadmin/admin/tugas-harian', [\App\Http\Controllers\AdminController::class, 'SAtugasHarian'])->name('superadmin.admin.SAtugasHarian');
 Route::post('/superadmin/admin/tugas-harian/store', [AdminController::class, 'storeSAtugasHarian'])->name('superadmin.admin.SAtugasHarian.store');
@@ -101,26 +102,17 @@ Route::get('/superadmin/admin/lokasi-survei',[SurveyorController::class, 'lokasi
 Route::post('/superadmin/admin/lokasi-survei/store',[SurveyorController::class, 'storeLokasiSurveiAdmin'])->name('superadmin.admin.SAlokasiSurvei.store');
 Route::post('/superadmin/admin/lokasi-survei/update-status/{id}',[SurveyorController::class, 'updateStatusAdmin'])->name('superadmin.admin.SAlokasiSurvei.updateStatus');
 Route::get('/surveyor/lokasisurvei', [SurveyorController::class, 'lokasiSurvei'])->name('surveyor.lokasisurvei');
+
 Route::get('/superadmin/admin/update-proyek',[SurveyorController::class, 'updateProyekAdmin'])->name('superadmin.admin.SAupdateProyek');
 Route::post('/superadmin/admin/update-proyek/store',[SurveyorController::class, 'storeProyek'])->name('superadmin.admin.SAupdateProyek.store');
-
 
 Route::get('/superadmin/laporan-penilaian', [SurveyorController::class, 'laporanPenilaianAdmin'])->name('superadmin.admin.SAlaporanpenilaianfinal');
 Route::post('/superadmin/laporan-penilaian/store', [SurveyorController::class, 'storeLaporanPenilaian'])->name('superadmin.admin.SAlaporanpenilaianfinal.store');
 
-Route::get('/superadmin/jadwal-surveyor', 
-    [SurveyorController::class, 'jadwalAdmin']
-)->name('superadmin.jadwal.index');
-
-Route::post('/superadmin/jadwal-surveyor/store',
-    [SurveyorController::class, 'storeJadwal']
-)->name('superadmin.jadwal.store');
-Route::put('/superadmin/jadwal-surveyor/update/{id}',
-    [SurveyorController::class, 'updateJadwal']
-)->name('superadmin.jadwal.update');
-Route::delete('/superadmin/jadwal-surveyor/delete/{id}',
-    [SurveyorController::class, 'deleteJadwal']
-)->name('superadmin.jadwal.delete');
+Route::get('/superadmin/jadwal-surveyor', [SurveyorController::class, 'jadwalAdmin'])->name('superadmin.jadwal.index');
+Route::post('/superadmin/jadwal-surveyor/store',[SurveyorController::class, 'storeJadwal'])->name('superadmin.jadwal.store');
+Route::put('/superadmin/jadwal-surveyor/update/{id}',[SurveyorController::class, 'updateJadwal'])->name('superadmin.jadwal.update');
+Route::delete('/superadmin/jadwal-surveyor/delete/{id}',[SurveyorController::class, 'deleteJadwal'])->name('superadmin.jadwal.delete');
 
 
 // EDP di Superadmin
@@ -176,9 +168,7 @@ Route::get('/admin/surat-tugas',
 
 Route::get('/admin/proposal', [\App\Http\Controllers\AdminController::class, 'proposal'])->name('admin.proposal');
 Route::post('/admin/proposal/store', [AdminController::class, 'storeProposal'])->name('admin.proposal.store');
-Route::post('/admin/proposal/update-status/{id}', 
-    [App\Http\Controllers\AdminController::class, 'updateStatus']
-);
+Route::post('/admin/proposal/update-status/{id}', [App\Http\Controllers\AdminController::class, 'updateStatus']);
 
 Route::get('/admin/adendum', [\App\Http\Controllers\AdminController::class, 'adendum'])->name('admin.adendum');
 
@@ -190,9 +180,7 @@ Route::get('/admin/laporan-final', [AdminController::class, 'laporanFinal'])->na
 
 Route::get('/admin/tim', [AdminController::class, 'tim'])->name('admin.tim');
 
-Route::get('/admin', [AdminController::class, 'index'])
-    ->name('admin')
-    ->middleware('auth');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin')->middleware('auth');
 
 
 // Surveyor
@@ -207,13 +195,10 @@ Route::get('/surveyor/update-proyek', [\App\Http\Controllers\SurveyorController:
 
 Route::get('/surveyor/workingpaper', [\App\Http\Controllers\SurveyorController::class, 'workingPaper'])->name('surveyor.workingpaper');
 
-Route::get('/surveyor/laporan-penilaian', [SurveyorController::class, 'laporanPenilaianUser'])
-    ->name('surveyor.laporanPenilaian');
+Route::get('/surveyor/laporan-penilaian', [SurveyorController::class, 'laporanPenilaianUser'])->name('surveyor.laporanPenilaian');
 
 Route::get('/surveyor/working-paper', [SurveyorController::class, 'workingPaper'])->name('surveyor.workingpaper');
-Route::get('/surveyor/jadwal', 
-    [SurveyorController::class, 'dashboard']
-)->name('surveyor.jadwal');
+Route::get('/surveyor/jadwal', [SurveyorController::class, 'dashboard'])->name('surveyor.jadwal');
 
 // EDP
 Route::get('/edp', function () {

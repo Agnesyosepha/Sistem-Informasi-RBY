@@ -303,6 +303,25 @@ class AdminController extends Controller
 
         return redirect()->back()->with('success', 'Data laporan final berhasil ditambahkan!');
     }
+    public function updateLaporanFinal(Request $request, $id)
+{
+    $laporan = \App\Models\LaporanFinal::findOrFail($id);
+
+    $field = $request->field;
+    $value = $request->value;
+
+    // Validasi field agar aman
+    if (!in_array($field, ['status_pengiriman', 'softcopy', 'hardcopy'])) {
+        return response()->json(['error' => 'Field tidak valid'], 400);
+    }
+
+    // Update field
+    $laporan->$field = $value;
+    $laporan->save();
+
+    return response()->json(['success' => true]);
+}
+
 
 
     // Tugas Harian

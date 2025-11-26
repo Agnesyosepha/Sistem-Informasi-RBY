@@ -112,7 +112,7 @@
                             <option value="Disetujui" {{ $ar->status == 'Disetujui' ? 'selected' : '' }}>Disetujui</option>
                           </select>
                         </td>
-                </tr>
+                    </tr>
             @endforeach
         </tbody>
     </table>
