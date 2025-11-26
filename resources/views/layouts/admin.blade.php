@@ -61,26 +61,23 @@
                 <th style="padding:10px; text-align:left;">No.PPJP</th>
                 <th style="padding:10px; text-align:left;">Tanggal Survei</th>
                 <th style="padding:10px; text-align:left;">Tim Lapangan</th>
-                <th style="padding:10px; text-align:center;">Status</th>
+                <th style="padding:10px; text-align:left;">Status</th>
             </tr>
         </thead>
         <tbody>
             @foreach($tugasHarian as $tugas)
                 <tr style="border-bottom:1px solid #ddd;">
-                    <td>{{ $tugas->pemberi_tugas }}</td>
-                    <td>{{ $tugas->debitur }}</td>
-                    <td>{{ $tugas->no_ppjp }}</td>
-                    <td>{{ $tugas->tanggal_survei }}</td>
-                    <td>{{ $tugas->tim_lapangan }}</td>
-                    <td style="padding:10px; text-align:center;">
+                    <td style="padding:10px; text-align:left; font-weight:600;">{{ $tugas->pemberi_tugas }}</td>
+                    <td style="padding:10px; text-align:left; font-weight:600;">{{ $tugas->debitur }}</td>
+                    <td style="padding:10px; text-align:left; font-weight:600;">{{ $tugas->no_ppjp }}</td>
+                    <td style="padding:10px; text-align:left; font-weight:600;">{{ $tugas->tanggal_survei }}</td>
+                    <td style="padding:10px; text-align:left; font-weight:600;">{{ $tugas->tim_lapangan }}</td>
+                    <td style="padding:10px; text-align:left; font-weight:600;">
                             <span class="status-label" data-status="{{ $tugas->status }}">
                                 {{ $tugas->status }}
                             </span>
-                        </td>
-                        
-                    <td style="padding:10px; text-align:center; font-weight:600;">
-                        
                     </td>
+                        
                 </tr>
             @endforeach
         </tbody>
