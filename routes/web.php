@@ -252,7 +252,9 @@ Route::get('/finance', function () {
     return view('layouts.finance');
 })->name('finance'); 
 
-Route::get('/finance/invoice', function () {return view('finance/invoice');})->name('finance.invoice');
+Route::get('/finance/invoice', function () {
+    return view('finance.invoice');
+})->name('finance.invoice');
 
 Route::get('/finance/tim', [FinanceController::class, 'tim'])->name('finance.tim');
 
