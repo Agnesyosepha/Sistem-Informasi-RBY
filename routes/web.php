@@ -125,6 +125,7 @@ Route::get('/superadmin/edp/data-aktif', [\App\Http\Controllers\EdpController::c
 Route::post('/superadmin/edp/data-aktif/store', [\App\Http\Controllers\EdpController::class, 'storeDataAktif'])->name('superadmin.edp.storeDataAktif');
 
 Route::get('/superadmin/edp/log-aktivitas', [\App\Http\Controllers\EdpController::class, 'SAlogEDP'])->name('superadmin.edp.SAlogEDP');
+Route::post('/superadmin/edp/log-aktivitas/store', [\App\Http\Controllers\EdpController::class, 'storeLogEDP'])->name('superadmin.edp.storeLogEDP');
 
 
 

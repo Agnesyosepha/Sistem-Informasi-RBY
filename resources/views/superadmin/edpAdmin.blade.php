@@ -20,10 +20,10 @@
                 <p><strong>Lihat Dokumen</strong></p>
             </div>
         </a>
-        <a href="" style="text-decoration:none; color:inherit;">
+        <a href="{{ route('superadmin.edp.SAlogEDP') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card" style="cursor:pointer;">
                 <h3><i class="fas fa-history"></i> Log Aktivitas</h3>
-                <p><strong>Histori Aktifitas</strong></p>
+                <p><strong>Histori Aktivitas</strong></p>
             </div>
         </a>
         

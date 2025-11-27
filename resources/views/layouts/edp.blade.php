@@ -45,23 +45,23 @@
                 </tr>
             </thead>
             <tbody>
-@foreach ($logAktivitas as $item)
-    <tr style="border-bottom:1px solid #ddd;">
-        <td style="padding:10px;">{{ $item['no_laporan'] }}</td>
-        <td style="padding:10px;">{{ $item['tanggal'] }}</td>
-        <td style="padding:10px;">{{ $item['pemberi_tugas'] }}</td>
-        <td style="padding:10px;">{{ $item['penilai'] }}</td>
-        <td style="padding:10px;">{{ $item['staff'] }}</td>
+                @foreach ($logAktivitas as $item)
+                    <tr style="border-bottom:1px solid #ddd;">
+                        <td style="padding:10px;">{{ $item['no_laporan'] }}</td>
+                        <td style="padding:10px;">{{ $item['tanggal'] }}</td>
+                        <td style="padding:10px;">{{ $item['pemberi_tugas'] }}</td>
+                        <td style="padding:10px;">{{ $item['penilai'] }}</td>
+                        <td style="padding:10px;">{{ $item['staff'] }}</td>
         
-        <td style="padding:10px; text-align:center;
-            font-weight:600; 
-            color: {{ $item['status'] == 'Selesai' ? 'blue' : 'green' }};
-        ">
-            {{ $item['status'] }}
-        </td>
-    </tr>
-@endforeach
-</tbody>
+                        <td style="padding:10px; text-align:center;
+                            font-weight:600; 
+                            color: {{ $item['status'] == 'Selesai' ? 'blue' : 'green' }};
+                            ">
+                            {{ $item['status'] }}
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
 
         </table>
     </div>

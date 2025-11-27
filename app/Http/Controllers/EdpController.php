@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use App\Models\DataAktif;
+use App\Models\LogEDP;
 
 
 class EdpController extends Controller
@@ -139,52 +140,41 @@ class EdpController extends Controller
 
     // Log Aktivitas
     public function index()
-{
-    $logAktivitas = [
-        [
-            'no_laporan' => '1214',
-            'tanggal' => '04 Sep 2025',
-            'pemberi_tugas' => 'Metropolitan Police',
-            'penilai' => 'Budi',
-            'staff' => 'Sato',
-            'status' => 'On Progress'
-        ],
-        [
-            'no_laporan' => '0813',
-            'tanggal' => '05 Sep 2025',
-            'pemberi_tugas' => 'Telkomsel',
-            'penilai' => 'Penelope',
-            'staff' => 'Lucas',
-            'status' => 'Selesai'
-        ],
-        [
-            'no_laporan' => '0056',
-            'tanggal' => '06 Sep 2025',
-            'pemberi_tugas' => 'Strawhat Crew',
-            'penilai' => 'Cora',
-            'staff' => 'Asta',
-            'status' => 'On Progress'
-        ],
-        [
-            'no_laporan' => '2004',
-            'tanggal' => '07 Sep 2025',
-            'pemberi_tugas' => 'Biro Catatan Sipil',
-            'penilai' => 'Kuranai',
-            'staff' => 'Shota',
-            'status' => 'Selesai'
-        ],
-        [
-            'no_laporan' => '2244',
-            'tanggal' => '17 Sep 2025',
-            'pemberi_tugas' => 'Biro Keamanan Sipil',
-            'penilai' => 'Rei',
-            'staff' => 'Hiro',
-            'status' => 'Selesai'
-        ],
-    ];
+    {
+        $logAktivitas = LogEDP::all();
+        return view('layouts.edp', compact('logAktivitas'));
+    }
 
-    return view('layouts.edp', compact('logAktivitas'));
-}
+    public function SAlogEDP()
+    {
+        $logAktivitas = LogEDP::all();
+        return view('EDP.SAlogEDP', compact('logAktivitas'));
+    }
+
+    public function storeLogEDP(Request $request)
+    {
+        $request->validate([
+            'no_laporan' => 'required',
+            'tanggal' => 'required|date',
+            'pemberi_tugas' => 'required',
+            'penilai' => 'required',
+            'staff' => 'required',
+            'status' => 'required',
+        ]);
+
+        LogEDP::create([
+            'no_laporan' => $request->no_laporan,
+            'tanggal' => $request->tanggal,
+            'pemberi_tugas' => $request->pemberi_tugas,
+            'penilai' => $request->penilai,
+            'staff' => $request->staff,
+            'status' => $request->status,
+        ]);
+
+        return redirect()
+            ->route('superadmin.edp.SAlogEDP')
+            ->with('success', 'Data Log Aktivitas berhasil ditambahkan!');
+    }
 
 
 
