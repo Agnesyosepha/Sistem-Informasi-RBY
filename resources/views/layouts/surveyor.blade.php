@@ -69,6 +69,27 @@
             @endforelse
         </tbody>
     </table>
+    <style>
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+        }
+
+        .dashboard-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: 0.2s;
+            min-height: 70px;        
+            
+            display: flex;            /* FLEXBOX */
+            flex-direction: column;   /* SUSUN VERTICAL */
+            justify-content: space-between; /* SUPAYA SPASI RAPI */
+        }
+    </style>
+
 </div>
 
 @endsection
