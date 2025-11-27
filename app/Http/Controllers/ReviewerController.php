@@ -43,7 +43,7 @@ class ReviewerController extends Controller
     {
         $timReviewer = [
             ['nama' => 'Mega Permata Sari Br Ginting', 
-            'nohp' => '082378816319', 
+            'nohp' => '0823-7881-6319', 
             'email' => 'MegaPermataSari400@gmail.com', 
             'status' => 'Aktif'],
         ];
