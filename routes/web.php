@@ -141,11 +141,9 @@ Route::post('/superadmin/reviewer/dokumen-revisi/store', [\App\Http\Controllers\
 Route::get('/superadmin/reviewer/dokumen-final', [\App\Http\Controllers\ReviewerController::class, 'SAdokumenFinal'])->name('superadmin.reviewer.SAdokumenFinal');
 Route::post('/superadmin/reviewer/dokumen-final/store', [\App\Http\Controllers\ReviewerController::class, 'storeDokumenFinal'])->name('reviewer.storeDokumenFinal');
 
-Route::get('/superadmin/reviewer/log-aktivitas', [ReviewerController::class, 'SAlog'])
-    ->name('superadmin.reviewer.SAlog');
+Route::get('/superadmin/reviewer/log-aktivitas', [ReviewerController::class, 'SAlog'])->name('superadmin.reviewer.SAlog');
 
-Route::post('/superadmin/reviewer/log-aktivitas/store', [ReviewerController::class, 'storeSAlog'])
-    ->name('superadmin.reviewer.storeLog');
+Route::post('/superadmin/reviewer/log-aktivitas/store', [ReviewerController::class, 'storeSAlog'])->name('superadmin.reviewer.storeLog');
 
 
 // Finance di Superadmin
@@ -153,6 +151,8 @@ Route::post('/superadmin/reviewer/log-aktivitas/store', [ReviewerController::cla
 Route::get('/superadmin/finance', function () {
     return view('superadmin.financeAdmin');
 })->name('superadmin.finance')->middleware('auth');
+
+Route::get('/superadmin/finance/invoice', [FinanceController::class, 'SAinvoice'])->name('superadmin.finance.SAinvoice');
 
 
 // IT di Superadmin
@@ -172,9 +172,7 @@ Route::get('/admin', function () {
     return view('layouts.admin', compact('jumlahProposal'));
 })->name('admin')->middleware('auth');
 
-Route::get('/admin/surat-tugas', 
-    [AdminController::class, 'suratTugasAdmin']
-)->name('admin.suratTugas');
+Route::get('/admin/surat-tugas', [AdminController::class, 'suratTugasAdmin'])->name('admin.suratTugas');
 
 Route::get('/admin/proposal', [\App\Http\Controllers\AdminController::class, 'proposal'])->name('admin.proposal');
 Route::post('/admin/proposal/store', [AdminController::class, 'storeProposal'])->name('admin.proposal.store');
@@ -244,17 +242,14 @@ Route::get('/reviewer/dokumen-revisi', [\App\Http\Controllers\ReviewerController
 
 Route::get('/reviewer/dokumen-final', [\App\Http\Controllers\ReviewerController::class, 'dokumenFinal'])->name('reviewer.dokumenFinal');
 
-Route::get('/log-aktivitas', [ReviewerController::class, 'logAktivitas'])
-        ->name('logAktivitas');
+Route::get('/log-aktivitas', [ReviewerController::class, 'logAktivitas'])->name('logAktivitas');
 
 // Finance
 Route::get('/finance', function () {
     return view('layouts.finance');
 })->name('finance'); 
 
-Route::get('/finance/invoice', function () {
-    return view('finance.invoice');
-})->name('finance.invoice');
+Route::get('/finance/invoice', [FinanceController::class, 'invoice'])->name('finance.invoice');
 
 Route::get('/finance/tim', [FinanceController::class, 'tim'])->name('finance.tim');
 
@@ -264,11 +259,9 @@ Route::get('/it', function () {
     return view('layouts.it');
 })->name('it');
 
-Route::get('/it/form-peminjaman', [ITController::class, 'formPeminjaman'])
-     ->name('it.formpeminjaman');
+Route::get('/it/form-peminjaman', [ITController::class, 'formPeminjaman'])->name('it.formpeminjaman');
 
-Route::get('/it/laporan-penilaian', [ITController::class,'laporanpenilaian'])
-     ->name('it.laporanpenilaian');
+Route::get('/it/laporan-penilaian', [ITController::class,'laporanpenilaian'])->name('it.laporanpenilaian');
 
 Route::get('/it/aset', [\App\Http\Controllers\ITController::class, 'aset'])->name('it.aset');
 

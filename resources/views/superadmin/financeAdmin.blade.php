@@ -8,7 +8,7 @@
     <p>Data - data keuangan yang perlu divalidasi.</p>
 
     <div class="dashboard-cards">
-        <a href="" style="text-decoration:none; color:inherit;">
+        <a href="{{ route('superadmin.finance.SAinvoice') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card" style="cursor:pointer;">
                 <h3><i class="fas fa-file-invoice"></i> Invoice</h3>
                 <p><strong>Data Invoice</strong></p>

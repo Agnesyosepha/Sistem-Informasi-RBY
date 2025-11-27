@@ -22,72 +22,27 @@
                 </tr>
             </thead>
             <tbody>
-                <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">08 Nov 2025</td>
-                    <td style="padding:10px;">PT Sumber Jaya</td>
-                    <td style="padding:10px;">1.200.000</td>
-                    <td style="padding:10px;">Budi Santoso</td>
-                    <td style="padding:10px;">Rp 1.500.000</td>
-                    <td style="padding:10px; color: blue; font-weight:600;">Disetujui</td>
-                    <td style="padding:10px; text-align:center;">
-                        <input type="checkbox">
-                    </td>
-                </tr>
+@foreach($invoice as $item)
+<tr style="border-bottom:1px solid #ddd;">
+    <td style="padding:10px;">{{ $item['tanggal_pembuat'] }}</td>
+    <td style="padding:10px;">{{ $item['no_invoice'] }}</td>
+    <td style="padding:10px;">{{ $item['no_ppjp'] }}</td>
+    <td style="padding:10px;">{{ $item['nama_klien'] }}</td>
+    <td style="padding:10px;">{{ $item['pemberi_tugas'] }}</td>
 
-                <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">09 Nov 2025</td>
-                    <td style="padding:10px;">CV Cahaya Baru</td>
-                    <td style="padding:10px;">900.000</td>
-                    <td style="padding:10px;">Siti Aulia</td>                    
-                    <td style="padding:10px;">Rp 900.000</td>
-                    <td style="padding:10px; color: orange; font-weight:600">Menunggu</td>
-                    <td style="padding:10px; text-align:center;">
-                        <input type="checkbox" checked disabled>
-                    </td>
-                </tr>
+    <td style="padding:10px; font-weight:600; 
+        color: {{ $item['status'] == 'Disetujui' ? 'blue' : 'orange' }}">
+        {{ $item['status'] }}
+    </td>
 
-                <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">10 Nov 2025</td>
-                    <td style="padding:10px;">PT Andalan Sejahtera</td>
-                    <td style="padding:10px;">750.000</td>
-                    <td style="padding:10px;">Reza Fadillah</td>                    
-                    <td style="padding:10px;">Rp 800.000</td>
-                    <td style="padding:10px; color: blue; font-weight:600">Disetujui</td>
-                    <td style="padding:10px; text-align:center;"><input type="checkbox" disabled></td>
-                </tr>
-
-                <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">11 Nov 2025</td>
-                    <td style="padding:10px;">Koperasi Maju</td>
-                    <td style="padding:10px;">1.050.000</td>
-                    <td style="padding:10px;">Andi Wijaya</td>                    
-                    <td style="padding:10px;">Rp 1.200.000</td>
-                    <td style="padding:10px; color: orange; font-weight:600">Menunggu</td>
-                    <td style="padding:10px; text-align:center;"><input type="checkbox"></td>
-                </tr>
-
-                <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">12 Nov 2025</td>
-                    <td style="padding:10px;">PT Digital Nusantara</td>
-                    <td style="padding:10px;">1.600.000</td>
-                    <td style="padding:10px;">Nadia Putri</td>                   
-                    <td style="padding:10px;">Rp 1.600.000</td>
-                    <td style="padding:10px; color: blue; font-weight:600">Disetujui</td>
-                    <td style="padding:10px; text-align:center;"><input type="checkbox" checked disabled></td>
-                </tr>
-
-                 <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">13 Nov 2025</td>
-                    <td style="padding:10px;">PT Mandiri Global</td>
-                    <td style="padding:10px;">1.300.000</td>
-                    <td style="padding:10px;">Yoga Pranata</td>                    
-                    <td style="padding:10px;">Rp 1.450.000</td>
-                    <td style="padding:10px; color: blue; font-weight:600">Disetujui</td>
-                    <td style="padding:10px; text-align:center;"><input type="checkbox"></td>
-                </tr>
-
-
-            </tbody>
+    <td style="padding:10px; text-align:center;">
+        <input type="checkbox"
+            {{ $item['checked'] ? 'checked' : '' }}
+            {{ $item['disabled'] ? 'disabled' : '' }}>
+    </td>
+</tr>
+@endforeach
+</tbody>
         </table>
     </div>
 
