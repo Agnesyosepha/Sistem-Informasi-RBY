@@ -124,6 +124,9 @@ Route::get('/superadmin/edp', function () {
 Route::get('/superadmin/edp/data-aktif', [\App\Http\Controllers\EdpController::class, 'SAdataAktif'])->name('superadmin.edp.SAdataAktif');
 Route::post('/superadmin/edp/data-aktif/store', [\App\Http\Controllers\EdpController::class, 'storeDataAktif'])->name('superadmin.edp.storeDataAktif');
 
+Route::get('/superadmin/edp/log-aktivitas', [\App\Http\Controllers\EdpController::class, 'SAlogEDP'])->name('superadmin.edp.SAlogEDP');
+
+
 
 // Reviewer di Superadmin
 
@@ -205,7 +208,7 @@ Route::get('/edp', function () {
     return view('layouts.edp');
 })->name('edp');
 
-Route::get('/edp/staff', [EdpController::class, 'staff'])->name('edp.staff');
+Route::get('/edp/tim', [EdpController::class, 'tim'])->name('edp.tim');
 
     //seharusnya data mentah ini diganti jadi dokumen final, tapi jadi kubuat rute baru untuk dokuem final ehe, ini disini untuk jaga2 aja
 Route::get('/edp/datamentah', [\App\Http\Controllers\EDPController::class, 'dataMentah'])->name('edp.dataMentah');
@@ -219,6 +222,8 @@ Route::get('/edp/dokumen-final', [\App\Http\Controllers\EdpController::class, 'd
 Route::post('/edp/dokumen-final/upload', [\App\Http\Controllers\EdpController::class, 'uploadDokumenFinal'])->name('edp.uploadDokumenFinal');
 
 Route::delete('/edp/dokumen-final/delete/{filename}', [\App\Http\Controllers\EdpController::class, 'deleteDokumenFinal'])->name('edp.deleteDokumenFinal');
+
+Route::get('/edp', [EdpController::class, 'index'])->name('edp');
 
 
 // Reviewer

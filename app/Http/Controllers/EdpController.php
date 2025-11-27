@@ -10,7 +10,7 @@ use App\Models\DataAktif;
 
 class EdpController extends Controller
 {
-  public function staff()
+  public function tim()
     {
         $staff = [
             ['nama' => 'Aprilius Ginting', 'nohp' => '0821-2230-2387', 'email' => 'rutsahanayasembiring@gmail.com', 'status' => 'Aktif'],
@@ -18,7 +18,7 @@ class EdpController extends Controller
             ['nama' => 'Yohanes Kroll Koten', 'nohp' => '0896-7574-0893', 'email' => 'yohaneskrollkoten@gmail.com', 'status' => 'Aktif'],
         ];
 
-        return view('EDP.edp', compact('staff'));
+        return view('EDP.timEdp', compact('staff'));
     }
   
     public function dataMentah()
@@ -136,6 +136,56 @@ class EdpController extends Controller
 
         return redirect()->route('edp.dokumenFinal')->with('error', 'Dokumen tidak ditemukan.');
     }
+
+    // Log Aktivitas
+    public function index()
+{
+    $logAktivitas = [
+        [
+            'no_laporan' => '1214',
+            'tanggal' => '04 Sep 2025',
+            'pemberi_tugas' => 'Metropolitan Police',
+            'penilai' => 'Budi',
+            'staff' => 'Sato',
+            'status' => 'On Progress'
+        ],
+        [
+            'no_laporan' => '0813',
+            'tanggal' => '05 Sep 2025',
+            'pemberi_tugas' => 'Telkomsel',
+            'penilai' => 'Penelope',
+            'staff' => 'Lucas',
+            'status' => 'Selesai'
+        ],
+        [
+            'no_laporan' => '0056',
+            'tanggal' => '06 Sep 2025',
+            'pemberi_tugas' => 'Strawhat Crew',
+            'penilai' => 'Cora',
+            'staff' => 'Asta',
+            'status' => 'On Progress'
+        ],
+        [
+            'no_laporan' => '2004',
+            'tanggal' => '07 Sep 2025',
+            'pemberi_tugas' => 'Biro Catatan Sipil',
+            'penilai' => 'Kuranai',
+            'staff' => 'Shota',
+            'status' => 'Selesai'
+        ],
+        [
+            'no_laporan' => '2244',
+            'tanggal' => '17 Sep 2025',
+            'pemberi_tugas' => 'Biro Keamanan Sipil',
+            'penilai' => 'Rei',
+            'staff' => 'Hiro',
+            'status' => 'Selesai'
+        ],
+    ];
+
+    return view('layouts.edp', compact('logAktivitas'));
+}
+
 
 
 
