@@ -41,7 +41,7 @@
                     <th style="padding:10px; text-align:left;">Pemberi Tugas</th>
                     <th style="padding:10px; text-align:left;">Nama Penilai</th>
                     <th style="padding:10px; text-align:left;">Nama Staff EDP</th>
-                    <th style="padding:10px; text-align:center;">Status</th>
+                    <th style="padding:10px; text-align:left;">Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -53,7 +53,7 @@
                         <td style="padding:10px;">{{ $item['penilai'] }}</td>
                         <td style="padding:10px;">{{ $item['staff'] }}</td>
         
-                        <td style="padding:10px; text-align:center;
+                        <td style="padding:10px; text-align:left;
                             font-weight:600; 
                             color: {{ $item['status'] == 'Selesai' ? 'blue' : 'green' }};
                             ">

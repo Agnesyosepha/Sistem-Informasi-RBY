@@ -50,13 +50,13 @@ background:rgba(0,0,0,0.5); padding-top:80px;">
             </select>
 
             <button type="submit"
-                style="background:#28a745; padding:10px 14px; border:none; margin-top:12px; color:white; border-radius:5px;">
+                style="background:#28a745; padding:10px 14px; border:none; margin-top:12px; color:white; border-radius:5px; cursor:pointer;">
                 Simpan
             </button>
 
             <button type="button"
                 onclick="document.getElementById('modalTambahFinal').style.display='none'"
-                style="background:red; padding:10px 14px; border:none; margin-top:12px; color:white; border-radius:5px;">
+                style="background:red; padding:10px 14px; border:none; margin-top:12px; color:white; border-radius:5px; cursor:pointer;">
                 Batal
             </button>
         </form>
@@ -74,7 +74,7 @@ background:rgba(0,0,0,0.5); padding-top:80px;">
             <th style="padding:10px; text-align:left;">Pemberi Tugas</th>
             <th style="padding:10px; text-align:left;">Nama Penilai</th>
             <th style="padding:10px; text-align:left;">Nama Staff EDP</th>
-            <th style="padding:10px; text-align:center;">Status</th>
+            <th style="padding:10px; text-align:left;">Status</th>
         </tr>
     </thead>
 
@@ -87,12 +87,27 @@ background:rgba(0,0,0,0.5); padding-top:80px;">
             <td style="padding:10px;">{{ $item['penilai'] }}</td>
             <td style="padding:10px;">{{ $item['staff'] }}</td>
         
-            <td style="padding:10px; text-align:center;
-                font-weight:600; 
-                color: {{ $item['status'] == 'Selesai' ? 'blue' : 'green' }};
+            <td style="padding:10px; text-align:left; font-weight:600;">
+    <form action="{{ route('superadmin.edp.SAlogEDP.update', $item['id']) }}" method="POST">
+        @csrf
+        @method('PUT')
+
+        <select name="status" onchange="this.form.submit()" 
+            style="padding:6px; border-radius:6px; border:1px solid #ccc; font-weight:600;
+                color: {{ 
+                    $item['status'] == 'Selesai' ? 'blue' : 
+                    ($item['status'] == 'On Progress' ? 'green' : 'grey') 
+                }};
             ">
-                {{ $item['status'] }}
-            </td>
+            <option value="Selesai" {{ $item['status'] == 'Selesai' ? 'selected' : '' }}>
+                Selesai
+            </option>
+            <option value="On Progress" {{ $item['status'] == 'On Progress' ? 'selected' : '' }}>
+                On Progress
+            </option>
+        </select>
+    </form>
+</td>
         </tr>
       @endforeach
     </tbody>

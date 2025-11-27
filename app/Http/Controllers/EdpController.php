@@ -176,6 +176,19 @@ class EdpController extends Controller
             ->with('success', 'Data Log Aktivitas berhasil ditambahkan!');
     }
 
+    public function updateLogEDP(Request $request, $id)
+{
+    $request->validate([
+        'status' => 'required'
+    ]);
+
+    $log = LogEDP::findOrFail($id);
+    $log->status = $request->status;
+    $log->save();
+
+    return redirect()->back()->with('success', 'Status berhasil diperbarui!');
+}
+
 
 
 

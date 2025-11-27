@@ -126,6 +126,7 @@ Route::post('/superadmin/edp/data-aktif/store', [\App\Http\Controllers\EdpContro
 
 Route::get('/superadmin/edp/log-aktivitas', [\App\Http\Controllers\EdpController::class, 'SAlogEDP'])->name('superadmin.edp.SAlogEDP');
 Route::post('/superadmin/edp/log-aktivitas/store', [\App\Http\Controllers\EdpController::class, 'storeLogEDP'])->name('superadmin.edp.storeLogEDP');
+Route::put('/superadmin/edp/log-aktivitas/update/{id}',[EdpController::class, 'updateLogEDP'])->name('superadmin.edp.SAlogEDP.update');
 
 
 // Reviewer di Superadmin
