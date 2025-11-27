@@ -33,26 +33,35 @@
         <table style="width:100%; border-collapse: collapse; margin-top:15px;">
             <thead style="background:#007BFF; color:white;">
                 <tr>
+                    <th style="padding:10px; text-align:left;">No. Laporan</th>
                     <th style="padding:10px; text-align:left;">Tanggal</th>
-                    <th style="padding:10px; text-align:left;">Aktivitas</th>
-                    <th style="padding:10px; text-align:left;">User</th>
+                    <th style="padding:10px; text-align:left;">Pemberi Tugas</th>
+                    <th style="padding:10px; text-align:center;">Staff EDP</th>
+                    <th style="padding:10px; text-align:center;">Objek penilaian </th>
                     <th style="padding:10px; text-align:center;">Status</th>
                 </tr>
             </thead>
             <tbody>
-                <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">04 Sep 2025</td>
-                    <td style="padding:10px;">Backup Database</td>
-                    <td style="padding:10px;">Admin EDP</td>
-                    <td style="padding:10px; text-align:center; color:green; font-weight:600;">Sukses</td>
-                </tr>
-                <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">06 Sep 2025</td>
-                    <td style="padding:10px;">Update Sistem</td>
-                    <td style="padding:10px;">EDP-02</td>
-                    <td style="padding:10px; text-align:center; color:red; font-weight:600;">Gagal</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+            @forelse($logs as $index => $item)
+            <tr style="border-bottom:1px solid #ddd;">
+                <td style="padding:10px;">{{ $index + 1 }}</td>
+                <td style="padding:10px;">{{ $item->tanggal }}</td>
+                <td style="padding:10px;">{{ $item->pemberi_tugas }}</td>
+                <td style="padding:10px;">{{ $item->staff_edp }}</td>
+                <td style="padding:10px;">{{ $item->objek_penilaian }}</td>
+                <td style="padding:10px; text-align:center; font-weight:600;
+                    color: {{ $item->status == 'Selesai' ? 'green' : 'orange' }}">
+                    {{ $item->status }}
+                </td>
+            </tr>
+            @empty
+            <tr>
+                <td colspan="6" style="padding:10px; text-align:center; color:#777;">
+                    Belum ada aktivitas.
+                </td>
+            </tr>
+            @endforelse
+        </tbody>
+    </table>
+</div>
 @endsection

@@ -128,7 +128,6 @@ Route::get('/superadmin/edp/log-aktivitas', [\App\Http\Controllers\EdpController
 Route::post('/superadmin/edp/log-aktivitas/store', [\App\Http\Controllers\EdpController::class, 'storeLogEDP'])->name('superadmin.edp.storeLogEDP');
 
 
-
 // Reviewer di Superadmin
 
 Route::get('/superadmin/reviewer', function () {
@@ -140,6 +139,19 @@ Route::post('/superadmin/reviewer/dokumen-revisi/store', [\App\Http\Controllers\
 
 Route::get('/superadmin/reviewer/dokumen-final', [\App\Http\Controllers\ReviewerController::class, 'SAdokumenFinal'])->name('superadmin.reviewer.SAdokumenFinal');
 Route::post('/superadmin/reviewer/dokumen-final/store', [\App\Http\Controllers\ReviewerController::class, 'storeDokumenFinal'])->name('reviewer.storeDokumenFinal');
+
+ Route::get('/log-aktivitas', [ReviewerController::class, 'SAlog'])
+            ->name('SAlog');
+
+Route::post('/log-aktivitas/store', [ReviewerController::class, 'storeSAlog'])
+            ->name('storeLog');
+            
+Route::get('/superadmin/reviewer/log-aktivitas', [ReviewerController::class, 'SAlog'])
+    ->name('superadmin.reviewer.SAlog');
+Route::post('/superadmin/reviewer/log-aktivitas/store', [ReviewerController::class, 'storeSAlog'])
+    ->name('superadmin.reviewer.storeLog');
+Route::get('/superadmin/reviewer/log-aktivitas', [ReviewerController::class, 'SAlog'])
+    ->name('SAlog');
 
 
 // Finance di Superadmin
@@ -231,13 +243,15 @@ Route::get('/edp', [EdpController::class, 'index'])->name('edp');
 Route::get('/reviewer', function () {
     return view('layouts.reviewer');
 })->name('reviewer');
-
+Route::get('/reviewer', [ReviewerController::class, 'index'])->name('reviewer');
 Route::get('/reviewer/tim', [\App\Http\Controllers\ReviewerController::class, 'tim'])->name('reviewer.tim');
 
 Route::get('/reviewer/dokumen-revisi', [\App\Http\Controllers\ReviewerController::class, 'dokumenRevisi'])->name('reviewer.dokumenRevisi');
 
 Route::get('/reviewer/dokumen-final', [\App\Http\Controllers\ReviewerController::class, 'dokumenFinal'])->name('reviewer.dokumenFinal');
 
+Route::get('/log-aktivitas', [ReviewerController::class, 'logAktivitas'])
+        ->name('logAktivitas');
 
 // Finance
 Route::get('/finance', function () {

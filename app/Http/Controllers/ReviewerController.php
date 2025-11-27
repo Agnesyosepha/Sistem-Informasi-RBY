@@ -5,12 +5,36 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DokumenRevisi;
 use App\Models\DokumenFinal;
+use App\Models\LogAktivitas;
 
 class ReviewerController extends Controller
 {
     public function index()
     {
-        return view('reviewer.index');
+        $logs = LogAktivitas::orderBy('tanggal', 'desc')->get();
+        return view('layouts.reviewer', compact('logs'));
+    }
+    public function SAlog()
+    {
+        $logs = LogAktivitas::orderBy('tanggal', 'desc')->get();
+        $totalLog = LogAktivitas::count();
+
+        return view('reviewer.SAlogaktivitas', compact('logs', 'totalLog'));
+    }
+    public function storeSAlog(Request $request)
+    {
+        $request->validate([
+            'no_laporan' => 'required|string',
+            'tanggal' => 'required|date',
+            'pemberi_tugas' => 'required|string',
+            'staff_edp' => 'required|string',
+            'objek_penilaian' => 'required|string',
+            'status' => 'required|string',
+        ]);
+
+        LogAktivitas::create($request->all());
+
+        return redirect()->route('SAlog')->with('success', 'Log aktivitas berhasil ditambahkan!');
     }
 
     // Anggota Reviewer

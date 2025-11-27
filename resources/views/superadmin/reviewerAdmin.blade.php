@@ -22,6 +22,12 @@
                 <p><strong>8 Dokumen</strong></p>
             </div>
         </a>
+        <a href="{{ route('superadmin.reviewer.SAlog') }}" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-history"></i> Log Aktivitas</h3>
+                <p><strong>{{ $totalLog ?? '—' }} Aktivitas</strong></p>
+            </div>
+        </a>
     </div>
 
 
