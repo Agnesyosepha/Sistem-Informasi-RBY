@@ -25,7 +25,7 @@
         <h3><i class="fas fa-receipt"></i> Rencana Anggaran Biaya </h3>
 
         <table style="width:100%; border-collapse: collapse; margin-top:15px;">
-            <thead style="background:#007BFF; color:white;">
+            <thead style="background:#007BFF; color:white; text-align:left;">
                 <tr>
                     <th style="padding:10px;">No. PPJP</th>
                     <th style="padding:10px;">Pemberi Tugas</th>
