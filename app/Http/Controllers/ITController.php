@@ -20,11 +20,11 @@ class ITController extends Controller
     public function aset()
     {
         $asets = [
-            ['nama' => 'Server Dell PowerEdge R740', 'kategori' => 'Server', 'lokasi' => 'Ruang Server', 'status' => 'Aktif'],
-            ['nama' => 'Laptop Lenovo Intell(R) Celeron(R) N4020', 'kategori' => 'Laptop', 'lokasi' => 'Divisi Finance', 'status' => 'Aktif'],
-            ['nama' => 'PC Asus ExpertCenter', 'kategori' => 'Komputer', 'lokasi' => 'Divisi EDP', 'status' => 'Aktif'],
-            ['nama' => 'Switch Cisco 2960', 'kategori' => 'Jaringan', 'lokasi' => 'Ruang IT', 'status' => 'Aktif'],
-            ['nama' => 'Printer Canon LBP6030', 'kategori' => 'Printer', 'lokasi' => 'Divisi Surveyor', 'status' => 'Rusak'],
+            ['nama' => 'Motor Beat', 'kategori' => 'Kendaraan', 'lokasi' => 'Di Luar Kantor', 'status' => 'Aktif'],
+            ['nama' => 'Mobil Xenia', 'kategori' => 'Kendaraan', 'lokasi' => 'Di Luar Kantor', 'status' => 'Aktif'],
+            ['nama' => 'CCTV', 'kategori' => 'Keamanan', 'lokasi' => 'Kantor', 'status' => 'Aktif'],
+            ['nama' => 'Printer', 'kategori' => 'Perangkat Kantor', 'lokasi' => 'Kantor', 'status' => 'Aktif'],
+            ['nama' => 'Dispenser', 'kategori' => 'Perangkat Kantor', 'lokasi' => 'Kantor', 'status' => 'Aktif'],
         ];
 
         return view('it.asetIT', compact('asets'));
@@ -34,7 +34,9 @@ class ITController extends Controller
     {
         $servers = [
             ['nama' => 'Server 1', 'lokasi' => 'Bekasi', 'status' => 'Aktif', 'ip' => '192.168.18.88'],
-            
+            ['nama' => 'Hook / Switch', 'lokasi' => 'Bekasi', 'status' => 'Aktif', 'ip' => '192.168.18.10'],
+            ['nama' => 'Router MikroTik', 'lokasi' => 'Bekasi', 'status' => 'Aktif', 'ip' => '192.168.18.11'],
+            ['nama' => 'Converter USB LAN', 'lokasi' => 'Bekasi', 'status' => 'Aktif', 'ip' => '192.168.18.12'],
         ];
 
         return view('it.server', compact('servers'));

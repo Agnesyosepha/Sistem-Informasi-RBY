@@ -34,7 +34,7 @@
         <a href="{{ route('it.formpeminjaman') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card" style="cursor:pointer;">
                 <h3><i class="fas fa-list"></i> Form Peminjaman</h3>
-                <p><strong>Form Peminjaman Alat & Barang</strong></p>
+                <p><strong>Alat & Barang</strong></p>
             </div>
         </a>
         <a href="{{ route('it.laporanPenilaian') }}" style="text-decoration:none; color:inherit;">
