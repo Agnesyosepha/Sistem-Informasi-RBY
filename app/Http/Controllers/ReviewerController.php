@@ -34,8 +34,9 @@ class ReviewerController extends Controller
 
         LogAktivitas::create($request->all());
 
-        return redirect()->route('SAlog')->with('success', 'Log aktivitas berhasil ditambahkan!');
-    }
+        return redirect()->route('superadmin.reviewer.SAlog')
+                     ->with('success', 'Log aktivitas berhasil ditambahkan!');
+}
 
     // Anggota Reviewer
     public function tim()

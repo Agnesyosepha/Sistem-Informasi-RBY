@@ -140,18 +140,11 @@ Route::post('/superadmin/reviewer/dokumen-revisi/store', [\App\Http\Controllers\
 Route::get('/superadmin/reviewer/dokumen-final', [\App\Http\Controllers\ReviewerController::class, 'SAdokumenFinal'])->name('superadmin.reviewer.SAdokumenFinal');
 Route::post('/superadmin/reviewer/dokumen-final/store', [\App\Http\Controllers\ReviewerController::class, 'storeDokumenFinal'])->name('reviewer.storeDokumenFinal');
 
- Route::get('/log-aktivitas', [ReviewerController::class, 'SAlog'])
-            ->name('SAlog');
-
-Route::post('/log-aktivitas/store', [ReviewerController::class, 'storeSAlog'])
-            ->name('storeLog');
-            
 Route::get('/superadmin/reviewer/log-aktivitas', [ReviewerController::class, 'SAlog'])
     ->name('superadmin.reviewer.SAlog');
+
 Route::post('/superadmin/reviewer/log-aktivitas/store', [ReviewerController::class, 'storeSAlog'])
     ->name('superadmin.reviewer.storeLog');
-Route::get('/superadmin/reviewer/log-aktivitas', [ReviewerController::class, 'SAlog'])
-    ->name('SAlog');
 
 
 // Finance di Superadmin
