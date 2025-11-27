@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('nama_klien');
             $table->string('pemberi_tugas');
             $table->string('status');
+            $table->boolean('checked')->default(false);
             $table->timestamps();
         });
     }

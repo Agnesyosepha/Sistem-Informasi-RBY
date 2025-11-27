@@ -35,24 +35,12 @@ class FinanceController extends Controller
         return view('finance.timFinance', compact('timFinance'));
     }
 
-    // Invoice dummy
+    // Invoice
+
     public function invoice()
     {
-        $invoice = [
-            [
-                'tanggal_pembuat' => '08 Nov 2025',
-                'no_invoice' => 'PT Sumber Jaya',
-                'no_ppjp' => '1.200.000',
-                'nama_klien' => 'Budi Santoso',
-                'pemberi_tugas' => 'Rp 1.500.000',
-                'status' => 'Disetujui',
-                'checked' => false,
-                'disabled' => false
-            ],
-            // dst...
-        ];
-
-        return view('finance.invoice', compact('invoice'));
+      $invoice = Invoice::all();
+      return view('finance.invoice', compact('invoice'));
     }
 
     public function SAinvoice()
@@ -61,6 +49,49 @@ class FinanceController extends Controller
         return view('finance.SAinvoice', compact('invoice'));
     }
 
+    public function storeInvoice(Request $request)
+    {
+      $validated = $request->validate([
+        'tanggal_pembuat' => 'required|date',
+        'no_invoice' => 'required|string|max:255',
+        'no_ppjp' => 'required|string|max:255',
+        'nama_klien' => 'required|string|max:255',
+        'pemberi_tugas' => 'required|string|max:255',
+        'status' => 'required|string',
+      ]);
+
+      Invoice::create($validated);
+
+      return redirect()->route('superadmin.finance.SAinvoice')
+                     ->with('success', 'Invoice berhasil ditambahkan!');
+    }
+
+    public function updateStatus(Request $request)
+    {
+      $invoice = Invoice::find($request->id);
+
+      if (!$invoice) {
+        return response()->json(['error' => 'Data tidak ditemukan'], 404);
+      }
+
+    // Update status
+      if ($request->has('status')) {
+        $invoice->status = $request->status;
+      }
+
+    // Update checkbox
+      if ($request->has('checked')) {
+        $invoice->checked = $request->checked ? 1 : 0;
+      }
+
+      $invoice->save();
+
+      return response()->json(['success' => true]);
+    }
+
+
+
+    // RAB
     public function rabIndex()
     {
         $rabs = Rab::all();

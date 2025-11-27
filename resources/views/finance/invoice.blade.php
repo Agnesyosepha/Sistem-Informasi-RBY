@@ -17,34 +17,45 @@
                     <th style="padding:10px; text-align:left;">No. PPJP/No. Adendum</th>
                     <th style="padding:10px; text-align:left;">Nama Klien</th>
                     <th style="padding:10px; text-align:left;">Pemberi Tugas</th>
-                    <th style="padding:10px; text-align:center;">Status</th>
+                    <th style="padding:10px; text-align:left;">Status</th>
                     <th style="padding:10px; text-align:center;">Aksi</th>
                 </tr>
             </thead>
             <tbody>
-@foreach($invoice as $item)
-<tr style="border-bottom:1px solid #ddd;">
-    <td style="padding:10px;">{{ $item['tanggal_pembuat'] }}</td>
-    <td style="padding:10px;">{{ $item['no_invoice'] }}</td>
-    <td style="padding:10px;">{{ $item['no_ppjp'] }}</td>
-    <td style="padding:10px;">{{ $item['nama_klien'] }}</td>
-    <td style="padding:10px;">{{ $item['pemberi_tugas'] }}</td>
+            @foreach($invoice as $item)
+              <tr style="border-bottom:1px solid #ddd;">
+                <td style="padding:10px;">{{ $item['tanggal_pembuat'] }}</td>
+                <td style="padding:10px;">{{ $item['no_invoice'] }}</td>
+                <td style="padding:10px;">{{ $item['no_ppjp'] }}</td>
+                <td style="padding:10px;">{{ $item['nama_klien'] }}</td>
+                <td style="padding:10px;">{{ $item['pemberi_tugas'] }}</td>
 
-    <td style="padding:10px; font-weight:600; 
-        color: {{ $item['status'] == 'Disetujui' ? 'blue' : 'orange' }}">
-        {{ $item['status'] }}
-    </td>
+                <td style="padding:10px; font-weight:600; 
+                  color: {{ $item['status'] == 'Disetujui' ? 'blue' : 'orange' }}">
+                  {{ $item['status'] }}
+                </td>
 
-    <td style="padding:10px; text-align:center;">
-        <input type="checkbox"
-            {{ $item['checked'] ? 'checked' : '' }}
-            {{ $item['disabled'] ? 'disabled' : '' }}>
-    </td>
-</tr>
-@endforeach
-</tbody>
+                <td style="padding:10px; text-align:center;">
+                  <input type="checkbox"
+                  onclick="return false;" class="update-softcopy"
+                  data-id="{{ $item['id'] }}"
+                    {{ $item['checked'] ? 'checked' : '' }}
+                    style="
+                    /* Memperbesar ukuran kotak checkbox */
+                    transform: scale(1.5); 
+                    /* Menambah margin di kanan kotak untuk memisahkannya dari teks */
+                    margin-right: 8px; 
+                    /* Memberi sudut yang lebih halus */
+                    border-radius: 4px; 
+                    /* Warna aksen untuk Softcopy (Biru) */
+                    accent-color: #007bff; 
+                ">
+                </td>
+              </tr>
+            @endforeach
+          </tbody>
         </table>
-    </div>
+</div>
 
 
 @endsection

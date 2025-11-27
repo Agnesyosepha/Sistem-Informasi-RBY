@@ -153,6 +153,10 @@ Route::get('/superadmin/finance', function () {
 })->name('superadmin.finance')->middleware('auth');
 
 Route::get('/superadmin/finance/invoice', [FinanceController::class, 'SAinvoice'])->name('superadmin.finance.SAinvoice');
+Route::post('/superadmin/finance/invoice/store',[FinanceController::class, 'storeInvoice'])->name('superadmin.finance.storeInvoice');
+Route::post('/superadmin/finance/invoice/update-status', [FinanceController::class, 'updateStatus'])->name('superadmin.finance.updateStatus');
+
+
 Route::get('/finance', [FinanceController::class, 'dashboard'])->name('finance.dashboard');
 
 Route::get('/finance/tim', [FinanceController::class, 'tim'])->name('finance.tim');

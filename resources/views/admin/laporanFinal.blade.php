@@ -28,11 +28,11 @@
                 <td style="padding:10px;">{{ $item['nomor_laporan'] }}</td>
 
                 <td style="padding:10px; font-weight:600;
-    color:
-        {{ $item['status_pengiriman'] == 'Sudah Dikirim' ? 'green' : 'red' }};
-">
-    {{ $item['status_pengiriman'] }}
-</td>
+                    color:
+                    {{ $item['status_pengiriman'] == 'Sudah Dikirim' ? 'green' : 'red' }};
+                    ">
+                    {{ $item['status_pengiriman'] }}
+                </td>
 
 <!-- Kolom Copy -->
 <td style="padding:10px; text-align:center;">
