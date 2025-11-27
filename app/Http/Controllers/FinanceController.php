@@ -3,16 +3,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Invoice;
+use App\Models\Rab;
 
 class FinanceController extends Controller
 {
-    // Halaman dashboard Finance (resources/views/layouts/finance.blade.php)
+    // Dashboard Finance
     public function dashboard()
     {
-        return view('layouts.finance'); // Dashboard Finance
+        $rabs = Rab::all();
+        return view('layouts.finance', compact('rabs'));
     }
 
-    // Halaman tim Finance (resources/views/finance/timFinance.blade.php)
+    // Tim Finance
     public function tim()
     {
         $timFinance = [
@@ -33,81 +35,65 @@ class FinanceController extends Controller
         return view('finance.timFinance', compact('timFinance'));
     }
 
-    // Invoice
-
+    // Invoice dummy
     public function invoice()
-{
-    $invoice = 
-    [
-        [
-            'tanggal_pembuat' => '08 Nov 2025',
-            'no_invoice' => 'PT Sumber Jaya',
-            'no_ppjp' => '1.200.000',
-            'nama_klien' => 'Budi Santoso',
-            'pemberi_tugas' => 'Rp 1.500.000',
-            'status' => 'Disetujui',
-            'checked' => false,
-            'disabled' => false
-        ],
-        [
-            'tanggal_pembuat' => '09 Nov 2025',
-            'no_invoice' => 'CV Cahaya Baru',
-            'no_ppjp' => '900.000',
-            'nama_klien' => 'Siti Aulia',
-            'pemberi_tugas' => 'Rp 900.000',
-            'status' => 'Menunggu',
-            'checked' => true,
-            'disabled' => true
-        ],
-        [
-            'tanggal_pembuat' => '10 Nov 2025',
-            'no_invoice' => 'PT Andalan Sejahtera',
-            'no_ppjp' => '750.000',
-            'nama_klien' => 'Reza Fadillah',
-            'pemberi_tugas' => 'Rp 800.000',
-            'status' => 'Disetujui',
-            'checked' => false,
-            'disabled' => true
-        ],
-        [
-            'tanggal_pembuat' => '11 Nov 2025',
-            'no_invoice' => 'Koperasi Maju',
-            'no_ppjp' => '1.050.000',
-            'nama_klien' => 'Andi Wijaya',
-            'pemberi_tugas' => 'Rp 1.200.000',
-            'status' => 'Menunggu',
-            'checked' => false,
-            'disabled' => false
-        ],
-        [
-            'tanggal_pembuat' => '12 Nov 2025',
-            'no_invoice' => 'PT Digital Nusantara',
-            'no_ppjp' => '1.600.000',
-            'nama_klien' => 'Nadia Putri',
-            'pemberi_tugas' => 'Rp 1.600.000',
-            'status' => 'Disetujui',
-            'checked' => true,
-            'disabled' => true
-        ],
-        [
-            'tanggal_pembuat' => '13 Nov 2025',
-            'no_invoice' => 'PT Mandiri Global',
-            'no_ppjp' => '1.300.000',
-            'nama_klien' => 'Yoga Pranata',
-            'pemberi_tugas' => 'Rp 1.450.000',
-            'status' => 'Disetujui',
-            'checked' => false,
-            'disabled' => false
-        ],
-    ];
+    {
+        $invoice = [
+            [
+                'tanggal_pembuat' => '08 Nov 2025',
+                'no_invoice' => 'PT Sumber Jaya',
+                'no_ppjp' => '1.200.000',
+                'nama_klien' => 'Budi Santoso',
+                'pemberi_tugas' => 'Rp 1.500.000',
+                'status' => 'Disetujui',
+                'checked' => false,
+                'disabled' => false
+            ],
+            // dst...
+        ];
 
-    return view('finance.invoice', compact('invoice'));
-}
+        return view('finance.invoice', compact('invoice'));
+    }
 
-    
     public function SAinvoice()
     {
         $invoice = Invoice::all();
         return view('finance.SAinvoice', compact('invoice'));
+    }
+
+    public function rabIndex()
+    {
+        $rabs = Rab::all();
+        return view('finance.SArab', compact('rabs'));
+    }
+
+    public function rabCreate()
+    {
+        return view('superadmin.finance.rab.create');
+    }
+
+    public function rabStore(Request $request)
+    {
+        Rab::create($request->all());
+        return redirect()->route('superadmin.rab')->with('success', 'Data RAB berhasil ditambahkan!');
+    }
+
+    public function rabEdit($id)
+    {
+        $rab = Rab::findOrFail($id);
+        return view('superadmin.finance.rab.edit', compact('rab'));
+    }
+
+    public function rabUpdate(Request $request, $id)
+    {
+        $rab = Rab::findOrFail($id);
+        $rab->update($request->all());
+        return redirect()->route('superadmin.rab')->with('success', 'Data berhasil diupdate!');
+    }
+
+    public function rabDelete($id)
+    {
+        Rab::destroy($id);
+        return back()->with('success', 'Data berhasil dihapus!');
     }
 }

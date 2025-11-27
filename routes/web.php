@@ -153,7 +153,33 @@ Route::get('/superadmin/finance', function () {
 })->name('superadmin.finance')->middleware('auth');
 
 Route::get('/superadmin/finance/invoice', [FinanceController::class, 'SAinvoice'])->name('superadmin.finance.SAinvoice');
+Route::get('/finance', [FinanceController::class, 'dashboard'])->name('finance.dashboard');
 
+Route::get('/finance/tim', [FinanceController::class, 'tim'])->name('finance.tim');
+
+Route::get('/superadmin/rab', [FinanceController::class, 'rabIndex'])
+    ->name('superadmin.rab')
+    ->middleware('auth');
+
+Route::post('/superadmin/rab/store', [FinanceController::class, 'rabStore'])
+    ->name('superadmin.rab.store')
+    ->middleware('auth');
+
+Route::get('/superadmin/rab/create', [FinanceController::class, 'rabCreate'])
+    ->name('superadmin.rab.create')
+    ->middleware('auth');
+
+Route::get('/superadmin/rab/{id}/edit', [FinanceController::class, 'rabEdit'])
+    ->name('superadmin.rab.edit')
+    ->middleware('auth');
+
+Route::post('/superadmin/rab/{id}/update', [FinanceController::class, 'rabUpdate'])
+    ->name('superadmin.rab.update')
+    ->middleware('auth');
+
+Route::delete('/superadmin/rab/{id}/delete', [FinanceController::class, 'rabDelete'])
+    ->name('superadmin.rab.delete')
+    ->middleware('auth');
 
 // IT di Superadmin
 
@@ -245,13 +271,18 @@ Route::get('/reviewer/dokumen-final', [\App\Http\Controllers\ReviewerController:
 Route::get('/log-aktivitas', [ReviewerController::class, 'logAktivitas'])->name('logAktivitas');
 
 // Finance
-Route::get('/finance', function () {
-    return view('layouts.finance');
-})->name('finance'); 
+Route::prefix('finance')->middleware('auth')->group(function () {
 
-Route::get('/finance/invoice', [FinanceController::class, 'invoice'])->name('finance.invoice');
+    // Dashboard Finance (route: finance)
+    Route::get('/', [FinanceController::class, 'dashboard'])->name('finance');
 
-Route::get('/finance/tim', [FinanceController::class, 'tim'])->name('finance.tim');
+    // Invoice
+    Route::get('/invoice', [FinanceController::class, 'invoice'])->name('finance.invoice');
+
+    // Tim Finance
+    Route::get('/tim', [FinanceController::class, 'tim'])->name('finance.tim');
+
+});
 
 
 // IT
