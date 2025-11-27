@@ -21,7 +21,7 @@
         </a>
         
         
-        <a href="{{ route('edp.staff') }}" style="text-decoration:none; color:inherit;">
+        <a href="{{ route('edp.tim') }}" style="text-decoration:none; color:inherit;">
                 <div class="dashboard-card" style="cursor:pointer;">
                     <h3><i class="fas fa-users"></i> EDP</h3>
                     <p><strong>3 Staff</strong></p>
@@ -30,6 +30,7 @@
 
     </div>
 
+    <!-- Tabel -->
     <div class="dashboard-card" style="margin-top:30px;">
         <h3><i class="fas fa-history"></i> Log Aktivitas</h3>
         <table style="width:100%; border-collapse: collapse; margin-top:15px;">
@@ -44,39 +45,24 @@
                 </tr>
             </thead>
             <tbody>
-                <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">1214</td>
-                    <td style="padding:10px;">04 Sep 2025</td>
-                    <td style="padding:10px;">Metropolitan Police</td>
-                    <td style="padding:10px;">Budi</td>
-                    <td style="padding:10px;">Sato</td>
-                    <td style="padding:10px; text-align:center; color:green; font-weight:600;">On Progress</td>
-                </tr>
-                <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">0813</td>
-                    <td style="padding:10px;">05 Sep 2025</td>
-                    <td style="padding:10px;">Telkomsel</td>
-                    <td style="padding:10px;">Penelope</td>
-                    <td style="padding:10px;">Lucas</td>
-                    <td style="padding:10px; text-align:center; color:blue; font-weight:600;">Selesai</td>
-                </tr>
-                <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">0056</td>
-                    <td style="padding:10px;">06 Sep 2025</td>
-                    <td style="padding:10px;">Strawhat Crew</td>
-                    <td style="padding:10px;">Cora</td>
-                    <td style="padding:10px;">Asta</td>
-                    <td style="padding:10px; text-align:center; color:green; font-weight:600;">On Progress</td>
-                </tr>
-                <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">2004</td>
-                    <td style="padding:10px;">07 Sep 2025</td>
-                    <td style="padding:10px;">Biro Catatan Sipil</td>
-                    <td style="padding:10px;">Kuranai</td>
-                    <td style="padding:10px;">Shota</td>
-                    <td style="padding:10px; text-align:center; color:blue; font-weight:600;">Selesai</td>
-                </tr>
-            </tbody>
+@foreach ($logAktivitas as $item)
+    <tr style="border-bottom:1px solid #ddd;">
+        <td style="padding:10px;">{{ $item['no_laporan'] }}</td>
+        <td style="padding:10px;">{{ $item['tanggal'] }}</td>
+        <td style="padding:10px;">{{ $item['pemberi_tugas'] }}</td>
+        <td style="padding:10px;">{{ $item['penilai'] }}</td>
+        <td style="padding:10px;">{{ $item['staff'] }}</td>
+        
+        <td style="padding:10px; text-align:center;
+            font-weight:600; 
+            color: {{ $item['status'] == 'Selesai' ? 'blue' : 'green' }};
+        ">
+            {{ $item['status'] }}
+        </td>
+    </tr>
+@endforeach
+</tbody>
+
         </table>
     </div>
 @endsection
