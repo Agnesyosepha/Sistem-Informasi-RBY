@@ -9,7 +9,7 @@ use App\Http\Controllers\ReviewerController;
 use App\Http\Controllers\EdpController;
 use App\Http\Controllers\ITController;
 use App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\FinanceController;
 
 // Login
 Route::get('/login', function () {
@@ -251,7 +251,8 @@ Route::get('/log-aktivitas', [ReviewerController::class, 'logAktivitas'])
 Route::get('/finance', function () {
     return view('layouts.finance');
 })->name('finance');
-
+Route::get('/finance', [FinanceController::class, 'dashboard'])->name('finance'); 
+Route::get('/finance/tim', [FinanceController::class, 'tim'])->name('finance.tim');
 
 // IT
 Route::get('/it', function () {

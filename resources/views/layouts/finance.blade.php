@@ -13,7 +13,7 @@
                 <p><strong>Data Invoice</strong></p>
             </div>
         </a>
-        <a href="" style="text-decoration:none; color:inherit;">
+        <a href="{{ route('finance.tim') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card" style="cursor:pointer;">
                 <h3><i class="fas fa-users"></i> Staff</h3>
                 <p><strong>Staff</strong></p>
