@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class TugasHarianFile extends Model
+{
+    protected $fillable = [
+        'tugas_harian_id',
+        'tahapan_id',
+        'filename',
+        'path',
+    ];
+
+    public function tugasHarian()
+    {
+        return $this->belongsTo(TugasHarian::class);
+    }
+}

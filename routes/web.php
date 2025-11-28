@@ -203,6 +203,7 @@ Route::get('/admin', function () {
 })->name('admin')->middleware('auth');
 
 Route::post('/admin/tugas-harian/update-tahapan/{id}', [AdminController::class, 'updateTahapan'])->name('admin.tugas-harian.updateTahapan')->middleware('auth');
+Route::post('/admin/tugas-harian/upload-file/{tugasId}/{tahapanId}', [App\Http\Controllers\AdminController::class, 'uploadFile'])->name('admin.tugas-harian.uploadFile')->middleware('auth');
 
 Route::get('/admin/surat-tugas', [AdminController::class, 'suratTugasAdmin'])->name('admin.suratTugas');
 

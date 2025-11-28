@@ -10,6 +10,8 @@ use App\Models\SuratTugas;
 use App\Models\DraftResume;
 use App\Models\DraftLaporan;
 use App\Models\TugasHarian;
+use App\Models\TugasHarianFile;
+use Illuminate\Support\Facades\Storage;
 
 
 class AdminController extends Controller
@@ -59,6 +61,61 @@ class AdminController extends Controller
 
         return response()->json(['message' => 'Tahapan berhasil diperbarui']);
     }
+
+    public function uploadFile(Request $request, $tugasId, $tahapanId)
+{
+    // Log request data
+    \Log::info('Upload request:', [
+        'tugasId' => $tugasId,
+        'tahapanId' => $tahapanId,
+        'hasFile' => $request->hasFile('file'),
+        'allFiles' => $request->allFiles()
+    ]);
+
+    $request->validate([
+        'file' => 'required|file|max:10240', // Max 10MB
+    ]);
+
+    $tugas = TugasHarian::findOrFail($tugasId);
+    $file = $request->file('file');
+
+    // Log file info
+    \Log::info('File info:', [
+        'originalName' => $file->getClientOriginalName(),
+        'size' => $file->getSize(),
+        'mime' => $file->getMimeType()
+    ]);
+
+    // Simpan file ke storage/app/public/tugas-harian
+    $fileName = time() . '_' . $file->getClientOriginalName();
+    $filePath = $file->storeAs('tugas-harian', $fileName, 'public');
+
+    // Log storage path
+    \Log::info('File stored at:', ['path' => $filePath]);
+
+    // Simpan informasi file ke database
+    $tugasFile = TugasHarianFile::updateOrCreate(
+        [
+            'tugas_harian_id' => $tugasId,
+            'tahapan_id' => $tahapanId,
+        ],
+        [
+            'filename' => $file->getClientOriginalName(),
+            'path' => $filePath,
+        ]
+    );
+
+    // Log database result
+    \Log::info('Database record:', ['tugasFile' => $tugasFile]);
+
+    return response()->json([
+        'success' => true, 
+        'message' => 'File berhasil diupload!',
+        'file_url' => Storage::url($filePath)
+    ]);
+}
+    
+    
 
 
 // Surat Tugas

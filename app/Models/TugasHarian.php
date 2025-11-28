@@ -15,4 +15,9 @@ class TugasHarian extends Model
         'status',
         'tahapan'
     ];
+
+    public function files()
+    {
+        return $this->hasMany(TugasHarianFile::class);
+    }
 }

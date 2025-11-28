@@ -80,226 +80,80 @@
                 </tr>
                 
                 <!-- Baris dropdown untuk tahapan (awalnya disembunyikan) -->
-                <tr class="tahapan-row" id="tahapan-{{ $tugas->id }}" style="display: none; background-color: #f8f9fa;">
-                    <td colspan="6" style="padding: 15px;">
-                        <div class="tahapan-container">
-                            <h4 style="margin-top: 0; margin-bottom: 15px; text-align: center;">Tahapan Pekerjaan</h4>
-                            
-                            <!-- Tahapan 1 -->
-                            <div class="tahapan-item" data-value="pengumpulan awal">
-                                <div class="tahapan-header">
-                                    <span class="tahapan-number">1.</span>
-                                    <span class="tahapan-title">Pengumpulan Awal</span>
-                                    <div class="tahapan-status">
-                                        <input type="checkbox" class="tahapan-checkbox" id="tahapan1-{{ $tugas->id }}">
-                                        <label for="tahapan1-{{ $tugas->id }}">Selesai</label>
-                                    </div>
-                                </div>
-                                <div class="tahapan-details">
-                                    <p><strong>Tugas:</strong> Mengumpulkan semua dokumen awal dari debitur</p>
-                                    <p><strong>Ciri-ciri:</strong> Dokumen lengkap, identitas terverifikasi, data awal terkumpul</p>
-                                    <p><strong>Waktu Estimasi:</strong> 1-2 hari</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Tahapan 2 -->
-                            <div class="tahapan-item" data-value="pembuatan invoice DP">
-                                <div class="tahapan-header">
-                                    <span class="tahapan-number">2.</span>
-                                    <span class="tahapan-title">Pembuatan Invoice DP</span>
-                                    <div class="tahapan-status">
-                                        <input type="checkbox" class="tahapan-checkbox" id="tahapan2-{{ $tugas->id }}">
-                                        <label for="tahapan2-{{ $tugas->id }}">Selesai</label>
-                                    </div>
-                                </div>
-                                <div class="tahapan-details">
-                                    <p><strong>Tugas:</strong> Membuat invoice untuk pembayaran uang muka</p>
-                                    <p><strong>Ciri-ciri:</strong> Nomor invoice tergenerate, detail pembayaran jelas</p>
-                                    <p><strong>Waktu Estimasi:</strong> 1 hari</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Tahapan 3 -->
-                            <div class="tahapan-item" data-value="penjadwalan inspeksi">
-                                <div class="tahapan-header">
-                                    <span class="tahapan-number">3.</span>
-                                    <span class="tahapan-title">Penjadwalan Inspeksi</span>
-                                    <div class="tahapan-status">
-                                        <input type="checkbox" class="tahapan-checkbox" id="tahapan3-{{ $tugas->id }}">
-                                        <label for="tahapan3-{{ $tugas->id }}">Selesai</label>
-                                    </div>
-                                </div>
-                                <div class="tahapan-details">
-                                    <p><strong>Tugas:</strong> Menjadwalkan waktu inspeksi dengan debitur</p>
-                                    <p><strong>Ciri-ciri:</strong> Tanggal dan waktu disepakati, lokasi ditentukan</p>
-                                    <p><strong>Waktu Estimasi:</strong> 1-2 hari</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Tahapan 4 -->
-                            <div class="tahapan-item" data-value="inspeksi">
-                                <div class="tahapan-header">
-                                    <span class="tahapan-number">4.</span>
-                                    <span class="tahapan-title">Inspeksi</span>
-                                    <div class="tahapan-status">
-                                        <input type="checkbox" class="tahapan-checkbox" id="tahapan4-{{ $tugas->id }}">
-                                        <label for="tahapan4-{{ $tugas->id }}">Selesai</label>
-                                    </div>
-                                </div>
-                                <div class="tahapan-details">
-                                    <p><strong>Tugas:</strong> Melakukan inspeksi lapangan terhadap objek</p>
-                                    <p><strong>Ciri-ciri:</strong> Foto dokumentasi, data lapangan terkumpul, checklist terisi</p>
-                                    <p><strong>Waktu Estimasi:</strong> 1 hari</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Tahapan 5 -->
-                            <div class="tahapan-item" data-value="proses analisa">
-                                <div class="tahapan-header">
-                                    <span class="tahapan-number">5.</span>
-                                    <span class="tahapan-title">Proses Analisa</span>
-                                    <div class="tahapan-status">
-                                        <input type="checkbox" class="tahapan-checkbox" id="tahapan5-{{ $tugas->id }}">
-                                        <label for="tahapan5-{{ $tugas->id }}">Selesai</label>
-                                    </div>
-                                </div>
-                                <div class="tahapan-details">
-                                    <p><strong>Tugas:</strong> Menganalisis data yang telah dikumpulkan</p>
-                                    <p><strong>Ciri-ciri:</strong> Data terverifikasi, perhitungan awal selesai</p>
-                                    <p><strong>Waktu Estimasi:</strong> 2-3 hari</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Tahapan 6 -->
-                            <div class="tahapan-item" data-value="review nilai">
-                                <div class="tahapan-header">
-                                    <span class="tahapan-number">6.</span>
-                                    <span class="tahapan-title">Review Nilai</span>
-                                    <div class="tahapan-status">
-                                        <input type="checkbox" class="tahapan-checkbox" id="tahapan6-{{ $tugas->id }}">
-                                        <label for="tahapan6-{{ $tugas->id }}">Selesai</label>
-                                    </div>
-                                </div>
-                                <div class="tahapan-details">
-                                    <p><strong>Tugas:</strong> Review hasil analisa oleh senior appraiser</p>
-                                    <p><strong>Ciri-ciri:</strong> Nilai disetujui, catatan review ditindaklanjuti</p>
-                                    <p><strong>Waktu Estimasi:</strong> 1-2 hari</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Tahapan 7 -->
-                            <div class="tahapan-item" data-value="kirim draft resume">
-                                <div class="tahapan-header">
-                                    <span class="tahapan-number">7.</span>
-                                    <span class="tahapan-title">Kirim Draft Resume</span>
-                                    <div class="tahapan-status">
-                                        <input type="checkbox" class="tahapan-checkbox" id="tahapan7-{{ $tugas->id }}">
-                                        <label for="tahapan7-{{ $tugas->id }}">Selesai</label>
-                                    </div>
-                                </div>
-                                <div class="tahapan-details">
-                                    <p><strong>Tugas:</strong> Mengirim draft resume kepada klien</p>
-                                    <p><strong>Ciri-ciri:</strong> Draft resume terkirim, bukti pengiriman tersimpan</p>
-                                    <p><strong>Waktu Estimasi:</strong> 1 hari</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Tahapan 8 -->
-                            <div class="tahapan-item" data-value="draft laporan">
-                                <div class="tahapan-header">
-                                    <span class="tahapan-number">8.</span>
-                                    <span class="tahapan-title">Draft Laporan</span>
-                                    <div class="tahapan-status">
-                                        <input type="checkbox" class="tahapan-checkbox" id="tahapan8-{{ $tugas->id }}">
-                                        <label for="tahapan8-{{ $tugas->id }}">Selesai</label>
-                                    </div>
-                                </div>
-                                <div class="tahapan-details">
-                                    <p><strong>Tugas:</strong> Menyusun draft laporan lengkap</p>
-                                    <p><strong>Ciri-ciri:</strong> Laporan terstruktur, data lengkap, analisa mendalam</p>
-                                    <p><strong>Waktu Estimasi:</strong> 2-3 hari</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Tahapan 9 -->
-                            <div class="tahapan-item" data-value="review/final">
-                                <div class="tahapan-header">
-                                    <span class="tahapan-number">9.</span>
-                                    <span class="tahapan-title">Review/Final</span>
-                                    <div class="tahapan-status">
-                                        <input type="checkbox" class="tahapan-checkbox" id="tahapan9-{{ $tugas->id }}">
-                                        <label for="tahapan9-{{ $tugas->id }}">Selesai</label>
-                                    </div>
-                                </div>
-                                <div class="tahapan-details">
-                                    <p><strong>Tugas:</strong> Review final laporan sebelum pencetakan</p>
-                                    <p><strong>Ciri-ciri:</strong> Laporan bebas error, format sesuai standar</p>
-                                    <p><strong>Waktu Estimasi:</strong> 1 hari</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Tahapan 10 -->
-                            <div class="tahapan-item" data-value="nomor laporan">
-                                <div class="tahapan-header">
-                                    <span class="tahapan-number">10.</span>
-                                    <span class="tahapan-title">Nomor Laporan</span>
-                                    <div class="tahapan-status">
-                                        <input type="checkbox" class="tahapan-checkbox" id="tahapan10-{{ $tugas->id }}">
-                                        <label for="tahapan10-{{ $tugas->id }}">Selesai</label>
-                                    </div>
-                                </div>
-                                <div class="tahapan-details">
-                                    <p><strong>Tugas:</strong> Memberikan nomor resmi pada laporan</p>
-                                    <p><strong>Ciri-ciri:</strong> Nomor laporan tergenerate, tercatat dalam sistem</p>
-                                    <p><strong>Waktu Estimasi:</strong> Setengah hari</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Tahapan 11 -->
-                            <div class="tahapan-item" data-value="laporan rangkap">
-                                <div class="tahapan-header">
-                                    <span class="tahapan-number">11.</span>
-                                    <span class="tahapan-title">Laporan Rangkap</span>
-                                    <div class="tahapan-status">
-                                        <input type="checkbox" class="tahapan-checkbox" id="tahapan11-{{ $tugas->id }}">
-                                        <label for="tahapan11-{{ $tugas->id }}">Selesai</label>
-                                    </div>
-                                </div>
-                                <div class="tahapan-details">
-                                    <p><strong>Tugas:</strong> Mencetak laporan dalam beberapa rangkap</p>
-                                    <p><strong>Ciri-ciri:</strong> Laporan tercetak lengkap, disimpan dengan baik</p>
-                                    <p><strong>Waktu Estimasi:</strong> 1 hari</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Tahapan 12 -->
-                            <div class="tahapan-item" data-value="pengiriman dokumen">
-                                <div class="tahapan-header">
-                                    <span class="tahapan-number">12.</span>
-                                    <span class="tahapan-title">Pengiriman Dokumen</span>
-                                    <div class="tahapan-status">
-                                        <input type="checkbox" class="tahapan-checkbox" id="tahapan12-{{ $tugas->id }}">
-                                        <label for="tahapan12-{{ $tugas->id }}">Selesai</label>
-                                    </div>
-                                </div>
-                                <div class="tahapan-details">
-                                    <p><strong>Tugas:</strong> Mengirim dokumen lengkap kepada klien</p>
-                                    <p><strong>Ciri-ciri:</strong> Dokumen terkirim, bukti pengiriman tersimpan</p>
-                                    <p><strong>Waktu Estimasi:</strong> 1-2 hari</p>
-                                </div>
-                            </div>
-                            
-                            <div class="tahapan-current">
-                                <strong>Tahapan Saat Ini:</strong> 
-                                <span id="current-tahapan-{{ $tugas->id }}">{{ $tugas->tahapan ?? 'Belum ditentukan' }}</span>
-                            </div>
-                            
-                            <div class="tahapan-actions">
-                                <button class="btn-save-tahapan" data-id="{{ $tugas->id }}">Simpan Progress</button>
-                            </div>
+<tr class="tahapan-row" id="tahapan-{{ $tugas->id }}" style="display: none; background-color: #f8f9fa;">
+    <td colspan="6" style="padding: 15px;">
+        <div class="tahapan-container">
+            <h4 style="margin-top: 0; margin-bottom: 15px; text-align: center;">Tahapan Pekerjaan</h4>
+            
+            @php
+                // Buat array asosiatif untuk mempermudah pencarian file berdasarkan tahapan_id
+                $filesByTahapan = $tugas->files->keyBy('tahapan_id');
+
+                // Data untuk setiap tahapan
+                $tahapanData = [
+                    1 => ['value' => 'pengumpulan awal', 'title' => 'Pengumpulan Data'],
+                    2 => ['value' => 'pembuatan invoice DP', 'title' => 'Pembuatan Invoice DP'],
+                    3 => ['value' => 'penjadwalan inspeksi', 'title' => 'Penjadwalan Inspeksi'],
+                    4 => ['value' => 'inspeksi', 'title' => 'Inspeksi'],
+                    5 => ['value' => 'proses analisa', 'title' => 'Proses Analisa'],
+                    6 => ['value' => 'review nilai', 'title' => 'Review Nilai', 'is_final' => true],
+                    7 => ['value' => 'kirim draft resume', 'title' => 'Kirim Draft Resume'],
+                    8 => ['value' => 'draft laporan', 'title' => 'Draft Laporan'],
+                    9 => ['value' => 'review/final', 'title' => 'Review/Final'],
+                    10 => ['value' => 'nomor laporan', 'title' => 'Nomor Laporan'],
+                    11 => ['value' => 'laporan rangkap', 'title' => 'Laporan Rangkap'],
+                    12 => ['value' => 'pengiriman dokumen', 'title' => 'Pengiriman Dokumen'],
+                ];
+            @endphp
+
+            @for ($i = 1; $i <= 12; $i++)
+                @php
+                    $data = $tahapanData[$i];
+                    $hasFile = $filesByTahapan->has($i);
+                    $file = $hasFile ? $filesByTahapan->get($i) : null;
+                @endphp
+
+                <div class="tahapan-item {{ $hasFile ? 'active' : '' }}" data-value="{{ $data['value'] }}">
+                    <div class="tahapan-header">
+                        <span class="tahapan-number">{{ $i }}.</span>
+                        <span class="tahapan-title">{{ $data['title'] }}</span>
+                        <div class="tahapan-status">
+                            <input type="checkbox" class="tahapan-checkbox" id="tahapan{{ $i }}-{{ $tugas->id }}" data-tahapan="{{ $i }}" {{ $hasFile ? 'checked disabled' : '' }}>
+                            <label for="tahapan{{ $i }}-{{ $tugas->id }}">Selesai</label>
                         </div>
-                    </td>
-                </tr>
+                    </div>
+                    <div class="tahapan-details" style="{{ $hasFile ? 'display: block;' : '' }}">
+                        @if(isset($data['is_final']) && $data['is_final'])
+                            <p>Upload file <strong style="color: red;">FINAL</strong></p>
+                        @endif
+                        <p><strong>Catatan:</strong> Upload dengan penamaan yang benar</p>
+                        <div class="file-upload-container">
+                            <input type="file" id="file-tahapan{{ $i }}-{{ $tugas->id }}" class="file-input" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" {{ $hasFile ? 'disabled' : '' }}>
+                            <label for="file-tahapan{{ $i }}-{{ $tugas->id }}" class="file-label" {{ $hasFile ? 'style="pointer-events: none; opacity: 0.6;"' : '' }}>
+                                <i class="fas fa-upload"></i> Pilih File
+                            </label>
+                            <span class="file-name" id="file-name-tahapan{{ $i }}-{{ $tugas->id }}">
+                                {{ $hasFile ? $file->filename : 'Belum ada file' }}
+                            </span>
+                            <button class="upload-btn" id="upload-btn-tahapan{{ $i }}-{{ $tugas->id }}" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" {{ $hasFile ? 'disabled' : '' }}>
+                                {{ $hasFile ? 'File Terupload' : 'Upload' }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            @endfor
+            
+            <div class="tahapan-current">
+                <strong>Tahapan Saat Ini:</strong> 
+                <span id="current-tahapan-{{ $tugas->id }}">{{ $tugas->tahapan ?? 'Belum ditentukan' }}</span>
+            </div>
+            
+            <div class="tahapan-actions">
+                <button class="btn-save-tahapan" data-id="{{ $tugas->id }}">Simpan Progress</button>
+            </div>
+        </div>
+    </td>
+</tr>
             @endforeach
         </tbody>
     </table>
@@ -342,44 +196,192 @@ document.addEventListener("DOMContentLoaded", function () {
         } 
         else if (value === "Sangat Urgent") {
             label.style.color = "red";
-            }
-        });
+        }
     });
+});
 
-    // Event listener untuk klik pada baris tugas
+// Event listener untuk klik pada baris tugas
+document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.tugas-row').forEach(row => {
         row.addEventListener('click', function() {
             const id = this.getAttribute('data-id');
             const tahapanRow = document.getElementById(`tahapan-${id}`);
             
             // Toggle visibility
-            if (tahapanRow.style.display === 'none') {
+            if (tahapanRow.style.display === 'none' || tahapanRow.style.display === '') {
                 // Close all other dropdowns first
                 document.querySelectorAll('.tahapan-row').forEach(row => {
                     row.style.display = 'none';
                 });
                 
                 tahapanRow.style.display = 'table-row';
+                
+                // Initialize event listeners for this row
+                initializeEventListeners(id);
             } else {
                 tahapanRow.style.display = 'none';
             }
         });
     });
+});
 
-    // Event listener untuk checkbox tahapan
-    document.querySelectorAll('.tahapan-checkbox').forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
+// Set active class for current tahapan
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.tahapan-row').forEach(row => {
+        const id = row.id.replace('tahapan-', '');
+        const currentTahapanSpan = document.getElementById(`current-tahapan-${id}`);
+        const currentTahapan = currentTahapanSpan.textContent;
+        
+        if (currentTahapan !== 'Belum ditentukan') {
+            document.querySelectorAll(`#tahapan-${id} .tahapan-item`).forEach(item => {
+                if (item.getAttribute('data-value') === currentTahapan) {
+                    item.classList.add('active');
+                    // Check the corresponding checkbox
+                    const checkbox = item.querySelector('.tahapan-checkbox');
+                    if (checkbox) {
+                        checkbox.checked = true;
+                        checkbox.disabled = true; // Make checkbox read-only
+                    }
+                    
+                    // Disable file input and upload button if file exists
+                    const fileInput = item.querySelector('.file-input');
+                    const uploadBtn = item.querySelector('.upload-btn');
+                    if (fileInput && uploadBtn) {
+                        fileInput.disabled = true;
+                        uploadBtn.disabled = true;
+                        uploadBtn.textContent = 'File Terupload';
+                    }
+                }
+            });
+        }
+    });
+});
+
+// Function to initialize event listeners for a specific row
+function initializeEventListeners(tugasId) {
+    // Initialize tahapan header click to toggle details
+    document.querySelectorAll(`#tahapan-${tugasId} .tahapan-header`).forEach(header => {
+        header.addEventListener('click', function(e) {
+            e.stopPropagation();
             const tahapanItem = this.closest('.tahapan-item');
-            const tahapanRow = this.closest('.tahapan-row');
-            const id = tahapanRow.id.replace('tahapan-', '');
-            const currentTahapanSpan = document.getElementById(`current-tahapan-${id}`);
+            const details = tahapanItem.querySelector('.tahapan-details');
+            
+            // Toggle visibility of details
+            if (details.style.display === 'block') {
+                details.style.display = 'none';
+            } else {
+                details.style.display = 'block';
+            }
+        });
+    });
+    
+    // Initialize file input change listeners
+    document.querySelectorAll(`#tahapan-${tugasId} .file-input`).forEach(input => {
+        input.addEventListener('change', function() {
+            const fileName = this.files[0] ? this.files[0].name : 'Belum ada file';
+            const fileNameSpan = document.getElementById(`file-name-${this.id.replace('file-', '')}`);
+            if (fileNameSpan) {
+                fileNameSpan.textContent = fileName;
+            }
+        });
+    });
+    
+    // Initialize upload button click listeners
+    document.querySelectorAll(`#tahapan-${tugasId} .upload-btn`).forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            const tugasId = this.getAttribute('data-tugas');
+            const tahapanId = this.getAttribute('data-tahapan');
+            const fileInput = document.getElementById(`file-tahapan${tahapanId}-${tugasId}`);
+            const checkbox = document.getElementById(`tahapan${tahapanId}-${tugasId}`);
+            const tahapanItem = this.closest('.tahapan-item');
+            const currentTahapanSpan = document.getElementById(`current-tahapan-${tugasId}`);
+            
+            if (!fileInput || fileInput.files.length === 0) {
+                showError('Pilih file terlebih dahulu!');
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            formData.append('tugas_id', tugasId);
+            formData.append('tahapan_id', tahapanId);
+            
+            // Show loading indicator
+            const originalText = this.textContent;
+            this.textContent = 'Mengupload...';
+            this.disabled = true;
+            
+            // Send file to server
+            fetch(`/admin/tugas-harian/upload-file/${tugasId}/${tahapanId}`, {
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                },
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                // Reset button
+                this.textContent = originalText;
+                this.disabled = false;
+                
+                if (data.success) {
+                    // Check the checkbox
+                    if (checkbox) {
+                        checkbox.checked = true;
+                        checkbox.disabled = true; // Make checkbox read-only
+                    }
+                    
+                    // Update current tahapan
+                    if (currentTahapanSpan && tahapanItem) {
+                        currentTahapanSpan.textContent = tahapanItem.getAttribute('data-value');
+                        
+                        // Remove active class from all items
+                        document.querySelectorAll(`#tahapan-${tugasId} .tahapan-item`).forEach(item => {
+                            item.classList.remove('active');
+                        });
+                        
+                        // Add active class to selected item
+                        tahapanItem.classList.add('active');
+                    }
+                    
+                    // Disable file input and upload button
+                    fileInput.disabled = true;
+                    this.disabled = true;
+                    this.textContent = 'File Terupload';
+                    
+                    showSuccess('File berhasil diupload!');
+                } else {
+                    showError(data.message || 'Gagal mengupload file!');
+                }
+            })
+            .catch(err => {
+                // Reset button
+                this.textContent = originalText;
+                this.disabled = false;
+                
+                console.error(err);
+                showError('Terjadi kesalahan saat mengupload file!');
+            });
+        });
+    });
+    
+    // Initialize checkbox change listeners
+    document.querySelectorAll(`#tahapan-${tugasId} .tahapan-checkbox`).forEach(checkbox => {
+        checkbox.addEventListener('change', function(e) {
+            e.stopPropagation();
+            
+            const tahapanItem = this.closest('.tahapan-item');
+            const currentTahapanSpan = document.getElementById(`current-tahapan-${tugasId}`);
             
             // Update current tahapan based on checked item
-            if (this.checked) {
+            if (this.checked && currentTahapanSpan && tahapanItem) {
                 currentTahapanSpan.textContent = tahapanItem.getAttribute('data-value');
                 
                 // Remove active class from all items
-                document.querySelectorAll(`#tahapan-${id} .tahapan-item`).forEach(item => {
+                document.querySelectorAll(`#tahapan-${tugasId} .tahapan-item`).forEach(item => {
                     item.classList.remove('active');
                 });
                 
@@ -388,8 +390,10 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
+}
 
-    // Event listener untuk tombol simpan
+// Event listener untuk tombol simpan
+document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.btn-save-tahapan').forEach(button => {
         button.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -420,52 +424,104 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(res => res.json())
             .then(data => {
                 console.log(data.message);
-                // Show success message
-                const successMsg = document.createElement('div');
-                successMsg.className = 'alert alert-success';
-                successMsg.textContent = 'Progress berhasil disimpan!';
-                successMsg.style.position = 'fixed';
-                successMsg.style.top = '20px';
-                successMsg.style.right = '20px';
-                successMsg.style.padding = '10px 20px';
-                successMsg.style.backgroundColor = '#28a745';
-                successMsg.style.color = 'white';
-                successMsg.style.borderRadius = '5px';
-                successMsg.style.zIndex = '9999';
-                
-                document.body.appendChild(successMsg);
-                
-                setTimeout(() => {
-                    successMsg.remove();
-                }, 3000);
+                showSuccess('Progress berhasil disimpan!');
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+                console.error(err);
+                showError('Gagal menyimpan progress!');
+            });
         });
     });
+});
 
-    // Set active class for current tahapan
+// Set active class for current tahapan
+document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.tahapan-row').forEach(row => {
         const id = row.id.replace('tahapan-', '');
         const currentTahapanSpan = document.getElementById(`current-tahapan-${id}`);
-        const currentTahapan = currentTahapanSpan.textContent;
         
-        if (currentTahapan !== 'Belum ditentukan') {
-            document.querySelectorAll(`#tahapan-${id} .tahapan-item`).forEach(item => {
-                if (item.getAttribute('data-value') === currentTahapan) {
-                    item.classList.add('active');
-                    // Check the corresponding checkbox
-                    const checkbox = item.querySelector('.tahapan-checkbox');
-                    if (checkbox) {
-                        checkbox.checked = true;
+        if (currentTahapanSpan) {
+            const currentTahapan = currentTahapanSpan.textContent;
+            
+            if (currentTahapan !== 'Belum ditentukan') {
+                document.querySelectorAll(`#tahapan-${id} .tahapan-item`).forEach(item => {
+                    if (item.getAttribute('data-value') === currentTahapan) {
+                        item.classList.add('active');
+                        // Check the corresponding checkbox
+                        const checkbox = item.querySelector('.tahapan-checkbox');
+                        if (checkbox) {
+                            checkbox.checked = true;
+                            checkbox.disabled = true; // Make checkbox read-only
+                        }
+                        
+                        // Disable file input and upload button if file exists
+                        const fileInput = item.querySelector('.file-input');
+                        const uploadBtn = item.querySelector('.upload-btn');
+                        if (fileInput && uploadBtn) {
+                            fileInput.disabled = true;
+                            uploadBtn.disabled = true;
+                            uploadBtn.textContent = 'File Terupload';
+                        }
                     }
-                }
-            });
+                });
+            }
         }
     });
+});
 
+// Helper functions for notifications
+function showSuccess(message) {
+    const successMsg = document.createElement('div');
+    successMsg.className = 'alert alert-success';
+    successMsg.textContent = message;
+    successMsg.style.position = 'fixed';
+    successMsg.style.top = '20px';
+    successMsg.style.right = '20px';
+    successMsg.style.padding = '10px 20px';
+    successMsg.style.backgroundColor = '#28a745';
+    successMsg.style.color = 'white';
+    successMsg.style.borderRadius = '5px';
+    successMsg.style.zIndex = '9999';
+    
+    document.body.appendChild(successMsg);
+    
+    setTimeout(() => {
+        successMsg.remove();
+    }, 3000);
+}
+
+function showError(message) {
+    const errorMsg = document.createElement('div');
+    errorMsg.className = 'alert alert-error';
+    errorMsg.textContent = message;
+    errorMsg.style.position = 'fixed';
+    errorMsg.style.top = '20px';
+    errorMsg.style.right = '20px';
+    errorMsg.style.padding = '10px 20px';
+    errorMsg.style.backgroundColor = '#dc3545';
+    errorMsg.style.color = 'white';
+    errorMsg.style.borderRadius = '5px';
+    errorMsg.style.zIndex = '9999';
+    
+    document.body.appendChild(errorMsg);
+    
+    setTimeout(() => {
+        errorMsg.remove();
+    }, 3000);
+}
 </script>
 
 <style>
+.tahapan-details {
+    padding: 15px;
+    display: none;
+    background-color: #fff;
+}
+
+.tahapan-item.active .tahapan-details,
+.tahapan-details.show {
+    display: block;
+}
 .tahapan-container {
     display: flex;
     flex-direction: column;
@@ -536,6 +592,56 @@ document.addEventListener("DOMContentLoaded", function () {
 
 .tahapan-details p:last-child {
     margin-bottom: 0;
+}
+
+.file-upload-container {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.file-input {
+    display: none;
+}
+
+.file-label {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.file-label:hover {
+    background-color: #e9ecef;
+}
+
+.file-name {
+    flex-grow: 1;
+    font-size: 14px;
+    color: #666;
+}
+
+.upload-btn {
+    padding: 6px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.upload-btn:hover:not(:disabled) {
+    background-color: #0069d9;
+}
+
+.upload-btn:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
 }
 
 .tahapan-current {
