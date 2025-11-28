@@ -21,6 +21,44 @@ class AdminController extends Controller
 
         return view('layouts.admin', compact('jumlahProposal', 'tugasHarian'));
     }
+    
+    // Tugas Harian
+    public function SAtugasHarian()
+    {
+        $tugasHarian = TugasHarian::all();
+        return view('admin.SAtugasHarian', compact('tugasHarian'));
+    }
+
+    public function storeSAtugasHarian(Request $request)
+    {
+        TugasHarian::create($request->all());
+        return back()->with('success', 'Tugas berhasil ditambahkan');
+    }
+
+    public function updateStatusTugas(Request $request, $id)
+    {
+        $task = TugasHarian::findOrFail($id);
+        $task->status = $request->status;
+        $task->save();
+
+        return response()->json(['message' => 'Status updated']);
+    }
+
+    public function destroyTugas($id)
+    {
+        TugasHarian::findOrFail($id)->delete();
+        return back()->with('success', 'Tugas berhasil dihapus');
+    }
+
+    // Tambahkan method untuk update tahapan
+    public function updateTahapan(Request $request, $id)
+    {
+        $task = TugasHarian::findOrFail($id);
+        $task->tahapan = $request->tahapan;
+        $task->save();
+
+        return response()->json(['message' => 'Tahapan berhasil diperbarui']);
+    }
 
 
 // Surat Tugas
@@ -324,33 +362,6 @@ class AdminController extends Controller
 
 
 
-    // Tugas Harian
-    public function SAtugasHarian()
-    {
-        $tugasHarian = TugasHarian::all();
-        return view('admin.SAtugasHarian', compact('tugasHarian'));
-    }
-
-    public function storeSAtugasHarian(Request $request)
-    {
-        TugasHarian::create($request->all());
-        return back()->with('success', 'Tugas berhasil ditambahkan');
-    }
-
-    public function updateStatusTugas(Request $request, $id)
-    {
-        $task = TugasHarian::findOrFail($id);
-        $task->status = $request->status;
-        $task->save();
-
-        return response()->json(['message' => 'Status updated']);
-    }
-
-    public function destroyTugas($id)
-    {
-        TugasHarian::findOrFail($id)->delete();
-        return back()->with('success', 'Tugas berhasil dihapus');
-    }
 
 
 

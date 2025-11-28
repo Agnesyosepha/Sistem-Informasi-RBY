@@ -202,6 +202,8 @@ Route::get('/admin', function () {
     return view('layouts.admin', compact('jumlahProposal'));
 })->name('admin')->middleware('auth');
 
+Route::post('/admin/tugas-harian/update-tahapan/{id}', [AdminController::class, 'updateTahapan'])->name('admin.tugas-harian.updateTahapan')->middleware('auth');
+
 Route::get('/admin/surat-tugas', [AdminController::class, 'suratTugasAdmin'])->name('admin.suratTugas');
 
 Route::get('/admin/proposal', [\App\Http\Controllers\AdminController::class, 'proposal'])->name('admin.proposal');

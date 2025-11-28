@@ -12,6 +12,7 @@ class TugasHarian extends Model
         'no_ppjp',
         'tanggal_survei',
         'tim_lapangan',
-        'status'
+        'status',
+        'tahapan'
     ];
 }
