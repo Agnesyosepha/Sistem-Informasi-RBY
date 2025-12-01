@@ -10,6 +10,7 @@ use App\Http\Controllers\EdpController;
 use App\Http\Controllers\ITController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FinanceController;
+use App\Http\Controllers\ProfileController;
 
 // Login
 Route::get('/login', function () {
@@ -466,6 +467,9 @@ Route::middleware(['auth', 'division:Finance'])->group(function () {
     Route::delete('/finance/rab/delete/{id}', [FinanceController::class, 'rabDelete'])
         ->name('superadmin.rab.delete');
 });
+
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+
 
 // Logout
 Route::post('/logout', function (Request $request) {

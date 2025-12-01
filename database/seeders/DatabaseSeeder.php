@@ -162,6 +162,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'aldijhont@gmail.com',
             'divisi' => 'IT',
             'password' => Hash::make('aldi123'),
+            'nama' => 'Aldi Jhont Travolta',
+            'alamat' => 'Jl. Mawar No. 5',
+            'nohp' => '082113266662',
+            'jabatan' => 'Staff',
         ]);
     }
 }

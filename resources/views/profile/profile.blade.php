@@ -683,8 +683,9 @@
                 <i class="fas fa-user"></i>
             </div>
 
-            <h3 class="name-title">Shafa</h3>
-            <p class="email-text">adminbekasi@gmail.com</p>
+            <h3 class="name-title">{{ $user->nama }}</h3>
+
+            <p class="email-text">{{ $user->email }}</p>
 
             <button class="edit-btn upgrade-edit">Edit Profil</button>
         </div>
@@ -693,37 +694,42 @@
         <div class="profile-right">
             <h4 class="section-title">Informasi Akun</h4>
 
-            <div class="profile-grid">
-                <div class="info-item">
-                    <label>Nama</label>
-                    <p>Shafa</p>
-                </div>
+            <!-- Nama -->
+        <div class="info-item">
+            <label>Nama</label>
+            <p>{{ $user->nama }}</p>
+        </div>
 
-                <div class="info-item">
-                    <label>Alamat</label>
-                    <p>Jl. Mawar No. 5</p>
-                </div>
+        <!-- Alamat -->
+        <div class="info-item">
+            <label>Alamat</label>
+            <p>{{ $user->alamat ?? '-' }}</p>
+        </div>
 
-                <div class="info-item">
-                    <label>No. HP</label>
-                    <p>08123456789</p>
-                </div>
+        <!-- No HP -->
+        <div class="info-item">
+            <label>No. HP</label>
+            <p>{{ $user->nohp ?? '-' }}</p>
+        </div>
 
-                <div class="info-item">
-                    <label>Divisi</label>
-                    <p>Admin</p>
-                </div>
+        <!-- Divisi -->
+        <div class="info-item">
+            <label>Divisi</label>
+            <p>{{ $user->divisi }}</p>
+        </div>
 
-                <div class="info-item">
-                    <label>Jabatan</label>
-                    <p>Staff</p>
-                </div>
+        <!-- Jabatan -->
+        <div class="info-item">
+            <label>Jabatan</label>
+            <p>{{ $user->jabatan ?? '-' }}</p>
+        </div>
 
-                <div class="info-item">
-                    <label>Nomor MAPPI</label>
-                    <p>8815629468</p>
-                </div>
-            </div>
+        <!-- MAPPI -->
+        <div class="info-item">
+            <label>Nomor MAPPI</label>
+            <p>{{ $user->mappi ?? '-' }}</p>
+        </div>
+
         </div>
 
     </div>
