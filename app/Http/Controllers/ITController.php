@@ -107,7 +107,7 @@ class ITController extends Controller
         $staffIT = [
             [
                 'nama' => 'Aldi Jhon Travolta',
-                'nohp' => '082113266662',
+                'nohp' => '0821-1326-6662',
                 'email' => 'aldijhont@gmail.com',
                 'status' => 'Aktif',
             ],

@@ -438,11 +438,11 @@ class AdminController extends Controller
         {
             $tim = [
                 ['nama' => 'Shafa Az-zahra Eriana', 
-                'nohp' => '0895312180247', 
+                'nohp' => '0895-3121-80247', 
                 'email' => 'shafaeriana@gmail.com', 
                 'status' => 'Aktif'],
                 ['nama' => 'Mieke Dearni Br Tarigan', 
-                'nohp' => '082288508800', 
+                'nohp' => '0822-8850-8800', 
                 'email' => 'mieketarigan@gmail.com', 
                 'status' => 'Aktif'],
             ];
