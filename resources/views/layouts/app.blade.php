@@ -157,6 +157,12 @@
         .btn-yes:hover { background: #218838; }
         .btn-no { background: #dc3545; }
         .btn-no:hover { background: #c82333; }
+
+        .disabled-link {
+            pointer-events: none;
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 
@@ -172,6 +178,7 @@
                 <li><a href="{{ route('reviewer') }}" class="{{ Route::is('reviewer*') ? 'active' : '' }}"><i class="fas fa-file-signature"></i> <span>Reviewer</span></a></li>
                 <li><a href="{{ route('finance') }}" class="{{ Route::is('finance*') ? 'active' : '' }}"><i class="fas fa-file-invoice-dollar"></i> <span>Finance</span></a></li>
                 <li><a href="{{ route('it') }}" class="{{ Route::is('it*') ? 'active' : '' }}"><i class="fas fa-server"></i> <span>IT</span></a></li>
+
             </ul>
         </nav>
     </aside>

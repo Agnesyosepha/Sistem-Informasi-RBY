@@ -321,6 +321,152 @@ Route::post('/it/upload-form', [ITController::class, 'uploadFormStore'])->name('
 Route::get('/it/tim', [App\Http\Controllers\ITController::class, 'tim'])->name('it.tim');
 
 
+//MIDDLEWARE
+// ADMIN
+Route::get('/admin', [AdminController::class, 'index'])
+    ->name('admin')
+    ->middleware('auth'); 
+    Route::middleware(['auth', 'division:Admin'])->group(function () {
+
+    // Proposal
+    Route::get('/admin/proposal', [AdminController::class, 'proposal'])->name('admin.proposal');
+    Route::post('/admin/proposal/store', [AdminController::class, 'storeProposal'])->name('admin.proposal.store');
+    Route::post('/admin/proposal/update-status/{id}', [AdminController::class, 'updateStatus']);
+    Route::delete('/admin/proposal/{id}', [AdminController::class, 'destroy'])->name('admin.proposal.destroy');
+
+    // Adendum
+    Route::get('/admin/adendum', [AdminController::class, 'adendum'])->name('admin.adendum');
+    Route::post('/admin/adendum/store', [AdminController::class, 'storeAdendum'])->name('admin.adendum.store');
+    Route::post('/admin/adendum/update-status/{id}', [AdminController::class, 'updateStatusAdendum']);
+
+    // Surat Tugas
+    Route::get('/admin/surat-tugas', [AdminController::class, 'suratTugasAdmin'])->name('admin.suratTugas');
+    Route::post('/admin/surat-tugas/store', [AdminController::class, 'storeSuratTugas'])->name('admin.suratTugas.store');
+    Route::post('/admin/surat-tugas/update-status/{id}', [AdminController::class, 'updateSuratTugas']);
+
+    // Draft Resume
+    Route::get('/admin/draftResume', [AdminController::class, 'draftResume'])->name('admin.draftResume');
+    Route::post('/admin/draftResume/store', [AdminController::class, 'SAdraftResumeStore'])->name('admin.draftResume.store');
+    Route::post('/admin/draftResume/update-status/{id}', [AdminController::class, 'updateStatusDraftResume']);
+
+    // Draft Laporan
+    Route::get('/admin/draftLaporan', [AdminController::class, 'draftLaporan'])->name('admin.draftLaporan');
+    Route::post('/admin/draftLaporan/store', [AdminController::class, 'storeSAdraftLaporan'])->name('admin.draftLaporan.store');
+    Route::post('/admin/draftLaporan/update-status/{id}', [AdminController::class, 'updateDraftStatus']);
+
+    // Laporan Final
+    Route::get('/admin/laporan-final', [AdminController::class, 'laporanFinal'])->name('admin.laporanFinal');
+    Route::post('/admin/laporan-final/store', [AdminController::class, 'storeSAlaporanFinal'])->name('admin.laporanFinal.store');
+    Route::post('/admin/laporan-final/update/{id}', [AdminController::class, 'updateLaporanFinal'])->name('admin.laporanFinal.update');
+
+});
+
+// SURVEYOR
+Route::get('/surveyor', [SurveyorController::class, 'dashboard'])
+    ->middleware('auth')
+    ->name('surveyor');
+
+Route::middleware(['auth', 'division:Surveyor'])->group(function () {
+
+    // LOKASI SURVEI
+    Route::get('/surveyor/lokasi-survei', [SurveyorController::class, 'lokasiSurvei'])
+        ->name('surveyor.lokasiSurvei');
+
+    // LAPORAN PENILAIAN
+    Route::get('/surveyor/laporan-penilaian', [SurveyorController::class, 'laporanPenilaianUser'])
+        ->name('surveyor.laporanPenilaian');
+
+    // UPDATE PROYEK
+    Route::get('/surveyor/update-proyek', [SurveyorController::class, 'updateProyekUser'])
+        ->name('surveyor.updateProyek');
+
+    // WORKING PAPER
+    Route::get('/surveyor/working-paper', [SurveyorController::class, 'workingPaper'])
+        ->name('surveyor.workingpaper');
+});
+
+// EDP
+Route::get('/edp', [EdpController::class, 'index'])
+    ->middleware('auth')
+    ->name('edp');
+
+Route::middleware(['auth', 'division:EDP'])->group(function () {
+
+    // DATA MENTAH
+    Route::get('/edp/datamentah', [EdpController::class, 'dataMentah'])->name('edp.dataMentah');
+    Route::post('/edp/datamentah/upload', [EdpController::class, 'uploadData'])->name('edp.uploadData');
+
+    // DATA AKTIF (User biasa juga punya view, tapi SUPERADMIN punya versi SA)
+    Route::get('/edp/data-aktif', [EdpController::class, 'dataAktif'])->name('edp.dataAktif');
+    Route::post('/edp/data-aktif/store', [EdpController::class, 'storeDataAktif'])->name('edp.dataAktif.store');
+
+    // DOKUMEN FINAL
+    Route::get('/edp/dokumen-final', [EdpController::class, 'dokumenFinal'])->name('edp.dokumenFinal');
+    Route::post('/edp/dokumen-final/upload', [EdpController::class, 'uploadDokumenFinal'])->name('edp.uploadDokumenFinal');
+    Route::delete('/edp/dokumen-final/delete/{filename}', [EdpController::class, 'deleteDokumenFinal'])->name('edp.deleteDokumenFinal');
+
+    // LOG AKTIVITAS USER
+    Route::get('/edp/log-aktivitas', [EdpController::class, 'index'])->name('edp.logAktivitas');
+});
+
+//REVIEWER
+Route::get('/reviewer', [ReviewerController::class, 'index'])
+    ->middleware('auth')
+    ->name('reviewer');
+Route::middleware(['auth', 'division:Reviewer'])->group(function () {
+
+    // DOKUMEN REVISI (USER)
+    Route::get('/reviewer/dokumen-revisi', [ReviewerController::class, 'dokumenRevisi'])->name('reviewer.dokumenRevisi');
+
+    // DOKUMEN FINAL (USER)
+    Route::get('/reviewer/dokumen-final', [ReviewerController::class, 'dokumenFinal'])->name('reviewer.dokumenFinal');
+
+});
+
+// FINANCE
+Route::middleware(['auth', 'division:Finance'])->group(function () {
+
+    // Dashboard Finance
+    Route::get('/finance', [FinanceController::class, 'dashboard'])
+        ->name('finance');
+
+    // Tim Finance
+    Route::get('/finance/tim', [FinanceController::class, 'tim'])
+        ->name('finance.tim');
+
+    // Invoice
+    Route::get('/finance/invoice', [FinanceController::class, 'invoice'])
+        ->name('finance.invoice');
+
+    Route::get('/finance/invoice/sa', [FinanceController::class, 'SAinvoice'])
+        ->name('superadmin.finance.SAinvoice');
+
+    Route::post('/finance/invoice/store', [FinanceController::class, 'storeInvoice'])
+        ->name('finance.invoice.store');
+
+    Route::post('/finance/invoice/update-status', [FinanceController::class, 'updateStatus'])
+        ->name('finance.invoice.updateStatus');
+
+    // RAB
+    Route::get('/finance/rab', [FinanceController::class, 'rabIndex'])
+        ->name('superadmin.rab');
+
+    Route::get('/finance/rab/create', [FinanceController::class, 'rabCreate'])
+        ->name('superadmin.rab.create');
+
+    Route::post('/finance/rab/store', [FinanceController::class, 'rabStore'])
+        ->name('superadmin.rab.store');
+
+    Route::get('/finance/rab/edit/{id}', [FinanceController::class, 'rabEdit'])
+        ->name('superadmin.rab.edit');
+
+    Route::post('/finance/rab/update/{id}', [FinanceController::class, 'rabUpdate'])
+        ->name('superadmin.rab.update');
+
+    Route::delete('/finance/rab/delete/{id}', [FinanceController::class, 'rabDelete'])
+        ->name('superadmin.rab.delete');
+});
+
 // Logout
 Route::post('/logout', function (Request $request) {
     Auth::logout();

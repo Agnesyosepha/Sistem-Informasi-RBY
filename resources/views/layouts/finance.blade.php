@@ -34,6 +34,7 @@
                     <th style="padding:10px;">Pelaksana Inspeksi</th>
                     <th style="padding:10px;">Total Biaya Jalan</th>
                     <th style="padding:10px;">Status</th>
+                     <th style="padding:10px;">Action</th>
                 </tr>
             </thead>
 
