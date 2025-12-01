@@ -60,6 +60,7 @@ class DatabaseSeeder extends Seeder
             'alamat' => 'Pondok Pekayon Indah, Jl. Pakis Raya, Bekasi Selatan',
             'nohp' => '0822-8850-8800',
             'jabatan' => 'Staff',
+            'mappi' => '-'
         ]);
 
         //AKUN DIVISI PENILAI
@@ -72,7 +73,7 @@ class DatabaseSeeder extends Seeder
             'alamat' => '',
             'nohp' => '0812-8636-5116',
             'jabatan' => 'Staff',
-            'mappi' => '',
+            'mappi' => '-',
         ]);
         User::create([
             'username' => 'rby/surveyor/robbi',
@@ -116,7 +117,7 @@ class DatabaseSeeder extends Seeder
             'alamat' => '',
             'nohp' => '0838-7009-5867',
             'jabatan' => 'Staff',
-            'mappi' => '',
+            'mappi' => '-',
         ]);
         User::create([
             'username' => 'rby/surveyor/jasmani',
@@ -149,7 +150,7 @@ class DatabaseSeeder extends Seeder
             'alamat' => '',
             'nohp' => '0857-8207-8806',
             'jabatan' => 'Staff',
-            'mappi' => '',
+            'mappi' => '-',
         ]);
         User::create([
             'username' => 'rby/surveyor/benhur',
@@ -206,6 +207,7 @@ class DatabaseSeeder extends Seeder
             'alamat' => 'Jl. Bojong Indah VI, Bojong Rawalumbu, Bekasi',
             'nohp' => '0896-7574-0893',
             'jabatan' => 'Staff',
+            'mappi' => '-'
         ]);
         
         //AKUN DIVISI REVIEWER
@@ -231,6 +233,7 @@ class DatabaseSeeder extends Seeder
             'alamat' => 'Bekasi',
             'nohp' => '0813-8453-6186',
             'jabatan' => 'Staff',
+            'mappi' => '-',
         ]);
         User::create([
             'username' => 'rby/finance/matta',
@@ -241,6 +244,7 @@ class DatabaseSeeder extends Seeder
             'alamat' => 'New Liverpool P18 C11 Mutiara Gading City, Bekasi',
             'nohp' => '0812-6204-4499',
             'jabatan' => 'Staff',
+            'mappi' => '-',
         ]);
 
         //AKUN DIVISI IT
@@ -253,6 +257,7 @@ class DatabaseSeeder extends Seeder
             'alamat' => 'Jl. Bengkong',
             'nohp' => '082113266662',
             'jabatan' => 'Staff',
+            'mappi' => '-',
         ]);
     }
 }
