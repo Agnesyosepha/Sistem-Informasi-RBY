@@ -114,6 +114,17 @@ class AdminController extends Controller
         'file_url' => Storage::url($filePath)
     ]);
 }
+    public function downloadFile($fileId)
+{
+    $tugasFile = TugasHarianFile::findOrFail($fileId);
+    $filePath = storage_path('app/public/' . $tugasFile->path);
+
+    if (!file_exists($filePath)) {
+        return back()->with('error', 'File tidak ditemukan di server.');
+    }
+
+    return response()->download($filePath, $tugasFile->filename);
+}
     
     
 

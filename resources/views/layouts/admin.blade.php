@@ -101,7 +101,7 @@
                     8 => ['value' => 'draft laporan', 'title' => 'Draft Laporan'],
                     9 => ['value' => 'review/final', 'title' => 'Review/Final'],
                     10 => ['value' => 'nomor laporan', 'title' => 'Nomor Laporan'],
-                    11 => ['value' => 'laporan rangkap', 'title' => 'Laporan Rangkap'],
+                    11 => ['value' => 'laporan rangkap', 'title' => 'Laporan Rangkap 3'],
                     12 => ['value' => 'pengiriman dokumen', 'title' => 'Pengiriman Dokumen'],
                 ];
             @endphp
@@ -128,17 +128,22 @@
                         @endif
                         <p><strong>Catatan:</strong> Upload dengan penamaan yang benar</p>
                         <div class="file-upload-container">
-                            <input type="file" id="file-tahapan{{ $i }}-{{ $tugas->id }}" class="file-input" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" {{ $hasFile ? 'disabled' : '' }}>
-                            <label for="file-tahapan{{ $i }}-{{ $tugas->id }}" class="file-label" {{ $hasFile ? 'style="pointer-events: none; opacity: 0.6;"' : '' }}>
-                                <i class="fas fa-upload"></i> Pilih File
-                            </label>
-                            <span class="file-name" id="file-name-tahapan{{ $i }}-{{ $tugas->id }}">
-                                {{ $hasFile ? $file->filename : 'Belum ada file' }}
-                            </span>
-                            <button class="upload-btn" id="upload-btn-tahapan{{ $i }}-{{ $tugas->id }}" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" {{ $hasFile ? 'disabled' : '' }}>
-                                {{ $hasFile ? 'File Terupload' : 'Upload' }}
-                            </button>
-                        </div>
+    <input type="file" id="file-tahapan{{ $i }}-{{ $tugas->id }}" class="file-input" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" {{ $hasFile ? 'disabled' : '' }}>
+    <label for="file-tahapan{{ $i }}-{{ $tugas->id }}" class="file-label" {{ $hasFile ? 'style="pointer-events: none; opacity: 0.6;"' : '' }}>
+        <i class="fas fa-upload"></i> Pilih File
+    </label>
+    <span class="file-name" id="file-name-tahapan{{ $i }}-{{ $tugas->id }}">
+        {{ $hasFile ? $file->filename : 'Belum ada file' }}
+    </span>
+    <button class="upload-btn" id="upload-btn-tahapan{{ $i }}-{{ $tugas->id }}" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" {{ $hasFile ? 'disabled' : '' }}>
+        {{ $hasFile ? 'File Terupload' : 'Upload' }}
+    </button>
+    @if($hasFile)
+        <a href="{{ route('admin.tugas-harian.downloadFile', $file->id) }}" class="download-btn" title="Download {{ $file->filename }}">
+            <i class="fas fa-download"></i>
+        </a>
+    @endif
+</div>
                     </div>
                 </div>
             @endfor
@@ -691,6 +696,23 @@ function showError(message) {
 
 .alert-error {
     background-color: #dc3545;
+}
+.download-btn {
+    padding: 6px 10px;
+    background-color: #17a2b8; /* Warna biru muda untuk membedakan */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.download-btn:hover {
+    background-color: #138496;
 }
 </style>
 @endsection
