@@ -596,6 +596,45 @@
                 width: 200px;
             }
         }
+        .form-label {
+            font-weight: 600;
+        }
+
+        .form-control {
+            background-color: #f7f9fc;
+            border-radius: 10px;
+            height: 42px;
+        }
+        .info-grid-modern {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px 40px;
+            margin-top: 5px;
+        }
+
+        .info-box label {
+            font-weight: 600;
+            font-size: 14px;
+            color: #5e5e5e;
+        }
+
+        .info-box p {
+            margin-top: 6px;
+            padding: 12px 15px;
+            border-radius: 12px;
+            background: #f8f9fc;
+            border: 1px solid #e5e7eb;
+            color: #444;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .info-grid-modern {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
     </style>
 </head>
 <body>
@@ -693,39 +732,36 @@
         <!-- Right -->
         <div class="profile-right">
             <h4 class="section-title">Informasi Akun</h4>
+        
+            <div class="info-grid-modern">
 
             <!-- Nama -->
-        <div class="info-item">
+            <div class="info-box">
             <label>Nama</label>
             <p>{{ $user->nama }}</p>
         </div>
 
-        <!-- Alamat -->
-        <div class="info-item">
-            <label>Alamat</label>
-            <p>{{ $user->alamat ?? '-' }}</p>
-        </div>
-
-        <!-- No HP -->
-        <div class="info-item">
-            <label>No. HP</label>
-            <p>{{ $user->nohp ?? '-' }}</p>
-        </div>
-
-        <!-- Divisi -->
-        <div class="info-item">
+        <div class="info-box">
             <label>Divisi</label>
             <p>{{ $user->divisi }}</p>
         </div>
 
-        <!-- Jabatan -->
-        <div class="info-item">
+        <div class="info-box">
+            <label>Alamat</label>
+            <p>{{ $user->alamat ?? '-' }}</p>
+        </div>
+
+        <div class="info-box">
             <label>Jabatan</label>
             <p>{{ $user->jabatan ?? '-' }}</p>
         </div>
 
-        <!-- MAPPI -->
-        <div class="info-item">
+        <div class="info-box">
+            <label>No. HP</label>
+            <p>{{ $user->nohp ?? '-' }}</p>
+        </div>
+
+        <div class="info-box">
             <label>Nomor MAPPI</label>
             <p>{{ $user->mappi ?? '-' }}</p>
         </div>
