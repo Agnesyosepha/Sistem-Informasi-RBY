@@ -41,6 +41,10 @@ class SurveyorController extends Controller
 
     public function lokasiSurvei()
     {
+        if (auth()->user()->divisi !== 'Surveyor') {
+            abort(403, 'Anda tidak memiliki akses.');
+        }
+
         $lokasi = LokasiSurvei::all();  
         return view('surveyor.lokasisurvei', compact('lokasi'));
     }
