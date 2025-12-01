@@ -441,33 +441,11 @@ Route::middleware(['auth', 'division:Finance'])->group(function () {
     Route::get('/finance/invoice', [FinanceController::class, 'invoice'])
         ->name('finance.invoice');
 
-    Route::get('/finance/invoice/sa', [FinanceController::class, 'SAinvoice'])
-        ->name('superadmin.finance.SAinvoice');
-
     Route::post('/finance/invoice/store', [FinanceController::class, 'storeInvoice'])
         ->name('finance.invoice.store');
 
     Route::post('/finance/invoice/update-status', [FinanceController::class, 'updateStatus'])
         ->name('finance.invoice.updateStatus');
-
-    // RAB
-    Route::get('/finance/rab', [FinanceController::class, 'rabIndex'])
-        ->name('superadmin.rab');
-
-    Route::get('/finance/rab/create', [FinanceController::class, 'rabCreate'])
-        ->name('superadmin.rab.create');
-
-    Route::post('/finance/rab/store', [FinanceController::class, 'rabStore'])
-        ->name('superadmin.rab.store');
-
-    Route::get('/finance/rab/edit/{id}', [FinanceController::class, 'rabEdit'])
-        ->name('superadmin.rab.edit');
-
-    Route::post('/finance/rab/update/{id}', [FinanceController::class, 'rabUpdate'])
-        ->name('superadmin.rab.update');
-
-    Route::delete('/finance/rab/delete/{id}', [FinanceController::class, 'rabDelete'])
-        ->name('superadmin.rab.delete');
 });
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
