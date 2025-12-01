@@ -146,6 +146,10 @@
     <h3 style="font-weight:700; margin-bottom:18px;">Tugas Harian</h3>
 
     <div style="display:flex; flex-direction:column; gap:14px;">
+        <a href="{{ route('admin') }}" class="tugas-card">
+            <div class="tugas-card-icon">🗺️</div>
+            <div class="tugas-card-title">Admin</div>
+        </a>
 
         <a href="{{ route('surveyor') }}" class="tugas-card">
             <div class="tugas-card-icon">🗺️</div>
@@ -160,11 +164,6 @@
         <a href="{{ route('reviewer') }}" class="tugas-card">
             <div class="tugas-card-icon">📝</div>
             <div class="tugas-card-title">Reviewer</div>
-        </a>
-
-        <a href="{{ route('finance') }}" class="tugas-card">
-            <div class="tugas-card-icon">💰</div>
-            <div class="tugas-card-title">Finance</div>
         </a>
 
         <a href="{{ route('it') }}" class="tugas-card">
