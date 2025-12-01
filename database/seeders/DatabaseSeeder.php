@@ -70,10 +70,10 @@ class DatabaseSeeder extends Seeder
             'divisi' => 'Surveyor',
             'password' => Hash::make('richard123'),
             'nama' => 'Richard Barus',
-            'alamat' => '',
+            'alamat' => 'Jl. BTR, Mustika Jaya, Bekasi',
             'nohp' => '0812-8636-5116',
             'jabatan' => 'Staff',
-            'mappi' => '-',
+            'mappi' => '18-P-08547',
         ]);
         User::create([
             'username' => 'rby/surveyor/robbi',
@@ -81,10 +81,10 @@ class DatabaseSeeder extends Seeder
             'divisi' => 'Surveyor',
             'password' => Hash::make('robbi123'),
             'nama' => 'Robbi Sugara Ginting',
-            'alamat' => '',
+            'alamat' => 'Jl. Semen Kujang, Klapanunggal, Kab. Bogor',
             'nohp' => '0821-2358-0669',
             'jabatan' => 'Staff',
-            'mappi' => '',
+            'mappi' => '22-P-11583',
         ]);
         User::create([
             'username' => 'rby/surveyor/firdaus',
@@ -114,10 +114,10 @@ class DatabaseSeeder extends Seeder
             'divisi' => 'Surveyor',
             'password' => Hash::make('fajar123'),
             'nama' => 'Fajar Hariyadi',
-            'alamat' => '',
+            'alamat' => 'Jl. Kayu Mas Raya, Pulo Gadung, Jakarta',
             'nohp' => '0838-7009-5867',
             'jabatan' => 'Staff',
-            'mappi' => '-',
+            'mappi' => '23-A-12042',
         ]);
         User::create([
             'username' => 'rby/surveyor/jasmani',
@@ -147,10 +147,10 @@ class DatabaseSeeder extends Seeder
             'divisi' => 'Surveyor',
             'password' => Hash::make('pretty123'),
             'nama' => 'Pretty Balerina Br Bangun',
-            'alamat' => '',
+            'alamat' => 'Jl. Pakis Raya BB 30 No.1 Bekasi Selatan',
             'nohp' => '0857-8207-8806',
             'jabatan' => 'Staff',
-            'mappi' => '-',
+            'mappi' => '24-a-13299',
         ]);
         User::create([
             'username' => 'rby/surveyor/benhur',
@@ -230,7 +230,7 @@ class DatabaseSeeder extends Seeder
             'divisi' => 'Finance',
             'password' => Hash::make('amelia123'),
             'nama' => 'Amelia Awandi',
-            'alamat' => 'Bekasi',
+            'alamat' => 'Jl. Regensi 1, Muktiwari, Cibitung, Bekasi',
             'nohp' => '0813-8453-6186',
             'jabatan' => 'Staff',
             'mappi' => '-',
