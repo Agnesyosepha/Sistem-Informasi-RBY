@@ -367,64 +367,57 @@ Route::get('/surveyor', [SurveyorController::class, 'dashboard'])
     ->middleware('auth')
     ->name('surveyor');
 
-Route::middleware(['auth', 'division:Surveyor'])->group(function () {
+Route::middleware(['auth', 'division:Surveyor,EDP,Reviewer'])->group(function () {
 
-    // LOKASI SURVEI
     Route::get('/surveyor/lokasi-survei', [SurveyorController::class, 'lokasiSurvei'])
         ->name('surveyor.lokasiSurvei');
 
-    // LAPORAN PENILAIAN
     Route::get('/surveyor/laporan-penilaian', [SurveyorController::class, 'laporanPenilaianUser'])
         ->name('surveyor.laporanPenilaian');
 
-    // UPDATE PROYEK
     Route::get('/surveyor/update-proyek', [SurveyorController::class, 'updateProyekUser'])
         ->name('surveyor.updateProyek');
 
-    // WORKING PAPER
     Route::get('/surveyor/working-paper', [SurveyorController::class, 'workingPaper'])
         ->name('surveyor.workingpaper');
 });
+
 
 // EDP
 Route::get('/edp', [EdpController::class, 'index'])
     ->middleware('auth')
     ->name('edp');
 
-Route::middleware(['auth', 'division:EDP'])->group(function () {
+Route::middleware(['auth', 'division:EDP,Reviewer'])->group(function () {
     Route::get('/edp/datamentah', [EdpController::class, 'dataMentah'])->name('edp.dataMentah');
     Route::post('/edp/datamentah/upload', [EdpController::class, 'uploadData'])->name('edp.uploadData');
+
     Route::get('/edp/data-aktif', [EdpController::class, 'dataAktif'])->name('edp.dataAktif');
     Route::post('/edp/data-aktif/store', [EdpController::class, 'storeDataAktif'])->name('edp.dataAktif.store');
+
     Route::get('/edp/log-aktivitas', [EdpController::class, 'index'])->name('edp.logAktivitas');
 });
 
-Route::middleware(['auth', 'division:EDP,Surveyor'])->group(function () {
 
-    // DOKUMEN FINAL
-    Route::get('/edp/dokumen-final', [EdpController::class, 'dokumenFinal'])
-        ->name('edp.dokumenFinal');
-
-    Route::post('/edp/dokumen-final/upload', [EdpController::class, 'uploadDokumenFinal'])
-        ->name('edp.uploadDokumenFinal');
-
-    Route::delete('/edp/dokumen-final/delete/{filename}', [EdpController::class, 'deleteDokumenFinal'])
-        ->name('edp.deleteDokumenFinal');
+Route::middleware(['auth', 'division:EDP,Surveyor,Reviewer'])->group(function () {
+    Route::get('/edp/dokumen-final', [EdpController::class, 'dokumenFinal'])->name('edp.dokumenFinal');
+    Route::post('/edp/dokumen-final/upload', [EdpController::class, 'uploadDokumenFinal'])->name('edp.uploadDokumenFinal');
+    Route::delete('/edp/dokumen-final/delete/{filename}', [EdpController::class, 'deleteDokumenFinal'])->name('edp.deleteDokumenFinal');
 });
 
 //REVIEWER
 Route::get('/reviewer', [ReviewerController::class, 'index'])
     ->middleware('auth')
     ->name('reviewer');
-Route::middleware(['auth', 'division:Reviewer'])->group(function () {
+Route::middleware(['auth', 'division:Reviewer,Surveyor,EDP'])->group(function () {
 
-    // DOKUMEN REVISI (USER)
-    Route::get('/reviewer/dokumen-revisi', [ReviewerController::class, 'dokumenRevisi'])->name('reviewer.dokumenRevisi');
+    Route::get('/reviewer/dokumen-revisi', [ReviewerController::class, 'dokumenRevisi'])
+        ->name('reviewer.dokumenRevisi');
 
-    // DOKUMEN FINAL (USER)
-    Route::get('/reviewer/dokumen-final', [ReviewerController::class, 'dokumenFinal'])->name('reviewer.dokumenFinal');
-
+    Route::get('/reviewer/dokumen-final', [ReviewerController::class, 'dokumenFinal'])
+        ->name('reviewer.dokumenFinal');
 });
+
 
 // FINANCE
 Route::middleware(['auth', 'division:Finance'])->group(function () {
