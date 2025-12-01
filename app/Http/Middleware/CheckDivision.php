@@ -7,9 +7,13 @@ use Illuminate\Support\Facades\Auth;
 
 class CheckDivision
 {
-    public function handle($request, Closure $next, string $division)
+    public function handle($request, Closure $next, ...$divisions)
     {
-        if (!Auth::check() || Auth::user()->divisi !== $division) {
+        if (!Auth::check()) {
+            return redirect('/login');
+        }
+
+        if (!in_array(Auth::user()->divisi, $divisions)) {
             abort(403, 'Anda tidak memiliki akses ke halaman ini.');
         }
 

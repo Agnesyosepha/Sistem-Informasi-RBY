@@ -392,22 +392,24 @@ Route::get('/edp', [EdpController::class, 'index'])
     ->name('edp');
 
 Route::middleware(['auth', 'division:EDP'])->group(function () {
-
-    // DATA MENTAH
     Route::get('/edp/datamentah', [EdpController::class, 'dataMentah'])->name('edp.dataMentah');
     Route::post('/edp/datamentah/upload', [EdpController::class, 'uploadData'])->name('edp.uploadData');
-
-    // DATA AKTIF (User biasa juga punya view, tapi SUPERADMIN punya versi SA)
     Route::get('/edp/data-aktif', [EdpController::class, 'dataAktif'])->name('edp.dataAktif');
     Route::post('/edp/data-aktif/store', [EdpController::class, 'storeDataAktif'])->name('edp.dataAktif.store');
+    Route::get('/edp/log-aktivitas', [EdpController::class, 'index'])->name('edp.logAktivitas');
+});
+
+Route::middleware(['auth', 'division:EDP,Surveyor'])->group(function () {
 
     // DOKUMEN FINAL
-    Route::get('/edp/dokumen-final', [EdpController::class, 'dokumenFinal'])->name('edp.dokumenFinal');
-    Route::post('/edp/dokumen-final/upload', [EdpController::class, 'uploadDokumenFinal'])->name('edp.uploadDokumenFinal');
-    Route::delete('/edp/dokumen-final/delete/{filename}', [EdpController::class, 'deleteDokumenFinal'])->name('edp.deleteDokumenFinal');
+    Route::get('/edp/dokumen-final', [EdpController::class, 'dokumenFinal'])
+        ->name('edp.dokumenFinal');
 
-    // LOG AKTIVITAS USER
-    Route::get('/edp/log-aktivitas', [EdpController::class, 'index'])->name('edp.logAktivitas');
+    Route::post('/edp/dokumen-final/upload', [EdpController::class, 'uploadDokumenFinal'])
+        ->name('edp.uploadDokumenFinal');
+
+    Route::delete('/edp/dokumen-final/delete/{filename}', [EdpController::class, 'deleteDokumenFinal'])
+        ->name('edp.deleteDokumenFinal');
 });
 
 //REVIEWER
