@@ -46,7 +46,7 @@
     </a>
     <a href="{{ route('admin.laporanTugasHarian') }}" style="text-decoration:none; color:inherit;">
         <div class="dashboard-card">
-            <h3><i class="fas fa-user"></i> Laporan Tugas Harian</h3>
+            <h3><i class="fas fa-book"></i> Laporan Tugas Harian</h3>
             <p><strong>{{ $laporanFinal->count() }} Laporan Selesai</strong></p>
        </div> 
     </a>
