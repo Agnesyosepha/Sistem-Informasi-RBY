@@ -62,6 +62,7 @@
     <table style="width:100%; border-collapse: collapse; margin-top:15px;">
         <thead style="background:#007BFF; color:white;">
             <tr>
+                <th style="padding:10px; text-align:left; width:40px;">No</th>
                 <th style="padding:10px; text-align:left;">Pemberi Tugas</th>
                 <th style="padding:10px; text-align:left;">Debitur</th>
                 <th style="padding:10px; text-align:left;">No.PPJP</th>
@@ -70,24 +71,46 @@
                 <th style="padding:10px; text-align:left;">Status</th>
             </tr>
         </thead>
-        <tbody>
-            @foreach($tugasHarian as $tugas)
-                <tr class="tugas-row" style="border-bottom:1px solid #ddd; cursor: pointer;" data-id="{{ $tugas->id }}">
-                    <td style="padding:10px; text-align:left;">{{ $tugas->pemberi_tugas }}</td>
-                    <td style="padding:10px; text-align:left;">{{ $tugas->debitur }}</td>
-                    <td style="padding:10px; text-align:left;">{{ $tugas->no_ppjp }}</td>
-                    <td style="padding:10px; text-align:left;">{{ $tugas->tanggal_survei }}</td>
-                    <td style="padding:10px; text-align:left;">{{ $tugas->tim_lapangan }}</td>
-                    <td style="padding:10px; text-align:left; font-weight:600;">
-                        <span class="status-label" data-status="{{ $tugas->status }}">
-                            {{ $tugas->status }}
-                        </span>
-                    </td>
-                </tr>
+        @foreach($tugasHarian as $index => $tugas)
+            <tr class="tugas-row" style="border-bottom:1px solid #ddd; cursor: pointer;" data-id="{{ $tugas->id }}">
+
+                <!-- NO -->
+                <td style="padding:10px; text-align:left; width:40px;">
+                    {{ $index + 1 }}
+                </td>
+
+                <!-- Pemberi Tugas -->
+                <td style="padding:10px; text-align:left;">
+                    {{ $tugas->pemberi_tugas }}
+                </td>
+
+                <td style="padding:10px; text-align:left;">
+                    {{ $tugas->debitur }}
+                </td>
+
+                <td style="padding:10px; text-align:left;">
+                    {{ $tugas->no_ppjp }}
+                </td>
+
+                <td style="padding:10px; text-align:left;">
+                    {{ $tugas->tanggal_survei }}
+                </td>
+
+                <td style="padding:10px; text-align:left;">
+                    {{ $tugas->tim_lapangan }}
+                </td>
+
+                <td style="padding:10px; text-align:left; font-weight:600;">
+                    <span class="status-label" data-status="{{ $tugas->status }}">
+                        {{ $tugas->status }}
+                    </span>
+                </td>
+
+            </tr>
                 
                 <!-- Baris dropdown untuk tahapan (awalnya disembunyikan) -->
                 <tr class="tahapan-row" id="tahapan-{{ $tugas->id }}" style="display: none; background-color: #f8f9fa;">
-                    <td colspan="6" style="padding: 15px;">
+                    <td colspan="7" style="padding: 15px;">
                         <div class="tahapan-container">
                             <h4 style="margin-top: 0; margin-bottom: 15px; text-align: center;">Tahapan Pekerjaan</h4>
                             

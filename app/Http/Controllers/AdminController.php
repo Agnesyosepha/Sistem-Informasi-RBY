@@ -28,7 +28,7 @@ class AdminController extends Controller
     // Tugas Harian
     public function SAtugasHarian()
     {
-        $tugasHarian = TugasHarian::all();
+        $tugasHarian = TugasHarian::orderBy('id', 'desc')->get();
         return view('admin.SAtugasHarian', compact('tugasHarian'));
     }
 
