@@ -155,14 +155,15 @@
 <table style="width:100%; border-collapse: collapse; margin-top:15px;">
     <thead style="background:#F9B572; color:black;">
         <tr>
-            <th style="padding:10px;">Pemberi Tugas</th>
-            <th style="padding:10px;">Debitur</th>
-            <th style="padding:10px;">No. PPJP</th>
-            <th style="padding:10px;">Tanggal Survei</th>
-            <th style="padding:10px;">Tim Lapangan</th>
-            <th style="padding:10px;">Status</th>
+            <th style="padding:10px; text-align:left;">Pemberi Tugas</th>
+            <th style="padding:10px; text-align:left;">Debitur</th>
+            <th style="padding:10px; text-align:left;">No. PPJP</th>
+            <th style="padding:10px; text-align:left;">Tanggal Survei</th>
+            <th style="padding:10px; text-align:left;">Tim Lapangan</th>
+            <th style="padding:10px; text-align:left;">Status</th>
         </tr>
     </thead>
+
 
     <tbody>
         @foreach($tugasFinal as $tugas)
