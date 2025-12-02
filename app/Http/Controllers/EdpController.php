@@ -87,8 +87,13 @@ class EdpController extends Controller
         if ($request->status_progres === 'Reviewer') {
 
             DokumenRevisi::create([
-                'nama'     => $data->jenis,
                 'tanggal'  => $data->tanggal,
+                'jenis'    => $data->jenis, 
+                'pemberi'  => $data->pemberi,
+                'pengguna' => $data->pengguna,
+                'surveyor' => $data->surveyor,
+                'lokasi'   => $data->lokasi,
+                'objek'    => $data->objek,
                 'reviewer' => 'Menunggu Reviewer',
                 'status'   => 'Dalam Revisi'
             ]);

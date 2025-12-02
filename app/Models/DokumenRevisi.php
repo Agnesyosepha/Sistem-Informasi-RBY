@@ -7,9 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class DokumenRevisi extends Model
 {
     protected $fillable = [
-        'nama',
         'tanggal',
+        'jenis',
+        'pemberi',
+        'pengguna',
+        'surveyor',
+        'lokasi',
+        'objek',
         'reviewer',
         'status'
     ];
 }
+

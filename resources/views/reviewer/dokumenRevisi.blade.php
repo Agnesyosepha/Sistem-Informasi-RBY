@@ -7,40 +7,55 @@
 <p>Daftar dokumen yang sedang direvisi oleh tim reviewer.</p>
 
 <div class="dashboard-card" style="margin-top:30px;">
-  <h3><i class="fas fa-file"></i> Dokumen Revisi</h3>
-<table style="width:100%; border-collapse:collapse; margin-top:25px; background:white; border-radius:8px; overflow:hidden;">
+  <table style="width:100%; border-collapse: collapse; margin-top:15px; background:white; border-radius:8px; overflow:hidden;">
     <thead style="background:#239BA7; color:white;">
         <tr>
-            <th style="padding:12px 14px; text-align:left; width:60px;">No</th>
-            <th style="padding:12px 14px; text-align:left;">Nama Dokumen</th>
-            <th style="padding:12px 14px; text-align:left;">Tanggal Upload</th>
-            <th style="padding:12px 14px; text-align:left;">Reviewer</th>
-            <th style="padding:12px 14px; text-align:left;">Status</th>
+            <th style="padding:10px; text-align:left;">Tanggal</th>
+            <th style="padding:10px; text-align:left;">Maksud & Tujuan</th>
+            <th style="padding:10px; text-align:left;">Pemberi Tugas</th>
+            <th style="padding:10px; text-align:left;">Pengguna Laporan</th>
+            <th style="padding:10px; text-align:left;">Surveyor</th>
+            <th style="padding:10px; text-align:left;">Lokasi</th>
+            <th style="padding:10px; text-align:left;">Objek Penilaian</th>
+            <th style="padding:10px; text-align:left;">Reviewer</th>
+            <th style="padding:10px; text-align:left;">Status</th>
         </tr>
     </thead>
+
     <tbody>
-        @forelse($dokumenRevisi as $index => $dok)
-        <tr style="border-bottom:1px solid #e5e5e5;">
-            <td style="padding:12px 14px;">{{ $index + 1 }}</td>
-            <td style="padding:12px 14px;">{{ $dok['nama'] }}</td>
-            <td style="padding:12px 14px;">{{ $dok['tanggal'] }}</td>
-            <td style="padding:12px 14px;">{{ $dok['reviewer'] }}</td>
-            <td style="padding:12px 14px;">
-                @if($dok['status'] === 'Selesai')
-                    <span style="padding:10px; font-weight:600; color:green;">Selesai</span>
-                @elseif($dok['status'] === 'Dalam Revisi')
-                    <span style="padding:10px; font-weight:600; color:orange;">Dalam Revisi</span>
-                @else
-                    <span style="padding:10px; font-weight:600; color:red;">Ditolak</span>
-                @endif
+        @forelse($dokumenRevisi as $data)
+        <tr style="border-bottom:1px solid #ddd;">
+            <td style="padding:10px;">{{ $data->tanggal }}</td>
+            <td style="padding:10px;">{{ $data->jenis }}</td>
+            <td style="padding:10px;">{{ $data->pemberi }}</td>
+            <td style="padding:10px;">{{ $data->pengguna }}</td>
+            <td style="padding:10px;">{{ $data->surveyor ?? '-' }}</td>
+            <td style="padding:10px;">{{ $data->lokasi ?? '-' }}</td>
+            <td style="padding:10px;">{{ $data->objek ?? '-' }}</td>
+            <td style="padding:10px;">{{ $data->reviewer ?? '-' }}</td>
+            <td style="
+                padding:10px;
+                font-weight:600; 
+                color:
+                    @if($data->status === 'Selesai')
+                        #28a745
+                    @elseif($data->status === 'Dalam Revisi')
+                        #ffc107
+                    @else
+                        #dc3545
+                    @endif
+            ">
+                {{ $data->status }}
             </td>
         </tr>
         @empty
         <tr>
-            <td colspan="5" style="text-align:center; padding:18px; color:#777;">Belum ada dokumen revisi.</td>
+            <td colspan="9" style="text-align:center; padding:18px; color:#777;">
+                Belum ada dokumen revisi.
+            </td>
         </tr>
         @endforelse
     </tbody>
-</table>
+  </table>
 </div>
 @endsection

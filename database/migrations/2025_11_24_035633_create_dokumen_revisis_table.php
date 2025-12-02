@@ -13,12 +13,18 @@ return new class extends Migration
     {
         Schema::create('dokumen_revisis', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
             $table->date('tanggal');
-            $table->string('reviewer');
-            $table->string('status');
+            $table->string('jenis');        
+            $table->string('pemberi');
+            $table->string('pengguna');
+            $table->string('surveyor');
+            $table->string('lokasi');
+            $table->string('objek');
+            $table->string('reviewer')->nullable();
+            $table->string('status')->default('Dalam Revisi');
             $table->timestamps();
         });
+
     }
 
     /**

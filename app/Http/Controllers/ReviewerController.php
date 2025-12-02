@@ -9,11 +9,18 @@ use App\Models\LogAktivitas;
 
 class ReviewerController extends Controller
 {
+    // ===========================
+    // DASHBOARD REVIEWER
+    // ===========================
     public function index()
     {
         $logs = LogAktivitas::orderBy('tanggal', 'desc')->get();
         return view('layouts.reviewer', compact('logs'));
     }
+
+    // ===========================
+    // LOG AKTIVITAS - SUPERADMIN
+    // ===========================
     public function SAlog()
     {
         $logs = LogAktivitas::orderBy('tanggal', 'desc')->get();
@@ -21,6 +28,7 @@ class ReviewerController extends Controller
 
         return view('reviewer.SAlogaktivitas', compact('logs', 'totalLog'));
     }
+
     public function storeSAlog(Request $request)
     {
         $request->validate([
@@ -34,62 +42,63 @@ class ReviewerController extends Controller
 
         LogAktivitas::create($request->all());
 
-        return redirect()->route('superadmin.reviewer.SAlog')
-                     ->with('success', 'Log aktivitas berhasil ditambahkan!');
-}
+        return redirect()
+            ->route('superadmin.reviewer.SAlog')
+            ->with('success', 'Log aktivitas berhasil ditambahkan!');
+    }
 
-    // Anggota Reviewer
+    // ===========================
+    // ANGGOTA REVIEWER
+    // ===========================
     public function tim()
     {
         $timReviewer = [
-            ['nama' => 'Mega Permata Sari Br Ginting', 
-            'nohp' => '0823-7881-6319', 
-            'email' => 'MegaPermataSari400@gmail.com', 
-            'status' => 'Aktif'],
+            [
+                'nama' => 'Mega Permata Sari Br Ginting',
+                'nohp' => '0823-7881-6319',
+                'email' => 'MegaPermataSari400@gmail.com',
+                'status' => 'Aktif'
+            ],
         ];
 
         return view('reviewer.timReviewer', compact('timReviewer'));
     }
 
-
-    // Dokumen Revisi
+    // ===========================
+    // DOKUMEN REVISI
+    // ===========================
     public function dokumenRevisi()
     {
-        $dokumenRevisi = \App\Models\DokumenRevisi::all();
+        // Semua data dari EDP DataAktif yang sudah dipindah
+        $dokumenRevisi = DokumenRevisi::orderBy('tanggal', 'desc')->get();
+
         return view('reviewer.dokumenRevisi', compact('dokumenRevisi'));
     }
 
     public function SAdokumenRevisi()
     {
-        $dokumenRevisi = \App\Models\DokumenRevisi::all();
+        $dokumenRevisi = DokumenRevisi::orderBy('tanggal', 'desc')->get();
+
         return view('reviewer.SAdokumenRevisi', compact('dokumenRevisi'));
     }
 
-    public function storeDokumenRevisi(Request $request)
-    {
-        $request->validate([
-            'nama' => 'required|string',
-            'tanggal' => 'required|date',
-            'reviewer' => 'required|string',
-            'status' => 'required|string'
-        ]);
+    // ❌ HAPUS storeDokumenRevisi KARENA DATA SUDAH DIPINDAHKAN OTOMATIS DARI EDP
+    // public function storeDokumenRevisi() { ... }  // DIHAPUS
 
-        \App\Models\DokumenRevisi::create($request->all());
-
-        return redirect()->back()->with('success', 'Dokumen revisi berhasil ditambahkan!');
-    }
-
-
-    // Dokumen Final
+    // ===========================
+    // DOKUMEN FINAL
+    // ===========================
     public function dokumenFinal()
     {
-        $dokumenFinal = \App\Models\DokumenFinal::all();
+        $dokumenFinal = DokumenFinal::orderBy('tanggal', 'desc')->get();
+
         return view('reviewer.dokumenFinal', compact('dokumenFinal'));
     }
 
     public function SAdokumenFinal()
     {
-        $dokumenFinal = \App\Models\DokumenFinal::all();
+        $dokumenFinal = DokumenFinal::orderBy('tanggal', 'desc')->get();
+
         return view('reviewer.SAdokumenFinal', compact('dokumenFinal'));
     }
 
@@ -102,9 +111,9 @@ class ReviewerController extends Controller
             'status' => 'required|string'
         ]);
 
-        \App\Models\DokumenFinal::create($request->all());
+        DokumenFinal::create($request->all());
 
         return redirect()->back()->with('success', 'Dokumen final berhasil ditambahkan!');
     }
-
 }
+
