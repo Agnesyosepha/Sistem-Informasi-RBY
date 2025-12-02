@@ -93,18 +93,18 @@
 
                                 // Data untuk setiap tahapan
                                 $tahapanData = [
-                                    1 => ['value' => 'pengumpulan awal', 'title' => 'Pengumpulan Data'],
-                                    2 => ['value' => 'pembuatan invoice DP', 'title' => 'Pembuatan Invoice DP'],
-                                    3 => ['value' => 'penjadwalan inspeksi', 'title' => 'Penjadwalan Inspeksi'],
-                                    4 => ['value' => 'inspeksi', 'title' => 'Inspeksi'],
-                                    5 => ['value' => 'proses analisa', 'title' => 'Proses Analisa'],
-                                    6 => ['value' => 'review nilai', 'title' => 'Review Nilai', 'is_final' => true],
-                                    7 => ['value' => 'kirim draft resume', 'title' => 'Kirim Draft Resume'],
-                                    8 => ['value' => 'draft laporan', 'title' => 'Draft Laporan'],
-                                    9 => ['value' => 'review/final', 'title' => 'Review/Final'],
-                                    10 => ['value' => 'nomor laporan', 'title' => 'Nomor Laporan'],
-                                    11 => ['value' => 'laporan rangkap', 'title' => 'Laporan Rangkap 3'],
-                                    12 => ['value' => 'pengiriman dokumen', 'title' => 'Pengiriman Dokumen'],
+                                    1 => ['value' => 'Pengumpulan Data', 'title' => 'Pengumpulan Data'],
+                                    2 => ['value' => 'Pembuatan Invoice DP', 'title' => 'Pembuatan Invoice DP'],
+                                    3 => ['value' => 'Penjadwalan Inspeksi', 'title' => 'Penjadwalan Inspeksi'],
+                                    4 => ['value' => 'Inspeksi', 'title' => 'Inspeksi'],
+                                    5 => ['value' => 'Proses Analisa', 'title' => 'Proses Analisa'],
+                                    6 => ['value' => 'Review Nilai', 'title' => 'Review Nilai', 'is_final' => true],
+                                    7 => ['value' => 'Kirim Draft Resume', 'title' => 'Kirim Draft Resume'],
+                                    8 => ['value' => 'Draft Laporan', 'title' => 'Draft Laporan'],
+                                    9 => ['value' => 'Review/Final', 'title' => 'Review/Final'],
+                                    10 => ['value' => 'Nomor Laporan', 'title' => 'Nomor Laporan'],
+                                    11 => ['value' => 'Laporan Rangkap', 'title' => 'Laporan Rangkap 3'],
+                                    12 => ['value' => 'engiriman Dokumen', 'title' => 'Pengiriman Dokumen'],
                                 ];
                             @endphp
 
