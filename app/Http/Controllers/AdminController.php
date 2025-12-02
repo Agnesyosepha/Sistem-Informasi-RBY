@@ -179,10 +179,33 @@ class AdminController extends Controller
     }
 
     public function suratTugasAdmin()
-    {
-        $suratTugas = SuratTugas::all();
-        return view('admin.suratTugas', compact('suratTugas'));
+{
+    $query = SuratTugas::query();
+    
+    // Hitung total data untuk ditampilkan di footer tabel
+    $totalSuratTugas = SuratTugas::count();
+    
+    // Filter berdasarkan pencarian
+    if (request('search')) {
+        $search = request('search');
+        $query->where(function($q) use ($search) {
+            $q->where('no_ppjp', 'like', "%$search%")
+              ->orWhere('lokasi', 'like', "%$search%")
+              ->orWhere('objek_penilaian', 'like', "%$search%")
+              ->orWhere('pemberi_tugas', 'like', "%$search%")
+              ->orWhere('nama_penilai', 'like', "%$search%");
+        });
     }
+    
+    // Filter berdasarkan bulan
+    if (request('bulan')) {
+        $query->whereMonth('tanggal_survey', request('bulan'));
+    }
+    
+    $suratTugas = $query->get();
+    
+    return view('admin.suratTugas', compact('suratTugas', 'totalSuratTugas'));
+}
 
 // Agar route /surat-tugas tetap bisa dipakai
 public function suratTugas()
@@ -311,50 +334,90 @@ public function updateSuratTugas(Request $request, $id)
 
 
 // Adendum
-    public function adendum()
-    {
-        $adendum = Adendum::all();
-        return view('admin.adendum', compact('adendum'));
+public function adendum()
+{
+    $query = Adendum::query();
+    
+    // Hitung total data untuk ditampilkan di footer tabel
+    $totalAdendum = Adendum::count();
+    
+    // Filter berdasarkan pencarian
+    if (request('search')) {
+        $search = request('search');
+        $query->where(function($q) use ($search) {
+            $q->where('nomor', 'like', "%$search%")
+              ->orWhere('proyek', 'like', "%$search%")
+              ->orWhere('deskripsi', 'like', "%$search%");
+        });
     }
-
-    public function SAadendum()
-    {
-        $adendum = \App\Models\Adendum::all();
-        return view('admin.SAadendum', compact('adendum'));
+    
+    // Filter berdasarkan bulan
+    if (request('bulan')) {
+        $query->whereMonth('tanggal', request('bulan'));
     }
+    
+    $adendum = $query->get();
+    
+    return view('admin.adendum', compact('adendum', 'totalAdendum'));
+}
 
-    public function storeAdendum(Request $request)
-    {
-        $request->validate([
-            'nomor' => 'required',
-            'proyek' => 'required',
-            'tanggal' => 'required|date',
-            'deskripsi' => 'required',
-            'status' => 'required',
-        ]);
-
-        \App\Models\Adendum::create($request->all());
-
-        return redirect()->route('superadmin.admin.SAadendum')->with('success', 'Adendum Berhasil Ditambahkan');
+public function SAadendum()
+{
+    $query = Adendum::query();
+    
+    // Hitung total data untuk ditampilkan di footer tabel
+    $totalAdendum = Adendum::count();
+    
+    // Filter berdasarkan pencarian
+    if (request('search')) {
+        $search = request('search');
+        $query->where(function($q) use ($search) {
+            $q->where('nomor', 'like', "%$search%")
+              ->orWhere('proyek', 'like', "%$search%")
+              ->orWhere('deskripsi', 'like', "%$search%");
+        });
     }
-
-    public function updateStatusAdendum(Request $request, $id)
-    {
-        $adendum = \App\Models\Adendum::findOrFail($id);
-        $adendum->status = $request->status;
-        $adendum->save();
-
-        return response()->json(['message' => 'Status updated']);
+    
+    // Filter berdasarkan bulan
+    if (request('bulan')) {
+        $query->whereMonth('tanggal', request('bulan'));
     }
-
+    
+    $adendum = $query->get();
+    
+    return view('admin.SAadendum', compact('adendum', 'totalAdendum'));
+}
 
 
 // Draft Resume
-    public function draftResume()
-    {
-        $resume = \App\Models\DraftResume::all();
-        return view('admin.draftResume', compact('resume'));
+public function draftResume()
+{
+    $query = DraftResume::query();
+    
+    // Hitung total data untuk ditampilkan di footer tabel
+    $totalResume = DraftResume::count();
+    
+    // Filter berdasarkan pencarian
+    if (request('search')) {
+        $search = request('search');
+        $query->where(function($q) use ($search) {
+            $q->where('pemberi_tugas', 'like', "%$search%")
+              ->orWhere('objek_penilaian', 'like', "%$search%");
+        });
     }
+    
+    // Filter berdasarkan bulan
+    if (request('bulan')) {
+        $query->where(function($q) {
+            $q->whereMonth('tanggal', request('bulan'))
+              ->orWhereMonth('tanggal_pengiriman', request('bulan'));
+        });
+    }
+    
+    $resume = $query->get();
+    
+    return view('admin.draftResume', compact('resume', 'totalResume'));
+}
 
     public function SAdraftResume()
     {
@@ -390,11 +453,34 @@ public function updateSuratTugas(Request $request, $id)
 
 
 // Draft Laporan
-    public function draftLaporan()
-    {
-        $laporan = \App\Models\DraftLaporan::all();
-        return view('admin.draftLaporan', compact('laporan'));
+public function draftLaporan()
+{
+    $query = DraftLaporan::query();
+    
+    // Hitung total data untuk ditampilkan di footer tabel
+    $totalLaporan = DraftLaporan::count();
+    
+    // Filter berdasarkan pencarian
+    if (request('search')) {
+        $search = request('search');
+        $query->where(function($q) use ($search) {
+            $q->where('pemberi_tugas', 'like', "%$search%")
+              ->orWhere('nomor_ppjp', 'like', "%$search%");
+        });
     }
+    
+    // Filter berdasarkan bulan
+    if (request('bulan')) {
+        $query->where(function($q) {
+            $q->whereMonth('tgl_proposal', request('bulan'))
+              ->orWhereMonth('tgl_pengiriman', request('bulan'));
+        });
+    }
+    
+    $laporan = $query->get();
+    
+    return view('admin.draftLaporan', compact('laporan', 'totalLaporan'));
+}
 
     public function SAdraftLaporan()
     {
