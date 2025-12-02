@@ -227,6 +227,8 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin')->middlewa
 
 Route::get('/admin/laporan-tugas-harian', [AdminController::class, 'laporanTugasHarian'])
     ->name('admin.laporanTugasHarian');
+    Route::get('/laporan-tugas-harian', [AdminController::class, 'laporanTugasHarian'])
+    ->name('admin.laporanTugasHarian');
 
 // Surveyor
 Route::get('/surveyor', [SurveyorController::class, 'dashboard'])

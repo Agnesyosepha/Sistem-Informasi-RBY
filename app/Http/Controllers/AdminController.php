@@ -142,14 +142,14 @@ class AdminController extends Controller
 
         return response()->download($filePath, $tugasFile->filename);
     }
+
     public function laporanTugasHarian()
     {
-        // Ambil semua tugas yang sudah final
-        $tugasFinal = TugasHarian::where('is_final_report', 1)->get();
+        $tugasFinal = \App\Models\TugasHarian::with('files')->where('is_final_report', 1)->get();
 
         return view('admin.laporanTugasHarian', compact('tugasFinal'));
+         
     }
-
 
 // Surat Tugas
     public function SAsuratTugas()

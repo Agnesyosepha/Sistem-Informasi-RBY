@@ -13,11 +13,19 @@ class TugasHarian extends Model
         'tanggal_survei',
         'tim_lapangan',
         'status',
-        'tahapan'
+        'tahapan',
+        'is_final_report' 
     ];
 
     public function files()
     {
         return $this->hasMany(TugasHarianFile::class);
+    }
+
+    public function isComplete()
+    {
+        $fileUtama = $this->files()->where('is_revision', 0)->count();
+
+        return $fileUtama >= 12;
     }
 }
