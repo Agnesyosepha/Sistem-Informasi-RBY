@@ -145,10 +145,19 @@ class AdminController extends Controller
 
     public function laporanTugasHarian()
     {
-        $tugasFinal = \App\Models\TugasHarian::with('files')->where('is_final_report', 1)->get();
+        $bulan = request('bulan'); 
+
+        $query = \App\Models\TugasHarian::with('files')
+                    ->where('is_final_report', 1);
+
+        if ($bulan) {
+            $query->whereMonth('tanggal_survei', $bulan);
+        }
+
+        // ✔ GUNAKAN QUERY YANG SUDAH DIFILTER
+        $tugasFinal = $query->get();
 
         return view('admin.laporanTugasHarian', compact('tugasFinal'));
-         
     }
 
 // Surat Tugas
