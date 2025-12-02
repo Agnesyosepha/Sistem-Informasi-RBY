@@ -63,68 +63,73 @@ class AdminController extends Controller
     }
 
     public function uploadFile(Request $request, $tugasId, $tahapanId)
-{
+    {
     // Log request data
-    \Log::info('Upload request:', [
-        'tugasId' => $tugasId,
-        'tahapanId' => $tahapanId,
-        'hasFile' => $request->hasFile('file'),
-        'allFiles' => $request->allFiles()
-    ]);
+        \Log::info('Upload request:', [
+            'tugasId' => $tugasId,
+            'tahapanId' => $tahapanId,
+            'hasFile' => $request->hasFile('file'),
+            'isRevision' => $request->input('is_revision', 0),
+            'allFiles' => $request->allFiles()
+        ]);
 
-    $request->validate([
-        'file' => 'required|file|max:10240', // Max 10MB
-    ]);
+        $request->validate([
+            'file' => 'required|file|max:10240', // Max 10MB
+        ]);
 
-    $tugas = TugasHarian::findOrFail($tugasId);
-    $file = $request->file('file');
+        $tugas = TugasHarian::findOrFail($tugasId);
+        $file = $request->file('file');
+        $isRevision = $request->input('is_revision', 0);
 
     // Log file info
-    \Log::info('File info:', [
-        'originalName' => $file->getClientOriginalName(),
-        'size' => $file->getSize(),
-        'mime' => $file->getMimeType()
-    ]);
+        \Log::info('File info:', [
+            'originalName' => $file->getClientOriginalName(),
+            'size' => $file->getSize(),
+            'mime' => $file->getMimeType(),
+            'isRevision' => $isRevision
+        ]);
 
     // Simpan file ke storage/app/public/tugas-harian
-    $fileName = time() . '_' . $file->getClientOriginalName();
-    $filePath = $file->storeAs('tugas-harian', $fileName, 'public');
+        $fileName = time() . '_' . $file->getClientOriginalName();
+        $filePath = $file->storeAs('tugas-harian', $fileName, 'public');
 
     // Log storage path
-    \Log::info('File stored at:', ['path' => $filePath]);
+        \Log::info('File stored at:', ['path' => $filePath]);
 
     // Simpan informasi file ke database
-    $tugasFile = TugasHarianFile::updateOrCreate(
-        [
-            'tugas_harian_id' => $tugasId,
-            'tahapan_id' => $tahapanId,
-        ],
-        [
-            'filename' => $file->getClientOriginalName(),
-            'path' => $filePath,
-        ]
-    );
+        $tugasFile = TugasHarianFile::updateOrCreate(
+            [
+                'tugas_harian_id' => $tugasId,
+                'tahapan_id' => $tahapanId,
+                'is_revision' => $isRevision,
+            ],
+            [
+                'filename' => $file->getClientOriginalName(),
+                'path' => $filePath,
+            ]
+        );
 
     // Log database result
-    \Log::info('Database record:', ['tugasFile' => $tugasFile]);
+        \Log::info('Database record:', ['tugasFile' => $tugasFile]);
 
-    return response()->json([
-        'success' => true, 
-        'message' => 'File berhasil diupload!',
-        'file_url' => Storage::url($filePath)
-    ]);
-}
-    public function downloadFile($fileId)
-{
-    $tugasFile = TugasHarianFile::findOrFail($fileId);
-    $filePath = storage_path('app/public/' . $tugasFile->path);
-
-    if (!file_exists($filePath)) {
-        return back()->with('error', 'File tidak ditemukan di server.');
+        return response()->json([
+            'success' => true, 
+            'message' => $isRevision ? 'File revisi berhasil diupload!' : 'File berhasil diupload!',
+            'file_url' => Storage::url($filePath)
+        ]);
     }
 
-    return response()->download($filePath, $tugasFile->filename);
-}
+    public function downloadFile($fileId)
+    {
+        $tugasFile = TugasHarianFile::findOrFail($fileId);
+        $filePath = storage_path('app/public/' . $tugasFile->path);
+
+        if (!file_exists($filePath)) {
+            return back()->with('error', 'File tidak ditemukan di server.');
+        }
+
+        return response()->download($filePath, $tugasFile->filename);
+    }
     
     
 

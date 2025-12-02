@@ -80,85 +80,116 @@
                 </tr>
                 
                 <!-- Baris dropdown untuk tahapan (awalnya disembunyikan) -->
-<tr class="tahapan-row" id="tahapan-{{ $tugas->id }}" style="display: none; background-color: #f8f9fa;">
-    <td colspan="6" style="padding: 15px;">
-        <div class="tahapan-container">
-            <h4 style="margin-top: 0; margin-bottom: 15px; text-align: center;">Tahapan Pekerjaan</h4>
-            
-            @php
-                // Buat array asosiatif untuk mempermudah pencarian file berdasarkan tahapan_id
-                $filesByTahapan = $tugas->files->keyBy('tahapan_id');
+                <tr class="tahapan-row" id="tahapan-{{ $tugas->id }}" style="display: none; background-color: #f8f9fa;">
+                    <td colspan="6" style="padding: 15px;">
+                        <div class="tahapan-container">
+                            <h4 style="margin-top: 0; margin-bottom: 15px; text-align: center;">Tahapan Pekerjaan</h4>
+                            
+                            @php
+                                // Buat array asosiatif untuk mempermudah pencarian file berdasarkan tahapan_id
+                                $filesByTahapan = $tugas->files->keyBy(function($file) {
+                                    return $file->tahapan_id . '_' . ($file->is_revision ? 'revision' : 'original');
+                                });
 
-                // Data untuk setiap tahapan
-                $tahapanData = [
-                    1 => ['value' => 'pengumpulan awal', 'title' => 'Pengumpulan Data'],
-                    2 => ['value' => 'pembuatan invoice DP', 'title' => 'Pembuatan Invoice DP'],
-                    3 => ['value' => 'penjadwalan inspeksi', 'title' => 'Penjadwalan Inspeksi'],
-                    4 => ['value' => 'inspeksi', 'title' => 'Inspeksi'],
-                    5 => ['value' => 'proses analisa', 'title' => 'Proses Analisa'],
-                    6 => ['value' => 'review nilai', 'title' => 'Review Nilai', 'is_final' => true],
-                    7 => ['value' => 'kirim draft resume', 'title' => 'Kirim Draft Resume'],
-                    8 => ['value' => 'draft laporan', 'title' => 'Draft Laporan'],
-                    9 => ['value' => 'review/final', 'title' => 'Review/Final'],
-                    10 => ['value' => 'nomor laporan', 'title' => 'Nomor Laporan'],
-                    11 => ['value' => 'laporan rangkap', 'title' => 'Laporan Rangkap 3'],
-                    12 => ['value' => 'pengiriman dokumen', 'title' => 'Pengiriman Dokumen'],
-                ];
-            @endphp
+                                // Data untuk setiap tahapan
+                                $tahapanData = [
+                                    1 => ['value' => 'pengumpulan awal', 'title' => 'Pengumpulan Data'],
+                                    2 => ['value' => 'pembuatan invoice DP', 'title' => 'Pembuatan Invoice DP'],
+                                    3 => ['value' => 'penjadwalan inspeksi', 'title' => 'Penjadwalan Inspeksi'],
+                                    4 => ['value' => 'inspeksi', 'title' => 'Inspeksi'],
+                                    5 => ['value' => 'proses analisa', 'title' => 'Proses Analisa'],
+                                    6 => ['value' => 'review nilai', 'title' => 'Review Nilai', 'is_final' => true],
+                                    7 => ['value' => 'kirim draft resume', 'title' => 'Kirim Draft Resume'],
+                                    8 => ['value' => 'draft laporan', 'title' => 'Draft Laporan'],
+                                    9 => ['value' => 'review/final', 'title' => 'Review/Final'],
+                                    10 => ['value' => 'nomor laporan', 'title' => 'Nomor Laporan'],
+                                    11 => ['value' => 'laporan rangkap', 'title' => 'Laporan Rangkap 3'],
+                                    12 => ['value' => 'pengiriman dokumen', 'title' => 'Pengiriman Dokumen'],
+                                ];
+                            @endphp
 
-            @for ($i = 1; $i <= 12; $i++)
-                @php
-                    $data = $tahapanData[$i];
-                    $hasFile = $filesByTahapan->has($i);
-                    $file = $hasFile ? $filesByTahapan->get($i) : null;
-                @endphp
+                            @for ($i = 1; $i <= 12; $i++)
+                                @php
+                                    $data = $tahapanData[$i];
+                                    $hasFile = $filesByTahapan->has($i . '_original');
+                                    $hasRevisionFile = $filesByTahapan->has($i . '_revision');
+                                    $file = $hasFile ? $filesByTahapan->get($i . '_original') : null;
+                                    $revisionFile = $hasRevisionFile ? $filesByTahapan->get($i . '_revision') : null;
+                                @endphp
 
-                <div class="tahapan-item {{ $hasFile ? 'active' : '' }}" data-value="{{ $data['value'] }}">
-                    <div class="tahapan-header">
-                        <span class="tahapan-number">{{ $i }}.</span>
-                        <span class="tahapan-title">{{ $data['title'] }}</span>
-                        <div class="tahapan-status">
-                            <input type="checkbox" class="tahapan-checkbox" id="tahapan{{ $i }}-{{ $tugas->id }}" data-tahapan="{{ $i }}" {{ $hasFile ? 'checked disabled' : '' }}>
-                            <label for="tahapan{{ $i }}-{{ $tugas->id }}">Selesai</label>
+                                <div class="tahapan-item {{ $hasFile ? 'active' : '' }}" data-value="{{ $data['value'] }}">
+                                    <div class="tahapan-header">
+                                        <span class="tahapan-number">{{ $i }}.</span>
+                                        <span class="tahapan-title">{{ $data['title'] }}</span>
+                                        <div class="tahapan-status">
+                                            <input type="checkbox" class="tahapan-checkbox" id="tahapan{{ $i }}-{{ $tugas->id }}" data-tahapan="{{ $i }}" {{ $hasFile ? 'checked disabled' : '' }}>
+                                            <label for="tahapan{{ $i }}-{{ $tugas->id }}">Selesai</label>
+                                        </div>
+                                    </div>
+                                    <div class="tahapan-details" style="{{ $hasFile ? 'display: block;' : '' }}">
+                                        @if(isset($data['is_final']) && $data['is_final'])
+                                            <p>Upload file <strong style="color: red;">FINAL</strong></p>
+                                        @endif
+                                        <p><strong>Catatan:</strong> Upload dengan penamaan yang benar</p>
+                                        
+                                        <!-- File Utama -->
+                                        <div class="file-section">
+                                            <h5>File Utama:</h5>
+                                            <div class="file-upload-container">
+                                                <input type="file" id="file-tahapan{{ $i }}-{{ $tugas->id }}" class="file-input" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" {{ $hasFile ? 'disabled' : '' }}>
+                                                <label for="file-tahapan{{ $i }}-{{ $tugas->id }}" class="file-label" {{ $hasFile ? 'style="pointer-events: none; opacity: 0.6;"' : '' }}>
+                                                    <i class="fas fa-upload"></i> Pilih File
+                                                </label>
+                                                <span class="file-name" id="file-name-tahapan{{ $i }}-{{ $tugas->id }}">
+                                                    {{ $hasFile ? $file->filename : 'Belum ada file' }}
+                                                </span>
+                                                <button class="upload-btn" id="upload-btn-tahapan{{ $i }}-{{ $tugas->id }}" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" {{ $hasFile ? 'disabled' : '' }}>
+                                                    {{ $hasFile ? 'File Terupload' : 'Upload' }}
+                                                </button>
+                                                @if($hasFile)
+                                                <a href="{{ route('admin.tugas-harian.downloadFile', $file->id) }}" class="download-btn" title="Download {{ $file->filename }}">
+                                                    <i class="fas fa-download"></i>
+                                                </a>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- File Revisi -->
+                                        <div class="file-section" style="margin-top: 15px;">
+                                            <h5>File Revisi:</h5>
+                                            <div class="file-upload-container">
+                                                <input type="file" id="file-revisi-tahapan{{ $i }}-{{ $tugas->id }}" class="file-input" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" data-revision="true" {{ $hasRevisionFile ? 'disabled' : '' }}>
+                                                <label for="file-revisi-tahapan{{ $i }}-{{ $tugas->id }}" class="file-label" {{ $hasRevisionFile ? 'style="pointer-events: none; opacity: 0.6;"' : '' }}>
+                                                    <i class="fas fa-upload"></i> Pilih File Revisi
+                                                </label>
+                                                <span class="file-name" id="file-name-revisi-tahapan{{ $i }}-{{ $tugas->id }}">
+                                                    {{ $hasRevisionFile ? $revisionFile->filename : 'Belum ada file revisi' }}
+                                                </span>
+                                                <button class="upload-btn" id="upload-btn-revisi-tahapan{{ $i }}-{{ $tugas->id }}" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" data-revision="true" {{ $hasRevisionFile ? 'disabled' : '' }}>
+                                                    {{ $hasRevisionFile ? 'File Revisi Terupload' : 'Upload Revisi' }}
+                                                </button>
+                                                @if($hasRevisionFile)
+                                                <a href="{{ route('admin.tugas-harian.downloadFile', $revisionFile->id) }}" class="download-btn" title="Download {{ $revisionFile->filename }}">
+                                                    <i class="fas fa-download"></i>
+                                                </a>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endfor
+                            
+                            <div class="tahapan-current">
+                                <strong>Tahapan Saat Ini:</strong> 
+                                <span id="current-tahapan-{{ $tugas->id }}">{{ $tugas->tahapan ?? 'Belum ditentukan' }}</span>
+                            </div>
+                            
+                            <div class="tahapan-actions">
+                                <button class="btn-save-tahapan" data-id="{{ $tugas->id }}">Simpan Progress</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="tahapan-details" style="{{ $hasFile ? 'display: block;' : '' }}">
-                        @if(isset($data['is_final']) && $data['is_final'])
-                            <p>Upload file <strong style="color: red;">FINAL</strong></p>
-                        @endif
-                        <p><strong>Catatan:</strong> Upload dengan penamaan yang benar</p>
-                        <div class="file-upload-container">
-    <input type="file" id="file-tahapan{{ $i }}-{{ $tugas->id }}" class="file-input" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" {{ $hasFile ? 'disabled' : '' }}>
-    <label for="file-tahapan{{ $i }}-{{ $tugas->id }}" class="file-label" {{ $hasFile ? 'style="pointer-events: none; opacity: 0.6;"' : '' }}>
-        <i class="fas fa-upload"></i> Pilih File
-    </label>
-    <span class="file-name" id="file-name-tahapan{{ $i }}-{{ $tugas->id }}">
-        {{ $hasFile ? $file->filename : 'Belum ada file' }}
-    </span>
-    <button class="upload-btn" id="upload-btn-tahapan{{ $i }}-{{ $tugas->id }}" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" {{ $hasFile ? 'disabled' : '' }}>
-        {{ $hasFile ? 'File Terupload' : 'Upload' }}
-    </button>
-    @if($hasFile)
-        <a href="{{ route('admin.tugas-harian.downloadFile', $file->id) }}" class="download-btn" title="Download {{ $file->filename }}">
-            <i class="fas fa-download"></i>
-        </a>
-    @endif
-</div>
-                    </div>
-                </div>
-            @endfor
-            
-            <div class="tahapan-current">
-                <strong>Tahapan Saat Ini:</strong> 
-                <span id="current-tahapan-{{ $tugas->id }}">{{ $tugas->tahapan ?? 'Belum ditentukan' }}</span>
-            </div>
-            
-            <div class="tahapan-actions">
-                <button class="btn-save-tahapan" data-id="{{ $tugas->id }}">Simpan Progress</button>
-            </div>
-        </div>
-    </td>
-</tr>
+                    </td>
+                </tr>
             @endforeach
         </tbody>
     </table>
@@ -249,8 +280,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                     
                     // Disable file input and upload button if file exists
-                    const fileInput = item.querySelector('.file-input');
-                    const uploadBtn = item.querySelector('.upload-btn');
+                    const fileInput = item.querySelector('.file-input:not([data-revision="true"])');
+                    const uploadBtn = item.querySelector('.upload-btn:not([data-revision="true"])');
                     if (fileInput && uploadBtn) {
                         fileInput.disabled = true;
                         uploadBtn.disabled = true;
@@ -280,8 +311,8 @@ function initializeEventListeners(tugasId) {
         });
     });
     
-    // Initialize file input change listeners
-    document.querySelectorAll(`#tahapan-${tugasId} .file-input`).forEach(input => {
+    // Initialize file input change listeners for original files
+    document.querySelectorAll(`#tahapan-${tugasId} .file-input:not([data-revision="true"])`).forEach(input => {
         input.addEventListener('change', function() {
             const fileName = this.files[0] ? this.files[0].name : 'Belum ada file';
             const fileNameSpan = document.getElementById(`file-name-${this.id.replace('file-', '')}`);
@@ -291,8 +322,19 @@ function initializeEventListeners(tugasId) {
         });
     });
     
-    // Initialize upload button click listeners
-    document.querySelectorAll(`#tahapan-${tugasId} .upload-btn`).forEach(button => {
+    // Initialize file input change listeners for revision files
+    document.querySelectorAll(`#tahapan-${tugasId} .file-input[data-revision="true"]`).forEach(input => {
+        input.addEventListener('change', function() {
+            const fileName = this.files[0] ? this.files[0].name : 'Belum ada file revisi';
+            const fileNameSpan = document.getElementById(`file-name-${this.id.replace('file-', '')}`);
+            if (fileNameSpan) {
+                fileNameSpan.textContent = fileName;
+            }
+        });
+    });
+    
+    // Initialize upload button click listeners for original files
+    document.querySelectorAll(`#tahapan-${tugasId} .upload-btn:not([data-revision="true"])`).forEach(button => {
         button.addEventListener('click', function(e) {
             e.stopPropagation();
             
@@ -312,6 +354,7 @@ function initializeEventListeners(tugasId) {
             formData.append('file', fileInput.files[0]);
             formData.append('tugas_id', tugasId);
             formData.append('tahapan_id', tahapanId);
+            formData.append('is_revision', '0'); // 0 for original file
             
             // Show loading indicator
             const originalText = this.textContent;
@@ -369,6 +412,67 @@ function initializeEventListeners(tugasId) {
                 
                 console.error(err);
                 showError('Terjadi kesalahan saat mengupload file!');
+            });
+        });
+    });
+    
+    // Initialize upload button click listeners for revision files
+    document.querySelectorAll(`#tahapan-${tugasId} .upload-btn[data-revision="true"]`).forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            const tugasId = this.getAttribute('data-tugas');
+            const tahapanId = this.getAttribute('data-tahapan');
+            const fileInput = document.getElementById(`file-revisi-tahapan${tahapanId}-${tugasId}`);
+            
+            if (!fileInput || fileInput.files.length === 0) {
+                showError('Pilih file revisi terlebih dahulu!');
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            formData.append('tugas_id', tugasId);
+            formData.append('tahapan_id', tahapanId);
+            formData.append('is_revision', '1'); // 1 for revision file
+            
+            // Show loading indicator
+            const originalText = this.textContent;
+            this.textContent = 'Mengupload...';
+            this.disabled = true;
+            
+            // Send file to server
+            fetch(`/admin/tugas-harian/upload-file/${tugasId}/${tahapanId}`, {
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                },
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                // Reset button
+                this.textContent = originalText;
+                this.disabled = false;
+                
+                if (data.success) {
+                    // Disable file input and upload button
+                    fileInput.disabled = true;
+                    this.disabled = true;
+                    this.textContent = 'File Revisi Terupload';
+                    
+                    showSuccess('File revisi berhasil diupload!');
+                } else {
+                    showError(data.message || 'Gagal mengupload file revisi!');
+                }
+            })
+            .catch(err => {
+                // Reset button
+                this.textContent = originalText;
+                this.disabled = false;
+                
+                console.error(err);
+                showError('Terjadi kesalahan saat mengupload file revisi!');
             });
         });
     });
@@ -460,8 +564,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                         
                         // Disable file input and upload button if file exists
-                        const fileInput = item.querySelector('.file-input');
-                        const uploadBtn = item.querySelector('.upload-btn');
+                        const fileInput = item.querySelector('.file-input:not([data-revision="true"])');
+                        const uploadBtn = item.querySelector('.upload-btn:not([data-revision="true"])');
                         if (fileInput && uploadBtn) {
                             fileInput.disabled = true;
                             uploadBtn.disabled = true;
@@ -599,6 +703,16 @@ function showError(message) {
     margin-bottom: 0;
 }
 
+.file-section {
+    margin-bottom: 15px;
+}
+
+.file-section h5 {
+    margin-bottom: 10px;
+    color: #495057;
+    font-size: 14px;
+}
+
 .file-upload-container {
     margin-top: 10px;
     display: flex;
@@ -697,6 +811,7 @@ function showError(message) {
 .alert-error {
     background-color: #dc3545;
 }
+
 .download-btn {
     padding: 6px 10px;
     background-color: #17a2b8; /* Warna biru muda untuk membedakan */

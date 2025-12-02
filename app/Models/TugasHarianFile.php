@@ -11,6 +11,7 @@ class TugasHarianFile extends Model
         'tahapan_id',
         'filename',
         'path',
+        'is_revision',
     ];
 
     public function tugasHarian()
