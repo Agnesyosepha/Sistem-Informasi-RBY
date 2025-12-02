@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use App\Models\DataAktif;
 use App\Models\LogEDP;
-
+use App\Models\DokumenRevisi;
 
 class EdpController extends Controller
 {
@@ -78,16 +78,27 @@ class EdpController extends Controller
 
     public function updateStatus(Request $request, $id)
     {
-        $request->validate([
-            'status_progres' => 'required|string'
+        $data = DataAktif::findOrFail($id);
+
+        $data->update([
+            'status_progres' => $request->status_progres
         ]);
 
-        $data = DataAktif::findOrFail($id);
-        $data->status_progres = $request->status_progres;
-        $data->save();
+        if ($request->status_progres === 'Reviewer') {
+
+            DokumenRevisi::create([
+                'nama'     => $data->jenis,
+                'tanggal'  => $data->tanggal,
+                'reviewer' => 'Menunggu Reviewer',
+                'status'   => 'Dalam Revisi'
+            ]);
+
+            $data->delete();
+        }
 
         return redirect()->back()->with('success', 'Status berhasil diperbarui!');
     }
+
 
 
 // Dokumen Final

@@ -408,6 +408,7 @@ Route::middleware(['auth', 'division:EDP,Reviewer'])->group(function () {
     Route::post('/edp/data-aktif/store', [EdpController::class, 'storeDataAktif'])->name('edp.dataAktif.store');
 
     Route::get('/edp/log-aktivitas', [EdpController::class, 'index'])->name('edp.logAktivitas');
+
 });
 
 
@@ -455,6 +456,10 @@ Route::middleware(['auth', 'division:Finance'])->group(function () {
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
+
+Route::put('/superadmin/edp/data-aktif/update-status/{id}', 
+    [EDPController::class, 'updateStatus']
+)->name('superadmin.edp.updateStatus');
 
 // Logout
 Route::post('/logout', function (Request $request) {
