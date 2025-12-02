@@ -35,7 +35,7 @@
                 style="width:100%; padding:8px; margin-bottom:10px; border-radius:5px; border:1px solid #ccc;">
         
 
-        <label>Jenis:</label>
+        <label>Maksud & Tujuan:</label>
         <input type="text" name="jenis" required
                 style="width:100%; padding:8px; margin-bottom:10px; border-radius:5px; border:1px solid #ccc;">
 

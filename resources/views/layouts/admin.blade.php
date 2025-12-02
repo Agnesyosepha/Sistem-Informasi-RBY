@@ -110,7 +110,7 @@
                                     9 => ['value' => 'Review/Final', 'title' => 'Review/Final'],
                                     10 => ['value' => 'Nomor Laporan', 'title' => 'Nomor Laporan'],
                                     11 => ['value' => 'Laporan Rangkap', 'title' => 'Laporan Rangkap 3'],
-                                    12 => ['value' => 'engiriman Dokumen', 'title' => 'Pengiriman Dokumen'],
+                                    12 => ['value' => 'Pengiriman Dokumen', 'title' => 'Pengiriman Dokumen'],
                                 ];
                             @endphp
 
