@@ -39,6 +39,19 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('grace123'),
         ]);
 
+        //AKUN PAK RAJA
+        User::create([
+        'username' => 'rby/admin/raja',
+            'email' => 'boss@example.com',
+            'role' => 'Atasan',
+            'password' => Hash::make('raja123'),
+            'nama' => 'Raja Tunggung Barus',
+            'alamat' => 'Jl. Mawar',
+            'nohp' => '0895-3121-80247',
+            'jabatan' => 'Pemilik Perusahaan',
+            'mappi' => '25-A-13488',
+        ]);
+
         //AKUN DIVISI ADMIN
         User::create([
             'username' => 'rby/admin/shafa',

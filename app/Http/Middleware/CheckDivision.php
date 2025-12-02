@@ -13,6 +13,12 @@ class CheckDivision
             return redirect('/login');
         }
 
+        $user = Auth::user();
+
+        if ($user->role === 'Atasan') {
+            return $next($request);
+        }
+        
         if (!in_array(Auth::user()->divisi, $divisions)) {
             abort(403, 'Anda tidak memiliki akses ke halaman ini.');
         }
