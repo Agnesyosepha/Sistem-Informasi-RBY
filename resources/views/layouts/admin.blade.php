@@ -44,9 +44,11 @@
             <p><strong>Draft Laporan Penilaian</strong></p>
         </div>
     </a>
-    <a href="{{ route('admin.laporanTugasHarian') }}" class="dashboard-card">
-        <h3><i class="fas fa-user"></i> Laporan Tugas Harian</h3>
-        <p><strong>{{ $laporanFinal->count() }} Laporan Final</strong></p>
+    <a href="{{ route('admin.laporanTugasHarian') }}" style="text-decoration:none; color:inherit;">
+        <div class="dashboard-card">
+            <h3><i class="fas fa-user"></i> Laporan Tugas Harian</h3>
+            <p><strong>{{ $laporanFinal->count() }} Laporan Selesai</strong></p>
+       </div> 
     </a>
     <a href="{{ route('admin.tim') }}" class="dashboard-card" style="display:block; color:inherit; text-decoration:none;">
         <h3><i class="fas fa-user"></i> Admin</h3>
