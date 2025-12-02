@@ -20,8 +20,9 @@ class AdminController extends Controller
     {
         $jumlahProposal = Proposal::count();
         $tugasHarian = TugasHarian::all();
+        $laporanFinal = TugasHarian::where('is_final_report', 1)->get();
 
-        return view('layouts.admin', compact('jumlahProposal', 'tugasHarian'));
+        return view('layouts.admin', compact('jumlahProposal', 'tugasHarian', 'laporanFinal'));
     }
     
     // Tugas Harian
@@ -64,7 +65,6 @@ class AdminController extends Controller
 
     public function uploadFile(Request $request, $tugasId, $tahapanId)
     {
-    // Log request data
         \Log::info('Upload request:', [
             'tugasId' => $tugasId,
             'tahapanId' => $tahapanId,
@@ -74,30 +74,18 @@ class AdminController extends Controller
         ]);
 
         $request->validate([
-            'file' => 'required|file|max:10240', // Max 10MB
+            'file' => 'required|file|max:10240',
         ]);
 
         $tugas = TugasHarian::findOrFail($tugasId);
         $file = $request->file('file');
         $isRevision = $request->input('is_revision', 0);
 
-    // Log file info
-        \Log::info('File info:', [
-            'originalName' => $file->getClientOriginalName(),
-            'size' => $file->getSize(),
-            'mime' => $file->getMimeType(),
-            'isRevision' => $isRevision
-        ]);
-
-    // Simpan file ke storage/app/public/tugas-harian
+        // Simpan file
         $fileName = time() . '_' . $file->getClientOriginalName();
         $filePath = $file->storeAs('tugas-harian', $fileName, 'public');
 
-    // Log storage path
-        \Log::info('File stored at:', ['path' => $filePath]);
-
-    // Simpan informasi file ke database
-        $tugasFile = TugasHarianFile::updateOrCreate(
+        TugasHarianFile::updateOrCreate(
             [
                 'tugas_harian_id' => $tugasId,
                 'tahapan_id' => $tahapanId,
@@ -109,8 +97,32 @@ class AdminController extends Controller
             ]
         );
 
-    // Log database result
-        \Log::info('Database record:', ['tugasFile' => $tugasFile]);
+        if ($tahapanId == 12) {
+            // Hitung jumlah tahapan yang sudah ada file utamanya
+            $total = TugasHarianFile::where('tugas_harian_id', $tugasId)
+                        ->where('is_revision', 0)
+                        ->count();
+
+            if ($total >= 12) {
+
+                // === 1. UPDATE STATUS TUGAS JADI FINAL ===
+                $tugas->status = 'Selesai';
+                $tugas->tahapan = 'Pengiriman Dokumen';
+                $tugas->is_final_report = 1;
+                $tugas->save();
+
+                // === 2. PINDAHKAN KE LAPORAN PENILAIAN (opsional) ===
+                LaporanPenilaian::create([
+                    'tugas_harian_id' => $tugasId,
+                    'debitur' => $tugas->debitur,
+                    'no_ppjp' => $tugas->no_ppjp,
+                    'tanggal_survei' => $tugas->tanggal_survei,
+                    'tim_lapangan' => $tugas->tim_lapangan,
+                ]);
+
+                \Log::info("Tugas {$tugasId} selesai dan dipindahkan ke laporan penilaian.");
+            }
+        }
 
         return response()->json([
             'success' => true, 
@@ -130,8 +142,13 @@ class AdminController extends Controller
 
         return response()->download($filePath, $tugasFile->filename);
     }
-    
-    
+    public function laporanTugasHarian()
+    {
+        // Ambil semua tugas yang sudah final
+        $tugasFinal = TugasHarian::where('is_final_report', 1)->get();
+
+        return view('admin.laporanTugasHarian', compact('tugasFinal'));
+    }
 
 
 // Surat Tugas

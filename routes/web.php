@@ -225,6 +225,8 @@ Route::get('/admin/tim', [AdminController::class, 'tim'])->name('admin.tim');
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin')->middleware('auth');
 
+Route::get('/admin/laporan-tugas-harian', [AdminController::class, 'laporanTugasHarian'])
+    ->name('admin.laporanTugasHarian');
 
 // Surveyor
 Route::get('/surveyor', [SurveyorController::class, 'dashboard'])
