@@ -163,17 +163,19 @@ class AdminController extends Controller
 
     public function storeSuratTugas(Request $request)
     {
-        SuratTugas::create([
-            'no_ppjp'       => $request->no_ppjp,
-            'tanggal'       => $request->tanggal,
-            'pemberi_tugas' => $request->pemberi_tugas,
-            'nama_penilai'  => $request->nama_penilai,
-            'adendum'       => $request->adendum,
-            'status'        => $request->status,
-        ]);
+    SuratTugas::create([
+        'no_ppjp'           => $request->no_ppjp,
+        'tanggal_survey'    => $request->tanggal_survey,
+        'lokasi'            => $request->lokasi,
+        'objek_penilaian'   => $request->objek_penilaian,
+        'pemberi_tugas'     => $request->pemberi_tugas,
+        'nama_penilai'      => $request->nama_penilai,
+        'adendum'           => $request->adendum,
+        'status'            => $request->status,
+    ]);
 
-        return redirect()->route('superadmin.admin.SAsuratTugas')
-            ->with('success', 'Surat Tugas berhasil ditambahkan!');
+    return redirect()->route('superadmin.admin.SAsuratTugas')
+        ->with('success', 'Surat Tugas berhasil ditambahkan!');
     }
 
     public function suratTugasAdmin()
@@ -182,21 +184,20 @@ class AdminController extends Controller
         return view('admin.suratTugas', compact('suratTugas'));
     }
 
-    // Agar route /surat-tugas tetap bisa dipakai
-    public function suratTugas()
-    {
-        return $this->suratTugasAdmin();
-    }
+// Agar route /surat-tugas tetap bisa dipakai
+public function suratTugas()
+{
+    return $this->suratTugasAdmin();
+}
 
-    public function updateSuratTugas(Request $request, $id)
-    {
-        $suratTugas = \App\Models\SuratTugas::findOrFail($id);
-        $suratTugas->status = $request->status;
-        $suratTugas->save();
+public function updateSuratTugas(Request $request, $id)
+{
+    $suratTugas = \App\Models\SuratTugas::findOrFail($id);
+    $suratTugas->status = $request->status;
+    $suratTugas->save();
 
-        return response()->json(['message' => 'Status updated']);
-    }
-    
+    return response()->json(['message' => 'Status updated']);
+}    
 
 // Daftar Proposal
     public function proposal()
