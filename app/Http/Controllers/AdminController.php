@@ -98,29 +98,19 @@ class AdminController extends Controller
         );
 
         if ($tahapanId == 12) {
-            // Hitung jumlah tahapan yang sudah ada file utamanya
+
             $total = TugasHarianFile::where('tugas_harian_id', $tugasId)
                         ->where('is_revision', 0)
                         ->count();
 
             if ($total >= 12) {
 
-                // === 1. UPDATE STATUS TUGAS JADI FINAL ===
                 $tugas->status = 'Selesai';
                 $tugas->tahapan = 'Pengiriman Dokumen';
                 $tugas->is_final_report = 1;
                 $tugas->save();
 
-                // === 2. PINDAHKAN KE LAPORAN PENILAIAN (opsional) ===
-                LaporanPenilaian::create([
-                    'tugas_harian_id' => $tugasId,
-                    'debitur' => $tugas->debitur,
-                    'no_ppjp' => $tugas->no_ppjp,
-                    'tanggal_survei' => $tugas->tanggal_survei,
-                    'tim_lapangan' => $tugas->tim_lapangan,
-                ]);
-
-                \Log::info("Tugas {$tugasId} selesai dan dipindahkan ke laporan penilaian.");
+                \Log::info("Tugas {$tugasId} selesai (12 tahapan lengkap).");
             }
         }
 
