@@ -110,7 +110,7 @@
       width: 60%;
       margin: 10px auto 0 auto;
       height: 2px;
-      background: linear-gradient(to right, transparent, #F7CC51, transparent);
+      background: linear-gradient(to right, transparent, #101010, transparent);
       opacity: 0.9;
     }
     .login-container img {
