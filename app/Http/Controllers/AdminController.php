@@ -19,7 +19,7 @@ class AdminController extends Controller
     public function index()
     {
         $jumlahProposal = Proposal::count();
-        $tugasHarian = TugasHarian::all();
+        $tugasHarian = TugasHarian::orderBy('id', 'desc')->get();
         $laporanFinal = TugasHarian::where('is_final_report', 1)->get();
 
         return view('layouts.admin', compact('jumlahProposal', 'tugasHarian', 'laporanFinal'));
