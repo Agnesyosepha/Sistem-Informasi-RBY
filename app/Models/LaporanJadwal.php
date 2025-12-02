@@ -11,16 +11,13 @@ class LaporanJadwal extends Model
     
     protected $fillable = [
         'jadwal_id',
-        'nama_surveyor',
-        'tanggal',
+        'no_ppjp',
+        'tanggal_survey',
         'lokasi',
-        'deskripsi',
-        'status'
+        'objek_penilaian',
+        'pemberi_tugas',
+        'nama_penilai',
+        'adendum',
+        'status',
     ];
-    
-    // Relasi ke model JadwalSurveyor
-    public function jadwalSurveyor()
-    {
-        return $this->belongsTo(JadwalSurveyor::class, 'jadwal_id');
-    }
 }

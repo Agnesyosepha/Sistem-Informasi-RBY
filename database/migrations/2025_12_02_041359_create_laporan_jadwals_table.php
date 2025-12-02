@@ -14,10 +14,13 @@ return new class extends Migration
         Schema::create('laporan_jadwals', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('jadwal_id')->nullable();
-            $table->string('nama_surveyor');
-            $table->date('tanggal');
+            $table->string('no_ppjp');
+            $table->date('tanggal_survey');
             $table->string('lokasi');
-            $table->string('deskripsi');
+            $table->string('objek_penilaian');
+            $table->string('pemberi_tugas');
+            $table->string('nama_penilai');
+            $table->string('adendum')->nullable();
             $table->string('status');
             $table->timestamps();
             
