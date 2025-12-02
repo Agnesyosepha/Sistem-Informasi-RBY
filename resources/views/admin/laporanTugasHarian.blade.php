@@ -3,6 +3,70 @@
 @section('title', 'Laporan Tugas Harian')
 
 @section('content')
+
+<style>
+    /* Container tahapan */
+    .tahapan-box {
+        padding: 14px;
+        border: 1px solid #e0e0e0;
+        background: #ffffff;
+        border-radius: 10px;
+        margin-bottom: 12px;
+        transition: 0.3s ease;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+
+    .tahapan-box:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .tahapan-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .tahapan-title i {
+        color: #F9B572;
+    }
+
+    .file-section {
+        margin-top: 8px;
+        background: #fafafa;
+        padding: 10px 12px;
+        border-radius: 8px;
+        border: 1px solid #f0f0f0;
+    }
+
+    .file-section p {
+        margin: 0;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .file-section a {
+        margin-top: 5px;
+    }
+
+    .no-file {
+        color: #c0392b;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    /* Row dropdown */
+    tr.dropdown-row td {
+        background: #fff8f0;
+        border-top: 2px solid #F9B572;
+        border-bottom: 2px solid #F9B572;
+    }
+</style>
+
 <h1><i class="fas fa-tasks"></i> Laporan Tugas Harian</h1>
 <p>Daftar tugas yang sudah final, lengkap dengan tahapan dan file.</p>
 
@@ -34,7 +98,7 @@
         </tr>
 
         <!-- ROW DROPDOWN TAHAPAN -->
-        <tr id="tahapan-{{ $tugas->id }}" style="display:none; background:#fafafa;">
+        <tr id="tahapan-{{ $tugas->id }}" class="dropdown-row" style="display:none;">
             <td colspan="6" style="padding:20px;">
                 <h4 style="text-align:center; margin-bottom:20px;">Tahapan Pekerjaan</h4>
 
@@ -61,32 +125,33 @@
                         $revisionFile = $tugas->files->where('tahapan_id', $id)->where('is_revision', 1)->first();
                     @endphp
 
-                    <div style="padding:10px; border:1px solid #ddd; margin-bottom:10px; border-radius:6px;">
-                        <strong>{{ $id }}. {{ $label }}</strong>
+                    <div class="tahapan-box">
+                        <div class="tahapan-title">
+                            <i class="fas fa-check-circle"></i>
+                            {{ $id }}. {{ $label }}
+                        </div>
 
-                        <div style="margin-top:8px;">
-                            <p style="margin:0;"><strong>File Utama:</strong></p>
-
+                        <div class="file-section">
+                            <p><strong>File Utama:</strong></p>
                             @if($mainFile)
                                 <a href="{{ route('admin.tugas-harian.downloadFile', $mainFile->id) }}"
-                                    class="btn btn-sm btn-primary" style="margin-top:5px;">
+                                    class="btn btn-sm btn-primary">
                                     Download {{ $mainFile->filename }}
                                 </a>
                             @else
-                                <span style="color:red;">Belum ada file</span>
+                                <span class="no-file">Belum ada file</span>
                             @endif
                         </div>
 
-                        <div style="margin-top:10px;">
-                            <p style="margin:0;"><strong>File Revisi:</strong></p>
-
+                        <div class="file-section" style="margin-top:10px;">
+                            <p><strong>File Revisi:</strong></p>
                             @if($revisionFile)
                                 <a href="{{ route('admin.tugas-harian.downloadFile', $revisionFile->id) }}"
-                                    class="btn btn-sm btn-warning" style="margin-top:5px;">
+                                    class="btn btn-sm btn-warning">
                                     Download Revisi {{ $revisionFile->filename }}
                                 </a>
                             @else
-                                <span style="color:red;">Belum ada file revisi</span>
+                                <span class="no-file">Belum ada file revisi</span>
                             @endif
                         </div>
                     </div>

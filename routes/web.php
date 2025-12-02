@@ -367,6 +367,11 @@ Route::get('/admin', [AdminController::class, 'index'])
     Route::post('/admin/laporan-final/store', [AdminController::class, 'storeSAlaporanFinal'])->name('admin.laporanFinal.store');
     Route::post('/admin/laporan-final/update/{id}', [AdminController::class, 'updateLaporanFinal'])->name('admin.laporanFinal.update');
 
+    Route::put('/superadmin/edp/data-aktif/update-status/{id}', 
+    [EDPController::class, 'updateStatus'])
+    ->name('superadmin.edp.updateStatus');
+
+
 });
 
 // SURVEYOR

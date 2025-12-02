@@ -76,6 +76,19 @@ class EdpController extends Controller
         return redirect()->back()->with('success', 'Data berhasil ditambahkan!');
     }
 
+    public function updateStatus(Request $request, $id)
+    {
+        $request->validate([
+            'status_progres' => 'required|string'
+        ]);
+
+        $data = DataAktif::findOrFail($id);
+        $data->status_progres = $request->status_progres;
+        $data->save();
+
+        return redirect()->back()->with('success', 'Status berhasil diperbarui!');
+    }
+
 
 // Dokumen Final
     public function dokumenFinal(Request $request)
