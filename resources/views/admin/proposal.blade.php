@@ -6,6 +6,32 @@
     <h1><i class="fas fa-file-invoice"></i> Daftar Proposal</h1>
     <p>Berikut adalah daftar proposal yang diajukan oleh para surveyor untuk penilaian aset.</p>
 
+    <form method="GET" action="{{ route('admin.proposal') }}" style="margin-bottom:20px;">
+    <input type="text" name="search" value="{{ request('search') }}" 
+           placeholder="Cari judul / debitur..." 
+           style="padding:8px; width:250px; border:1px solid #ccc; border-radius:5px;">
+
+    <select name="bulan" style="padding:8px; border:1px solid #ccc; border-radius:5px;">
+        <option value="">-- Bulan Pengajuan --</option>
+        @for($i=1; $i<=12; $i++)
+            <option value="{{ $i }}" {{ request('bulan') == $i ? 'selected' : '' }}>
+                {{ DateTime::createFromFormat('!m', $i)->format('F') }}
+            </option>
+        @endfor
+    </select>
+
+    <button type="submit" 
+            style="padding:8px 15px; background:#239BA7; color:white; border:none; border-radius:5px; cursor:pointer;">
+        Filter
+    </button>
+
+    <a href="{{ route('admin.proposal') }}" 
+       style="padding:8px 15px; background:#777; color:white; border-radius:5px; margin-left:5px; text-decoration:none;">
+       Reset
+    </a>
+</form>
+
+
     <!-- Tabel Proposal -->
     <div class="dashboard-card" style="margin-top:30px;">
         <table style="width:100%; border-collapse: collapse; margin-top:15px;">

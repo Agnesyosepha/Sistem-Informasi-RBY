@@ -201,10 +201,27 @@ class AdminController extends Controller
 // Daftar Proposal
     public function proposal()
     {
-        $proposal = Proposal::all();
-        $jumlahProposal = Proposal::count();
+        $query = Proposal::query();
 
-    // Hitung deadline otomatis
+        // Search 
+        if (request('search')) {
+            $search = request('search');
+            $query->where(function($q) use ($search) {
+                $q->where('judul', 'like', "%$search%")
+                ->orWhere('pengaju', 'like', "%$search%");
+            });
+        }
+
+
+        // Filter Bulan Pengajuan
+        if (request('bulan')) {
+            $query->whereMonth('tanggal_pengajuan', request('bulan'));
+        }
+
+        $proposal = $query->get();
+        $jumlahProposal = $proposal->count();
+
+        // Hitung deadline
         foreach ($proposal as &$p) {
             if ($p->tanggal_disetujui && $p->tanggal_berakhir) {
                 $tgl1 = Carbon::parse($p->tanggal_disetujui);
@@ -215,7 +232,6 @@ class AdminController extends Controller
             }
         }
 
-    
         return view('admin.proposal', compact('proposal', 'jumlahProposal'));
     }
 
