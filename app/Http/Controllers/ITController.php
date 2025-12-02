@@ -75,7 +75,7 @@ class ITController extends Controller
     {
         // Ambil semua file yang sudah diupload dari storage/app/formpeminjaman
         $files = [];
-        $dir = storage_path('app/formpeminjaman');
+        $dir = storage_path('app/public/formpeminjaman');
         if(is_dir($dir)){
             foreach(scandir($dir) as $file){
                 if($file === '.' || $file === '..') continue;
@@ -96,7 +96,7 @@ class ITController extends Controller
         $filename = time().'_'.$file->getClientOriginalName();
 
         // Simpan di folder storage/app/formpeminjaman
-        $file->move(storage_path('app/formpeminjaman'), $filename);
+        $file->storeAs('public/formpeminjaman', $filename);
 
         return back()->with('success', 'File berhasil diunggah!');
     }
