@@ -255,15 +255,17 @@
         .sidebar.collapsed nav ul li a i { margin-right: 0; }
 
         .sidebar.collapsed ~ .profile-container {
-            padding-left: 70px;
+            margin-left: 80px;
         }
 
         /* Profile Section */
         .profile-container {
             margin-left: 250px;
-            margin-top: 120px;
+            margin-top: 100px;
             padding: 40px;
             transition: 0.3s;
+            display: flex;
+            justify-content: center;
         }
 
         .profile-card.upgraded {
@@ -277,6 +279,7 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.08);
             border: 1px solid #ececec;
             animation: fadeSlideUp 0.4s ease;
+            margin: 0 auto;
         }
 
         .profile-card {
@@ -561,8 +564,14 @@
                 transform: translateX(0);
             }
             .profile-container {
-                margin-left: 0;
-                padding: 120px 20px;
+                margin-left: 80;
+                padding: 20px;
+                margin-top: 100px;
+            }
+            .profile-card.upgraded {
+                flex-direction: column;
+                padding: 25px;
+                gap: 25px;
             }
         }
 
@@ -580,9 +589,16 @@
             }
             .profile-container {
                 margin-left: 0;
-                padding: 120px 25px;
+                padding: 30px 20px;
             }
             .profile-grid {
+                grid-template-columns: 1fr;
+            }
+            .profile-card.upgraded {
+                flex-direction: column;
+                gap: 30px;
+            }
+            .info-grid-modern {
                 grid-template-columns: 1fr;
             }
         }
@@ -591,6 +607,10 @@
         @media (max-width: 1024px) {
             .profile-container {
                 margin-left: 200px;
+            }
+            .profile-card.upgraded {
+                padding: 25px;
+                gap: 25px;
             }
             .sidebar {
                 width: 200px;
@@ -627,20 +647,18 @@
             color: #444;
             font-size: 14px;
         }
-
-        @media (max-width: 768px) {
-            .info-grid-modern {
-                grid-template-columns: 1fr;
+        @media (min-width: 1025px) {
+            .profile-container {
+                margin-left: 250px;
             }
         }
-
-
     </style>
 </head>
+
 <body>
     
-    {{-- Sidebar --}}
-        <aside class="sidebar" id="sidebar">
+{{-- Sidebar --}}
+<aside class="sidebar" id="sidebar">
     <nav>
         <ul>
             <li>
