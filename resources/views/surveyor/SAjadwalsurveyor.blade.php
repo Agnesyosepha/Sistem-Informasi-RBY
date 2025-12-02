@@ -17,32 +17,46 @@
     display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%;
     background:rgba(0,0,0,0.5); padding-top:60px;">
     <div style="
-        background:white; margin:auto; padding:20px; border-radius:10px; width:40%;
-        box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+    background:white; margin:auto; padding:20px; border-radius:10px; width:45%;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+    max-height: 80vh; overflow-y: auto;">
+
         <h2 style="margin-bottom:15px;">Tambah Jadwal Surveyor</h2>
         <form action="{{ route('superadmin.jadwal.store') }}" method="POST">
             @csrf
 
-            <label>Nama Surveyor</label>
-            <input type="text" name="nama_surveyor" required
+            <label>Nomor PPJP</label>
+            <input type="text" name="no_ppjp" required
                 style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
 
-            <label>Tanggal</label>
-            <input type="date" name="tanggal" required
+            <label>Tanggal Survey</label>
+            <input type="date" name="tanggal_survey" required
                 style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
 
             <label>Lokasi</label>
             <input type="text" name="lokasi" required
                 style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
 
-            <label>Deskripsi</label>
-            <input type="text" name="deskripsi" required
+            <label>Objek Penilaian</label>
+            <input type="text" name="objek_penilaian" required
+                style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
+
+            <label>Pemberi Tugas</label>
+            <input type="text" name="pemberi_tugas" required
+                style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
+
+            <label>Nama Penilai</label>
+            <input type="text" name="nama_penilai" required
+                style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
+
+            <label>Adendum</label>
+            <input type="text" name="adendum"
                 style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
 
             <label>Status</label>
             <select name="status" required
                 style="width:100%; padding:8px; margin-bottom:15px; border:1px solid #ccc; border-radius:5px;">
-                <option value="Proses">Proses</option>
+                <option value="Survey">Survey</option>
                 <option value="Selesai">Selesai</option>
             </select>
 
@@ -65,33 +79,47 @@
     display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%;
     background:rgba(0,0,0,0.5); padding-top:60px;">
     <div style="
-        background:white; margin:auto; padding:20px; border-radius:10px; width:40%;
-        box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+    background:white; margin:auto; padding:20px; border-radius:10px; width:45%;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+    max-height: 80vh; overflow-y: auto;">
+    
         <h2 style="margin-bottom:15px;">Edit Jadwal Surveyor</h2>
         <form id="editForm" method="POST">
             @csrf
             @method('PUT')
 
-            <label>Nama Surveyor</label>
-            <input id="edit_nama" type="text" name="nama_surveyor" required
+            <label>Nomor PPJP</label>
+            <input id="edit_no_ppjp" type="text" name="no_ppjp" required
                 style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
 
-            <label>Tanggal</label>
-            <input id="edit_tanggal" type="date" name="tanggal" required
+            <label>Tanggal Survey</label>
+            <input id="edit_tanggal_survey" type="date" name="tanggal_survey" required
                 style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
 
             <label>Lokasi</label>
             <input id="edit_lokasi" type="text" name="lokasi" required
                 style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
 
-            <label>Deskripsi</label>
-            <input id="edit_deskripsi" type="text" name="deskripsi" required
+            <label>Objek Penilaian</label>
+            <input id="edit_objek_penilaian" type="text" name="objek_penilaian" required
+                style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
+
+            <label>Pemberi Tugas</label>
+            <input id="edit_pemberi_tugas" type="text" name="pemberi_tugas" required
+                style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
+
+            <label>Nama Penilai</label>
+            <input id="edit_nama_penilai" type="text" name="nama_penilai" required
+                style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
+
+            <label>Adendum</label>
+            <input id="edit_adendum" type="text" name="adendum"
                 style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
 
             <label>Status</label>
             <select id="edit_status" name="status" required
                 style="width:100%; padding:8px; margin-bottom:15px; border:1px solid #ccc; border-radius:5px;">
-                <option value="Proses">Proses</option>
+                <option value="Survey">Survey</option>
                 <option value="Selesai">Selesai</option>
             </select>
 
@@ -115,9 +143,13 @@
         <thead style="background:#007BFF; color:white;">
             <tr>
                 <th style="padding:10px; text-align:left;">No</th>
-                <th style="padding:10px; text-align:left;">Nama Surveyor</th>
-                <th style="padding:10px; text-align:left;">Tanggal</th>
+                <th style="padding:10px; text-align:left;">No. PPJP</th>
+                <th style="padding:10px; text-align:left;">Tanggal Survey</th>
                 <th style="padding:10px; text-align:left;">Lokasi</th>
+                <th style="padding:10px; text-align:left;">Objek Penilaian</th>
+                <th style="padding:10px; text-align:left;">Pemberi Tugas</th>
+                <th style="padding:10px; text-align:left;">Nama Penilai</th>
+                <th style="padding:10px; text-align:left;">Adendum</th>
                 <th style="padding:10px; text-align:left;">Status</th>
                 <th style="padding:10px; text-align:center;">Aksi</th>
             </tr>
@@ -126,18 +158,22 @@
             @forelse($jadwal as $index => $item)
             <tr style="border-bottom:1px solid #ddd;">
                 <td style="padding:10px;">{{ $index + 1 }}</td>
-                <td style="padding:10px;">{{ $item->nama_surveyor }}</td>
-                <td style="padding:10px;">{{ $item->tanggal }}</td>
+                <td style="padding:10px;">{{ $item->no_ppjp }}</td>
+                <td style="padding:10px;">{{ $item->tanggal_survey }}</td>
                 <td style="padding:10px;">{{ $item->lokasi }}</td>
+                <td style="padding:10px;">{{ $item->objek_penilaian }}</td>
+                <td style="padding:10px;">{{ $item->pemberi_tugas }}</td>
+                <td style="padding:10px;">{{ $item->nama_penilai }}</td>
+                <td style="padding:10px;">{{ $item->adendum ?? '-' }}</td>
                 <td style="padding:10px;">
                     @if($item->status == 'Selesai')
                         <span style="background:#28a745; color:white; padding:5px 10px; border-radius:5px;">Selesai</span>
                     @else
-                        <span style="background:#fd7e14; color:white; padding:5px 10px; border-radius:5px;">Proses</span>
+                        <span style="background:#007BFF; color:white; padding:5px 10px; border-radius:5px;">Survey</span>
                     @endif
                 </td>
                 <td style="padding:10px; text-align:center;">
-                    <button onclick="openEdit({{ $item->id }}, '{{ $item->nama_surveyor }}', '{{ $item->tanggal }}', '{{ $item->lokasi }}', '{{ $item->status }}', '{{ $item->deskripsi }}')"
+                    <button onclick="openEdit({{ $item->id }}, '{{ $item->no_ppjp }}', '{{ $item->tanggal_survey }}', '{{ $item->lokasi }}', '{{ $item->objek_penilaian }}', '{{ $item->pemberi_tugas }}', '{{ $item->nama_penilai }}', '{{ $item->adendum }}', '{{ $item->status }}')"
                         style="background:#ffc107; color:white; border:none; padding:6px 10px; border-radius:5px; cursor:pointer; margin-right:5px;">
                         <i class="fas fa-edit"></i>
                     </button>
@@ -154,7 +190,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="6" style="padding:10px; text-align:center;">Belum ada jadwal.</td>
+                <td colspan="10" style="padding:10px; text-align:center;">Belum ada jadwal.</td>
             </tr>
             @endforelse
         </tbody>
@@ -162,13 +198,16 @@
 </div>
 
 <script>
-function openEdit(id, nama, tanggal, lokasi, status, deskripsi) {
+function openEdit(id, no_ppjp, tanggal_survey, lokasi, objek_penilaian, pemberi_tugas, nama_penilai, adendum, status) {
     document.getElementById('modalEdit').style.display = 'block';
-    document.getElementById('edit_nama').value = nama;
-    document.getElementById('edit_tanggal').value = tanggal;
+    document.getElementById('edit_no_ppjp').value = no_ppjp;
+    document.getElementById('edit_tanggal_survey').value = tanggal_survey;
     document.getElementById('edit_lokasi').value = lokasi;
+    document.getElementById('edit_objek_penilaian').value = objek_penilaian;
+    document.getElementById('edit_pemberi_tugas').value = pemberi_tugas;
+    document.getElementById('edit_nama_penilai').value = nama_penilai;
+    document.getElementById('edit_adendum').value = adendum;
     document.getElementById('edit_status').value = status;
-    document.getElementById('edit_deskripsi').value = deskripsi;
 
     document.getElementById('editForm').action = `/superadmin/jadwal-surveyor/update/${id}`;
 }

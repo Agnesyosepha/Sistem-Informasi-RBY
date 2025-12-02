@@ -44,27 +44,33 @@
     <table style="width:100%; border-collapse: collapse; margin-top:15px;">
         <thead style="background:#007BFF; color:white;">
             <tr>
-                <th style="padding:10px; text-align:left;">Surveyor</th>
-                <th style="padding:10px; text-align:left;">Tanggal</th>
+                <th style="padding:10px; text-align:left;">No. PPJP</th>
+                <th style="padding:10px; text-align:left;">Tanggal Survey</th>
                 <th style="padding:10px; text-align:left;">Lokasi</th>
-                <th style="padding:10px; text-align:left;">Deskripsi</th>
+                <th style="padding:10px; text-align:left;">Objek Penilaian</th>
+                <th style="padding:10px; text-align:left;">Pemberi Tugas</th>
+                <th style="padding:10px; text-align:left;">Nama Penilai</th>
+                <th style="padding:10px; text-align:left;">Adendum</th>
                 <th style="padding:10px; text-align:left;">Status</th>
             </tr>
         </thead>
         <tbody>
             @forelse ($jadwal as $j)
                 <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">{{ $j->nama_surveyor }}</td>
-                    <td style="padding:10px;">{{ \Carbon\Carbon::parse($j->tanggal)->format('d M Y') }}</td>
+                    <td style="padding:10px;">{{ $j->no_ppjp }}</td>
+                    <td style="padding:10px;">{{ \Carbon\Carbon::parse($j->tanggal_survey)->format('d M Y') }}</td>
                     <td style="padding:10px;">{{ $j->lokasi }}</td>
-                    <td style="padding:10px;">{{ $j->deskripsi }}</td>
-                    <td style="padding:10px; font-weight:600; color:{{ $j->status == 'Selesai' ? 'green' : 'orange' }};">
+                    <td style="padding:10px;">{{ $j->objek_penilaian }}</td>
+                    <td style="padding:10px;">{{ $j->pemberi_tugas }}</td>
+                    <td style="padding:10px;">{{ $j->nama_penilai }}</td>
+                    <td style="padding:10px;">{{ $j->adendum ?? '-' }}</td>
+                    <td style="padding:10px; font-weight:600; color:{{ $j->status == 'Selesai' ? 'green' : 'blue' }};">
                         {{ $j->status }}
                     </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="5" style="text-align:center; padding:15px;">Belum ada jadwal</td>
+                    <td colspan="8" style="text-align:center; padding:15px;">Belum ada jadwal</td>
                 </tr>
             @endforelse
         </tbody>

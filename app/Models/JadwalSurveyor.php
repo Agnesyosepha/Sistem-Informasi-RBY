@@ -10,11 +10,14 @@ class JadwalSurveyor extends Model
     use HasFactory;
     
     protected $fillable = [
-        'nama_surveyor',
-        'tanggal',
+        'no_ppjp',
+        'tanggal_survey',
         'lokasi',
-        'deskripsi',
-        'status'
+        'objek_penilaian',
+        'pemberi_tugas',
+        'nama_penilai',
+        'adendum',
+        'status',
     ];
     
     public function laporanJadwal()
