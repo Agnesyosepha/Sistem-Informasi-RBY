@@ -10,6 +10,7 @@ class JadwalSurveyor extends Model
     use HasFactory;
     
     protected $fillable = [
+        'surat_tugas_id',
         'no_ppjp',
         'tanggal_survey',
         'lokasi',
@@ -20,8 +21,8 @@ class JadwalSurveyor extends Model
         'status',
     ];
     
-    public function laporanJadwal()
+    public function suratTugas()
     {
-        return $this->hasOne(LaporanJadwal::class, 'jadwal_id');
+        return $this->belongsTo(SuratTugas::class);
     }
 }

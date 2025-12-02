@@ -19,4 +19,9 @@ class SuratTugas extends Model
         'adendum',
         'status',
     ];
+    
+    public function jadwalSurveyor()
+    {
+        return $this->hasOne(JadwalSurveyor::class);
+    }
 }

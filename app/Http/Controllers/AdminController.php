@@ -193,11 +193,33 @@ public function suratTugas()
 public function updateSuratTugas(Request $request, $id)
 {
     $suratTugas = \App\Models\SuratTugas::findOrFail($id);
+    $oldStatus = $suratTugas->status;
     $suratTugas->status = $request->status;
     $suratTugas->save();
 
+    // Jika status diubah menjadi "Survey" dan sebelumnya bukan "Survey"
+    if ($request->status == 'survey' && $oldStatus != 'survey') {
+        // Cek apakah data sudah ada di jadwal_surveyors untuk menghindari duplikasi
+        $existingJadwal = \App\Models\JadwalSurveyor::where('surat_tugas_id', $suratTugas->id)->first();
+        
+        if (!$existingJadwal) {
+            \App\Models\JadwalSurveyor::create([
+                'surat_tugas_id' => $suratTugas->id, // Menyimpan ID surat tugas asli untuk referensi
+                'no_ppjp' => $suratTugas->no_ppjp,
+                'tanggal_survey' => $suratTugas->tanggal_survey,
+                'lokasi' => $suratTugas->lokasi,
+                'objek_penilaian' => $suratTugas->objek_penilaian,
+                'pemberi_tugas' => $suratTugas->pemberi_tugas,
+                'nama_penilai' => $suratTugas->nama_penilai,
+                'adendum' => $suratTugas->adendum,
+                'status' => 'Survey', // Status awal di jadwal surveyor adalah Survey
+            ]);
+        }
+    }
+
     return response()->json(['message' => 'Status updated']);
-}    
+}   
+
 
 // Daftar Proposal
     public function proposal()

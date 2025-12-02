@@ -136,7 +136,6 @@ document.querySelectorAll('.status-select').forEach(select => applyColor(select)
 
 // Update status
 function updateStatus(id, selectElement) {
-
     applyColor(selectElement);
 
     fetch(`/superadmin/admin/surat-tugas/update-status/${id}`, {
@@ -151,7 +150,15 @@ function updateStatus(id, selectElement) {
     .then(data => {
         if(data.success){
             console.log(data.message);
-            alert("Status berhasil diperbarui!"); // opsional
+            if(selectElement.value === 'survey') {
+                alert("Status berhasil diperbarui! Data telah ditambahkan ke jadwal surveyor.");
+            } else {
+                alert("Status berhasil diperbarui!");
+            }
+            // Refresh halaman setelah 1 detik
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
         }
     })
     .catch(err => console.error(err));
