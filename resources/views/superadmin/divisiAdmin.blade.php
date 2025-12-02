@@ -18,37 +18,37 @@
         <a href="{{ route('superadmin.admin.SAadendum') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-plus-square"></i> Adendum</h3>
-                <p><strong style="color:green;">Online</strong></p>
+                <p><strong>Daftar Adendum yang Diajukan</strong></p>
             </div>
         </a>
         <a href="{{ route('superadmin.admin.SAsuratTugas') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-file-signature"></i> Surat Tugas</h3>
-                <p><strong>350</strong></p>
+                <p><strong>Surat Tugas yang Diterbitkan</strong></p>
             </div>
         </a>
         <a href="{{ route('superadmin.admin.SAdraftResume') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-file"></i> Draft Resume</h3>
-                <p><strong>2 dokumen</strong></p>
+                <p><strong>Draft Resume Hasil Penilaian</strong></p>
             </div>
         </a>
         <a href="{{ route('superadmin.admin.SAdraftLaporan') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-file"></i> Draft Laporan</h3>
-                <p><strong >2 dokumen</strong></p>
+                <p><strong >Draft Laporan Penilaian</strong></p>
             </div>
         </a>
         <a href="{{ route('superadmin.admin.SAlaporanFinal') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-book"></i> Buku Laporan Final</h3>
-                <p><strong >6 dokumen</strong></p>
+                <p><strong >Draft Laporan Penilaian</strong></p>
             </div>
         </a>
         <a href="{{ route('superadmin.admin.SAtugasHarian') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-tasks"></i> Tugas Harian</h3>
-                <p><strong >6 dokumen</strong></p>
+                <p><strong >Daftar Tugas Harian</strong></p>
             </div>
         </a>
         

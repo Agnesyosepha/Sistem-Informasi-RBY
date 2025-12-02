@@ -17,31 +17,31 @@
     <a href="{{ route('admin.adendum') }}" style="text-decoration:none; color:inherit;">
         <div class="dashboard-card">
             <h3><i class="fas fa-plus-square"></i> Adendum</h3>
-            <p><strong style="color:green;">Online</strong></p>
+            <p><strong>Daftar Adendum yang Diajukan</strong></p>
         </div>
     </a>
     <a href="{{ route('admin.suratTugas') }}" style="text-decoration:none; color:inherit;">
         <div class="dashboard-card">
             <h3><i class="fas fa-file-signature"></i> Surat Tugas</h3>
-            <p><strong>350</strong></p>
+            <p><strong>Surat Tugas yang Diterbitkan</strong></p>
         </div>
     </a>
     <a href="{{ route('admin.draftResume') }}" style="text-decoration:none; color:inherit;">
         <div class="dashboard-card">
             <h3><i class="fas fa-file"></i> Draft Resume</h3>
-            <p><strong>2 dokumen</strong></p>
+            <p><strong>Draft Resume Hasil Penilaian</strong></p>
         </div>
     </a>
     <a href="{{ route('admin.draftLaporan') }}" style="text-decoration:none; color:inherit;">
         <div class="dashboard-card">
             <h3><i class="fas fa-file"></i> Draft Laporan</h3>
-            <p><strong>2 dokumen</strong></p>
+            <p><strong>Draft Laporan Penilaian</strong></p>
         </div>
     </a>
     <a href="{{ route('admin.laporanFinal') }}" style="text-decoration:none; color:inherit;">
         <div class="dashboard-card">
             <h3><i class="fas fa-book"></i> Buku Laporan Final</h3>
-            <p><strong>6 dokumen</strong></p>
+            <p><strong>Draft Laporan Penilaian</strong></p>
         </div>
     </a>
     <a href="{{ route('admin.tim') }}" class="dashboard-card" style="display:block; color:inherit; text-decoration:none;">
