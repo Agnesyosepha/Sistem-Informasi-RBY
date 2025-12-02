@@ -8,7 +8,7 @@
 
     <form method="GET" action="{{ route('admin.proposal') }}" style="margin-bottom:20px;">
     <input type="text" name="search" value="{{ request('search') }}" 
-           placeholder="Cari judul / debitur..." 
+           placeholder="Cari ..." 
            style="padding:8px; width:250px; border:1px solid #ccc; border-radius:5px;">
 
     <select name="bulan" style="padding:8px; border:1px solid #ccc; border-radius:5px;">

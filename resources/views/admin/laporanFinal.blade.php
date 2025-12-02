@@ -6,6 +6,23 @@
     <h1><i class="fas fa-book"></i> Buku Laporan Final</h1>
     <p>Daftar laporan akhir penilaian berdasarkan status pengiriman.</p>
 
+    <form method="GET" action="{{ route('admin.laporanFinal') }}" style="margin-bottom:20px; margin-top:20px;">
+
+        <input type="text" name="search" value="{{ request('search') }}"
+            placeholder="Cari ..."
+            style="padding:8px; width:350px; border:1px solid #ccc; border-radius:6px;">
+
+        <button type="submit" 
+            style="padding:8px 15px; background:#e89746; color:white; border:none; border-radius:6px; cursor:pointer;">
+            Cari
+        </button>
+
+        <a href="{{ route('admin.laporanFinal') }}" 
+            style="padding:8px 15px; background:#777; color:white; border-radius:6px; margin-left:5px; text-decoration:none;">
+            Reset
+        </a>
+    </form>
+
     <div class="dashboard-card" style="margin-top:30px;">
     <table style="width:100%; border-collapse: collapse; margin-top:15px;">
         <thead style="background:#F9B572; color:black;">

@@ -417,7 +417,21 @@ public function updateSuratTugas(Request $request, $id)
 // Laporan Final
     public function laporanFinal()
     {
-        $laporanFinal = \App\Models\LaporanFinal::all();
+        $query = \App\Models\LaporanFinal::query();
+
+        if (request('search')) {
+            $search = request('search');
+
+            $query->where(function($q) use ($search) {
+                $q->where('pemberi_tugas', 'like', "%$search%")
+                ->orWhere('jenis_penilaian', 'like', "%$search%")
+                ->orWhere('pengirim', 'like', "%$search%")
+                ->orWhere('nomor_laporan', 'like', "%$search%");
+            });
+        }
+
+        $laporanFinal = $query->get();
+
         return view('admin.laporanFinal', compact('laporanFinal'));
     }
 
@@ -469,11 +483,6 @@ public function updateSuratTugas(Request $request, $id)
 
     return response()->json(['success' => true]);
 }
-
-
-
-
-
 
     // Anggota Admin
     public function tim()
