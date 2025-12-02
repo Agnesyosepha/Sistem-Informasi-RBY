@@ -29,7 +29,12 @@
         <a href="{{ route('surveyor.laporanPenilaian') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-file"></i> Laporan Penilaian Final</h3>
-                
+            </div>
+        </a>
+        <a href="{{ route('surveyor.laporanJadwal') }}" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-calendar-check"></i> Laporan Jadwal Survey</h3>
+                <p><strong>Daftar Laporan Jadwal Survey</strong></p>
             </div>
         </a>
          <a href="{{ route('surveyor.tim') }}" class="dashboard-card" style="display:block; color:inherit; text-decoration:none;">

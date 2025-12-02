@@ -114,11 +114,11 @@
     <table style="width:100%; border-collapse:collapse; margin-top:15px;">
         <thead style="background:#007BFF; color:white;">
             <tr>
-                <th style="padding:10px;">No</th>
-                <th style="padding:10px;">Nama Surveyor</th>
-                <th style="padding:10px;">Tanggal</th>
-                <th style="padding:10px;">Lokasi</th>
-                <th style="padding:10px;">Status</th>
+                <th style="padding:10px; text-align:left;">No</th>
+                <th style="padding:10px; text-align:left;">Nama Surveyor</th>
+                <th style="padding:10px; text-align:left;">Tanggal</th>
+                <th style="padding:10px; text-align:left;">Lokasi</th>
+                <th style="padding:10px; text-align:left;">Status</th>
                 <th style="padding:10px; text-align:center;">Aksi</th>
             </tr>
         </thead>

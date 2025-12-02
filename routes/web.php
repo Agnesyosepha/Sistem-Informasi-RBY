@@ -234,6 +234,9 @@ Route::get('/admin/laporan-tugas-harian', [AdminController::class, 'laporanTugas
 Route::get('/surveyor', [SurveyorController::class, 'dashboard'])
     ->name('surveyor');
 
+Route::get('/surveyor', [SurveyorController::class, 'dashboard'])->name('surveyor');
+Route::get('/surveyor/laporan-jadwal-survey', [SurveyorController::class, 'laporanJadwal'])->name('surveyor.laporanJadwal');
+
 Route::get('/surveyor/lokasisurvei', [\App\Http\Controllers\SurveyorController::class, 'lokasisurvei'])->name('surveyor.lokasisurvei');
 
 Route::get('/surveyor/tim', [\App\Http\Controllers\SurveyorController::class, 'tim'])->name('surveyor.tim');
@@ -245,7 +248,7 @@ Route::get('/surveyor/workingpaper', [\App\Http\Controllers\SurveyorController::
 Route::get('/surveyor/laporan-penilaian', [SurveyorController::class, 'laporanPenilaianUser'])->name('surveyor.laporanPenilaian');
 
 Route::get('/surveyor/working-paper', [SurveyorController::class, 'workingPaper'])->name('surveyor.workingpaper');
-Route::get('/surveyor/jadwal', [SurveyorController::class, 'dashboard'])->name('surveyor.jadwal');
+
 
 // EDP
 Route::get('/edp', function () {

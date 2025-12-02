@@ -9,16 +9,23 @@ use App\Models\ProyekSelesai;
 use App\Models\ProyekPending;
 use App\Models\LaporanPenilaian;
 use App\Models\JadwalSurveyor;
+use App\Models\LaporanJadwal;
 
 class SurveyorController extends Controller
 {
     /* ================================
        DASHBOARD SURVEYOR (USER)
     ================================= */
-     public function dashboard()
+    public function dashboard()
     {
-        $jadwal = JadwalSurveyor::orderBy('tanggal', 'asc')->get();
+        $jadwal = JadwalSurveyor::where('status', 'Proses')->orderBy('tanggal', 'asc')->get();
         return view('layouts.surveyor', compact('jadwal'));
+    }
+
+    public function laporanJadwal()
+    {
+        $laporanJadwal = LaporanJadwal::orderBy('tanggal', 'desc')->get();
+        return view('surveyor.laporanJadwal', compact('laporanJadwal'));
     }
 
     public function tim()
@@ -201,6 +208,8 @@ class SurveyorController extends Controller
         return view('surveyor.workingpaper');
     }
 
+
+    // Jadwal Surveyor di Superadmin
     public function jadwalAdmin()
     {
         $jadwal = JadwalSurveyor::orderBy('tanggal', 'asc')->get();
@@ -222,12 +231,12 @@ class SurveyorController extends Controller
         return back()->with('success', 'Jadwal Surveyor berhasil ditambahkan.');
     }
 
-    
     public function deleteJadwal($id)
     {
         JadwalSurveyor::findOrFail($id)->delete();
         return back()->with('success', 'Jadwal Surveyor berhasil dihapus.');
     }
+
     public function updateJadwal(Request $request, $id)
     {
         $jadwal = JadwalSurveyor::findOrFail($id);
@@ -237,7 +246,25 @@ class SurveyorController extends Controller
             'tanggal' => $request->tanggal,
             'lokasi' => $request->lokasi,
             'status' => $request->status,
+            'deskripsi' => $request->deskripsi,
         ]);
+
+        // Jika status diubah menjadi "Selesai", tambahkan ke tabel laporan_jadwals
+        if ($request->status == 'Selesai') {
+            // Cek apakah data sudah ada di laporan_jadwals untuk menghindari duplikasi
+            $existingLaporan = LaporanJadwal::where('jadwal_id', $jadwal->id)->first();
+            
+            if (!$existingLaporan) {
+                LaporanJadwal::create([
+                    'jadwal_id' => $jadwal->id, // Menyimpan ID jadwal asli untuk referensi
+                    'nama_surveyor' => $jadwal->nama_surveyor,
+                    'tanggal' => $jadwal->tanggal,
+                    'lokasi' => $jadwal->lokasi,
+                    'deskripsi' => $jadwal->deskripsi,
+                    'status' => $jadwal->status,
+                ]);
+            }
+        }
 
         return redirect()->route('superadmin.jadwal.index')->with('success', 'Jadwal berhasil diperbarui');
     }
