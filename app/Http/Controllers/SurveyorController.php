@@ -97,9 +97,20 @@ class SurveyorController extends Controller
     =========================================== */
     public function laporanPenilaianUser()
     {
-        $laporanPenilaian = LaporanPenilaian::orderBy('tgl_laporan', 'desc')->get();
-        return view('surveyor.laporanPenilaian', compact('laporanPenilaian'));
+        $search = request('search');
+
+        $laporanPenilaian = LaporanPenilaian::when($search, function ($query) use ($search) {
+            $query->where('nomor_laporan', 'like', "%$search%")
+                ->orWhere('klien', 'like', "%$search%")
+                ->orWhere('jenis_aset', 'like', "%$search%")
+                ->orWhere('lokasi', 'like', "%$search%");
+        })
+        ->orderBy('tgl_laporan', 'desc')
+        ->get();
+
+    return view('surveyor.laporanPenilaian', compact('laporanPenilaian'));
     }
+    
     public function laporanPenilaianAdmin()
     {
         $laporanPenilaian = LaporanPenilaian::orderBy('tgl_laporan', 'desc')->get();

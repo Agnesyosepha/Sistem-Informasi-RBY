@@ -249,6 +249,10 @@ Route::get('/surveyor/laporan-penilaian', [SurveyorController::class, 'laporanPe
 
 Route::get('/surveyor/working-paper', [SurveyorController::class, 'workingPaper'])->name('surveyor.workingpaper');
 
+Route::get('/laporan-penilaian', 
+    [SurveyorController::class, 'laporanPenilaianUser']
+)->name('surveyor.laporanPenilaianUser');
+
 
 // EDP
 Route::get('/edp', function () {
