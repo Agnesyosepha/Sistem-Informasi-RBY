@@ -11,11 +11,13 @@ return new class extends Migration
         Schema::create('surat_tugas', function (Blueprint $table) {
             $table->id();
             $table->string('no_ppjp');
-            $table->date('tanggal');
+            $table->date('tanggal_survey');
+            $table->string('lokasi'); 
+            $table->string('objek_penilaian');
             $table->string('pemberi_tugas');
             $table->string('nama_penilai');
             $table->string('adendum')->nullable();
-            $table->string('status')->default('Proses');
+            $table->string('status');
             $table->timestamps();
         });
     }

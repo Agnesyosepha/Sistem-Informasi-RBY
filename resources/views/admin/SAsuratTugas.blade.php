@@ -14,12 +14,13 @@
 
     <!-- Modal -->
     <div id="modalTambah" style="
-        display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%;
-        background:rgba(0,0,0,0.5); padding-top:60px;">
+    display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%;
+    background:rgba(0,0,0,0.5); padding-top:60px;">
         
         <div style="
-            background:white; margin:auto; padding:20px; border-radius:10px; width:40%;
-            box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+    background:white; margin:auto; padding:20px; border-radius:10px; width:45%;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+    max-height: 80vh; overflow-y: auto;">
 
             <h2 style="margin-bottom:15px;">Tambah Surat Tugas</h2>
 
@@ -30,8 +31,16 @@
                 <input type="text" name="no_ppjp" required
                     style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
 
-                <label>Tanggal</label>
-                <input type="date" name="tanggal" required
+                <label>Tanggal Survey</label>
+                <input type="date" name="tanggal_survey" required
+                    style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
+
+                <label>Lokasi</label>
+                <input type="text" name="lokasi" required
+                    style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
+
+                <label>Objek Penilaian</label>
+                <input type="text" name="objek_penilaian" required
                     style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
 
                 <label>Pemberi Tugas</label>
@@ -49,9 +58,8 @@
                 <label>Status</label>
                 <select name="status"
                     style="width:100%; padding:8px; margin-bottom:15px; border:1px solid #ccc; border-radius:5px;">
-                    <option value="Proses">Proses</option>
-                    <option value="Selesai">Selesai</option>
-                    <option value="Pending">Pending</option>
+                    <option value="survey">Survey</option>
+                    <option value="pending">Pending</option>
                 </select>
 
                 <button type="submit"
@@ -74,19 +82,26 @@
         <table style="width:100%; border-collapse: collapse; margin-top:15px;">
             <thead style="background:#007BFF; color:white;">
                 <tr>
-                    <th style="padding:10px; text-align:left;">Nomor PPJP</th>
-                    <th style="padding:10px; text-align:left;">Tanggal</th>
+                    <th style="padding:10px; text-align:left;">No.</th>
+                    <th style="padding:10px; text-align:left;">PPJP</th>
+                    <th style="padding:10px; text-align:left;">Tanggal Survey</th>
+                    <th style="padding:10px; text-align:left;">Lokasi</th>
+                    <th style="padding:10px; text-align:left;">Objek Penilaian</th>
                     <th style="padding:10px; text-align:left;">Pemberi Tugas</th>
-                    <th style="padding:10px; text-align:left;">Penilai</th>
+                    <th style="padding:10px; text-align:left;">Nama Penilai</th>
                     <th style="padding:10px; text-align:left;">Adendum</th>
                     <th style="padding:10px; text-align:center;">Status</th>
                 </tr>
             </thead>
             <tbody>
+                @php $no = 1; @endphp
                 @foreach($suratTugas as $st)
                     <tr style="border-bottom:1px solid #ddd;">
+                        <td style="padding:10px;">{{ $no++ }}</td>
                         <td style="padding:10px;">{{ $st->no_ppjp }}</td>
-                        <td style="padding:10px;">{{ $st->tanggal }}</td>
+                        <td style="padding:10px;">{{ $st->tanggal_survey }}</td>
+                        <td style="padding:10px;">{{ $st->lokasi }}</td>
+                        <td style="padding:10px;">{{ $st->objek_penilaian }}</td>
                         <td style="padding:10px;">{{ $st->pemberi_tugas }}</td>
                         <td style="padding:10px;">{{ $st->nama_penilai }}</td>
                         <td style="padding:10px;">{{ $st->adendum ?? '-' }}</td>
@@ -96,9 +111,8 @@
                                 style="padding:6px; border-radius:5px; border:1px solid #ccc; font-weight:600;"
                                 class="status-select"
                                 data-status="{{ $st->status }}">
-                                <option value="Proses" {{ $st->status == 'Proses' ? 'selected' : '' }}>Proses</option>
-                                <option value="Selesai" {{ $st->status == 'Selesai' ? 'selected' : '' }}>Selesai</option>
-                                <option value="Pending" {{ $st->status == 'Pending' ? 'selected' : '' }}>Pending</option>
+                                <option value="survey" {{ $st->status == 'survey' ? 'selected' : '' }}>Survey</option>
+                                <option value="pending" {{ $st->status == 'pending' ? 'selected' : '' }}>Pending</option>
                             </select>
                         </td>
                     </tr>
@@ -113,9 +127,8 @@
 function applyColor(selectElement) {
     const value = selectElement.value;
 
-    if(value === 'Selesai') selectElement.style.color = 'green';
-    else if(value === 'Proses') selectElement.style.color = 'blue';
-    else if(value === 'Pending') selectElement.style.color = 'orange';
+    if(value === 'survey') selectElement.style.color = 'blue';
+    else if(value === 'pending') selectElement.style.color = 'orange';
 }
 
 // Inisialisasi warna saat load
