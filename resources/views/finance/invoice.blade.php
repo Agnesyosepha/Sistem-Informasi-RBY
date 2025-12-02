@@ -5,6 +5,28 @@
 @section('content')
 <h1><i class="fas fa-file-invoice"></i> Invoice</h1>
 <p>Daftar data invoice yang sedang diproses.</p>
+<form method="GET" action="{{ route('finance.invoice') }}" 
+      style="margin-top:20px; margin-bottom:20px; display:flex; gap:10px; align-items:center;">
+
+    <input type="text" name="search" value="{{ request('search') }}"
+        placeholder="Cari ..."
+        style="padding:10px 15px; width:280px; border-radius:8px; border:1px solid #ccc; 
+        outline:none; transition:.3s;">
+
+    <button type="submit"
+        style="padding:10px 18px; background:#007BFF; color:white; border:none; 
+        border-radius:8px; cursor:pointer; font-weight:600;">
+        Search
+    </button>
+
+    @if(request()->has('search'))
+        <a href="{{ route('finance.invoice') }}"
+            style="padding:10px 18px; background:#6c757d; color:white; border-radius:8px; 
+            text-decoration:none; font-weight:600;">
+            Reset
+        </a>
+    @endif
+</form>
 
 <div class="dashboard-card" style="margin-top:20px;">
         <h3><i class="fas fa-receipt"></i> Data Invoice</h3>

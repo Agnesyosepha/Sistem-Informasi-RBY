@@ -5,6 +5,26 @@
 @section('content')
 <h1><i class="fas fa-calendar-check"></i> Laporan Jadwal Survey</h1>
 <p>Laporan jadwal survei yang telah selesai dilaksanakan.</p>
+<form method="GET" action="{{ route('surveyor.laporanJadwal') }}" style="margin:20px 0; display:flex; gap:10px;">
+    
+    <input type="text" 
+        name="search" 
+        value="{{ request('search') }}" 
+        placeholder="Cari ..."
+        style="padding:8px; width:300px; border-radius:6px; border:1px solid #ccc;">
+
+    <button type="submit"
+        style="padding:8px 15px; background:#007BFF; color:white; border:none; border-radius:6px; cursor:pointer;">
+        Search
+    </button>
+
+    @if(request('search'))
+        <a href="{{ route('surveyor.laporanJadwal') }}"
+            style="padding:8px 15px; background:#6c757d; color:white; border-radius:6px; text-decoration:none;">
+            Reset
+        </a>
+    @endif
+</form>
 
 <div class="dashboard-card" style="margin-top:30px;">
     <table style="width:100%; border-collapse: collapse; margin-top:15px;">

@@ -13,9 +13,7 @@ use App\Models\LaporanJadwal;
 
 class SurveyorController extends Controller
 {
-    /* ================================
-       DASHBOARD SURVEYOR (USER)
-    ================================= */
+
     public function dashboard()
     {
         $jadwal = JadwalSurveyor::where('status', 'Survey')->orderBy('tanggal_survey', 'asc')->get();
@@ -24,9 +22,20 @@ class SurveyorController extends Controller
 
     public function laporanJadwal()
     {
-        $laporanJadwal = LaporanJadwal::orderBy('tanggal_survey', 'desc')->get();
-        return view('surveyor.laporanJadwal', compact('laporanJadwal'));
-    }
+        $search = request('search');
+
+    $laporanJadwal = LaporanJadwal::when($search, function($query) use ($search) {
+        $query->where('no_ppjp', 'like', "%$search%")
+            ->orWhere('lokasi', 'like', "%$search%")
+            ->orWhere('objek_penilaian', 'like', "%$search%")
+            ->orWhere('pemberi_tugas', 'like', "%$search%")
+            ->orWhere('nama_penilai', 'like', "%$search%");
+    })
+    ->orderBy('tanggal_survey', 'desc')
+    ->get();
+
+    return view('surveyor.laporanJadwal', compact('laporanJadwal'));
+}
 
 // Jadwal Surveyor di Superadmin
     public function jadwalAdmin()

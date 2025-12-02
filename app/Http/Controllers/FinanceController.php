@@ -37,11 +37,28 @@ class FinanceController extends Controller
 
     // Invoice
 
-    public function invoice()
-    {
-      $invoice = Invoice::all();
+    public function invoice(Request $request)
+  {
+      $query = Invoice::query();
+
+      if ($request->search) {
+          $search = $request->search;
+
+          $query->where(function ($q) use ($search) {
+              $q->where('tanggal_pembuat', 'like', "%$search%")
+                ->orWhere('no_invoice', 'like', "%$search%")
+                ->orWhere('no_ppjp', 'like', "%$search%")
+                ->orWhere('nama_klien', 'like', "%$search%")
+                ->orWhere('pemberi_tugas', 'like', "%$search%")
+                ->orWhere('status', 'like', "%$search%");
+          });
+      }
+
+      $invoice = $query->orderBy('id', 'desc')->get();
+
       return view('finance.invoice', compact('invoice'));
-    }
+  }
+
 
     public function SAinvoice()
     {

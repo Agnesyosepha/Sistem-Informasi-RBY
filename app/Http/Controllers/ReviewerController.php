@@ -67,10 +67,23 @@ class ReviewerController extends Controller
     // ===========================
     // DOKUMEN REVISI
     // ===========================
-    public function dokumenRevisi()
+    public function dokumenRevisi(Request $request)
     {
-        // Semua data dari EDP DataAktif yang sudah dipindah
-        $dokumenRevisi = DokumenRevisi::orderBy('tanggal', 'desc')->get();
+        $search = $request->search;
+
+        $dokumenRevisi = DokumenRevisi::when($search, function ($q) use ($search) {
+            $q->where('tanggal', 'like', "%$search%")
+            ->orWhere('jenis', 'like', "%$search%")
+            ->orWhere('pemberi', 'like', "%$search%")
+            ->orWhere('pengguna', 'like', "%$search%")
+            ->orWhere('surveyor', 'like', "%$search%")
+            ->orWhere('lokasi', 'like', "%$search%")
+            ->orWhere('objek', 'like', "%$search%")
+            ->orWhere('reviewer', 'like', "%$search%")
+            ->orWhere('status', 'like', "%$search%");
+        })
+        ->orderBy('tanggal', 'desc')
+        ->get();
 
         return view('reviewer.dokumenRevisi', compact('dokumenRevisi'));
     }
