@@ -115,7 +115,13 @@
             @forelse($filesReversed as $index => $file)
             <tr>
                 <td>{{ $index + 1 }}</td>
-                <td>{{ $file['nama'] }}</td>
+                <td>
+                    <a href="{{ asset('storage/formpeminjaman/'.$file['nama']) }}" 
+                    target="_blank" 
+                    style="font-weight:600; color:#007bff; text-decoration:none;">
+                    {{ $file['nama'] }}
+                    </a>
+                </td>
                 <td>{{ \Carbon\Carbon::parse($file['tanggal'])->format('d-m-Y') }}</td>
                 <td><span class="status-finish">Selesai</span></td>
             </tr>
