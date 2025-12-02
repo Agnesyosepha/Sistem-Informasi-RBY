@@ -147,27 +147,27 @@
 
     <div style="display:flex; flex-direction:column; gap:14px;">
         <a href="{{ route('admin') }}" class="tugas-card">
-            <div class="tugas-card-icon">🗺️</div>
+            <div class="tugas-card-icon"><i class="fas fa-user-shield"></i></div>
             <div class="tugas-card-title">Admin</div>
         </a>
 
         <a href="{{ route('surveyor') }}" class="tugas-card">
-            <div class="tugas-card-icon">🗺️</div>
+            <div class="tugas-card-icon"><i class="fas fa-map-marked-alt"></i></div>
             <div class="tugas-card-title">Surveyor</div>
         </a>
 
         <a href="{{ route('edp') }}" class="tugas-card">
-            <div class="tugas-card-icon">💾</div>
+            <div class="tugas-card-icon"><i class="fas fa-database"></i></div>
             <div class="tugas-card-title">EDP</div>
         </a>
 
         <a href="{{ route('reviewer') }}" class="tugas-card">
-            <div class="tugas-card-icon">📝</div>
+            <div class="tugas-card-icon"><i class="fas fa-clipboard-check"></i></div>
             <div class="tugas-card-title">Reviewer</div>
         </a>
 
         <a href="{{ route('it') }}" class="tugas-card">
-            <div class="tugas-card-icon">🖥️</div>
+            <div class="tugas-card-icon"><i class="fas fa-network-wired"></i></div>
             <div class="tugas-card-title">IT Department</div>
         </a>
 
