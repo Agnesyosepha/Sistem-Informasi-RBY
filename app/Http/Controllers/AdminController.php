@@ -19,7 +19,9 @@ class AdminController extends Controller
     public function index()
     {
         $jumlahProposal = Proposal::count();
-        $tugasHarian = TugasHarian::orderBy('id', 'desc')->get();
+        $tugasHarian = TugasHarian::where('is_final_report', 0)
+            ->orderBy('id', 'desc')
+            ->get();
         $laporanFinal = TugasHarian::where('is_final_report', 1)->get();
 
         return view('layouts.admin', compact('jumlahProposal', 'tugasHarian', 'laporanFinal'));
@@ -28,7 +30,9 @@ class AdminController extends Controller
     // Tugas Harian
     public function SAtugasHarian()
     {
-        $tugasHarian = TugasHarian::orderBy('id', 'desc')->get();
+        $tugasHarian = TugasHarian::where('is_final_report', 0)
+            ->orderBy('id', 'desc')
+            ->get();
         return view('admin.SAtugasHarian', compact('tugasHarian'));
     }
 
