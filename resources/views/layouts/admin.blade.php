@@ -26,6 +26,8 @@
             <p><strong>Surat Tugas yang Diterbitkan</strong></p>
         </div>
     </a>
+
+    {{--
     <a href="{{ route('admin.draftResume') }}" style="text-decoration:none; color:inherit;">
         <div class="dashboard-card">
             <h3><i class="fas fa-file"></i> Draft Resume</h3>
@@ -44,6 +46,8 @@
             <p><strong>Draft Laporan Penilaian</strong></p>
         </div>
     </a>
+    --}}
+    
     <a href="{{ route('admin.laporanTugasHarian') }}" style="text-decoration:none; color:inherit;">
         <div class="dashboard-card">
             <h3><i class="fas fa-book"></i> Laporan Tugas Harian</h3>
