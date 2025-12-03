@@ -8,7 +8,7 @@
 
     <form method="GET" action="{{ route('admin.proposal') }}" style="margin-bottom:20px;">
     <input type="text" name="search" value="{{ request('search') }}" 
-           placeholder="Cari ..." 
+           placeholder="Cari..." 
            style="padding:8px; width:250px; border:1px solid #ccc; border-radius:5px;">
 
     <select name="bulan" style="padding:8px; border:1px solid #ccc; border-radius:5px;">
@@ -25,10 +25,12 @@
         Filter
     </button>
 
+    @if(request('search') || request('bulan'))
     <a href="{{ route('admin.proposal') }}" 
-       style="padding:8px 15px; background:#777; color:white; border-radius:5px; margin-left:5px; text-decoration:none;">
+       style="padding:8px 15px; background:#777; color:white; border-radius:5px; margin-left:5px; text-decoration:none; display:inline-block;">
        Reset
     </a>
+    @endif
 </form>
 
 
@@ -64,6 +66,12 @@
                 @endforeach
             </tbody>
         </table>
+        
+        @if($proposal->count() > 0)
+        <div style="margin-top: 15px; text-align: right; color: #6c757d;">
+            Menampilkan {{ $proposal->count() }} dari {{ $jumlahProposal }} data
+        </div>
+        @endif
     </div>
 @endsection
 

@@ -9,18 +9,20 @@
     <form method="GET" action="{{ route('admin.laporanFinal') }}" style="margin-bottom:20px; margin-top:20px;">
 
         <input type="text" name="search" value="{{ request('search') }}"
-            placeholder="Cari ..."
+            placeholder="Cari..."
             style="padding:8px; width:350px; border:1px solid #ccc; border-radius:6px;">
 
         <button type="submit" 
-            style="padding:8px 15px; background:#e89746; color:white; border:none; border-radius:6px; cursor:pointer;">
-            Cari
+            style="padding:8px 15px; background:#e89746; color:black; border:none; border-radius:6px; cursor:pointer;">
+            Filter
         </button>
 
+        @if(request('search'))
         <a href="{{ route('admin.laporanFinal') }}" 
-            style="padding:8px 15px; background:#777; color:white; border-radius:6px; margin-left:5px; text-decoration:none;">
+            style="padding:8px 15px; background:#777; color:white; border-radius:6px; margin-left:5px; text-decoration:none; display:inline-block;">
             Reset
         </a>
+        @endif
     </form>
 
     <div class="dashboard-card" style="margin-top:30px;">
@@ -102,6 +104,5 @@
         </tbody>
     </table>
     </div>
-
     
 @endsection

@@ -6,44 +6,32 @@
     <h1><i class="fas fa-file-alt"></i> Draft Resume</h1>
     <p>Daftar draft resume hasil penilaian aset dari berbagai proyek yang sedang disusun atau telah dikirim.</p>
 
-    <!-- Filter dan Pencarian -->
-    <div style="display: flex; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
-        <!-- Form Pencarian -->
-        <form method="GET" action="{{ route('admin.draftResume') }}" style="display: flex; gap: 10px;">
-            <input type="text" name="search" placeholder="Cari berdasarkan pemberi tugas atau objek penilaian..." 
-                   value="{{ request('search') }}" 
-                   style="padding: 8px; border: 1px solid #ccc; border-radius: 5px; width: 300px;">
-            <button type="submit" style="background: #007BFF; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">
-                <i class="fas fa-search"></i> Cari
-            </button>
-            @if(request('search'))
-            <a href="{{ route('admin.draftResume') }}" style="background: #6c757d; color: white; text-decoration: none; padding: 8px 15px; border-radius: 5px; display: inline-block;">
-                <i class="fas fa-times"></i> Reset
-            </a>
-            @endif
-        </form>
-        
-        <!-- Form Filter Bulan -->
-        <form method="GET" action="{{ route('admin.draftResume') }}" style="display: flex; gap: 10px;">
-            <input type="hidden" name="search" value="{{ request('search') }}">
-            <select name="bulan" style="padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
-                <option value="">Semua Bulan</option>
-                @for($i = 1; $i <= 12; $i++)
-                    <option value="{{ $i }}" {{ request('bulan') == $i ? 'selected' : '' }}>
-                        {{ \Carbon\Carbon::create()->month($i)->format('F') }}
-                    </option>
-                @endfor
-            </select>
-            <button type="submit" style="background: #28a745; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">
-                <i class="fas fa-filter"></i> Filter
-            </button>
-            @if(request('bulan'))
-            <a href="{{ route('admin.draftResume', ['search' => request('search')]) }}" style="background: #6c757d; color: white; text-decoration: none; padding: 8px 15px; border-radius: 5px; display: inline-block;">
-                <i class="fas fa-times"></i> Reset
-            </a>
-            @endif
-        </form>
-    </div>
+    <form method="GET" action="{{ route('admin.draftResume') }}" style="margin-bottom:20px;">
+        <input type="text" name="search" value="{{ request('search') }}" 
+               placeholder="Cari..." 
+               style="padding:8px; width:250px; border:1px solid #ccc; border-radius:5px;">
+
+        <select name="bulan" style="padding:8px; border:1px solid #ccc; border-radius:5px;">
+            <option value="">-- Bulan --</option>
+            @for($i=1; $i<=12; $i++)
+                <option value="{{ $i }}" {{ request('bulan') == $i ? 'selected' : '' }}>
+                    {{ DateTime::createFromFormat('!m', $i)->format('F') }}
+                </option>
+            @endfor
+        </select>
+
+        <button type="submit" 
+                style="padding:8px 15px; background:#CDE5FF; color:black; border:none; border-radius:5px; cursor:pointer;">
+            Filter
+        </button>
+
+        @if(request('search') || request('bulan'))
+        <a href="{{ route('admin.draftResume') }}" 
+           style="padding:8px 15px; background:#777; color:white; border-radius:5px; margin-left:5px; text-decoration:none; display:inline-block;">
+           Reset
+        </a>
+        @endif
+    </form>
 
     <div class="dashboard-card" style="margin-top:30px;">
     <table style="width:100%; border-collapse: collapse; margin-top:15px;">

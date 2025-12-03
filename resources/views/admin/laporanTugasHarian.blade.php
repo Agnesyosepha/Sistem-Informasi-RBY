@@ -65,81 +65,15 @@
         border-top: 2px solid #F9B572;
         border-bottom: 2px solid #F9B572;
     }
-    <style>
-    /* ============================
-       STYLE FILTER (BULAN)
-    ============================ */
-    .filter-box {
-        padding: 15px 20px;
-        background: #fff;
-        border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        margin-bottom: 20px;
-        border-left: 5px solid #F9B572;
-    }
-
-    .filter-box label {
-        font-weight: 700;
-        color: #444;
-        font-size: 15px;
-        white-space: nowrap;
-    }
-
-    .filter-box select {
-        height: 40px;
-        border-radius: 8px;
-        border: 1px solid #ccc;
-        padding: 5px 10px;
-        transition: 0.2s ease;
-    }
-
-    .filter-box select:focus {
-        border-color: #F9B572;
-        box-shadow: 0 0 4px rgba(249,181,114,0.6);
-    }
-
-    .filter-box .btn-primary {
-        background: #F9B572;
-        border: none;
-        height: 40px;
-        padding: 0 18px;
-        font-weight: 600;
-        border-radius: 8px;
-        transition: 0.3s ease;
-        color: black;
-    }
-
-    .filter-box .btn-primary:hover {
-        background: #e29e50;
-        color: #fff;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .filter-box {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .filter-box select,
-        .filter-box .btn-primary {
-            width: 100%;
-        }
-    }
 </style>
-
 
 <h1><i class="fas fa-tasks"></i> Laporan Tugas Harian</h1>
 <p>Daftar tugas yang sudah final, lengkap dengan tahapan dan file.</p>
 
-<form method="GET" action="" class="filter-box">
-    <label for="bulan">Filter Bulan Survei:</label>
-
-    <select name="bulan" id="bulan" class="form-control">
+<form method="GET" action="{{ route('admin.laporanTugasHarian') }}" style="margin-bottom:20px;">
+    <label for="bulan" style="font-weight: bold; margin-right: 10px;">Filter Bulan Survei:</label>
+    
+    <select name="bulan" id="bulan" style="padding:8px; border:1px solid #ccc; border-radius:5px;">
         <option value="">-- Semua Bulan --</option>
         @foreach(range(1,12) as $m)
             <option value="{{ $m }}" {{ request('bulan') == $m ? 'selected' : '' }}>
@@ -148,7 +82,17 @@
         @endforeach
     </select>
 
-    <button class="btn btn-primary">Filter</button>
+    <button type="submit" 
+            style="padding:8px 15px; background:#F9B572; color:black; border:none; border-radius:5px; cursor:pointer; margin-left:10px;">
+        Filter
+    </button>
+
+    @if(request('bulan'))
+    <a href="{{ route('admin.laporanTugasHarian') }}" 
+       style="padding:8px 15px; background:#777; color:white; border-radius:5px; margin-left:5px; text-decoration:none; display:inline-block;">
+       Reset
+    </a>
+    @endif
 </form>
 
 <div class="dashboard-card" style="margin-top:30px;">
