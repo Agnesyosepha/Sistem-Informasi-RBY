@@ -139,17 +139,31 @@ class AdminController extends Controller
 
     public function laporanTugasHarian()
     {
-        $bulan = request('bulan'); 
+        $bulan = request('bulan');
+        $search = request('search');
 
+        // QUERY DASAR
         $query = \App\Models\TugasHarian::with('files')
                     ->where('is_final_report', 1);
 
+        // FILTER SEARCH
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('pemberi_tugas', 'like', "%$search%")
+                ->orWhere('debitur', 'like', "%$search%")
+                ->orWhere('no_ppjp', 'like', "%$search%")
+                ->orWhere('tim_lapangan', 'like', "%$search%")
+                ->orWhere('tanggal_survei', 'like', "%$search%");
+            });
+        }
+
+        // FILTER BULAN
         if ($bulan) {
             $query->whereMonth('tanggal_survei', $bulan);
         }
 
-        // ✔ GUNAKAN QUERY YANG SUDAH DIFILTER
-        $tugasFinal = $query->get();
+        // HASIL FINAL
+        $tugasFinal = $query->orderBy('id', 'desc')->get();
 
         return view('admin.laporanTugasHarian', compact('tugasFinal'));
     }

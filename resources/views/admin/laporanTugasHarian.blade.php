@@ -70,10 +70,18 @@
 <h1><i class="fas fa-tasks"></i> Laporan Tugas Harian</h1>
 <p>Daftar tugas yang sudah final, lengkap dengan tahapan dan file.</p>
 
-<form method="GET" action="{{ route('admin.laporanTugasHarian') }}" style="margin-bottom:20px;">
-    <label for="bulan" style="font-weight: bold; margin-right: 10px;">Filter Bulan Survei:</label>
-    
-    <select name="bulan" id="bulan" style="padding:8px; border:1px solid #ccc; border-radius:5px;">
+<form method="GET" action="{{ route('admin.laporanTugasHarian') }}" 
+      style="margin-bottom:20px; display:flex; gap:10px; align-items:center;">
+
+    {{-- Search --}}
+    <input type="text" name="search" value="{{ request('search') }}"
+        placeholder="Cari ..."
+        style="padding:10px 15px; width:280px; border-radius:8px; border:1px solid #ccc;
+        outline:none; transition:0.3s;">
+
+    {{-- Filter Bulan --}}
+    <select name="bulan" id="bulan"
+        style="padding:10px 15px; border-radius:8px; border:1px solid #ccc;">
         <option value="">-- Semua Bulan --</option>
         @foreach(range(1,12) as $m)
             <option value="{{ $m }}" {{ request('bulan') == $m ? 'selected' : '' }}>
@@ -82,16 +90,18 @@
         @endforeach
     </select>
 
-    <button type="submit" 
-            style="padding:8px 15px; background:#F9B572; color:black; border:none; border-radius:5px; cursor:pointer; margin-left:10px;">
+    <button type="submit"
+        style="padding:10px 18px; background:#F9B572; color:black; border:none; 
+        border-radius:8px; cursor:pointer; font-weight:600;">
         Filter
     </button>
 
-    @if(request('bulan'))
-    <a href="{{ route('admin.laporanTugasHarian') }}" 
-       style="padding:8px 15px; background:#777; color:white; border-radius:5px; margin-left:5px; text-decoration:none; display:inline-block;">
-       Reset
-    </a>
+    @if(request('search') || request('bulan'))
+        <a href="{{ route('admin.laporanTugasHarian') }}"
+            style="padding:10px 18px; background:#777; color:white; border-radius:8px; 
+            text-decoration:none; font-weight:600;">
+            Reset
+        </a>
     @endif
 </form>
 
