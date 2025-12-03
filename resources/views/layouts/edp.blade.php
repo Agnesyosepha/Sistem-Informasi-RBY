@@ -10,13 +10,13 @@
         <a href="{{ route('edp.dataAktif') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card" style="cursor:pointer;">
                 <h3><i class="fas fa-server"></i> Data Aktif</h3>
-                <p><strong>8 Data Aktif</strong></p>
+                <p><strong>Daftar data aktif yang sedang diproses</strong></p>
             </div>
         </a>
         <a href="{{ route('edp.dokumenFinal') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card" style="cursor:pointer;">
                 <h3><i class="fas fa-file-archive"></i> Dokumen Final</h3>
-                <p><strong>Lihat Dokumen</strong></p>
+                <p><strong>Daftar Dokumen Final EDP</strong></p>
             </div>
         </a>
         
