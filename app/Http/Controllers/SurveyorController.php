@@ -23,19 +23,23 @@ class SurveyorController extends Controller
     public function laporanJadwal()
     {
         $search = request('search');
+        $bulan = request('bulan');
 
-    $laporanJadwal = LaporanJadwal::when($search, function($query) use ($search) {
-        $query->where('no_ppjp', 'like', "%$search%")
-            ->orWhere('lokasi', 'like', "%$search%")
-            ->orWhere('objek_penilaian', 'like', "%$search%")
-            ->orWhere('pemberi_tugas', 'like', "%$search%")
-            ->orWhere('nama_penilai', 'like', "%$search%");
-    })
-    ->orderBy('tanggal_survey', 'desc')
-    ->get();
+        $laporanJadwal = LaporanJadwal::when($search, function($query) use ($search) {
+            $query->where('no_ppjp', 'like', "%$search%")
+                ->orWhere('lokasi', 'like', "%$search%")
+                ->orWhere('objek_penilaian', 'like', "%$search%")
+                ->orWhere('pemberi_tugas', 'like', "%$search%")
+                ->orWhere('nama_penilai', 'like', "%$search%");
+        })
+        ->when($bulan, function($query) use ($bulan) {
+            $query->whereMonth('tanggal_survey', $bulan);
+        })
+        ->orderBy('tanggal_survey', 'desc')
+        ->get();
 
-    return view('surveyor.laporanJadwal', compact('laporanJadwal'));
-}
+        return view('surveyor.laporanJadwal', compact('laporanJadwal'));
+    }
 
 // Jadwal Surveyor di Superadmin
     public function jadwalAdmin()
@@ -193,8 +197,22 @@ class SurveyorController extends Controller
     
     public function laporanPenilaianAdmin()
     {
-        $laporanPenilaian = LaporanPenilaian::orderBy('tgl_laporan', 'desc')->get();
-         return view('surveyor.SAlaporanpenilaianfinal', compact('laporanPenilaian'));
+        $search = request('search');
+        $bulan = request('bulan');
+
+        $laporanPenilaian = LaporanPenilaian::when($search, function ($query) use ($search) {
+                $query->where('nomor_laporan', 'like', "%$search%")
+                    ->orWhere('klien', 'like', "%$search%")
+                    ->orWhere('jenis_aset', 'like', "%$search%")
+                    ->orWhere('lokasi', 'like', "%$search%");
+            })
+            ->when($bulan, function ($query) use ($bulan) {
+                $query->whereMonth('tgl_laporan', $bulan);
+            })
+            ->orderBy('tgl_laporan', 'desc')
+            ->get();
+
+        return view('surveyor.SAlaporanpenilaianfinal', compact('laporanPenilaian'));
     }
     public function storeLaporanPenilaian(Request $request)
     {

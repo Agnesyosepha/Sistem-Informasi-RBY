@@ -49,19 +49,23 @@ class EdpController extends Controller
 public function dataAktif(Request $request)
 {
     $search = $request->search;
+    $bulan = $request->bulan;
 
     $dataAktif = DataAktif::when($search, function ($query) use ($search) {
-        $query->where('tanggal', 'like', "%$search%")
-            ->orWhere('jenis', 'like', "%$search%")
-            ->orWhere('pemberi', 'like', "%$search%")
-            ->orWhere('pengguna', 'like', "%$search%")
-            ->orWhere('surveyor', 'like', "%$search%")
-            ->orWhere('lokasi', 'like', "%$search%")
-            ->orWhere('objek', 'like', "%$search%")
-            ->orWhere('status_progres', 'like', "%$search%");
-    })
-    ->orderBy('tanggal', 'desc')
-    ->get();
+            $query->where('tanggal', 'like', "%$search%")
+                ->orWhere('jenis', 'like', "%$search%")
+                ->orWhere('pemberi', 'like', "%$search%")
+                ->orWhere('pengguna', 'like', "%$search%")
+                ->orWhere('surveyor', 'like', "%$search%")
+                ->orWhere('lokasi', 'like', "%$search%")
+                ->orWhere('objek', 'like', "%$search%")
+                ->orWhere('status_progres', 'like', "%$search%");
+        })
+        ->when($bulan, function ($query) use ($bulan) {
+            $query->whereMonth('tanggal', $bulan);
+        })
+        ->orderBy('tanggal', 'desc')
+        ->get();
 
     return view('EDP.dataAktif', compact('dataAktif'));
 }

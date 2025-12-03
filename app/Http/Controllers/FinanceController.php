@@ -41,6 +41,7 @@ class FinanceController extends Controller
   {
       $query = Invoice::query();
 
+      // FILTER SEARCH
       if ($request->search) {
           $search = $request->search;
 
@@ -54,11 +55,15 @@ class FinanceController extends Controller
           });
       }
 
+      // FILTER BULAN
+      if ($request->bulan) {
+          $query->whereMonth('tanggal_pembuat', $request->bulan);
+      }
+
       $invoice = $query->orderBy('id', 'desc')->get();
 
       return view('finance.invoice', compact('invoice'));
   }
-
 
     public function SAinvoice()
     {

@@ -8,25 +8,35 @@
 <form method="GET" action="{{ route('finance.invoice') }}" 
       style="margin-top:20px; margin-bottom:20px; display:flex; gap:10px; align-items:center;">
 
+    {{-- SEARCH --}}
     <input type="text" name="search" value="{{ request('search') }}"
         placeholder="Cari ..."
-        style="padding:10px 15px; width:280px; border-radius:8px; border:1px solid #ccc; 
-        outline:none; transition:.3s;">
+        style="padding:10px 15px; width:280px; border-radius:8px; border:1px solid #ccc;">
+
+    {{-- FILTER BULAN --}}
+    <select name="bulan" 
+        style="padding:10px 15px; border-radius:8px; border:1px solid #ccc; width:180px;">
+        <option value="">-- Pilih Bulan --</option>
+        @for ($i = 1; $i <= 12; $i++)
+            <option value="{{ $i }}" {{ request('bulan') == $i ? 'selected' : '' }}>
+                {{ DateTime::createFromFormat('!m', $i)->format('F') }}
+            </option>
+        @endfor
+    </select>
 
     <button type="submit"
-        style="padding:10px 18px; background:#007BFF; color:white; border:none; 
-        border-radius:8px; cursor:pointer; font-weight:600;">
-        Search
+        style="padding:10px 18px; background:#007BFF; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:600;">
+        Filter
     </button>
 
-    @if(request()->has('search'))
+    @if(request()->has('search') || request()->has('bulan'))
         <a href="{{ route('finance.invoice') }}"
-            style="padding:10px 18px; background:#6c757d; color:white; border-radius:8px; 
-            text-decoration:none; font-weight:600;">
+            style="padding:10px 18px; background:#6c757d; color:white; border-radius:8px; text-decoration:none; font-weight:600;">
             Reset
         </a>
     @endif
 </form>
+
 
 <div class="dashboard-card" style="margin-top:20px;">
         <h3><i class="fas fa-receipt"></i> Data Invoice</h3>
