@@ -14,8 +14,7 @@ class DokumenRevisi extends Model
         'surveyor',
         'lokasi',
         'objek',
-        'reviewer',
+        'reviewer',   // nullable
         'status'
     ];
 }
-

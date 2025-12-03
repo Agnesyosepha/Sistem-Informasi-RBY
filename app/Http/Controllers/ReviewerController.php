@@ -65,7 +65,7 @@ class ReviewerController extends Controller
     }
 
     // ===========================
-    // DOKUMEN REVISI
+    // DOKUMEN REVISI (REVIEWER)
     // ===========================
     public function dokumenRevisi(Request $request)
     {
@@ -73,60 +73,76 @@ class ReviewerController extends Controller
 
         $dokumenRevisi = DokumenRevisi::when($search, function ($q) use ($search) {
             $q->where('tanggal', 'like', "%$search%")
-            ->orWhere('jenis', 'like', "%$search%")
-            ->orWhere('pemberi', 'like', "%$search%")
-            ->orWhere('pengguna', 'like', "%$search%")
-            ->orWhere('surveyor', 'like', "%$search%")
-            ->orWhere('lokasi', 'like', "%$search%")
-            ->orWhere('objek', 'like', "%$search%")
-            ->orWhere('reviewer', 'like', "%$search%")
-            ->orWhere('status', 'like', "%$search%");
+                ->orWhere('jenis', 'like', "%$search%")
+                ->orWhere('pemberi', 'like', "%$search%")
+                ->orWhere('pengguna', 'like', "%$search%")
+                ->orWhere('surveyor', 'like', "%$search%")
+                ->orWhere('lokasi', 'like', "%$search%")
+                ->orWhere('objek', 'like', "%$search%")
+                ->orWhere('reviewer', 'like', "%$search%")
+                ->orWhere('status', 'like', "%$search%");
         })
-        ->orderBy('tanggal', 'desc')
-        ->get();
+            ->orderBy('tanggal', 'desc')
+            ->get();
 
         return view('reviewer.dokumenRevisi', compact('dokumenRevisi'));
+    }
+
+    // ============================
+    // UBAH STATUS REVISI → SELESAI
+    // ============================
+    
+    public function updateStatusRevisi(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|string',
+            'reviewer' => 'nullable|string'
+        ]);
+
+        $revisi = DokumenRevisi::findOrFail($id);
+
+        if ($request->status === 'Selesai') {
+            DokumenFinal::create([
+                'tanggal'  => $revisi->tanggal,
+                'jenis'    => $revisi->jenis,
+                'pemberi'  => $revisi->pemberi,
+                'pengguna' => $revisi->pengguna,
+                'surveyor' => $revisi->surveyor,
+                'lokasi'   => $revisi->lokasi,
+                'objek'    => $revisi->objek,
+                'reviewer' => $request->reviewer ?? $revisi->reviewer,
+                'status'   => 'Selesai'
+            ]);
+
+            $revisi->delete();
+
+            return redirect()->back()->with('success', 'Dokumen berhasil dipindahkan ke Dokumen Final!');
+        }
+
+        $revisi->update([
+            'reviewer' => $request->reviewer ?? $revisi->reviewer,
+            'status'   => $request->status,
+        ]);
+
+        return redirect()->back()->with('success', 'Status dokumen berhasil diperbarui!');
     }
 
     public function SAdokumenRevisi()
     {
         $dokumenRevisi = DokumenRevisi::orderBy('tanggal', 'desc')->get();
-
         return view('reviewer.SAdokumenRevisi', compact('dokumenRevisi'));
     }
 
-    // ❌ HAPUS storeDokumenRevisi KARENA DATA SUDAH DIPINDAHKAN OTOMATIS DARI EDP
-    // public function storeDokumenRevisi() { ... }  // DIHAPUS
-
-    // ===========================
-    // DOKUMEN FINAL
-    // ===========================
     public function dokumenFinal()
     {
         $dokumenFinal = DokumenFinal::orderBy('tanggal', 'desc')->get();
-
         return view('reviewer.dokumenFinal', compact('dokumenFinal'));
     }
 
     public function SAdokumenFinal()
     {
         $dokumenFinal = DokumenFinal::orderBy('tanggal', 'desc')->get();
-
         return view('reviewer.SAdokumenFinal', compact('dokumenFinal'));
     }
-
-    public function storeDokumenFinal(Request $request)
-    {
-        $request->validate([
-            'nama' => 'required|string',
-            'tanggal' => 'required|date',
-            'reviewer' => 'required|string',
-            'status' => 'required|string'
-        ]);
-
-        DokumenFinal::create($request->all());
-
-        return redirect()->back()->with('success', 'Dokumen final berhasil ditambahkan!');
-    }
+    
 }
-

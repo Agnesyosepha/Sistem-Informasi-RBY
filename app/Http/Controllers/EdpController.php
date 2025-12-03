@@ -112,7 +112,7 @@ public function dataAktif(Request $request)
                 'surveyor' => $data->surveyor,
                 'lokasi'   => $data->lokasi,
                 'objek'    => $data->objek,
-                'reviewer' => 'Menunggu Reviewer',
+                'reviewer' => null,
                 'status'   => 'Dalam Revisi'
             ]);
 

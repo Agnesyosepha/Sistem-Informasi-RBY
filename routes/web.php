@@ -146,6 +146,9 @@ Route::get('/superadmin/reviewer/log-aktivitas', [ReviewerController::class, 'SA
 
 Route::post('/superadmin/reviewer/log-aktivitas/store', [ReviewerController::class, 'storeSAlog'])->name('superadmin.reviewer.storeLog');
 
+Route::put('/reviewer/dokumen-revisi/update-status/{id}', 
+    [\App\Http\Controllers\ReviewerController::class, 'updateStatusRevisi']
+)->name('reviewer.updateStatusRevisi');
 
 // Finance di Superadmin
 

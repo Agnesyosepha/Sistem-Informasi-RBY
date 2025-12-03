@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('lokasi');
             $table->string('objek');
             $table->string('reviewer')->nullable();
-            $table->string('status')->default('Dalam Revisi');
+            $table->string('status');
             $table->timestamps();
         });
 

@@ -7,9 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class DokumenFinal extends Model
 {
     protected $fillable = [
-        'nama', 
-        'tanggal', 
-        'reviewer', 
+        'tanggal',
+        'jenis',
+        'pemberi',
+        'pengguna',
+        'surveyor',
+        'lokasi',
+        'objek',
+        'reviewer',
         'status'
     ];
 }
