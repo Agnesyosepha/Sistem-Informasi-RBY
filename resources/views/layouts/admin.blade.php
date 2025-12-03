@@ -154,18 +154,18 @@
 
                                 // Data untuk setiap tahapan
                                 $tahapanData = [
-                                    1 => ['value' => 'Pengumpulan Data', 'title' => 'Pengumpulan Data'],
-                                    2 => ['value' => 'Pembuatan Invoice DP', 'title' => 'Pembuatan Invoice DP'],
-                                    3 => ['value' => 'Penjadwalan Inspeksi', 'title' => 'Penjadwalan Inspeksi'],
-                                    4 => ['value' => 'Inspeksi', 'title' => 'Inspeksi'],
-                                    5 => ['value' => 'Proses Analisa', 'title' => 'Proses Analisa'],
-                                    6 => ['value' => 'Review Nilai', 'title' => 'Review Nilai', 'is_final' => true],
-                                    7 => ['value' => 'Kirim Draft Resume', 'title' => 'Kirim Draft Resume'],
-                                    8 => ['value' => 'Draft Laporan', 'title' => 'Draft Laporan'],
-                                    9 => ['value' => 'Review/Final', 'title' => 'Review/Final'],
-                                    10 => ['value' => 'Nomor Laporan', 'title' => 'Nomor Laporan'],
-                                    11 => ['value' => 'Laporan Rangkap', 'title' => 'Laporan Rangkap 3'],
-                                    12 => ['value' => 'Pengiriman Dokumen', 'title' => 'Pengiriman Dokumen'],
+                                    1 => ['value' => 'Pengumpulan Data', 'title' => 'Pengumpulan Data (Admin)'],
+                                    2 => ['value' => 'Pembuatan Invoice DP', 'title' => 'Pembuatan Invoice DP (Finance)'],
+                                    3 => ['value' => 'Penjadwalan Inspeksi', 'title' => 'Penjadwalan Inspeksi (Admin)'],
+                                    4 => ['value' => 'Inspeksi', 'title' => 'Inspeksi (Admin)'],
+                                    5 => ['value' => 'Proses Analisa', 'title' => 'Proses Analisa (Surveyor)'],
+                                    6 => ['value' => 'Review Nilai', 'title' => 'Review Nilai (Surveyor)', 'is_final' => true],
+                                    7 => ['value' => 'Kirim Draft Resume', 'title' => 'Kirim Draft Resume (Surveyor)'],
+                                    8 => ['value' => 'Draft Laporan', 'title' => 'Draft Laporan (EDP)'],
+                                    9 => ['value' => 'Review/Final', 'title' => 'Review/Final (EDP)'],
+                                    10 => ['value' => 'Nomor Laporan', 'title' => 'Nomor Laporan (EDP)'],
+                                    11 => ['value' => 'Laporan Rangkap', 'title' => 'Laporan Rangkap 3 (EDP)'],
+                                    12 => ['value' => 'Pengiriman Dokumen', 'title' => 'Pengiriman Dokumen (Admin)'],
                                 ];
                             @endphp
 
@@ -743,7 +743,42 @@ function showError(message) {
 }
 
 .tahapan-status input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    transition: all 0.3s;
     margin-right: 5px;
+    position: relative;
+    cursor: pointer;
+}
+
+.tahapan-status input[type="checkbox"]:checked {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.tahapan-status input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    top: -2px;
+    left: 3px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.tahapan-status input[type="checkbox"]:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.tahapan-status input[type="checkbox"]:disabled:checked {
+    background-color: #0056b3;
+    border-color: #0056b3;
 }
 
 .tahapan-details {
