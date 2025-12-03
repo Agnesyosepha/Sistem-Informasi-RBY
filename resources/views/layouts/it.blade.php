@@ -7,6 +7,18 @@
     <p>Ringkasan status infrastruktur dan aktivitas IT perusahaan.</p>
 
     <div class="dashboard-cards">
+        <a href="{{ route('it.laporanPenilaian') }}" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card" style="cursor:pointer;">
+                <h3><i class="fas fa-file-alt"></i> Laporan Penilaian</h3>
+                <p><strong>Dokumen Laporan Penilaian</strong></p>
+            </div>
+        </a>
+        <a href="{{ route('it.formpeminjaman') }}" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card" style="cursor:pointer;">
+                <h3><i class="fas fa-list"></i> Form Peminjaman</h3>
+                <p><strong>Alat & Barang</strong></p>
+            </div>
+        </a>
         <a href="{{ route('it.aset') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-database"></i> Aset</h3>
@@ -29,18 +41,6 @@
             <div class="dashboard-card">
                 <h3><i class="fas fa-laptop"></i> Total Laptop</h3>
                 <p><strong>10 Laptop</strong></p>
-            </div>
-        </a>
-        <a href="{{ route('it.formpeminjaman') }}" style="text-decoration:none; color:inherit;">
-            <div class="dashboard-card" style="cursor:pointer;">
-                <h3><i class="fas fa-list"></i> Form Peminjaman</h3>
-                <p><strong>Alat & Barang</strong></p>
-            </div>
-        </a>
-        <a href="{{ route('it.laporanPenilaian') }}" style="text-decoration:none; color:inherit;">
-            <div class="dashboard-card" style="cursor:pointer;">
-                <h3><i class="fas fa-file-alt"></i> Laporan Penilaian</h3>
-                <p><strong>Dokumen Laporan Penilaian</strong></p>
             </div>
         </a>
         <a href="{{ route('it.tim') }}" style="text-decoration:none; color:inherit;">
