@@ -19,12 +19,33 @@ class AdminController extends Controller
     public function index()
     {
         $jumlahProposal = Proposal::count();
-        $tugasHarian = TugasHarian::where('is_final_report', 0)
-            ->orderBy('id', 'desc')
-            ->get();
-        $laporanFinal = TugasHarian::where('is_final_report', 1)->get();
+    
+    // Filter untuk Tugas Harian
+        $query = TugasHarian::where('is_final_report', 0);
+    
+    // Filter berdasarkan pencarian
+        if (request('search')) {
+            $search = request('search');
+            $query->where(function($q) use ($search) {
+                $q->where('pemberi_tugas', 'like', "%$search%")
+                  ->orWhere('debitur', 'like', "%$search%")
+                  ->orWhere('no_ppjp', 'like', "%$search%")
+                  ->orWhere('tim_lapangan', 'like', "%$search%")
+                  ->orWhere('status', 'like', "%$search%");
+            });
+        }
+    
+    // Filter berdasarkan bulan
+        if (request('bulan')) {
+            $query->whereMonth('tanggal_survei', request('bulan'));
+        }
+    
+            $tugasHarian = $query->orderBy('id', 'desc')->get();
+            $jumlahTugasHarian = TugasHarian::where('is_final_report', 0)->count();
+    
+            $laporanFinal = TugasHarian::where('is_final_report', 1)->get();
 
-        return view('layouts.admin', compact('jumlahProposal', 'tugasHarian', 'laporanFinal'));
+            return view('layouts.admin', compact('jumlahProposal', 'tugasHarian', 'laporanFinal', 'jumlahTugasHarian'));
     }
     
     // Tugas Harian

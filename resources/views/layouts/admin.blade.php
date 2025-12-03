@@ -59,6 +59,34 @@
 <!-- Tabel Aktivitas -->
 <div class="dashboard-card" style="margin-top:30px;">
     <h3><i class="fas fa-clipboard-list"></i> Tugas Harian</h3>
+
+    <form method="GET" action="{{ route('admin') }}" style="margin-bottom:20px;">
+        <input type="text" name="search" value="{{ request('search') }}" 
+               placeholder="Cari..." 
+               style="padding:8px; width:250px; border:1px solid #ccc; border-radius:5px;">
+
+        <select name="bulan" style="padding:8px; border:1px solid #ccc; border-radius:5px;">
+            <option value="">-- Bulan Survei --</option>
+            @for($i=1; $i<=12; $i++)
+                <option value="{{ $i }}" {{ request('bulan') == $i ? 'selected' : '' }}>
+                    {{ DateTime::createFromFormat('!m', $i)->format('F') }}
+                </option>
+            @endfor
+        </select>
+
+        <button type="submit" 
+                style="padding:8px 15px; background:#007BFF; color:white; border:none; border-radius:5px; cursor:pointer;">
+            Filter
+        </button>
+
+        @if(request('search') || request('bulan'))
+        <a href="{{ route('admin') }}" 
+           style="padding:8px 15px; background:#777; color:white; border-radius:5px; margin-left:5px; text-decoration:none; display:inline-block;">
+           Reset
+        </a>
+        @endif
+    </form>
+
     <table style="width:100%; border-collapse: collapse; margin-top:15px;">
         <thead style="background:#007BFF; color:white;">
             <tr>

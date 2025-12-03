@@ -206,6 +206,8 @@ Route::get('/admin', function () {
     return view('layouts.admin', compact('jumlahProposal'));
 })->name('admin')->middleware('auth');
 
+Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+
 Route::post('/admin/tugas-harian/update-tahapan/{id}', [AdminController::class, 'updateTahapan'])->name('admin.tugas-harian.updateTahapan')->middleware('auth');
 Route::post('/admin/tugas-harian/upload-file/{tugasId}/{tahapanId}', [App\Http\Controllers\AdminController::class, 'uploadFile'])->name('admin.tugas-harian.uploadFile')->middleware('auth');
 Route::get('/admin/tugas-harian/download-file/{fileId}', [App\Http\Controllers\AdminController::class, 'downloadFile'])->name('admin.tugas-harian.downloadFile')->middleware('auth');
