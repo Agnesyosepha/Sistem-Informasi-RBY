@@ -154,18 +154,18 @@
 
                                 // Data untuk setiap tahapan
                                 $tahapanData = [
-                                    1 => ['value' => 'Pengumpulan Data', 'title' => 'Pengumpulan Data (Admin)'],
-                                    2 => ['value' => 'Pembuatan Invoice DP', 'title' => 'Pembuatan Invoice DP (Finance)'],
-                                    3 => ['value' => 'Penjadwalan Inspeksi', 'title' => 'Penjadwalan Inspeksi (Admin)'],
-                                    4 => ['value' => 'Inspeksi', 'title' => 'Inspeksi (Admin)'],
-                                    5 => ['value' => 'Proses Analisa', 'title' => 'Proses Analisa (Surveyor)'],
-                                    6 => ['value' => 'Review Nilai', 'title' => 'Review Nilai (Surveyor)', 'is_final' => true],
-                                    7 => ['value' => 'Kirim Draft Resume', 'title' => 'Kirim Draft Resume (Surveyor)'],
-                                    8 => ['value' => 'Draft Laporan', 'title' => 'Draft Laporan (EDP)'],
-                                    9 => ['value' => 'Review/Final', 'title' => 'Review/Final (EDP)'],
-                                    10 => ['value' => 'Nomor Laporan', 'title' => 'Nomor Laporan (EDP)'],
-                                    11 => ['value' => 'Laporan Rangkap', 'title' => 'Laporan Rangkap 3 (EDP)'],
-                                    12 => ['value' => 'Pengiriman Dokumen', 'title' => 'Pengiriman Dokumen (Admin)'],
+                                    1 => ['value' => 'Pengumpulan Data', 'title' => 'Pengumpulan Data (Admin)', 'is_checkbox' => false],
+                                    2 => ['value' => 'Pembuatan Invoice DP', 'title' => 'Pembuatan Invoice DP (Finance)', 'is_checkbox' => false],
+                                    3 => ['value' => 'Penjadwalan Inspeksi', 'title' => 'Penjadwalan Inspeksi (Admin)', 'is_checkbox' => false],
+                                    4 => ['value' => 'Inspeksi', 'title' => 'Inspeksi (Admin)', 'is_checkbox' => false],
+                                    5 => ['value' => 'Proses Analisa', 'title' => 'Proses Analisa (Surveyor)', 'is_checkbox' => true],
+                                    6 => ['value' => 'Review Nilai', 'title' => 'Review Nilai (Surveyor)', 'is_checkbox' => true, 'is_final' => true],
+                                    7 => ['value' => 'Kirim Draft Resume', 'title' => 'Kirim Draft Resume (Surveyor)', 'is_checkbox' => false],
+                                    8 => ['value' => 'Draft Laporan', 'title' => 'Draft Laporan (EDP)', 'is_checkbox' => false],
+                                    9 => ['value' => 'Review/Final', 'title' => 'Review/Final (EDP)', 'is_checkbox' => false],
+                                    10 => ['value' => 'Nomor Laporan', 'title' => 'Nomor Laporan (EDP)', 'is_checkbox' => true],
+                                    11 => ['value' => 'Laporan Rangkap', 'title' => 'Laporan Rangkap 3 (EDP)', 'is_checkbox' => true],
+                                    12 => ['value' => 'Pengiriman Dokumen', 'title' => 'Pengiriman Dokumen (Admin)', 'is_checkbox' => false],
                                 ];
                             @endphp
 
@@ -176,6 +176,7 @@
                                     $hasRevisionFile = $filesByTahapan->has($i . '_revision');
                                     $file = $hasFile ? $filesByTahapan->get($i . '_original') : null;
                                     $revisionFile = $hasRevisionFile ? $filesByTahapan->get($i . '_revision') : null;
+                                    $isCheckboxStage = $data['is_checkbox'] ?? false;
                                 @endphp
 
                                 <div class="tahapan-item {{ $hasFile ? 'active' : '' }}" data-value="{{ $data['value'] }}">
@@ -183,59 +184,69 @@
                                         <span class="tahapan-number">{{ $i }}.</span>
                                         <span class="tahapan-title">{{ $data['title'] }}</span>
                                         <div class="tahapan-status">
-                                            <input type="checkbox" class="tahapan-checkbox" id="tahapan{{ $i }}-{{ $tugas->id }}" data-tahapan="{{ $i }}" {{ $hasFile ? 'checked disabled' : '' }}>
-                                            <label for="tahapan{{ $i }}-{{ $tugas->id }}">Selesai</label>
+                                            @if($isCheckboxStage)
+                                                <input type="checkbox" class="tahapan-checkbox checkbox-stage" id="tahapan{{ $i }}-{{ $tugas->id }}" data-tahapan="{{ $i }}" {{ $hasFile ? 'checked disabled' : '' }}>
+                                                <label for="tahapan{{ $i }}-{{ $tugas->id }}">Selesai</label>
+                                            @else
+                                                <input type="checkbox" class="tahapan-checkbox" id="tahapan{{ $i }}-{{ $tugas->id }}" data-tahapan="{{ $i }}" {{ $hasFile ? 'checked disabled' : '' }}>
+                                                <label for="tahapan{{ $i }}-{{ $tugas->id }}">Selesai</label>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="tahapan-details" style="{{ $hasFile ? 'display: block;' : '' }}">
                                         @if(isset($data['is_final']) && $data['is_final'])
                                             <p>Upload file <strong style="color: red;">FINAL</strong></p>
                                         @endif
-                                        <p><strong>Catatan:</strong> Upload dengan penamaan yang benar</p>
                                         
-                                        <!-- File Utama -->
-                                        <div class="file-section">
-                                            <h5>File Utama:</h5>
-                                            <div class="file-upload-container">
-                                                <input type="file" id="file-tahapan{{ $i }}-{{ $tugas->id }}" class="file-input" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" {{ $hasFile ? 'disabled' : '' }}>
-                                                <label for="file-tahapan{{ $i }}-{{ $tugas->id }}" class="file-label" {{ $hasFile ? 'style="pointer-events: none; opacity: 0.6;"' : '' }}>
-                                                    <i class="fas fa-upload"></i> Pilih File
-                                                </label>
-                                                <span class="file-name" id="file-name-tahapan{{ $i }}-{{ $tugas->id }}">
-                                                    {{ $hasFile ? $file->filename : 'Belum ada file' }}
-                                                </span>
-                                                <button class="upload-btn" id="upload-btn-tahapan{{ $i }}-{{ $tugas->id }}" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" {{ $hasFile ? 'disabled' : '' }}>
-                                                    {{ $hasFile ? 'File Terupload' : 'Upload' }}
-                                                </button>
-                                                @if($hasFile)
-                                                <a href="{{ route('admin.tugas-harian.downloadFile', $file->id) }}" class="download-btn" title="Download {{ $file->filename }}">
-                                                    <i class="fas fa-download"></i>
-                                                </a>
-                                                @endif
+                                        @if($isCheckboxStage)
+                                            <p><strong>Catatan:</strong> Centang checkbox untuk menandai tahapan ini selesai</p>
+                                        @else
+                                            <p><strong>Catatan:</strong> Upload dengan penamaan yang benar</p>
+                                            
+                                            <!-- File Utama -->
+                                            <div class="file-section">
+                                                <h5>File Utama:</h5>
+                                                <div class="file-upload-container">
+                                                    <input type="file" id="file-tahapan{{ $i }}-{{ $tugas->id }}" class="file-input" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" {{ $hasFile ? 'disabled' : '' }}>
+                                                    <label for="file-tahapan{{ $i }}-{{ $tugas->id }}" class="file-label" {{ $hasFile ? 'style="pointer-events: none; opacity: 0.6;"' : '' }}>
+                                                        <i class="fas fa-upload"></i> Pilih File
+                                                    </label>
+                                                    <span class="file-name" id="file-name-tahapan{{ $i }}-{{ $tugas->id }}">
+                                                        {{ $hasFile ? $file->filename : 'Belum ada file' }}
+                                                    </span>
+                                                    <button class="upload-btn" id="upload-btn-tahapan{{ $i }}-{{ $tugas->id }}" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" {{ $hasFile ? 'disabled' : '' }}>
+                                                        {{ $hasFile ? 'File Terupload' : 'Upload' }}
+                                                    </button>
+                                                    @if($hasFile)
+                                                    <a href="{{ route('admin.tugas-harian.downloadFile', $file->id) }}" class="download-btn" title="Download {{ $file->filename }}">
+                                                        <i class="fas fa-download"></i>
+                                                    </a>
+                                                    @endif
+                                                </div>
                                             </div>
-                                        </div>
-                                        
-                                        <!-- File Revisi -->
-                                        <div class="file-section" style="margin-top: 15px;">
-                                            <h5>File Revisi:</h5>
-                                            <div class="file-upload-container">
-                                                <input type="file" id="file-revisi-tahapan{{ $i }}-{{ $tugas->id }}" class="file-input" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" data-revision="true" {{ $hasRevisionFile ? 'disabled' : '' }}>
-                                                <label for="file-revisi-tahapan{{ $i }}-{{ $tugas->id }}" class="file-label" {{ $hasRevisionFile ? 'style="pointer-events: none; opacity: 0.6;"' : '' }}>
-                                                    <i class="fas fa-upload"></i> Pilih File Revisi
-                                                </label>
-                                                <span class="file-name" id="file-name-revisi-tahapan{{ $i }}-{{ $tugas->id }}">
-                                                    {{ $hasRevisionFile ? $revisionFile->filename : 'Belum ada file revisi' }}
-                                                </span>
-                                                <button class="upload-btn" id="upload-btn-revisi-tahapan{{ $i }}-{{ $tugas->id }}" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" data-revision="true" {{ $hasRevisionFile ? 'disabled' : '' }}>
-                                                    {{ $hasRevisionFile ? 'File Revisi Terupload' : 'Upload Revisi' }}
-                                                </button>
-                                                @if($hasRevisionFile)
-                                                <a href="{{ route('admin.tugas-harian.downloadFile', $revisionFile->id) }}" class="download-btn" title="Download {{ $revisionFile->filename }}">
-                                                    <i class="fas fa-download"></i>
-                                                </a>
-                                                @endif
+                                            
+                                            <!-- File Revisi -->
+                                            <div class="file-section" style="margin-top: 15px;">
+                                                <h5>File Revisi:</h5>
+                                                <div class="file-upload-container">
+                                                    <input type="file" id="file-revisi-tahapan{{ $i }}-{{ $tugas->id }}" class="file-input" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" data-revision="true" {{ $hasRevisionFile ? 'disabled' : '' }}>
+                                                    <label for="file-revisi-tahapan{{ $i }}-{{ $tugas->id }}" class="file-label" {{ $hasRevisionFile ? 'style="pointer-events: none; opacity: 0.6;"' : '' }}>
+                                                        <i class="fas fa-upload"></i> Pilih File Revisi
+                                                    </label>
+                                                    <span class="file-name" id="file-name-revisi-tahapan{{ $i }}-{{ $tugas->id }}">
+                                                        {{ $hasRevisionFile ? $revisionFile->filename : 'Belum ada file revisi' }}
+                                                    </span>
+                                                    <button class="upload-btn" id="upload-btn-revisi-tahapan{{ $i }}-{{ $tugas->id }}" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" data-revision="true" {{ $hasRevisionFile ? 'disabled' : '' }}>
+                                                        {{ $hasRevisionFile ? 'File Revisi Terupload' : 'Upload Revisi' }}
+                                                    </button>
+                                                    @if($hasRevisionFile)
+                                                    <a href="{{ route('admin.tugas-harian.downloadFile', $revisionFile->id) }}" class="download-btn" title="Download {{ $revisionFile->filename }}">
+                                                        <i class="fas fa-download"></i>
+                                                    </a>
+                                                    @endif
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                             @endfor
@@ -543,8 +554,12 @@ function initializeEventListeners(tugasId) {
         checkbox.addEventListener('change', function(e) {
             e.stopPropagation();
             
+            const tahapanId = this.getAttribute('data-tahapan');
             const tahapanItem = this.closest('.tahapan-item');
             const currentTahapanSpan = document.getElementById(`current-tahapan-${tugasId}`);
+            
+            // Check if this is a checkbox stage (5, 6, 10, 11)
+            const isCheckboxStage = this.classList.contains('checkbox-stage');
             
             // Update current tahapan based on checked item
             if (this.checked && currentTahapanSpan && tahapanItem) {
@@ -557,6 +572,14 @@ function initializeEventListeners(tugasId) {
                 
                 // Add active class to selected item
                 tahapanItem.classList.add('active');
+                
+                // Show completion message for checkbox stages
+                if (isCheckboxStage) {
+                    showStageCompletion(tahapanId, tahapanItem.getAttribute('data-value'));
+                    
+                    // For checkbox stages, disable the checkbox after checking
+                    this.disabled = true;
+                }
             }
         });
     });
@@ -679,6 +702,31 @@ function showError(message) {
         errorMsg.remove();
     }, 3000);
 }
+
+// Function to show stage completion message
+function showStageCompletion(tahapanId, tahapanName) {
+    const completionMsg = document.createElement('div');
+    completionMsg.className = 'alert alert-stage-completion';
+    completionMsg.innerHTML = `<i class="fas fa-check-circle"></i> Tahapan ${tahapanName} telah selesai`;
+    completionMsg.style.position = 'fixed';
+    completionMsg.style.top = '20px';
+    completionMsg.style.right = '20px';
+    completionMsg.style.padding = '15px 20px';
+    completionMsg.style.backgroundColor = '#007bff';
+    completionMsg.style.color = 'white';
+    completionMsg.style.borderRadius = '5px';
+    completionMsg.style.zIndex = '9999';
+    completionMsg.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+    completionMsg.style.display = 'flex';
+    completionMsg.style.alignItems = 'center';
+    completionMsg.style.gap = '10px';
+    
+    document.body.appendChild(completionMsg);
+    
+    setTimeout(() => {
+        completionMsg.remove();
+    }, 4000);
+}
 </script>
 
 <style>
@@ -779,6 +827,21 @@ function showError(message) {
 .tahapan-status input[type="checkbox"]:disabled:checked {
     background-color: #0056b3;
     border-color: #0056b3;
+}
+
+/* Special styling for checkbox stages */
+.tahapan-status input.checkbox-stage {
+    border-color: #28a745;
+}
+
+.tahapan-status input.checkbox-stage:checked {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.tahapan-status input.checkbox-stage:disabled:checked {
+    background-color: #1e7e34;
+    border-color: #1e7e34;
 }
 
 .tahapan-details {
@@ -906,6 +969,13 @@ function showError(message) {
 
 .alert-error {
     background-color: #dc3545;
+}
+
+.alert-stage-completion {
+    background-color: #007bff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .download-btn {
