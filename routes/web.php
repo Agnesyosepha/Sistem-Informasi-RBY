@@ -71,6 +71,8 @@ Route::delete('/superadmin/admin/proposal/{id}', [AdminController::class, 'destr
 Route::get('/superadmin/admin/superadmin-adendum', [\App\Http\Controllers\AdminController::class, 'SAadendum'])->name('superadmin.admin.SAadendum');
 Route::post('/superadmin/admin/superadmin-adendum/store', [\App\Http\Controllers\AdminController::class, 'storeAdendum'])->name('superadmin.admin.SAadendum.store');
 Route::post('/superadmin/admin/superadmin-adendum/update-status/{id}', [App\Http\Controllers\AdminController::class, 'updateStatusAdendum'])->name('superadmin.admin.SAadendum.updateStatus');
+Route::post('/superadmin/adendum/store', [AdminController::class, 'storeAdendum'])
+    ->name('superadmin.admin.SAadendum.store');
 
 Route::get('/superadmin/admin/surat-tugas', [AdminController::class, 'SAsuratTugas'])->name('superadmin.admin.SAsuratTugas');
 Route::post('/superadmin/admin/surat-tugas/store', [AdminController::class, 'storeSuratTugas'])->name('superadmin.admin.SAsuratTugas.store');

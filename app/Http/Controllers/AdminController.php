@@ -423,6 +423,26 @@ public function SAadendum()
     return view('admin.SAadendum', compact('adendum', 'totalAdendum'));
 }
 
+public function storeAdendum(Request $request)
+{
+    $validated = $request->validate([
+        'nomor' => 'required|string|max:255',
+        'proyek' => 'required|string|max:255',
+        'tanggal' => 'required|date',
+        'deskripsi' => 'required|string',
+        'status' => 'required|string',  // <-- TAMBAHKAN VALIDASI
+    ]);
+
+    Adendum::create([
+        'nomor' => $validated['nomor'],
+        'proyek' => $validated['proyek'],
+        'tanggal' => $validated['tanggal'],
+        'deskripsi' => $validated['deskripsi'],
+        'status' => $validated['status'], // <-- TAMBAHKAN INI
+    ]);
+
+    return redirect()->back()->with('success', 'Adendum berhasil ditambahkan!');
+}
 
 // Draft Resume
 public function draftResume()
