@@ -9,12 +9,14 @@
 
     <div class="dashboard-cards">
        
-        <a href="{{ route('surveyor.updateProyek') }}" style="text-decoration:none; color:inherit;">
-            <div class="dashboard-card" style="cursor:pointer;">
-                <h3><i class="fas fa-chart-line"></i> Update Proyek</h3>
-                <p><strong>Ringkasan Status Proyek</strong></p>
-            </div>
-        </a>
+       {{-- 
+<a href="{{ route('surveyor.updateProyek') }}" style="text-decoration:none; color:inherit;">
+    <div class="dashboard-card" style="cursor:pointer;">
+        <h3><i class="fas fa-chart-line"></i> Update Proyek</h3>
+        <p><strong>Ringkasan Status Proyek</strong></p>
+    </div>
+</a>
+--}}
         <a href="{{ route('surveyor.workingpaper') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-tasks"></i> Working Paper</h3>
