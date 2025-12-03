@@ -12,14 +12,14 @@
         <a href="{{ route('superadmin.reviewer.SAdokumenRevisi') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-file-alt"></i> Dokumen Revisi</h3>
-                <p><strong>8 Dokumen</strong></p>
+                <p><strong>Daftar dokumen revisi</strong></p>
             </div>
         </a>
 
         <a href="{{ route('superadmin.reviewer.SAdokumenFinal') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-check-circle"></i> Dokumen Final</h3>
-                <p><strong>8 Dokumen</strong></p>
+                <p><strong>Daftar seluruh dokumen final</strong></p>
             </div>
         </a>
         <a href="{{ route('superadmin.reviewer.SAlog') }}" style="text-decoration:none; color:inherit;">

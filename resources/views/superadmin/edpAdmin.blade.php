@@ -11,7 +11,7 @@
         <a href="{{ route('superadmin.edp.SAdataAktif') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card" style="cursor:pointer;">
                 <h3><i class="fas fa-server"></i> Data Aktif</h3>
-                <p><strong>8 Data Aktif</strong></p>
+                <p><strong>Daftar data aktif yang sedang diproses</strong></p>
             </div>
         </a>
         <a href="" style="text-decoration:none; color:inherit;">
