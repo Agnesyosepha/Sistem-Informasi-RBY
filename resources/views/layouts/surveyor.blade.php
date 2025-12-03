@@ -17,12 +17,7 @@
     </div>
 </a>
 --}}
-        <a href="{{ route('surveyor.workingpaper') }}" style="text-decoration:none; color:inherit;">
-            <div class="dashboard-card">
-                <h3><i class="fas fa-tasks"></i> Working Paper</h3>
-                <p><strong>Template Working Paper</strong></p>
-            </div>
-        </a>
+        
         <a href="{{ route('surveyor.laporanPenilaian') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-file"></i> Laporan Penilaian Final</h3>
@@ -35,7 +30,13 @@
                 <p><strong>Daftar Laporan Jadwal Survey</strong></p>
             </div>
         </a>
-         <a href="{{ route('surveyor.tim') }}" class="dashboard-card" style="display:block; color:inherit; text-decoration:none;">
+        <a href="{{ route('surveyor.workingpaper') }}" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-tasks"></i> Working Paper</h3>
+                <p><strong>Template Working Paper</strong></p>
+            </div>
+        </a>
+        <a href="{{ route('surveyor.tim') }}" class="dashboard-card" style="display:block; color:inherit; text-decoration:none;">
             <h3><i class="fas fa-user"></i> Surveyor</h3>
             <p><strong>10 Staff</strong></p>
         </a>
