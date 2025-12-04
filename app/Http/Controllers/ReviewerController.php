@@ -133,6 +133,8 @@ class ReviewerController extends Controller
         return view('reviewer.SAdokumenRevisi', compact('dokumenRevisi'));
     }
 
+
+// Dokumen Final    
     public function dokumenFinal()
     {
         $dokumenFinal = DokumenFinal::orderBy('tanggal', 'desc')->get();
@@ -144,5 +146,18 @@ class ReviewerController extends Controller
         $dokumenFinal = DokumenFinal::orderBy('tanggal', 'desc')->get();
         return view('reviewer.SAdokumenFinal', compact('dokumenFinal'));
     }
+
+    public function updateStatusDokumenFinal(Request $request, $id)
+{
+    $request->validate([
+        'status' => 'required|string',
+    ]);
+
+    $dokumen = DokumenFinal::findOrFail($id);
+    $dokumen->status = $request->status;
+    $dokumen->save();
+
+    return redirect()->back()->with('success', 'Status dokumen berhasil diperbarui!');
+}
     
 }

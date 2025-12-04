@@ -145,14 +145,14 @@ Route::post('/superadmin/reviewer/dokumen-revisi/store', [\App\Http\Controllers\
 
 Route::get('/superadmin/reviewer/dokumen-final', [\App\Http\Controllers\ReviewerController::class, 'SAdokumenFinal'])->name('superadmin.reviewer.SAdokumenFinal');
 Route::post('/superadmin/reviewer/dokumen-final/store', [\App\Http\Controllers\ReviewerController::class, 'storeDokumenFinal'])->name('reviewer.storeDokumenFinal');
+Route::put('/superadmin/reviewer/dokumen-final/update-status/{id}', [ReviewerController::class, 'updateStatusDokumenFinal'])->name('superadmin.reviewer.updateStatusDokumenFinal');
 
 Route::get('/superadmin/reviewer/log-aktivitas', [ReviewerController::class, 'SAlog'])->name('superadmin.reviewer.SAlog');
 
 Route::post('/superadmin/reviewer/log-aktivitas/store', [ReviewerController::class, 'storeSAlog'])->name('superadmin.reviewer.storeLog');
 
-Route::put('/reviewer/dokumen-revisi/update-status/{id}', 
-    [\App\Http\Controllers\ReviewerController::class, 'updateStatusRevisi']
-)->name('reviewer.updateStatusRevisi');
+Route::put('/reviewer/dokumen-revisi/update-status/{id}', [\App\Http\Controllers\ReviewerController::class, 'updateStatusRevisi'])->name('reviewer.updateStatusRevisi');
+
 
 // Finance di Superadmin
 
@@ -296,6 +296,7 @@ Route::get('/reviewer/tim', [\App\Http\Controllers\ReviewerController::class, 't
 Route::get('/reviewer/dokumen-revisi', [\App\Http\Controllers\ReviewerController::class, 'dokumenRevisi'])->name('reviewer.dokumenRevisi');
 
 Route::get('/reviewer/dokumen-final', [\App\Http\Controllers\ReviewerController::class, 'dokumenFinal'])->name('reviewer.dokumenFinal');
+Route::put('/reviewer/dokumen-final/update-status/{id}', [ReviewerController::class, 'updateStatusDokumenFinal'])->name('reviewer.dokumenFinal.updateStatus');
 
 Route::get('/log-aktivitas', [ReviewerController::class, 'logAktivitas'])->name('logAktivitas');
 

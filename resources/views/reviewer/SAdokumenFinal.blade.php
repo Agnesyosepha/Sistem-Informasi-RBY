@@ -10,15 +10,15 @@
   <table style="width:100%; border-collapse:collapse; background:white;">
       <thead style="background:#007BFF; color:white;">
           <tr>
-              <th style="padding:10px;">Tanggal</th>
-              <th style="padding:10px;">Maksud & Tujuan</th>
-              <th style="padding:10px;">Pemberi</th>
-              <th style="padding:10px;">Pengguna</th>
-              <th style="padding:10px;">Surveyor</th>
-              <th style="padding:10px;">Lokasi</th>
-              <th style="padding:10px;">Objek</th>
-              <th style="padding:10px;">Reviewer</th>
-              <th style="padding:10px;">Status</th>
+              <th style="padding:10px; text-align:left;">Tanggal</th>
+              <th style="padding:10px; text-align:left;">Maksud & Tujuan</th>
+              <th style="padding:10px; text-align:left;">Pemberi</th>
+              <th style="padding:10px; text-align:left;">Pengguna</th>
+              <th style="padding:10px; text-align:left;">Surveyor</th>
+              <th style="padding:10px; text-align:left;">Lokasi</th>
+              <th style="padding:10px; text-align:left;">Objek</th>
+              <th style="padding:10px; text-align:left;">Status</th>
+              <th style="padding:10px; text-align:left;">Aksi</th>
           </tr>
       </thead>
 
@@ -32,8 +32,19 @@
               <td style="padding:10px;">{{ $data->surveyor }}</td>
               <td style="padding:10px;">{{ $data->lokasi }}</td>
               <td style="padding:10px;">{{ $data->objek }}</td>
-              <td style="padding:10px;">{{ $data->reviewer }}</td>
-              <td style="padding:10px; font-weight:600; color:green;">Selesai</td>
+              <td style="padding:10px; font-weight:600; 
+                    color:
+                        @if($data->status === 'Final EDP') #007bff
+                        @elseif($data->status === 'Selesai') #28a745
+                        @else #dc3545 @endif;">
+                  {{ $data->status }}
+              </td>
+              <td style="padding:10px;">
+                  <button onclick="openEditStatusModal('{{ $data->id }}', '{{ $data->status }}')"
+                      style="background:#17a2b8; color:white; border:none; padding:6px 12px; border-radius:6px; cursor:pointer;">
+                      Edit
+                  </button>
+              </td>
           </tr>
           @empty
           <tr>
@@ -46,4 +57,70 @@
   </table>
 </div>
 
+<style>
+.input-field {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.btn-primary {
+    background:#007BFF; 
+    color:white; 
+    padding:10px 18px; 
+    border:none; 
+    border-radius:6px; 
+    cursor:pointer;
+}
+.btn-danger {
+    background:#dc3545; 
+    color:white; 
+    padding:10px 18px; 
+    border:none; 
+    border-radius:6px; 
+    cursor:pointer;
+}
+</style>
+
+{{-- ================================
+    MODAL EDIT STATUS
+================================ --}}
+<div id="modalEditStatus"
+    style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%;
+           background:rgba(0,0,0,0.5); padding-top:60px;">
+
+    <div style="background:white; margin:auto; padding:20px; border-radius:10px;
+                width:30%; max-height:60vh; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+
+        <h2>Edit Status</h2>
+
+        <form id="formEditStatus" method="POST">
+            @csrf
+            @method('PUT')
+
+            <label>Status Progres:</label>
+            <select name="status" id="edit_status" required class="input-field">
+                <option value="Selesai">Selesai</option>
+                <option value="Final EDP">Final EDP</option>
+            </select>
+
+            <button type="submit" class="btn-primary">Simpan</button>
+            <button type="button"
+                onclick="document.getElementById('modalEditStatus').style.display='none'"
+                class="btn-danger" style="margin-left:10px;">Batal</button>
+        </form>
+    </div>
+</div>
+
+<script>
+function openEditStatusModal(id, currentStatus) {
+    document.getElementById('modalEditStatus').style.display = 'block';
+
+    document.getElementById('formEditStatus').action =
+        "/superadmin/reviewer/dokumen-final/update-status/" + id;
+
+    document.getElementById('edit_status').value = currentStatus;
+}
+</script>
 @endsection
