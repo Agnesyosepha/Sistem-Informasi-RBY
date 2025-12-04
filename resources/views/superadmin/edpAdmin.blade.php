@@ -14,7 +14,7 @@
                 <p><strong>Daftar Data Aktif dalam Proses</strong></p>
             </div>
         </a>
-        <a href="{{ route('superadmin.admin.SAlaporanpenilaianfinal') }}" style="text-decoration:none; color:inherit;">
+        <a href="{{ route('superadmin.edp.SAlaporanpenilaianfinal') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-file"></i> Laporan Penilaian</h3>
                 <p><strong >Daftar laporan hasil penilaian</strong></p>

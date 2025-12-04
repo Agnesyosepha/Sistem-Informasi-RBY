@@ -109,8 +109,8 @@ Route::get('/surveyor/lokasisurvei', [SurveyorController::class, 'lokasiSurvei']
 Route::get('/superadmin/admin/update-proyek',[SurveyorController::class, 'updateProyekAdmin'])->name('superadmin.admin.SAupdateProyek');
 Route::post('/superadmin/admin/update-proyek/store',[SurveyorController::class, 'storeProyek'])->name('superadmin.admin.SAupdateProyek.store');
 
-Route::get('/superadmin/laporan-penilaian', [SurveyorController::class, 'laporanPenilaianAdmin'])->name('superadmin.admin.SAlaporanpenilaianfinal');
-Route::post('/superadmin/laporan-penilaian/store', [SurveyorController::class, 'storeLaporanPenilaian'])->name('superadmin.admin.SAlaporanpenilaianfinal.store');
+//Route::get('/superadmin/laporan-penilaian', [SurveyorController::class, 'laporanPenilaianAdmin'])->name('superadmin.admin.SAlaporanpenilaianfinal');
+//Route::post('/superadmin/laporan-penilaian/store', [SurveyorController::class, 'storeLaporanPenilaian'])->name('superadmin.admin.SAlaporanpenilaianfinal.store');
 
 Route::get('/superadmin/jadwal-surveyor', [SurveyorController::class, 'jadwalAdmin'])->name('superadmin.jadwal.index');
 Route::post('/superadmin/jadwal-surveyor/store',[SurveyorController::class, 'storeJadwal'])->name('superadmin.jadwal.store');
@@ -132,6 +132,8 @@ Route::post('/superadmin/edp/log-aktivitas/store', [\App\Http\Controllers\EdpCon
 Route::put('/superadmin/edp/log-aktivitas/update/{id}',[EdpController::class, 'updateLogEDP'])->name('superadmin.edp.SAlogEDP.update');
 
 Route::get('/superadmin/edp/laporan-penilaian', [EdpController::class, 'laporanPenilaianAdmin'])->name('superadmin.edp.SAlaporanpenilaianfinal');
+Route::post('/superadmin/edp/laporan-penilaian/store', [SurveyorController::class, 'storeLaporanPenilaian'])->name('superadmin.edp.SAlaporanpenilaianfinal.store');
+Route::put('/superadmin/edp/laporan-penilaian/update-status/{id}', [EdpController::class, 'updateStatusLaporanPenilaian'])->name('superadmin.edp.updateStatusLaporanPenilaian');
 
 
 // Reviewer di Superadmin
