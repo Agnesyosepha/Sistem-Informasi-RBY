@@ -132,7 +132,10 @@ Route::post('/superadmin/edp/log-aktivitas/store', [\App\Http\Controllers\EdpCon
 Route::put('/superadmin/edp/log-aktivitas/update/{id}',[EdpController::class, 'updateLogEDP'])->name('superadmin.edp.SAlogEDP.update');
 
 Route::get('/superadmin/edp/laporan-penilaian', [EdpController::class, 'laporanPenilaianAdmin'])->name('superadmin.edp.SAlaporanpenilaianfinal');
-Route::post('/superadmin/edp/laporan-penilaian/store', [SurveyorController::class, 'storeLaporanPenilaian'])->name('superadmin.edp.SAlaporanpenilaianfinal.store');
+Route::post('/superadmin/edp/laporan-penilaian', [EdpController::class, 'storeLaporanPenilaian'])->name('superadmin.edp.SAlaporanpenilaianfinal.store');
+Route::get('/superadmin/edp/laporan-penilaian/{id}/edit', [EdpController::class, 'editLaporanPenilaian'])->name('superadmin.edp.SAlaporanpenilaianfinal.edit');
+Route::post('/superadmin/edp/laporan-penilaian/{id}', [EdpController::class, 'updateLaporanPenilaian'])->name('superadmin.edp.SAlaporanpenilaianfinal.update');
+Route::delete('/superadmin/edp/laporan-penilaian/{id}', [EdpController::class, 'destroyLaporanPenilaian'])->name('superadmin.edp.SAlaporanpenilaianfinal.destroy');
 Route::put('/superadmin/edp/laporan-penilaian/update-status/{id}', [EdpController::class, 'updateStatusLaporanPenilaian'])->name('superadmin.edp.updateStatusLaporanPenilaian');
 
 

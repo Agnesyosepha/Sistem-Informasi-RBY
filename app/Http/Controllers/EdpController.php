@@ -238,17 +238,22 @@ public function dataAktif(Request $request)
 }
 
 // Laporan Penilaian
-    public function laporanPenilaianUser()
+public function laporanPenilaianUser()
 {
     $search = request('search');
 
     $laporanPenilaian = LaporanPenilaian::when($search, function ($query) use ($search) {
-        $query->where('nomor_laporan', 'like', "%$search%")
-            ->orWhere('klien', 'like', "%$search%")
-            ->orWhere('jenis_aset', 'like', "%$search%")
-            ->orWhere('lokasi', 'like', "%$search%");
+        $query->where('tanggal', 'like', "%$search%")
+            ->orWhere('jenis', 'like', "%$search%")
+            ->orWhere('pemberi', 'like', "%$search%")
+            ->orWhere('pengguna', 'like', "%$search%")
+            ->orWhere('surveyor', 'like', "%$search%")
+            ->orWhere('lokasi', 'like', "%$search%")
+            ->orWhere('objek', 'like', "%$search%")
+            ->orWhere('reviewer', 'like', "%$search%")
+            ->orWhere('status', 'like', "%$search%");
     })
-    ->orderBy('tgl_laporan', 'desc')
+    ->orderBy('tanggal', 'desc')
     ->get();
 
     return view('EDP.laporanPenilaian', compact('laporanPenilaian'));
@@ -260,15 +265,20 @@ public function laporanPenilaianAdmin()
     $bulan = request('bulan');
 
     $laporanPenilaian = LaporanPenilaian::when($search, function ($query) use ($search) {
-            $query->where('nomor_laporan', 'like', "%$search%")
-                ->orWhere('klien', 'like', "%$search%")
-                ->orWhere('jenis_aset', 'like', "%$search%")
-                ->orWhere('lokasi', 'like', "%$search%");
+            $query->where('tanggal', 'like', "%$search%")
+                ->orWhere('jenis', 'like', "%$search%")
+                ->orWhere('pemberi', 'like', "%$search%")
+                ->orWhere('pengguna', 'like', "%$search%")
+                ->orWhere('surveyor', 'like', "%$search%")
+                ->orWhere('lokasi', 'like', "%$search%")
+                ->orWhere('objek', 'like', "%$search%")
+                ->orWhere('reviewer', 'like', "%$search%")
+                ->orWhere('status', 'like', "%$search%");
         })
         ->when($bulan, function ($query) use ($bulan) {
-            $query->whereMonth('tgl_laporan', $bulan);
+            $query->whereMonth('tanggal', $bulan);
         })
-        ->orderBy('tgl_laporan', 'desc')
+        ->orderBy('tanggal', 'desc')
         ->get();
 
     return view('EDP.SAlaporanpenilaianfinal', compact('laporanPenilaian'));
@@ -277,20 +287,28 @@ public function laporanPenilaianAdmin()
 public function storeLaporanPenilaian(Request $request)
 {
     $request->validate([
-        'nomor_laporan' => 'required|string',
-        'klien' => 'required|string',
-        'jenis_aset' => 'required|string',
+        'tanggal' => 'required|date',
+        'jenis' => 'required|string',
+        'pemberi' => 'required|string',
+        'pengguna' => 'required|string',
+        'surveyor' => 'required|string',
         'lokasi' => 'required|string',
-        'tgl_laporan' => 'required|date',
+        'objek' => 'required|string',
+        'reviewer' => 'nullable|string',
+        'status' => 'required|string',
         'softcopy' => 'nullable|file|mimes:pdf',
     ]);
 
     $laporan = new LaporanPenilaian();
-    $laporan->nomor_laporan = $request->nomor_laporan;
-    $laporan->klien = $request->klien;
-    $laporan->jenis_aset = $request->jenis_aset;
+    $laporan->tanggal = $request->tanggal;
+    $laporan->jenis = $request->jenis;
+    $laporan->pemberi = $request->pemberi;
+    $laporan->pengguna = $request->pengguna;
+    $laporan->surveyor = $request->surveyor;
     $laporan->lokasi = $request->lokasi;
-    $laporan->tgl_laporan = $request->tgl_laporan;
+    $laporan->objek = $request->objek;
+    $laporan->reviewer = $request->reviewer;
+    $laporan->status = $request->status;
 
     if ($request->hasFile('softcopy')) {
         $file = $request->file('softcopy');
@@ -302,6 +320,69 @@ public function storeLaporanPenilaian(Request $request)
     $laporan->save();
 
     return back()->with('success', 'Laporan penilaian berhasil ditambahkan.');
+}
+
+public function editLaporanPenilaian($id)
+{
+    $laporan = LaporanPenilaian::findOrFail($id);
+    return response()->json($laporan);
+}
+
+public function updateLaporanPenilaian(Request $request, $id)
+{
+    $request->validate([
+        'tanggal' => 'required|date',
+        'jenis' => 'required|string',
+        'pemberi' => 'required|string',
+        'pengguna' => 'required|string',
+        'surveyor' => 'required|string',
+        'lokasi' => 'required|string',
+        'objek' => 'required|string',
+        'reviewer' => 'nullable|string',
+        'status' => 'required|string',
+        'softcopy' => 'nullable|file|mimes:pdf',
+    ]);
+
+    $laporan = LaporanPenilaian::findOrFail($id);
+    $laporan->tanggal = $request->tanggal;
+    $laporan->jenis = $request->jenis;
+    $laporan->pemberi = $request->pemberi;
+    $laporan->pengguna = $request->pengguna;
+    $laporan->surveyor = $request->surveyor;
+    $laporan->lokasi = $request->lokasi;
+    $laporan->objek = $request->objek;
+    $laporan->reviewer = $request->reviewer;
+    $laporan->status = $request->status;
+
+    if ($request->hasFile('softcopy')) {
+        // Hapus file lama jika ada
+        if ($laporan->softcopy) {
+            Storage::disk('public')->delete('laporan/' . $laporan->softcopy);
+        }
+        
+        $file = $request->file('softcopy');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $file->storeAs('laporan', $filename, 'public');
+        $laporan->softcopy = $filename;
+    }
+
+    $laporan->save();
+
+    return response()->json(['success' => true, 'message' => 'Laporan penilaian berhasil diperbarui.']);
+}
+
+public function destroyLaporanPenilaian($id)
+{
+    $laporan = LaporanPenilaian::findOrFail($id);
+    
+    // Hapus file jika ada
+    if ($laporan->softcopy) {
+        Storage::disk('public')->delete('laporan/' . $laporan->softcopy);
+    }
+    
+    $laporan->delete();
+    
+    return response()->json(['success' => true, 'message' => 'Laporan penilaian berhasil dihapus.']);
 }
 
 

@@ -10,11 +10,15 @@ return new class extends Migration
     {
         Schema::create('laporan_penilaian', function (Blueprint $table) {
             $table->id();
-            $table->string('nomor_laporan');
-            $table->string('klien');           // Nama Debitur
-            $table->string('jenis_aset');      // Objek Penilaian
-            $table->string('lokasi');          // Lokasi
-            $table->date('tgl_laporan');       // Tanggal Laporan
+            $table->date('tanggal');
+            $table->string('jenis');
+            $table->string('pemberi');
+            $table->string('pengguna');
+            $table->string('surveyor');
+            $table->string('lokasi');
+            $table->string('objek');
+            $table->string('reviewer')->nullable();
+            $table->string('status');
             $table->string('softcopy')->nullable(); // File PDF
             $table->timestamps();
         });

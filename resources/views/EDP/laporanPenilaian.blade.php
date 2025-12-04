@@ -52,27 +52,38 @@
     @endif
 </form>
 
-
     <div class="dashboard-card" style="margin-top:30px;">
     <table style="width:100%; border-collapse: collapse; margin-top:15px;">
         <thead style="background:#007BFF; color:white;">
             <tr>
-                <th style="padding:10px; text-align:left;">Nomor LPA</th>
-                <th style="padding:10px; text-align:left;">Nama Debitur</th>
-                <th style="padding:10px; text-align:left;">Objek penilaian</th>
+                <th style="padding:10px; text-align:left;">Tanggal</th>
+                <th style="padding:10px; text-align:left;">Jenis</th>
+                <th style="padding:10px; text-align:left;">Pemberi Tugas</th>
+                <th style="padding:10px; text-align:left;">Pengguna Jasa</th>
+                <th style="padding:10px; text-align:left;">Surveyor</th>
                 <th style="padding:10px; text-align:left;">Lokasi</th>
-                <th style="padding:10px; text-align:left;">Tanggal Laporan</th>
+                <th style="padding:10px; text-align:left;">Objek Penilaian</th>
+                <th style="padding:10px; text-align:left;">Reviewer</th>
+                <th style="padding:10px; text-align:left;">Status</th>
                 <th style="padding:10px; text-align:center;">Softcopy</th>
             </tr>
         </thead>
         <tbody>
             @foreach($laporanPenilaian as $laporan)
                 <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">{{ $laporan['nomor_laporan'] }}</td>
-                    <td style="padding:10px;">{{ $laporan['klien'] }}</td>
-                    <td style="padding:10px;">{{ $laporan['jenis_aset'] }}</td>
-                    <td style="padding:10px;">{{ $laporan['lokasi'] }}</td>
-                    <td style="padding:10px;">{{ $laporan['tgl_laporan'] }}</td>
+                    <td style="padding:10px;">{{ $laporan->tanggal }}</td>
+                    <td style="padding:10px;">{{ $laporan->jenis }}</td>
+                    <td style="padding:10px;">{{ $laporan->pemberi }}</td>
+                    <td style="padding:10px;">{{ $laporan->pengguna }}</td>
+                    <td style="padding:10px;">{{ $laporan->surveyor }}</td>
+                    <td style="padding:10px;">{{ $laporan->lokasi }}</td>
+                    <td style="padding:10px;">{{ $laporan->objek }}</td>
+                    <td style="padding:10px;">{{ $laporan->reviewer ?? '-' }}</td>
+                    <td style="padding:10px;">
+                        <span class="status-label" data-status="{{ $laporan->status }}">
+                            {{ $laporan->status }}
+                        </span>
+                    </td>
                     <td style="padding:10px; text-align:center;">
                         @if($laporan->softcopy)
                             <a href="{{ asset('storage/laporan/'.$laporan->softcopy) }}" target="_blank"
@@ -83,10 +94,29 @@
                             -
                         @endif
                     </td>
+                </tr>
             @endforeach
         </tbody>
     </table>
     </div>
+@endsection
 
-    
+@section('scripts')
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".status-label").forEach(function(label) {
+        const value = label.getAttribute("data-status");
+
+        if (value === "Selesai") {
+            label.style.color = "green";
+        } 
+        else if (value === "Proses") {
+            label.style.color = "orange";
+        } 
+        else if (value === "Revisi") {
+            label.style.color = "red";
+        }
+    });
+});
+</script>
 @endsection

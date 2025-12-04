@@ -12,11 +12,14 @@ class LaporanPenilaian extends Model
     protected $table = 'laporan_penilaian'; // optional, kalau nama tabel sesuai konvensi Laravel bisa dihapus
 
     protected $fillable = [
-        'nomor_laporan',
-        'klien',
-        'jenis_aset',
+        'tanggal',
+        'jenis',
+        'pemberi',
+        'pengguna',
+        'surveyor',
         'lokasi',
-        'tgl_laporan',
-        'softcopy'
+        'objek',
+        'reviewer',
+        'status'
     ];
 }
