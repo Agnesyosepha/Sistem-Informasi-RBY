@@ -23,7 +23,7 @@
 
         <h2 style="margin-bottom:15px;">Tambah Laporan Penilaian</h2>
 
-        <form action="{{ route('superadmin.admin.SAlaporanpenilaianfinal.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('superadmin.edp.SAlaporanpenilaianfinal.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <label>Nomor LPA</label>
