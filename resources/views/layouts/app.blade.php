@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
@@ -44,7 +44,12 @@
         .header-right {
             display: flex; align-items: center; gap: 15px; margin-left: auto;
         }
-        .profile-icon { font-size: 22px; cursor: pointer; color: #fff; }
+        .profile-icon, .notification-icon { 
+            font-size: 22px; 
+            cursor: pointer; 
+            color: #fff; 
+            position: relative;
+        }
         .logout-btn {
             background: #dc3545; color: #fff;
             border: none; padding: 8px 16px;
@@ -170,8 +175,12 @@
             font-size: 12px;
             padding: 2px 7px;
             border-radius: 12px;
-            margin-left: auto;
+            position: absolute;
+            top: -8px;
+            right: -8px;
             font-weight: 600;
+            min-width: 18px;
+            text-align: center;
         }
 
     </style>
@@ -189,16 +198,6 @@
                 <li><a href="{{ route('reviewer') }}" class="{{ Route::is('reviewer*') ? 'active' : '' }}"><i class="fas fa-file-signature"></i> <span>Reviewer</span></a></li>
                 <li><a href="{{ route('finance') }}" class="{{ Route::is('finance*') ? 'active' : '' }}"><i class="fas fa-file-invoice-dollar"></i> <span>Finance</span></a></li>
                 <li><a href="{{ route('it') }}" class="{{ Route::is('it*') ? 'active' : '' }}"><i class="fas fa-server"></i> <span>IT</span></a></li>
-                <li>
-                    <a href="{{ route('notifications.index') }}" class="{{ request()->routeIs('notifications*') ? 'active' : '' }}">
-                        <i class="fas fa-bell"></i>
-                        <span>Notifikasi</span>
-                        @if(auth()->user()->unreadNotificationsCount() > 0)
-                            <span class="notification-badge">{{ auth()->user()->unreadNotificationsCount() }}</span>
-                        @endif
-                    </a>
-                </li>
-
             </ul>
         </nav>
     </aside>
@@ -215,6 +214,12 @@
         </div>
 
         <div class="header-right">
+            <a href="{{ route('notifications.index') }}" class="notification-icon">
+                <i class="fas fa-bell"></i>
+                @if(auth()->user()->unreadNotificationsCount() > 0)
+                    <span class="notification-badge">{{ auth()->user()->unreadNotificationsCount() }}</span>
+                @endif
+            </a>
             <a href="{{ route('profile') }}" class="profile-icon"><i class="fas fa-user"></i></a>
         </div>
     </header>
@@ -267,5 +272,6 @@
     </script>
 
     @yield('scripts')
+    @stack('scripts')
 </body>
 </html>

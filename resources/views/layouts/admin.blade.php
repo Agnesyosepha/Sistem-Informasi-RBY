@@ -64,21 +64,8 @@
 <div class="card mb-4 border-left-warning">
     <div class="card-body">
         <div class="row no-gutters align-items-center">
-            <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                    Notifikasi Baru
-                </div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">
-                    Anda memiliki {{ auth()->user()->unreadNotifications()->count() }} notifikasi baru
-                </div>
-            </div>
-            <div class="col-auto">
-                <i class="fas fa-bell fa-2x text-gray-300"></i>
-            </div>
         </div>
-        <div class="mt-2">
-            <a href="{{ route('notifications.index') }}" class="btn btn-sm btn-primary">Lihat Semua Notifikasi</a>
-        </div>
+       
     </div>
 </div>
 @endif
