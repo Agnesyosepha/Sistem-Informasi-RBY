@@ -10,30 +10,30 @@
   <table style="width:100%; border-collapse: collapse; background:white;">
     <thead style="background:#007BFF; color:white;">
         <tr>
-            <th style="padding:10px;">Tanggal</th>
-            <th style="padding:10px;">Maksud & Tujuan</th>
-            <th style="padding:10px;">Pemberi</th>
-            <th style="padding:10px;">Pengguna</th>
-            <th style="padding:10px;">Surveyor</th>
-            <th style="padding:10px;">Lokasi</th>
-            <th style="padding:10px;">Objek</th>
-            <th style="padding:10px;">Reviewer</th>
-            <th style="padding:10px;">Status</th>
-            <th style="padding:10px;">Aksi</th>
+            <th style="padding:10px; text-align:left;">Tanggal</th>
+            <th style="padding:10px; text-align:left;">Maksud & Tujuan</th>
+            <th style="padding:10px; text-align:left;">Pemberi</th>
+            <th style="padding:10px; text-align:left;">Pengguna</th>
+            <th style="padding:10px; text-align:left;">Surveyor</th>
+            <th style="padding:10px; text-align:left;">Lokasi</th>
+            <th style="padding:10px; text-align:left;">Objek</th>
+            <th style="padding:10px; text-align:left;">Reviewer</th>
+            <th style="padding:10px; text-align:left;">Status</th>
+            <th style="padding:10px; text-align:left;">Aksi</th>
         </tr>
     </thead>
 
     <tbody>
         @forelse($dokumenRevisi as $data)
         <tr style="border-bottom:1px solid #ddd;">
-            <td>{{ $data->tanggal }}</td>
-            <td>{{ $data->jenis }}</td>
-            <td>{{ $data->pemberi }}</td>
-            <td>{{ $data->pengguna }}</td>
-            <td>{{ $data->surveyor }}</td>
-            <td>{{ $data->lokasi }}</td>
-            <td>{{ $data->objek }}</td>
-            <td>{{ $data->reviewer }}</td>
+            <td style="padding:10px; text-align:left;">{{ $data->tanggal }}</td>
+            <td style="padding:10px; text-align:left;">{{ $data->jenis }}</td>
+            <td style="padding:10px; text-align:left;">{{ $data->pemberi }}</td>
+            <td style="padding:10px; text-align:left;">{{ $data->pengguna }}</td>
+            <td style="padding:10px; text-align:left;">{{ $data->surveyor }}</td>
+            <td style="padding:10px; text-align:left;">{{ $data->lokasi }}</td>
+            <td style="padding:10px; text-align:left;">{{ $data->objek }}</td>
+            <td style="padding:10px; text-align:left;">{{ $data->reviewer }}</td>
             <td style="font-weight:600; color:{{ $data->status === 'Selesai' ? '#28a745' : '#ffc107' }}">
                 {{ $data->status }}
             </td>
