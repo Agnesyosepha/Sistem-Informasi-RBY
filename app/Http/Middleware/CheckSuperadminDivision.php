@@ -15,6 +15,11 @@ class CheckSuperadminDivision
 
         $user = Auth::user();
 
+        // Jika username superadmin → full akses
+        if ($user->username === 'superadmin') {
+            return $next($request);
+        }
+
         // Hanya superadmin yang boleh masuk
         if ($user->role !== 'Superadmin') {
             abort(403, 'Hanya Superadmin yang dapat mengakses halaman ini.');
