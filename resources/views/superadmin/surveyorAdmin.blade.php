@@ -15,12 +15,16 @@
                 <p><strong>Ringkasan Semua Status Proyek</strong></p>
             </div>
         </a>
+
+        {{-- 
         <a href="{{ route('superadmin.admin.SAlaporanpenilaianfinal') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-file"></i> Laporan Penilaian</h3>
                 <p><strong >Daftar laporan hasil penilaian</strong></p>
             </div>
         </a>
+        --}}
+        
         <a href="{{ route('superadmin.jadwal.index') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
                 <h3><i class="fas fa-calendar-alt"></i> Jadwal Surveyor</h3>

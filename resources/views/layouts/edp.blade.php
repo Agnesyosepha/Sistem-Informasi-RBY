@@ -7,10 +7,16 @@
     <p>Ringkasan aktivitas Electronic Data Processing (EDP).</p>
 
     <div class="dashboard-cards">
+        <a href="{{ route('edp.laporanPenilaian') }}" style="text-decoration:none; color:inherit;">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-file"></i> Laporan Penilaian Final</h3>
+                <p><strong>Daftar Laporan Hasil Penilaian</strong></p>
+            </div>
+        </a>
         <a href="{{ route('edp.dataAktif') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card" style="cursor:pointer;">
                 <h3><i class="fas fa-server"></i> Data Aktif</h3>
-                <p><strong>Daftar data aktif yang sedang diproses</strong></p>
+                <p><strong>Daftar Data Aktif dalam Proses</strong></p>
             </div>
         </a>
         <a href="{{ route('edp.dokumenFinal') }}" style="text-decoration:none; color:inherit;">

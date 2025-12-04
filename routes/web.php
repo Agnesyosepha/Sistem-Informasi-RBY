@@ -129,6 +129,8 @@ Route::get('/superadmin/edp/log-aktivitas', [\App\Http\Controllers\EdpController
 Route::post('/superadmin/edp/log-aktivitas/store', [\App\Http\Controllers\EdpController::class, 'storeLogEDP'])->name('superadmin.edp.storeLogEDP');
 Route::put('/superadmin/edp/log-aktivitas/update/{id}',[EdpController::class, 'updateLogEDP'])->name('superadmin.edp.SAlogEDP.update');
 
+Route::get('/superadmin/edp/laporan-penilaian', [EdpController::class, 'laporanPenilaianAdmin'])->name('superadmin.edp.SAlaporanpenilaianfinal');
+
 
 // Reviewer di Superadmin
 
@@ -254,9 +256,7 @@ Route::get('/surveyor/laporan-penilaian', [SurveyorController::class, 'laporanPe
 
 Route::get('/surveyor/working-paper', [SurveyorController::class, 'workingPaper'])->name('surveyor.workingpaper');
 
-Route::get('/laporan-penilaian', 
-    [SurveyorController::class, 'laporanPenilaianUser']
-)->name('surveyor.laporanPenilaianUser');
+Route::get('/laporan-penilaian', [SurveyorController::class, 'laporanPenilaianUser'])->name('surveyor.laporanPenilaianUser');
 
 
 // EDP
@@ -280,6 +280,8 @@ Route::post('/edp/dokumen-final/upload', [\App\Http\Controllers\EdpController::c
 Route::delete('/edp/dokumen-final/delete/{filename}', [\App\Http\Controllers\EdpController::class, 'deleteDokumenFinal'])->name('edp.deleteDokumenFinal');
 
 Route::get('/edp', [EdpController::class, 'index'])->name('edp');
+
+Route::get('/edp/laporan-penilaian', [EdpController::class, 'laporanPenilaianUser'])->name('edp.laporanPenilaian');
 
 
 // Reviewer

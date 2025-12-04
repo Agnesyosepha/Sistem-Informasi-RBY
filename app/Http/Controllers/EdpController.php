@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\Models\DataAktif;
 use App\Models\LogEDP;
 use App\Models\DokumenRevisi;
+use App\Models\LaporanPenilaian;
 
 class EdpController extends Controller
 {
@@ -236,6 +237,72 @@ public function dataAktif(Request $request)
     return redirect()->back()->with('success', 'Status berhasil diperbarui!');
 }
 
+// Laporan Penilaian
+    public function laporanPenilaianUser()
+{
+    $search = request('search');
+
+    $laporanPenilaian = LaporanPenilaian::when($search, function ($query) use ($search) {
+        $query->where('nomor_laporan', 'like', "%$search%")
+            ->orWhere('klien', 'like', "%$search%")
+            ->orWhere('jenis_aset', 'like', "%$search%")
+            ->orWhere('lokasi', 'like', "%$search%");
+    })
+    ->orderBy('tgl_laporan', 'desc')
+    ->get();
+
+    return view('EDP.laporanPenilaian', compact('laporanPenilaian'));
+}
+
+public function laporanPenilaianAdmin()
+{
+    $search = request('search');
+    $bulan = request('bulan');
+
+    $laporanPenilaian = LaporanPenilaian::when($search, function ($query) use ($search) {
+            $query->where('nomor_laporan', 'like', "%$search%")
+                ->orWhere('klien', 'like', "%$search%")
+                ->orWhere('jenis_aset', 'like', "%$search%")
+                ->orWhere('lokasi', 'like', "%$search%");
+        })
+        ->when($bulan, function ($query) use ($bulan) {
+            $query->whereMonth('tgl_laporan', $bulan);
+        })
+        ->orderBy('tgl_laporan', 'desc')
+        ->get();
+
+    return view('EDP.SAlaporanpenilaianfinal', compact('laporanPenilaian'));
+}
+
+public function storeLaporanPenilaian(Request $request)
+{
+    $request->validate([
+        'nomor_laporan' => 'required|string',
+        'klien' => 'required|string',
+        'jenis_aset' => 'required|string',
+        'lokasi' => 'required|string',
+        'tgl_laporan' => 'required|date',
+        'softcopy' => 'nullable|file|mimes:pdf',
+    ]);
+
+    $laporan = new LaporanPenilaian();
+    $laporan->nomor_laporan = $request->nomor_laporan;
+    $laporan->klien = $request->klien;
+    $laporan->jenis_aset = $request->jenis_aset;
+    $laporan->lokasi = $request->lokasi;
+    $laporan->tgl_laporan = $request->tgl_laporan;
+
+    if ($request->hasFile('softcopy')) {
+        $file = $request->file('softcopy');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $file->storeAs('laporan', $filename, 'public');
+        $laporan->softcopy = $filename;
+    }
+
+    $laporan->save();
+
+    return back()->with('success', 'Laporan penilaian berhasil ditambahkan.');
+}
 
 
 
