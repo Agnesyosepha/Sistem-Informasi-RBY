@@ -11,6 +11,8 @@ use App\Http\Controllers\ITController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\NotificationController;
+
 
 // Login
 Route::get('/login', function () {
@@ -648,6 +650,13 @@ Route::middleware(['auth', 'superdivision:Finance'])->group(function () {
         ->name('superadmin.rab.delete');
 });
 
+// Route untuk notifikasi
+Route::middleware('auth')->group(function () {
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+    Route::post('/notifications/{id}/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
+    Route::post('/notifications/mark-all-as-read', [NotificationController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');
+    Route::get('/notifications/unread-count', [NotificationController::class, 'getUnreadCount'])->name('notifications.unreadCount');
+});
 // Logout
 Route::post('/logout', function (Request $request) {
     Auth::logout();

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Dashboard')</title>
     
@@ -163,6 +164,16 @@
             opacity: 0.4;
             cursor: not-allowed;
         }
+        .notification-badge {
+            background: #ff3b3b;
+            color: #fff;
+            font-size: 12px;
+            padding: 2px 7px;
+            border-radius: 12px;
+            margin-left: auto;
+            font-weight: 600;
+        }
+
     </style>
 </head>
 
@@ -178,6 +189,15 @@
                 <li><a href="{{ route('reviewer') }}" class="{{ Route::is('reviewer*') ? 'active' : '' }}"><i class="fas fa-file-signature"></i> <span>Reviewer</span></a></li>
                 <li><a href="{{ route('finance') }}" class="{{ Route::is('finance*') ? 'active' : '' }}"><i class="fas fa-file-invoice-dollar"></i> <span>Finance</span></a></li>
                 <li><a href="{{ route('it') }}" class="{{ Route::is('it*') ? 'active' : '' }}"><i class="fas fa-server"></i> <span>IT</span></a></li>
+                <li>
+                    <a href="{{ route('notifications.index') }}" class="{{ request()->routeIs('notifications*') ? 'active' : '' }}">
+                        <i class="fas fa-bell"></i>
+                        <span>Notifikasi</span>
+                        @if(auth()->user()->unreadNotificationsCount() > 0)
+                            <span class="notification-badge">{{ auth()->user()->unreadNotificationsCount() }}</span>
+                        @endif
+                    </a>
+                </li>
 
             </ul>
         </nav>

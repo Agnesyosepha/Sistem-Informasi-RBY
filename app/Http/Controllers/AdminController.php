@@ -12,7 +12,7 @@ use App\Models\DraftLaporan;
 use App\Models\TugasHarian;
 use App\Models\TugasHarianFile;
 use Illuminate\Support\Facades\Storage;
-
+use App\Services\NotificationService;
 
 class AdminController extends Controller
 {
@@ -59,9 +59,20 @@ class AdminController extends Controller
 
     public function storeSAtugasHarian(Request $request)
     {
-        TugasHarian::create($request->all());
+        $tugasHarian = TugasHarian::create($request->all());
+
+        NotificationService::sendToDivision(
+            'Admin',
+            'Tugas Baru Ditambahkan',
+            "Tugas baru dengan No. PPJP: {$tugasHarian->no_ppjp} untuk debitur {$tugasHarian->debitur} telah ditambahkan. Silakan upload file untuk tahapan 1 (Pengumpulan Data).",
+            'info',
+            $tugasHarian
+        );
+
         return back()->with('success', 'Tugas berhasil ditambahkan');
     }
+
+    
 
     public function updateStatusTugas(Request $request, $id)
     {
@@ -121,6 +132,8 @@ class AdminController extends Controller
                 'path' => $filePath,
             ]
         );
+
+        NotificationService::fileUploaded($tugas, $tahapanId);
 
         if ($tahapanId == 12) {
 
@@ -663,6 +676,7 @@ public function draftLaporan()
 
             return view('admin.timAdmin', compact('tim'));
         }
+        
 
 
 }
