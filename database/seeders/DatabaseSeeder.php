@@ -18,10 +18,40 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
-            'username' => 'admin',
+            'username' => 'superadmin',
             'email' => 'admin@example.com',
             'divisi' => 'Admin',
-            'password' => Hash::make('abcdef'),
+            'role' => 'Superadmin',
+            'password' => Hash::make('superadmin123'),
+        ]);
+
+        User::create([
+            'username' => 'administrator',
+            'email' => 'admin2@example.com',
+            'divisi' => 'Admin',
+            'role' => 'Superadmin',
+            'password' => Hash::make('administrator123'),
+        ]);
+        User::create([
+            'username' => 'adminedp',
+            'email' => 'admin3@example.com',
+            'divisi' => 'Admin',
+            'role' => 'Superadmin',
+            'password' => Hash::make('adminedp123'),
+        ]);
+        User::create([
+            'username' => 'adminreviewer',
+            'email' => 'admin4@example.com',
+            'divisi' => 'Admin',
+            'role' => 'Superadmin',
+            'password' => Hash::make('adminreviewer123'),
+        ]);
+        User::create([
+            'username' => 'adminfinance',
+            'email' => 'admin5@example.com',
+            'divisi' => 'Admin',
+            'role' => 'Superadmin',
+            'password' => Hash::make('adminfinance123'),
         ]);
 
         User::create([

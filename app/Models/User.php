@@ -18,7 +18,8 @@ class User extends Authenticatable
         'alamat',
         'nohp',
         'jabatan',
-        'mappi'
+        'mappi',
+        'role'
     ];
 
     protected $hidden = [

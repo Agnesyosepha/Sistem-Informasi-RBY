@@ -95,8 +95,6 @@ Route::post('/superadmin/admin/tugas-harian/store', [AdminController::class, 'st
 Route::post('/superadmin/admin/tugas-harian/update-status/{id}', [App\Http\Controllers\AdminController::class, 'updateStatusTugas'])->name('superadmin.admin.SAtugasHarian.updateStatusTugas');
 Route::delete('/superadmin/admin/tugas-harian/{id}', [AdminController::class, 'destroyTugas'])->name('superadmin.admin.SAtugasHarian.destroyTugas');
 
-
-
 // Surveyor di Superadmin
 
 Route::get('/superadmin/surveyor', function () {
@@ -339,7 +337,7 @@ Route::post('/it/upload-form', [ITController::class, 'uploadFormStore'])->name('
 Route::get('/it/tim', [App\Http\Controllers\ITController::class, 'tim'])->name('it.tim');
 
 
-//MIDDLEWARE
+//MIDDLEWARE AKUN USER
 // ADMIN
 Route::get('/admin', [AdminController::class, 'index'])
     ->name('admin')
@@ -470,6 +468,179 @@ Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::put('/superadmin/edp/data-aktif/update-status/{id}', 
     [EDPController::class, 'updateStatus']
 )->name('superadmin.edp.updateStatus');
+
+//MIDDLEWARE AKUN SUPERADMIN
+// PROTECT SUPERADMIN DIVISI ADMIN
+Route::middleware(['auth', 'superdivision:Admin'])->group(function () {
+
+    Route::get('/superadmin/admin', function () {
+        $jumlahProposal = \App\Models\Proposal::count();
+        return view('superadmin.divisiAdmin', compact('jumlahProposal'));
+    })->name('superadmin.admin');
+
+    Route::get('/superadmin/admin/superadmin-proposal', [\App\Http\Controllers\AdminController::class, 'SAproposal'])
+        ->name('superadmin.admin.SAproposal');
+
+    Route::post('/superadmin/admin/superadmin-proposal/store', [AdminController::class, 'storeProposal'])
+        ->name('superadmin.admin.SAproposal.store');
+
+    Route::post('/superadmin/admin/superadmin-proposal/update-status/{id}', [App\Http\Controllers\AdminController::class, 'updateStatus']);
+
+    Route::delete('/superadmin/admin/proposal/{id}', [AdminController::class, 'destroy'])
+        ->name('superadmin.admin.SAproposal.destroy');
+
+
+    Route::get('/superadmin/admin/superadmin-adendum', [\App\Http\Controllers\AdminController::class, 'SAadendum'])
+        ->name('superadmin.admin.SAadendum');
+
+    Route::post('/superadmin/admin/superadmin-adendum/store', [\App\Http\Controllers\AdminController::class, 'storeAdendum'])
+        ->name('superadmin.admin.SAadendum.store');
+
+    Route::post('/superadmin/admin/superadmin-adendum/update-status/{id}', [App\Http\Controllers\AdminController::class, 'updateStatusAdendum'])
+        ->name('superadmin.admin.SAadendum.updateStatus');
+
+
+    Route::get('/superadmin/admin/surat-tugas', [AdminController::class, 'SAsuratTugas'])
+        ->name('superadmin.admin.SAsuratTugas');
+
+    Route::post('/superadmin/admin/surat-tugas/store', [AdminController::class, 'storeSuratTugas'])
+        ->name('superadmin.admin.SAsuratTugas.store');
+
+    Route::post('/superadmin/admin/surat-tugas/update-status/{id}', [App\Http\Controllers\AdminController::class, 'updateSuratTugas'])
+        ->name('superadmin.admin.SAsuratTugas.updateStatus');
+
+
+    Route::get('/superadmin/admin/superadmin-draftResume', [\App\Http\Controllers\AdminController::class, 'SAdraftResume'])
+        ->name('superadmin.admin.SAdraftResume');
+
+    Route::post('/superadmin/admin/superadmin-draftResume/store', [\App\Http\Controllers\AdminController::class, 'SAdraftResumeStore'])
+        ->name('superadmin.admin.SAdraftResume.store');
+
+    Route::post('/superadmin/admin/superadmin-draftResume/update-status/{id}', [App\Http\Controllers\AdminController::class, 'updateStatusDraftResume'])
+        ->name('superadmin.admin.SAdraftResume.updateStatus');
+
+
+    Route::get('/superadmin/admin/draftLaporan', [\App\Http\Controllers\AdminController::class, 'SAdraftLaporan'])
+        ->name('superadmin.admin.SAdraftLaporan');
+
+    Route::post('/superadmin/admin/draftLaporan/store',[AdminController::class, 'storeSAdraftLaporan'])
+        ->name('superadmin.admin.SAdraftLaporan.store');
+
+    Route::post('/superadmin/admin/draftlaporan/update-status/{id}',[AdminController::class, 'updateDraftStatus']);
+
+
+    Route::get('/superadmin/admin/laporan-final', [\App\Http\Controllers\AdminController::class, 'SAlaporanFinal'])
+        ->name('superadmin.admin.SAlaporanFinal');
+
+    Route::post('/superadmin/admin/laporan-final/store',[AdminController::class, 'storeSAlaporanFinal'])
+        ->name('superadmin.admin.SAlaporanFinal.store');
+
+    Route::post('/superadmin/admin/laporan-final/update/{id}',[AdminController::class, 'updateLaporanFinal'])
+        ->name('superadmin.admin.updateSAlaporanFinal');
+
+
+    Route::get('/superadmin/admin/tugas-harian', [\App\Http\Controllers\AdminController::class, 'SAtugasHarian'])
+        ->name('superadmin.admin.SAtugasHarian');
+
+    Route::post('/superadmin/admin/tugas-harian/store', [AdminController::class, 'storeSAtugasHarian'])
+        ->name('superadmin.admin.SAtugasHarian.store');
+
+    Route::post('/superadmin/admin/tugas-harian/update-status/{id}', [App\Http\Controllers\AdminController::class, 'updateStatusTugas'])
+        ->name('superadmin.admin.SAtugasHarian.updateStatusTugas');
+
+    Route::delete('/superadmin/admin/tugas-harian/{id}', [AdminController::class, 'destroyTugas'])
+        ->name('superadmin.admin.SAtugasHarian.destroyTugas');
+});
+
+// EDP di Superadmin (PROTECTED)
+Route::middleware(['auth', 'superdivision:EDP'])->group(function () {
+
+    Route::get('/superadmin/edp', function () {
+        return view('superadmin.edpAdmin');
+    })->name('superadmin.edp');
+
+    Route::get('/superadmin/edp/data-aktif', [\App\Http\Controllers\EdpController::class, 'SAdataAktif'])
+        ->name('superadmin.edp.SAdataAktif');
+
+    Route::post('/superadmin/edp/data-aktif/store', [\App\Http\Controllers\EdpController::class, 'storeDataAktif'])
+        ->name('superadmin.edp.storeDataAktif');
+
+    Route::get('/superadmin/edp/log-aktivitas', [\App\Http\Controllers\EdpController::class, 'SAlogEDP'])
+        ->name('superadmin.edp.SAlogEDP');
+
+    Route::post('/superadmin/edp/log-aktivitas/store', [\App\Http\Controllers\EdpController::class, 'storeLogEDP'])
+        ->name('superadmin.edp.storeLogEDP');
+
+    Route::put('/superadmin/edp/log-aktivitas/update/{id}',[EdpController::class, 'updateLogEDP'])
+        ->name('superadmin.edp.SAlogEDP.update');
+});
+
+// Reviewer di Superadmin (PROTECTED)
+Route::middleware(['auth', 'superdivision:Reviewer'])->group(function () {
+
+    Route::get('/superadmin/reviewer', function () {
+        return view('superadmin.reviewerAdmin');
+    })->name('superadmin.reviewer');
+
+    Route::get('/superadmin/reviewer/dokumen-revisi', [\App\Http\Controllers\ReviewerController::class, 'SAdokumenRevisi'])
+        ->name('superadmin.reviewer.SAdokumenRevisi');
+
+    Route::post('/superadmin/reviewer/dokumen-revisi/store', [\App\Http\Controllers\ReviewerController::class, 'storeDokumenRevisi'])
+        ->name('superadmin.reviewer.storeDokumenRevisi');
+
+    Route::get('/superadmin/reviewer/dokumen-final', [\App\Http\Controllers\ReviewerController::class, 'SAdokumenFinal'])
+        ->name('superadmin.reviewer.SAdokumenFinal');
+
+    Route::post('/superadmin/reviewer/dokumen-final/store', [\App\Http\Controllers\ReviewerController::class, 'storeDokumenFinal'])
+        ->name('reviewer.storeDokumenFinal');
+
+    Route::get('/superadmin/reviewer/log-aktivitas', [ReviewerController::class, 'SAlog'])
+        ->name('superadmin.reviewer.SAlog');
+
+    Route::post('/superadmin/reviewer/log-aktivitas/store', [ReviewerController::class, 'storeSAlog'])
+        ->name('superadmin.reviewer.storeLog');
+
+    Route::put('/reviewer/dokumen-revisi/update-status/{id}', 
+        [\App\Http\Controllers\ReviewerController::class, 'updateStatusRevisi']
+    )->name('reviewer.updateStatusRevisi');
+});
+
+// Finance di Superadmin (PROTECTED)
+Route::middleware(['auth', 'superdivision:Finance'])->group(function () {
+
+    Route::get('/superadmin/finance', function () {
+        return view('superadmin.financeAdmin');
+    })->name('superadmin.finance');
+
+    Route::get('/superadmin/finance/invoice', [FinanceController::class, 'SAinvoice'])
+        ->name('superadmin.finance.SAinvoice');
+
+    Route::post('/superadmin/finance/invoice/store',[FinanceController::class, 'storeInvoice'])
+        ->name('superadmin.finance.storeInvoice');
+
+    Route::post('/superadmin/finance/invoice/update-status', [FinanceController::class, 'updateStatus'])
+        ->name('superadmin.finance.updateStatus');
+
+
+    // RAB
+    Route::get('/superadmin/rab', [FinanceController::class, 'rabIndex'])
+        ->name('superadmin.rab');
+
+    Route::post('/superadmin/rab/store', [FinanceController::class, 'rabStore'])
+        ->name('superadmin.rab.store');
+
+    Route::get('/superadmin/rab/create', [FinanceController::class, 'rabCreate'])
+        ->name('superadmin.rab.create');
+
+    Route::get('/superadmin/rab/{id}/edit', [FinanceController::class, 'rabEdit'])
+        ->name('superadmin.rab.edit');
+
+    Route::post('/superadmin/rab/{id}/update', [FinanceController::class, 'rabUpdate'])
+        ->name('superadmin.rab.update');
+
+    Route::delete('/superadmin/rab/{id}/delete', [FinanceController::class, 'rabDelete'])
+        ->name('superadmin.rab.delete');
+});
 
 // Logout
 Route::post('/logout', function (Request $request) {
