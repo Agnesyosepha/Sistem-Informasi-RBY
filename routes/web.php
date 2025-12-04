@@ -381,6 +381,10 @@ Route::get('/admin', [AdminController::class, 'index'])
     [EDPController::class, 'updateStatus'])
     ->name('superadmin.edp.updateStatus');
 
+    Route::get('/admin/laporan-tugas-harian', [AdminController::class, 'laporanTugasHarian'])
+    ->name('admin.laporanTugasHarian');
+    Route::get('/laporan-tugas-harian', [AdminController::class, 'laporanTugasHarian'])
+    ->name('admin.laporanTugasHarian');
 
 });
 
