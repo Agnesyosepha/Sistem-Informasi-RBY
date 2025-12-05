@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\DokumenRevisi;
 use App\Models\DokumenFinal;
 use App\Models\LogAktivitas;
+use App\Models\LaporanPenilaian;
 
 class ReviewerController extends Controller
 {
@@ -154,10 +155,55 @@ class ReviewerController extends Controller
     ]);
 
     $dokumen = DokumenFinal::findOrFail($id);
-    $dokumen->status = $request->status;
+    $oldStatus = $dokumen->status;
+    $newStatus = $request->status;
+    
+    // Update status
+    $dokumen->status = $newStatus;
     $dokumen->save();
+    
+    // Jika status diubah menjadi 'Final EDP', pindahkan data ke Laporan Penilaian
+    if ($newStatus === 'Final EDP' && $oldStatus !== 'Final EDP') {
+        // Cek apakah data sudah ada di Laporan Penilaian
+        $existingLaporan = LaporanPenilaian::where('tanggal', $dokumen->tanggal)
+            ->where('jenis', $dokumen->jenis)
+            ->where('pemberi', $dokumen->pemberi)
+            ->where('pengguna', $dokumen->pengguna)
+            ->where('surveyor', $dokumen->surveyor)
+            ->where('lokasi', $dokumen->lokasi)
+            ->where('objek', $dokumen->objek)
+            ->first();
 
-    return redirect()->back()->with('success', 'Status dokumen berhasil diperbarui!');
+        // Jika belum ada, buat baru
+        if (!$existingLaporan) {
+            LaporanPenilaian::create([
+                'tanggal' => $dokumen->tanggal,
+                'jenis' => $dokumen->jenis,
+                'pemberi' => $dokumen->pemberi,
+                'pengguna' => $dokumen->pengguna,
+                'surveyor' => $dokumen->surveyor,
+                'lokasi' => $dokumen->lokasi,
+                'objek' => $dokumen->objek,
+                'reviewer' => $dokumen->reviewer,
+                'status' => 'Final EDP',
+            ]);
+            
+            // Hapus data dari Dokumen Final
+            $dokumen->delete();
+            
+            return response()->json([
+                'success' => true, 
+                'message' => 'Status berhasil diperbarui dan data telah dipindahkan ke Laporan Penilaian.',
+                'moved' => true
+            ]);
+        }
+    }
+    
+    return response()->json([
+        'success' => true, 
+        'message' => 'Status berhasil diperbarui.',
+        'moved' => false
+    ]);
 }
     
 }

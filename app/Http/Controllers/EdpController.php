@@ -340,7 +340,6 @@ public function updateLaporanPenilaian(Request $request, $id)
         'objek' => 'required|string',
         'reviewer' => 'nullable|string',
         'status' => 'required|string',
-        'softcopy' => 'nullable|file|mimes:pdf',
     ]);
 
     $laporan = LaporanPenilaian::findOrFail($id);
@@ -354,18 +353,6 @@ public function updateLaporanPenilaian(Request $request, $id)
     $laporan->reviewer = $request->reviewer;
     $laporan->status = $request->status;
 
-    if ($request->hasFile('softcopy')) {
-        // Hapus file lama jika ada
-        if ($laporan->softcopy) {
-            Storage::disk('public')->delete('laporan/' . $laporan->softcopy);
-        }
-        
-        $file = $request->file('softcopy');
-        $filename = time() . '_' . $file->getClientOriginalName();
-        $file->storeAs('laporan', $filename, 'public');
-        $laporan->softcopy = $filename;
-    }
-
     $laporan->save();
 
     return response()->json(['success' => true, 'message' => 'Laporan penilaian berhasil diperbarui.']);
@@ -374,12 +361,6 @@ public function updateLaporanPenilaian(Request $request, $id)
 public function destroyLaporanPenilaian($id)
 {
     $laporan = LaporanPenilaian::findOrFail($id);
-    
-    // Hapus file jika ada
-    if ($laporan->softcopy) {
-        Storage::disk('public')->delete('laporan/' . $laporan->softcopy);
-    }
-    
     $laporan->delete();
     
     return response()->json(['success' => true, 'message' => 'Laporan penilaian berhasil dihapus.']);

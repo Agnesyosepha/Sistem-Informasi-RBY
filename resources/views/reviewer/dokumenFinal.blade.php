@@ -153,4 +153,5 @@ table td {
     }
 }
 </style>
+
 @endsection

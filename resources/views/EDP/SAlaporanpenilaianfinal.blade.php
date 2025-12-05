@@ -4,89 +4,7 @@
 
 @section('content')
 <h1><i class="fas fa-file-alt"></i> Laporan Penilaian</h1>
-<p>Daftar laporan hasil penilaian yang dikelola oleh Superadmin.</p>
-
-
-
-<!-- Tombol Tambah Laporan -->
-<button onclick="document.getElementById('modalTambah').style.display='block'"
-    style="background:#28a745; color:white; padding:10px 18px; border:none; border-radius:6px; cursor:pointer; margin-top:20px;">
-    + Tambah Laporan Penilaian
-</button>
-
-<!-- Modal Tambah Laporan -->
-<div id="modalTambah" style="
-    display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%;
-    background:rgba(0,0,0,0.5); padding-top:60px;">
-    
-    <div style="
-        background:white; margin:auto; padding:20px; border-radius:10px; width:40%;
-        box-shadow:0 4px 12px rgba(0,0,0,0.2);">
-
-        <h2 style="margin-bottom:15px;">Tambah Laporan Penilaian</h2>
-
-        <form action="{{ route('superadmin.edp.SAlaporanpenilaianfinal.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-
-            <label>Tanggal</label>
-            <input type="date" name="tanggal" required
-                style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
-
-            <label>Jenis</label>
-            <input type="text" name="jenis" required
-                style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
-
-            <label>Pemberi Tugas</label>
-            <input type="text" name="pemberi" required
-                style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
-
-            <label>Pengguna Jasa</label>
-            <input type="text" name="pengguna" required
-                style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
-
-            <label>Surveyor</label>
-            <input type="text" name="surveyor" required
-                style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
-
-            <label>Lokasi</label>
-            <input type="text" name="lokasi" required
-                style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
-
-            <label>Objek Penilaian</label>
-            <input type="text" name="objek" required
-                style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
-
-            <label>Reviewer</label>
-            <input type="text" name="reviewer" 
-                style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
-
-            <label>Status</label>
-            <select name="status" required
-                style="width:100%; padding:8px; margin-bottom:15px; border:1px solid #ccc; border-radius:5px;">
-                <option value="">Pilih Status</option>
-                <option value="Proses">Proses</option>
-                <option value="Selesai">Selesai</option>
-                <option value="Revisi">Revisi</option>
-            </select>
-
-            <label>Softcopy (PDF)</label>
-            <input type="file" name="softcopy" accept="application/pdf"
-                style="width:100%; padding:8px; margin-bottom:15px; border:1px solid #ccc; border-radius:5px;">
-
-            <button type="submit"
-                style="background:#007BFF; color:white; padding:10px 18px; border:none; border-radius:6px; cursor:pointer;">
-                Simpan
-            </button>
-
-            <button type="button"
-                onclick="document.getElementById('modalTambah').style.display='none'"
-                style="background:#dc3545; color:white; padding:10px 18px; border:none; border-radius:6px; cursor:pointer; margin-left:10px;">
-                Batal
-            </button>
-        </form>
-
-    </div>
-</div>
+<p>Daftar laporan hasil penilaian yang telah selesai diproses.</p>
 
 <!-- Tabel Laporan Penilaian -->
 <div class="dashboard-card" style="margin-top:30px;">
@@ -102,7 +20,6 @@
                 <th style="padding:10px; text-align:left;">Objek Penilaian</th>
                 <th style="padding:10px; text-align:left;">Reviewer</th>
                 <th style="padding:10px; text-align:left;">Status</th>
-                <th style="padding:10px; text-align:center;">Softcopy</th>
                 <th style="padding:10px; text-align:center;">Aksi</th>
             </tr>
         </thead>
@@ -123,23 +40,12 @@
                         </span>
                     </td>
                     <td style="padding:10px; text-align:center;">
-                        @if($l->softcopy)
-                            <a href="{{ asset('storage/laporan/'.$l->softcopy) }}" 
-                                target="_blank"
-                                style="color:white; background:#007BFF; padding:5px 10px; border-radius:5px; text-decoration:none;">
-                                PDF
-                            </a>
-                        @else
-                            -
-                        @endif
-                    </td>
-                    <td style="padding:10px; text-align:center;">
                         <button onclick="editData({{ $l->id }})" 
-                            style="background:#ffc107; color:black; padding:5px 10px; border:none; border-radius:5px; margin-right:5px;">
+                            style="background:#ffc107; color:black; padding:5px 10px; border:none; border-radius:5px; margin-right:5px; cursor:pointer;">
                             <i class="fas fa-edit"></i>
                         </button>
                         <button onclick="deleteData({{ $l->id }})" 
-                            style="background:#dc3545; color:white; padding:5px 10px; border:none; border-radius:5px;">
+                            style="background:#dc3545; color:white; padding:5px 10px; border:none; border-radius:5px; cursor:pointer;">
                             <i class="fas fa-trash"></i>
                         </button>
                     </td>
@@ -161,12 +67,13 @@
     background:rgba(0,0,0,0.5); padding-top:60px;">
     
     <div style="
-        background:white; margin:auto; padding:20px; border-radius:10px; width:40%;
-        box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+        background:white; margin:auto; padding:20px; border-radius:10px; width:45%;
+        box-shadow:0 4px 12px rgba(0,0,0,0.2);
+        max-height: 80vh; overflow-y: auto;">
 
         <h2 style="margin-bottom:15px;">Edit Laporan Penilaian</h2>
 
-        <form id="editForm" method="POST" enctype="multipart/form-data">
+        <form id="editForm" method="POST">
             @csrf
             <input type="hidden" name="_method" value="PUT">
             
@@ -211,11 +118,8 @@
                 <option value="Proses">Proses</option>
                 <option value="Selesai">Selesai</option>
                 <option value="Revisi">Revisi</option>
+                <option value="Final EDP">Final EDP</option>
             </select>
-
-            <label>Softcopy (PDF)</label>
-            <input type="file" id="editSoftcopy" name="softcopy" accept="application/pdf"
-                style="width:100%; padding:8px; margin-bottom:15px; border:1px solid #ccc; border-radius:5px;">
 
             <button type="submit"
                 style="background:#007BFF; color:white; padding:10px 18px; border:none; border-radius:6px; cursor:pointer;">
@@ -247,6 +151,9 @@ document.addEventListener("DOMContentLoaded", function () {
         } 
         else if (value === "Revisi") {
             label.style.color = "red";
+        }
+        else if (value === "Final EDP") {
+            label.style.color = "#007bff";
         }
     });
 });
@@ -280,31 +187,7 @@ function editData(id) {
         });
 }
 
-function deleteData(id) {
-    if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
-        // Kirim request delete ke server
-        fetch(`/superadmin/edp/laporan-penilaian/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('Data berhasil dihapus!');
-                location.reload();
-            } else {
-                alert('Gagal menghapus data!');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Terjadi kesalahan!');
-        });
-    }
-}
+
 
 document.getElementById('editForm').addEventListener('submit', function(e) {
     e.preventDefault();

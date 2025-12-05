@@ -40,7 +40,7 @@
             <td>
                 <button
                     onclick="openEditStatusModal('{{ $data->id }}', '{{ $data->status }}', '{{ $data->reviewer }}')"
-                    style="background:#007bff; color:white; padding:6px 10px; border:none; border-radius:6px;">
+                    style="background:#007bff; color:white; padding:6px 10px; border:none; border-radius:6px; cursor:pointer;">
                     Edit
                 </button>
             </td>
@@ -82,13 +82,13 @@
 
       <div style="display:flex; justify-content:flex-end; gap:8px;">
         <button type="submit"
-            style="background:#28a745; color:white; padding:8px 14px; border:none; border-radius:6px;">
+            style="background:#28a745; color:white; padding:8px 14px; border:none; border-radius:6px; cursor:pointer;">
             Simpan
         </button>
 
         <button type="button"
             onclick="document.getElementById('modalStatus').style.display='none'"
-            style="background:#dc3545; color:white; padding:8px 14px; border:none; border-radius:6px;">
+            style="background:#dc3545; color:white; padding:8px 14px; border:none; border-radius:6px; cursor:pointer;">
             Batal
         </button>
       </div>

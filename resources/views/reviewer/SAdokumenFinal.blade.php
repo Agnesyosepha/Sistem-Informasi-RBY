@@ -57,32 +57,6 @@
   </table>
 </div>
 
-<style>
-.input-field {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-.btn-primary {
-    background:#007BFF; 
-    color:white; 
-    padding:10px 18px; 
-    border:none; 
-    border-radius:6px; 
-    cursor:pointer;
-}
-.btn-danger {
-    background:#dc3545; 
-    color:white; 
-    padding:10px 18px; 
-    border:none; 
-    border-radius:6px; 
-    cursor:pointer;
-}
-</style>
-
 {{-- ================================
     MODAL EDIT STATUS
 ================================ --}}
@@ -113,6 +87,32 @@
     </div>
 </div>
 
+<style>
+.input-field {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.btn-primary {
+    background:#007BFF; 
+    color:white; 
+    padding:10px 18px; 
+    border:none; 
+    border-radius:6px; 
+    cursor:pointer;
+}
+.btn-danger {
+    background:#dc3545; 
+    color:white; 
+    padding:10px 18px; 
+    border:none; 
+    border-radius:6px; 
+    cursor:pointer;
+}
+</style>
+
 <script>
 function openEditStatusModal(id, currentStatus) {
     document.getElementById('modalEditStatus').style.display = 'block';
@@ -122,5 +122,37 @@ function openEditStatusModal(id, currentStatus) {
 
     document.getElementById('edit_status').value = currentStatus;
 }
+
+document.getElementById('formEditStatus').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    const action = this.action;
+    
+    fetch(action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Jika data dipindahkan, reload halaman
+            if (data.moved) {
+                location.reload();
+            } else {
+                // Jika hanya update status, reload halaman
+                location.reload();
+            }
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
+
 </script>
+
 @endsection
