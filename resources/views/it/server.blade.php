@@ -12,6 +12,7 @@
     <table style="width:100%; border-collapse: collapse; margin-top:15px;">
         <thead style="background:#ABE7B2; color:black;">
             <tr>
+                <th style="padding:10px; text-align:center;">No</th>
                 <th style="padding:10px; text-align:left;">Nama Server</th>
                 <th style="padding:10px; text-align:left;">Alamat IP</th>
                 <th style="padding:10px; text-align:left;">Lokasi</th>
@@ -19,8 +20,13 @@
             </tr>
         </thead>
         <tbody>
+            <tbody>
             @foreach($servers as $server)
                 <tr style="border-bottom:1px solid #ddd;">
+                    <td style="padding:10px; text-align:center;">
+                        {{ $loop->iteration }}
+                    </td>
+
                     <td style="padding:10px;">{{ $server['nama'] }}</td>
                     <td style="padding:10px;">{{ $server['ip'] }}</td>
                     <td style="padding:10px;">{{ $server['lokasi'] }}</td>
@@ -34,9 +40,9 @@
                     </td>
                 </tr>
             @endforeach
-        </tbody>
+            </tbody>
     </table>
     </div>
 
-    
+
 @endsection
