@@ -45,7 +45,26 @@ class EdpController extends Controller
         return redirect()->route('edp.dataMentah')->with('success', 'Data berhasil diupload.');
     }
     
+    public function uploadSoftcopy(Request $request, $id)
+    {
+        $request->validate([
+            'softcopy' => 'required|mimes:pdf|max:5120'
+        ]);
 
+        $laporan = LaporanPenilaian::findOrFail($id);
+
+        // Nama file aman
+        $filename = 'laporan_' . time() . '.pdf';
+
+        $request->file('softcopy')
+            ->storeAs('public/laporan', $filename);
+
+        $laporan->update([
+            'softcopy' => $filename
+        ]);
+
+        return back()->with('success', 'File laporan berhasil diupload.');
+    }
     // Data Aktif
 public function dataAktif(Request $request)
 {

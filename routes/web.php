@@ -138,6 +138,9 @@ Route::post('/superadmin/edp/laporan-penilaian/{id}', [EdpController::class, 'up
 Route::delete('/superadmin/edp/laporan-penilaian/{id}', [EdpController::class, 'destroyLaporanPenilaian'])->name('superadmin.edp.SAlaporanpenilaianfinal.destroy');
 Route::put('/superadmin/edp/laporan-penilaian/update-status/{id}', [EdpController::class, 'updateStatusLaporanPenilaian'])->name('superadmin.edp.updateStatusLaporanPenilaian');
 
+Route::post('/laporan-penilaian/upload/{id}', 
+    [EdpController::class, 'uploadSoftcopy']
+)->name('laporan.upload');
 
 // Reviewer di Superadmin
 

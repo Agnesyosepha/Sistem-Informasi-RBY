@@ -20,6 +20,7 @@ class LaporanPenilaian extends Model
         'lokasi',
         'objek',
         'reviewer',
-        'status'
+        'status',
+        'softcopy'
     ];
 }

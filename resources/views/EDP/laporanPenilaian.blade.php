@@ -4,7 +4,7 @@
 
 @section('content')
     <h1><i class="fas fa-file-alt"></i> Laporan Penilaian-Final</h1>
-    <p>Daftar laporan hasil penilaian yang telah dibuat oleh tim surveyor.</p>
+    <p>Daftar laporan hasil penilaian yang telah selesai diproses.</p>
 
     <form method="GET" action="" class="search-container"
     style="display:flex; align-items:center; gap:10px; margin:25px 0;">

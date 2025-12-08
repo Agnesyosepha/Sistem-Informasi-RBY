@@ -23,32 +23,49 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($laporanPenilaian as $l)
-                <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">{{ $l->tanggal }}</td>
-                    <td style="padding:10px;">{{ $l->jenis }}</td>
-                    <td style="padding:10px;">{{ $l->pemberi }}</td>
-                    <td style="padding:10px;">{{ $l->pengguna }}</td>
-                    <td style="padding:10px;">{{ $l->surveyor }}</td>
-                    <td style="padding:10px;">{{ $l->lokasi }}</td>
-                    <td style="padding:10px;">{{ $l->objek }}</td>
-                    <td style="padding:10px;">
-                        <span class="status-label" data-status="{{ $l->status }}">
-                            {{ $l->status }}
-                        </span>
-                    </td>
-                    <td style="padding:10px; text-align:center;">
-                        <button onclick="editData({{ $l->id }})" 
-                            style="background:#ffc107; color:black; padding:5px 10px; border:none; border-radius:5px; margin-right:5px; cursor:pointer;">
-                            <i class="fas fa-edit"></i>
+        @foreach($laporanPenilaian as $laporan)
+        <tr style="border-bottom:1px solid #ddd;">
+            <td style="padding:10px;">{{ $laporan->tanggal }}</td>
+            <td style="padding:10px;">{{ $laporan->jenis }}</td>
+            <td style="padding:10px;">{{ $laporan->pemberi }}</td>
+            <td style="padding:10px;">{{ $laporan->pengguna }}</td>
+            <td style="padding:10px;">{{ $laporan->surveyor }}</td>
+            <td style="padding:10px;">{{ $laporan->lokasi }}</td>
+            <td style="padding:10px;">{{ $laporan->objek }}</td>
+
+            {{-- STATUS --}}
+            <td style="padding:10px;">
+                <span class="status-label" data-status="{{ $laporan->status }}">
+                    {{ $laporan->status }}
+                </span>
+            </td>
+
+            {{-- SOFTCOPY --}}
+            <td style="padding:10px; text-align:center;">
+                @if($laporan->softcopy)
+                    <a href="{{ asset('storage/laporan/'.$laporan->softcopy) }}" 
+                    target="_blank"
+                    style="color:white; background:#007BFF; padding:5px 12px; 
+                    border-radius:6px; text-decoration:none; font-size:13px;">
+                        PDF
+                    </a>
+                @else
+                    <form action="{{ route('laporan.upload', $laporan->id) }}" 
+                        method="POST" enctype="multipart/form-data"
+                        style="display:flex; justify-content:center; gap:6px;">
+                        @csrf
+                        <input type="file" name="softcopy" required 
+                            style="font-size:12px;">
+                        <button type="submit"
+                            style="background:#28a745; color:white; border:none;
+                            padding:4px 10px; border-radius:5px; font-size:12px;">
+                            Upload
                         </button>
-                        <button onclick="deleteData({{ $l->id }})" 
-                            style="background:#dc3545; color:white; padding:5px 10px; border:none; border-radius:5px; cursor:pointer;">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-            @endforeach
+                    </form>
+                @endif
+            </td>
+        </tr>
+        @endforeach
         </tbody>
     </table>
     
