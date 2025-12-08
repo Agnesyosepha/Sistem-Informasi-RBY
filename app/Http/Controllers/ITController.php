@@ -13,6 +13,8 @@ class ITController extends Controller
         return view('it.formpeminjaman');
     }
 
+
+// Laporan Penilaian
     public function laporanPenilaian()
     {
         return view('it.laporanPenilaian');
@@ -31,6 +33,8 @@ class ITController extends Controller
         return view('it.asetIT', compact('asets'));
     }
 
+
+// Server
     public function server()
     {
         $servers = [
@@ -43,6 +47,8 @@ class ITController extends Controller
         return view('it.server', compact('servers'));
     }
 
+
+ // Komputer   
     public function totalKomputer()
     {
         $komputers = [
@@ -55,6 +61,8 @@ class ITController extends Controller
         return view('it.totalKomputer', compact('komputers'));
     }
 
+
+// Lapotop    
     public function totalLaptop()
     {
         $laptops = [
@@ -72,6 +80,8 @@ class ITController extends Controller
         return view('it.totalLaptop', compact('laptops'));
     }
 
+
+// Form Peminjaman
     public function uploadFormPage()
     {
         // ambil list file dari disk 'public' pada folder formpeminjaman
@@ -110,7 +120,8 @@ class ITController extends Controller
                          ->with('success', 'File berhasil diunggah!');
     }
 
-
+    
+// Tim
     public function tim()
     {
         // Data staff IT (sementara hardcode)

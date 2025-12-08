@@ -37,7 +37,7 @@
             <input type="text" name="no_ppjp" required
                 style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
 
-            <label>Nama Klien:</label>
+            <label>Debitur:</label>
             <input type="text" name="nama_klien" required
                 style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
 
@@ -45,6 +45,10 @@
             <input type="text" name="pemberi_tugas" required
                 style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
 
+            <label>Pengguna Laporan:</label> 
+            <input type="text" name="pengguna_laporan" required
+                style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
+    
             <label>Status:</label>
             <select name="status" required
                 style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
@@ -77,8 +81,9 @@
                     <th style="padding:10px; text-align:left;">Tanggal Pembuat</th>
                     <th style="padding:10px; text-align:left;">No. Invoice</th>
                     <th style="padding:10px; text-align:left;">No. PPJP/No. Adendum</th>
-                    <th style="padding:10px; text-align:left;">Nama Klien</th>
+                    <th style="padding:10px; text-align:left;">Debitur</th>
                     <th style="padding:10px; text-align:left;">Pemberi Tugas</th>
+                    <th style="padding:10px; text-align:left;">Pengguna Laporan</th>
                     <th style="padding:10px; text-align:left;">Status</th>
                     <th style="padding:10px; text-align:center;">Aksi</th>
                 </tr>
@@ -91,6 +96,7 @@
                 <td style="padding:10px;">{{ $item['no_ppjp'] }}</td>
                 <td style="padding:10px;">{{ $item['nama_klien'] }}</td>
                 <td style="padding:10px;">{{ $item['pemberi_tugas'] }}</td>
+                <td style="padding:10px;">{{ $item['pengguna_laporan'] }}</td>
                 <td style="padding:10px;">
                   <select onchange="changeColor(this); updateInvoice({{ $item->id }}, 'status', this.value)"
                     style="padding:10px; font-weight:600; border-radius:5px;">       
