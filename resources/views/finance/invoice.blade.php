@@ -48,8 +48,9 @@
                     <th style="padding:10px; text-align:left;">Tanggal Pembuat</th>
                     <th style="padding:10px; text-align:left;">No. Invoice</th>
                     <th style="padding:10px; text-align:left;">No. PPJP/No. Adendum</th>
-                    <th style="padding:10px; text-align:left;">Nama Klien</th>
+                    <th style="padding:10px; text-align:left;">Debitur</th>
                     <th style="padding:10px; text-align:left;">Pemberi Tugas</th>
+                    <th style="padding:10px; text-align:left;">Pengguna Laporan</th>
                     <th style="padding:10px; text-align:left;">Status</th>
                     <th style="padding:10px; text-align:center;">Aksi</th>
                 </tr>
@@ -68,6 +69,7 @@
                 <td style="padding:10px;">{{ $item['no_ppjp'] }}</td>
                 <td style="padding:10px;">{{ $item['nama_klien'] }}</td>
                 <td style="padding:10px;">{{ $item['pemberi_tugas'] }}</td>
+                <td style="padding:10px;">{{ $item['pengguna_laporan'] }}</td>
 
                 <td style="padding:10px; font-weight:600; 
                   color: {{ $item['status'] == 'Disetujui' ? 'blue' : 'orange' }}">

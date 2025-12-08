@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('no_ppjp');
             $table->string('nama_klien');
             $table->string('pemberi_tugas');
+            $table->string('pengguna_laporan'); // Tambahkan kolom ini
             $table->string('status');
             $table->boolean('checked')->default(false);
             $table->timestamps();

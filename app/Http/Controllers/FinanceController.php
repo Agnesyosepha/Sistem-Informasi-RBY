@@ -36,7 +36,8 @@ class FinanceController extends Controller
         return view('finance.timFinance', compact('timFinance'));
     }
 
-    // Invoice
+
+// Invoice
 
     public function invoice(Request $request)
   {
@@ -68,7 +69,7 @@ class FinanceController extends Controller
 
     public function SAinvoice()
     {
-        $invoice = Invoice::all();
+        $invoice = Invoice::orderBy('id', 'desc')->get();
         return view('finance.SAinvoice', compact('invoice'));
     }
 
@@ -80,6 +81,7 @@ class FinanceController extends Controller
         'no_ppjp' => 'required|string|max:255',
         'nama_klien' => 'required|string|max:255',
         'pemberi_tugas' => 'required|string|max:255',
+        'pengguna_laporan' => 'required|string|max:255',
         'status' => 'required|string',
       ]);
 
@@ -91,30 +93,30 @@ class FinanceController extends Controller
 
     public function updateStatus(Request $request)
     {
-      $invoice = Invoice::find($request->id);
+        $invoice = Invoice::find($request->id);
 
-      if (!$invoice) {
-        return response()->json(['error' => 'Data tidak ditemukan'], 404);
-      }
+        if (!$invoice) {
+            return response()->json(['error' => 'Data tidak ditemukan'], 404);
+        }
 
     // Update status
-      if ($request->has('status')) {
-        $invoice->status = $request->status;
-      }
+        if ($request->has('status')) {
+            $invoice->status = $request->status;
+        }
 
     // Update checkbox
-      if ($request->has('checked')) {
-        $invoice->checked = $request->checked ? 1 : 0;
-      }
+        if ($request->has('checked')) {
+            $invoice->checked = $request->checked ? 1 : 0;
+        }
 
-      $invoice->save();
+        $invoice->save();
 
-      return response()->json(['success' => true]);
+        return response()->json(['success' => true]);
     }
 
 
 
-    // RAB
+// RAB
     public function rabIndex()
     {
         $rabs = Rab::orderBy('id', 'desc')->get();

@@ -12,6 +12,7 @@ class Invoice extends Model
         'no_ppjp',
         'nama_klien',
         'pemberi_tugas',
+        'pengguna_laporan',
         'status',
         'checked'
     ];
