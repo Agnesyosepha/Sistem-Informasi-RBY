@@ -346,6 +346,11 @@ Route::post('/it/upload-form', [ITController::class, 'uploadFormStore'])->name('
 
 Route::get('/it/tim', [App\Http\Controllers\ITController::class, 'tim'])->name('it.tim');
 
+Route::get('/it/upload-form', [ITController::class, 'uploadFormPage'])
+    ->name('it.uploadForm.page');
+
+Route::post('/it/upload-form', [ITController::class, 'uploadFormStore'])
+    ->name('it.uploadForm.store');
 
 //MIDDLEWARE AKUN USER
 // ADMIN

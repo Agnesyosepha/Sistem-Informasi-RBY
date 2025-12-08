@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ITController extends Controller
 {
@@ -73,19 +74,26 @@ class ITController extends Controller
 
     public function uploadFormPage()
     {
-        // Ambil semua file yang sudah diupload dari storage/app/formpeminjaman
+        // ambil list file dari disk 'public' pada folder formpeminjaman
         $files = [];
-        $dir = storage_path('app/public/formpeminjaman');
-        if(is_dir($dir)){
-            foreach(scandir($dir) as $file){
-                if($file === '.' || $file === '..') continue;
-                $files[] = ['nama' => $file, 'tanggal' => date('Y-m-d H:i:s', filemtime($dir.'/'.$file))];
+        if (Storage::disk('public')->exists('formpeminjaman')) {
+            $list = Storage::disk('public')->files('formpeminjaman'); // array nama file
+            // map ke struktur yang view Anda pakai, ambil lastModified untuk tanggal
+            foreach ($list as $filePath) {
+                $files[] = [
+                    'nama' => basename($filePath),
+                    'tanggal' => date('Y-m-d H:i:s', Storage::disk('public')->lastModified($filePath))
+                ];
             }
         }
+        // optional: urutkan terbaru dulu (lastModified desc)
+        usort($files, function($a, $b){
+            return strtotime($b['tanggal']) <=> strtotime($a['tanggal']);
+        });
+
         return view('it.uploadForm', compact('files'));
     }
 
-    // Aksi Upload Form
     public function uploadFormStore(Request $request)
     {
         $request->validate([
@@ -95,11 +103,13 @@ class ITController extends Controller
         $file = $request->file('file');
         $filename = time().'_'.$file->getClientOriginalName();
 
-        // Simpan di folder storage/app/formpeminjaman
-        $file->storeAs('public/formpeminjaman', $filename);
+        // Simpan di disk public -> storage/app/public/formpeminjaman
+        Storage::disk('public')->putFileAs('formpeminjaman', $file, $filename);
 
-        return back()->with('success', 'File berhasil diunggah!');
+        return redirect()->route('it.uploadForm.page') // ganti nama route sesuai route Anda
+                         ->with('success', 'File berhasil diunggah!');
     }
+
 
     public function tim()
     {
