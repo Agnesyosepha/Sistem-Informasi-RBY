@@ -33,6 +33,7 @@
                     <th style="padding:10px;">Lokasi</th>
                     <th style="padding:10px;">Tanggal Survey</th>
                     <th style="padding:10px;">Pelaksana Inspeksi</th>
+                    <th style="padding:10px; text-align:left;">Pengguna Laporan</th>
                     <th style="padding:10px;">Total Biaya Jalan</th>
                     <th style="padding:10px;">Status</th>
                 </tr>
@@ -57,6 +58,7 @@
                     <td style="padding:10px;">
                         {{ $rab->pelaksana_inspeksi ?? $rab->pelaksana }}
                     </td>
+                    <td style="padding:10px;">{{ $rab->pengguna_laporan }}</td>
 
                     <td style="padding:10px;">
                         Rp {{ number_format($rab->total_biaya, 0, ',', '.') }}
