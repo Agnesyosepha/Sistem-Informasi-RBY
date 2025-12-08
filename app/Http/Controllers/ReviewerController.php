@@ -136,11 +136,29 @@ class ReviewerController extends Controller
 
 
 // Dokumen Final    
-    public function dokumenFinal()
-    {
-        $dokumenFinal = DokumenFinal::orderBy('tanggal', 'desc')->get();
-        return view('reviewer.dokumenFinal', compact('dokumenFinal'));
-    }
+    public function dokumenFinal(Request $request)
+{
+    $search = $request->search;
+    $bulan = $request->bulan;
+
+    $dokumenFinal = DokumenFinal::when($search, function ($query) use ($search) {
+            $query->where('tanggal', 'like', "%$search%")
+                ->orWhere('jenis', 'like', "%$search%")
+                ->orWhere('pemberi', 'like', "%$search%")
+                ->orWhere('pengguna', 'like', "%$search%")
+                ->orWhere('surveyor', 'like', "%$search%")
+                ->orWhere('lokasi', 'like', "%$search%")
+                ->orWhere('objek', 'like', "%$search%")
+                ->orWhere('status', 'like', "%$search%");
+        })
+        ->when($bulan, function ($query) use ($bulan) {
+            $query->whereMonth('tanggal', $bulan);
+        })
+        ->orderBy('tanggal', 'desc')
+        ->get();
+
+    return view('reviewer.dokumenFinal', compact('dokumenFinal'));
+}
 
     public function SAdokumenFinal()
     {
