@@ -654,6 +654,8 @@ Route::middleware(['auth', 'superdivision:Finance'])->group(function () {
 
     Route::delete('/superadmin/rab/{id}/delete', [FinanceController::class, 'rabDelete'])
         ->name('superadmin.rab.delete');
+    Route::put('/superadmin/rab/{id}/status', [FinanceController::class, 'rabUpdateStatus'])
+    ->name('superadmin.rab.updateStatus');
 });
 
 // Route untuk notifikasi

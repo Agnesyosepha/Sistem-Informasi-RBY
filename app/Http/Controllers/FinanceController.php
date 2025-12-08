@@ -149,4 +149,17 @@ class FinanceController extends Controller
         Rab::destroy($id);
         return back()->with('success', 'Data berhasil dihapus!');
     }
+    public function rabUpdateStatus(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|string'
+        ]);
+
+        $rab = Rab::findOrFail($id);
+        $rab->status = $request->status;
+        $rab->save();
+
+        return redirect()->back()->with('success', 'Status RAB berhasil diupdate');
+    }
+
 }

@@ -100,20 +100,32 @@
             <td style="padding:10px;">Rp {{ number_format($rab->total_biaya, 0, ',', '.') }}</td>
 
             <!-- STATUS WARNA -->
-            <td style="
-                padding:10px; font-weight:600;
-                color:
-                    @if($rab->status === 'Disetujui')
-                        #28a745
-                    @elseif($rab->status === 'Menunggu')
-                        #ffc107
-                    @else
-                        #dc3545
-                    @endif
-            ">
-                {{ $rab->status }}
-            </td>
+            <td style="padding:10px;">
+                <form action="{{ route('superadmin.rab.updateStatus', $rab->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
 
+                    <select name="status"
+                        onchange="this.form.submit()"
+                        style="
+                            padding:6px;
+                            border-radius:6px;
+                            font-weight:600;
+                            color:
+                                @if($rab->status === 'Disetujui') #28a745
+                                @elseif($rab->status === 'Menunggu') #ffc107
+                                @else #dc3545
+                                @endif
+                        ">
+                        <option value="Menunggu" {{ $rab->status == 'Menunggu' ? 'selected' : '' }}>
+                            Menunggu
+                        </option>
+                        <option value="Disetujui" {{ $rab->status == 'Disetujui' ? 'selected' : '' }}>
+                            Disetujui
+                        </option>
+                    </select>
+                </form>
+            </td>
         </tr>
         @endforeach
     </tbody>
