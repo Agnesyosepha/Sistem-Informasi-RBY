@@ -1,7 +1,68 @@
 @extends('superadmin.app2')
 
 @section('title', 'Laporan Penilaian Superadmin')
+<style>
+.upload-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
 
+/* Custom file input */
+.custom-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.custom-file input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-file span {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #6c757d;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+/* Tombol Upload */
+.btn-upload {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.btn-upload:hover {
+    background: #218838;
+}
+
+/* Tombol PDF */
+.btn-pdf {
+    color: white;
+    background: #007BFF;
+    padding: 6px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.btn-pdf:hover {
+    background: #0056b3;
+}
+
+</style>
 @section('content')
 <h1><i class="fas fa-file-alt"></i> Laporan Penilaian</h1>
 <p>Daftar laporan hasil penilaian yang telah selesai diproses.</p>
@@ -45,20 +106,20 @@
                 @if($laporan->softcopy)
                     <a href="{{ asset('storage/laporan/'.$laporan->softcopy) }}" 
                     target="_blank"
-                    style="color:white; background:#007BFF; padding:5px 12px; 
-                    border-radius:6px; text-decoration:none; font-size:13px;">
+                    class="btn-pdf">
                         PDF
                     </a>
                 @else
                     <form action="{{ route('laporan.upload', $laporan->id) }}" 
-                        method="POST" enctype="multipart/form-data"
-                        style="display:flex; justify-content:center; gap:6px;">
+                        method="POST" enctype="multipart/form-data" class="upload-form">
                         @csrf
-                        <input type="file" name="softcopy" required 
-                            style="font-size:12px;">
-                        <button type="submit"
-                            style="background:#28a745; color:white; border:none;
-                            padding:4px 10px; border-radius:5px; font-size:12px;">
+
+                        <label class="custom-file">
+                            <input type="file" name="softcopy" required>
+                            <span>Pilih File</span>
+                        </label>
+
+                        <button type="submit" class="btn-upload">
                             Upload
                         </button>
                     </form>
