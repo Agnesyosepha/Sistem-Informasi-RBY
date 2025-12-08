@@ -205,7 +205,8 @@ class AdminController extends Controller
 // Surat Tugas
     public function SAsuratTugas()
     {
-        $suratTugas = SuratTugas::all();
+        // Urutkan data dari yang terbaru ke yang terlama
+        $suratTugas = SuratTugas::orderBy('id', 'desc')->get();
         return view('admin.SAsuratTugas', compact('suratTugas'));
     }
 
@@ -250,7 +251,8 @@ class AdminController extends Controller
         $query->whereMonth('tanggal_survey', request('bulan'));
     }
     
-    $suratTugas = $query->get();
+    // Urutkan data dari yang terbaru ke yang terlama
+    $suratTugas = $query->orderBy('id', 'desc')->get();
     
     return view('admin.suratTugas', compact('suratTugas', 'totalSuratTugas'));
 }
@@ -297,7 +299,7 @@ public function updateSuratTugas(Request $request, $id)
     {
         $query = Proposal::query();
 
-        // Search 
+    // Search 
         if (request('search')) {
             $search = request('search');
             $query->where(function($q) use ($search) {
@@ -306,16 +308,16 @@ public function updateSuratTugas(Request $request, $id)
             });
         }
 
-
-        // Filter Bulan Pengajuan
+    // Filter Bulan Pengajuan
         if (request('bulan')) {
             $query->whereMonth('tanggal_pengajuan', request('bulan'));
         }
 
-        $proposal = $query->get();
+    // Urutkan data dari yang terbaru ke yang terlama
+        $proposal = $query->orderBy('id', 'desc')->get();
         $jumlahProposal = $proposal->count();
 
-        // Hitung deadline
+    // Hitung deadline
         foreach ($proposal as &$p) {
             if ($p->tanggal_disetujui && $p->tanggal_berakhir) {
                 $tgl1 = Carbon::parse($p->tanggal_disetujui);
@@ -335,9 +337,9 @@ public function updateSuratTugas(Request $request, $id)
             'judul'              => $request->judul,
             'pengaju'            => $request->pengaju,
             'tanggal_pengajuan'  => $request->tanggal,
-            'tanggal_disetujui'      => $request->tgl_disetujui,
+            'tanggal_disetujui'  => $request->tgl_disetujui,
             'deadline'           => $request->deadline,
-            'tanggal_berakhir'       => $request->tgl_berakhir,
+            'tanggal_berakhir'   => $request->tgl_berakhir,
             'status'             => $request->status,
         ]);
 
@@ -355,7 +357,7 @@ public function updateSuratTugas(Request $request, $id)
 
     public function SAproposal()
     {
-        $proposal = Proposal::all();
+        $proposal = Proposal::orderBy('id', 'desc')->get();
         $jumlahProposal = Proposal::count();
 
         foreach ($proposal as $p) {
@@ -404,10 +406,11 @@ public function adendum()
         $query->whereMonth('tanggal', request('bulan'));
     }
     
-    $adendum = $query->get();
+    // Urutkan data dari yang terbaru ke yang terlama
+    $adendum = $query->orderBy('id', 'desc')->get();
     
-    return view('admin.adendum', compact('adendum', 'totalAdendum'));
-}
+        return view('admin.adendum', compact('adendum', 'totalAdendum'));
+    }
 
 public function SAadendum()
 {
@@ -431,7 +434,8 @@ public function SAadendum()
         $query->whereMonth('tanggal', request('bulan'));
     }
     
-    $adendum = $query->get();
+    // Urutkan data dari yang terbaru ke yang terlama
+    $adendum = $query->orderBy('id', 'desc')->get();
     
     return view('admin.SAadendum', compact('adendum', 'totalAdendum'));
 }
@@ -482,14 +486,15 @@ public function draftResume()
         });
     }
     
-    $resume = $query->get();
+    // Urutkan data dari yang terbaru ke yang terlama
+    $resume = $query->orderBy('id', 'desc')->get();
     
     return view('admin.draftResume', compact('resume', 'totalResume'));
 }
 
     public function SAdraftResume()
     {
-        $resume = \App\Models\DraftResume::all();
+        $resume = \App\Models\DraftResume::orderBy('id', 'desc')->get();
         return view('admin.SAdraftResume', compact('resume'));
     }
 
@@ -545,14 +550,15 @@ public function draftLaporan()
         });
     }
     
-    $laporan = $query->get();
+    // Urutkan data dari yang terbaru ke yang terlama
+    $laporan = $query->orderBy('id', 'desc')->get();
     
     return view('admin.draftLaporan', compact('laporan', 'totalLaporan'));
 }
 
     public function SAdraftLaporan()
     {
-        $laporan = \App\Models\DraftLaporan::all();
+        $laporan = \App\Models\DraftLaporan::orderBy('id', 'desc')->get();
 
         return view('admin.SAdraftLaporan', compact('laporan'));
     }
