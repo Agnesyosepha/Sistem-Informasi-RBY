@@ -29,6 +29,7 @@
   <table style="width:100%; border-collapse: collapse; background:white;">
     <thead style="background:#239BA7; color:white;">
         <tr>
+            <th style="padding:10px;">No</th>
             <th style="padding:10px;">Tanggal</th>
             <th style="padding:10px;">Maksud & Tujuan</th>
             <th style="padding:10px;">Pemberi</th>
@@ -43,6 +44,9 @@
     <tbody>
         @forelse($dokumenRevisi as $data)
         <tr style="border-bottom:1px solid #ddd;">
+            <td style="padding:10px; text-align:center;">
+                {{ $loop->iteration }}
+            </td>
             <td style="padding:10px;">{{ $data->tanggal }}</td>
             <td style="padding:10px;">{{ $data->jenis }}</td>
             <td style="padding:10px;">{{ $data->pemberi }}</td>

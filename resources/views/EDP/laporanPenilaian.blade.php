@@ -56,6 +56,7 @@
     <table style="width:100%; border-collapse: collapse; margin-top:15px;">
         <thead style="background:#007BFF; color:white;">
             <tr>
+                <th style="padding:10px; text-align:left;">No</th>
                 <th style="padding:10px; text-align:left;">Tanggal</th>
                 <th style="padding:10px; text-align:left;">Jenis</th>
                 <th style="padding:10px; text-align:left;">Pemberi Tugas</th>
@@ -70,6 +71,9 @@
         <tbody>
             @foreach($laporanPenilaian as $laporan)
                 <tr style="border-bottom:1px solid #ddd;">
+                    <td style="padding:10px; text-align:center;">
+                        {{ $loop->iteration }}
+                    </td>
                     <td style="padding:10px;">{{ $laporan->tanggal }}</td>
                     <td style="padding:10px;">{{ $laporan->jenis }}</td>
                     <td style="padding:10px;">{{ $laporan->pemberi }}</td>
