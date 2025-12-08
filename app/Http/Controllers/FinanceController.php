@@ -10,9 +10,10 @@ class FinanceController extends Controller
     // Dashboard Finance
     public function dashboard()
     {
-        $rabs = Rab::all();
+        $rabs = Rab::orderBy('id', 'desc')->get();
         return view('layouts.finance', compact('rabs'));
     }
+
 
     // Tim Finance
     public function tim()
@@ -116,9 +117,10 @@ class FinanceController extends Controller
     // RAB
     public function rabIndex()
     {
-        $rabs = Rab::all();
+        $rabs = Rab::orderBy('id', 'desc')->get();
         return view('finance.SArab', compact('rabs'));
     }
+
 
     public function rabCreate()
     {
