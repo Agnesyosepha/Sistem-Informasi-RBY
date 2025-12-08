@@ -38,6 +38,7 @@
     <table style="width:100%; border-collapse: collapse;">
         <thead style="background:#ABE7B2; color:black;">
             <tr>
+                <th style="padding:10px; text-align:center;">No</th>
                 <th style="padding:10px; text-align:left;">Nomor</th>
                 <th style="padding:10px; text-align:left;">Proyek</th>
                 <th style="padding:10px; text-align:left;">Tanggal</th>
@@ -46,24 +47,33 @@
             </tr>
         </thead>
         <tbody>
-            @forelse($adendum as $a)
-                <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">{{ $a->nomor }}</td>
-                    <td style="padding:10px;">{{ $a->proyek }}</td>
-                    <td style="padding:10px;">{{ \Carbon\Carbon::parse($a->tanggal)->format('d M Y') }}</td>
-                    <td style="padding:10px;">{{ $a->deskripsi }}</td>
-                    <td style="padding:10px; font-weight:bold; text-align:center;">
-                        <span class="status-label" data-status="{{ $a->status }}">
-                            {{ $a->status }}
-                        </span>
-                    </td>
-                </tr>
-            @empty
-                <tr>
-                    <td colspan="5" style="padding:10px; text-align:center;">Tidak ada data adendum yang ditemukan.</td>
-                </tr>
-            @endforelse
+        @forelse($adendum as $a)
+            <tr style="border-bottom:1px solid #ddd;">
+                <td style="padding:10px; text-align:center;">
+                    {{ $loop->iteration }}
+                </td>
+
+                <td style="padding:10px;">{{ $a->nomor }}</td>
+                <td style="padding:10px;">{{ $a->proyek }}</td>
+                <td style="padding:10px;">
+                    {{ \Carbon\Carbon::parse($a->tanggal)->format('d M Y') }}
+                </td>
+                <td style="padding:10px;">{{ $a->deskripsi }}</td>
+                <td style="padding:10px; font-weight:bold; text-align:center;">
+                    <span class="status-label" data-status="{{ $a->status }}">
+                        {{ $a->status }}
+                    </span>
+                </td>
+            </tr>
+        @empty
+            <tr>
+                <td colspan="6" style="padding:10px; text-align:center;">
+                    Tidak ada data adendum yang ditemukan.
+                </td>
+            </tr>
+        @endforelse
         </tbody>
+
     </table>
     
     @if($adendum->count() > 0)

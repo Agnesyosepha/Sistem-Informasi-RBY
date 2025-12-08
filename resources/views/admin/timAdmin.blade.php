@@ -12,6 +12,7 @@
         <table style="width:100%; border-collapse: collapse; margin-top:15px;">
             <thead style="background:#E49BA6; color:white;">
                 <tr>
+                    <th style="padding:12px; text-align:center;">No</th>
                     <th style="padding:12px; text-align:left;">Nama Admin</th>
                     <th style="padding:12px; text-align:left;">No. HP</th>
                     <th style="padding:12px; text-align:left;">Email</th>
@@ -21,6 +22,9 @@
             <tbody>
                 @foreach ($tim as $t)
                     <tr style="border-bottom:1px solid #e2e2e2;">
+                        <td style="padding:12px; text-align:center;">
+                            {{ $loop->iteration }}
+                        </td>
                         <td style="padding:12px;">{{ $t['nama'] }}</td>
                         <td style="padding:12px;">{{ $t['nohp'] }}</td>
                         <td style="padding:12px;">{{ $t['email'] }}</td>

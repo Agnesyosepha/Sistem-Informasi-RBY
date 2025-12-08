@@ -39,6 +39,7 @@
         <table style="width:100%; border-collapse: collapse; margin-top:15px;">
             <thead style="background:#239BA7; color:white;">
                 <tr>
+                    <th style="padding:10px; text-align:center;">No</th>
                     <th style="padding:10px; text-align:left;">Nama Objek</th>
                     <th style="padding:10px; text-align:left;">Debitur</th>
                     <th style="padding:10px; text-align:left;">Tanggal Pengajuan</th>
@@ -49,21 +50,25 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($proposal as $p)
-                    <tr style="border-bottom:1px solid #ddd;">
-                        <td style="padding:10px;">{{ $p['judul'] }}</td>
-                        <td style="padding:10px;">{{ $p['pengaju'] }}</td>
-                        <td style="padding:10px;">{{ $p['tanggal_pengajuan'] }}</td>
-                        <td style="padding:10px;">{{ $p['tanggal_disetujui'] }}</td>
-                        <td style="padding:10px;">{{ $p['deadline'] }}</td>
-                        <td style="padding:10px;">{{ $p['tanggal_berakhir'] }}</td>
-                        <td style="padding:10px; text-align:center;">
-                            <span class="status-label" data-status="{{ $p->status }}">
-                                {{ $p->status }}
-                            </span>
-                        </td>
-                    </tr>
-                @endforeach
+            @foreach($proposal as $p)
+                <tr style="border-bottom:1px solid #ddd;">
+                    <td style="padding:10px; text-align:center;">
+                        {{ $loop->iteration }}
+                    </td>
+
+                    <td style="padding:10px;">{{ $p['judul'] }}</td>
+                    <td style="padding:10px;">{{ $p['pengaju'] }}</td>
+                    <td style="padding:10px;">{{ $p['tanggal_pengajuan'] }}</td>
+                    <td style="padding:10px;">{{ $p['tanggal_disetujui'] }}</td>
+                    <td style="padding:10px;">{{ $p['deadline'] }}</td>
+                    <td style="padding:10px;">{{ $p['tanggal_berakhir'] }}</td>
+                    <td style="padding:10px; text-align:center;">
+                        <span class="status-label" data-status="{{ $p->status }}">
+                            {{ $p->status }}
+                        </span>
+                    </td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
         
