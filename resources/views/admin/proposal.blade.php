@@ -12,7 +12,7 @@
            style="padding:8px; width:250px; border:1px solid #ccc; border-radius:5px;">
 
     <select name="bulan" style="padding:8px; border:1px solid #ccc; border-radius:5px;">
-        <option value="">-- Bulan Pengajuan --</option>
+        <option value="">- Bulan -</option>
         @for($i=1; $i<=12; $i++)
             <option value="{{ $i }}" {{ request('bulan') == $i ? 'selected' : '' }}>
                 {{ DateTime::createFromFormat('!m', $i)->format('F') }}

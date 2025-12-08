@@ -411,6 +411,9 @@ Route::get('/surveyor', [SurveyorController::class, 'dashboard'])
 
 Route::middleware(['auth', 'division:Surveyor,EDP,Reviewer'])->group(function () {
 
+    Route::get('/surveyor/laporan-jadwal', [SurveyorController::class, 'laporanJadwal'])
+        ->name('surveyor.laporanJadwal');
+
     Route::get('/surveyor/lokasi-survei', [SurveyorController::class, 'lokasiSurvei'])
         ->name('surveyor.lokasiSurvei');
 
@@ -439,8 +442,10 @@ Route::middleware(['auth', 'division:EDP,Reviewer'])->group(function () {
 
     Route::get('/edp/log-aktivitas', [EdpController::class, 'index'])->name('edp.logAktivitas');
 
+    Route::get('/edp/laporan-penilaian', 
+        [EdpController::class, 'laporanPenilaianUser']
+    )->name('edp.laporanPenilaian');
 });
-
 
 Route::middleware(['auth', 'division:EDP,Surveyor,Reviewer'])->group(function () {
     Route::get('/edp/dokumen-final', [EdpController::class, 'dokumenFinal'])->name('edp.dokumenFinal');
