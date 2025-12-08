@@ -4,8 +4,8 @@
 
 @section('content')
 <h1><i class="fas fa-file-invoice"></i> Invoice</h1>
-<p>Daftar data invoice yang sedang diproses.</p>
-<form method="GET" action="{{ route('finance.invoice') }}" 
+<p></p>
+<form method="GET" actionDaftar data invoice yang sedang diproses.="{{ route('finance.invoice') }}" 
       style="margin-top:20px; margin-bottom:20px; display:flex; gap:10px; align-items:center;">
 
     {{-- SEARCH --}}
@@ -44,6 +44,7 @@
         <table style="width:100%; border-collapse: collapse; margin-top:15px;">
             <thead style="background:#007BFF; color:white;">
                  <tr style="background:#007BFF; color:white;">
+                    <th style="padding:10px; text-align:center;">No</th>
                     <th style="padding:10px; text-align:left;">Tanggal Pembuat</th>
                     <th style="padding:10px; text-align:left;">No. Invoice</th>
                     <th style="padding:10px; text-align:left;">No. PPJP/No. Adendum</th>
@@ -56,7 +57,13 @@
             <tbody>
             @foreach($invoice as $item)
               <tr style="border-bottom:1px solid #ddd;">
-                <td style="padding:10px;">{{ $item['tanggal_pembuat'] }}</td>
+                <td style="padding:10px; text-align:center;">
+                    {{ $loop->iteration }}
+                </td>
+
+                <td style="padding:10px;">
+                    {{ $item['tanggal_pembuat'] }}
+                </td>
                 <td style="padding:10px;">{{ $item['no_invoice'] }}</td>
                 <td style="padding:10px;">{{ $item['no_ppjp'] }}</td>
                 <td style="padding:10px;">{{ $item['nama_klien'] }}</td>

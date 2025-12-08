@@ -27,6 +27,7 @@
         <table style="width:100%; border-collapse: collapse; margin-top:15px;">
             <thead style="background:#007BFF; color:white; text-align:left;">
                 <tr>
+                    <th style="padding:10px; text-align:center;">No</th>
                     <th style="padding:10px;">No. PPJP</th>
                     <th style="padding:10px;">Pemberi Tugas</th>
                     <th style="padding:10px;">Lokasi</th>
@@ -38,8 +39,13 @@
             </thead>
 
        <tbody>
+            <tbody>
             @foreach ($rabs as $rab)
                 <tr>
+                    <td style="padding:10px; text-align:center;">
+                        {{ $loop->iteration }}
+                    </td>
+
                     <td style="padding:10px;">{{ $rab->no_ppjp }}</td>
                     <td style="padding:10px;">{{ $rab->pemberi_tugas }}</td>
                     <td style="padding:10px;">{{ $rab->lokasi }}</td>
@@ -68,6 +74,7 @@
                 </tr>
             @endforeach
             </tbody>
+
 
         </table>
     </div>
