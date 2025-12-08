@@ -49,6 +49,10 @@
             <input type="text" name="pelaksana_inspeksi" required 
                 style="width:100%; padding:8px; margin-bottom:10px; border-radius:5px; border:1px solid #ccc;">
 
+            <label>Pengguna Laporan:</label>
+            <input type="text" name="pengguna_laporan" required 
+                style="width:100%; padding:8px; margin-bottom:10px; border-radius:5px; border:1px solid #ccc;">
+
             <label>Total Biaya (Rp):</label>
             <input type="number" name="total_biaya" required 
                 style="width:100%; padding:8px; margin-bottom:10px; border-radius:5px; border:1px solid #ccc;">
@@ -84,6 +88,7 @@
             <th style="padding:10px;">Lokasi</th>
             <th style="padding:10px;">Tanggal Survey</th>
             <th style="padding:10px;">Pelaksana Inspeksi</th>
+            <th style="padding:10px; text-align:left;">Pengguna Laporan</th>
             <th style="padding:10px;">Total Biaya</th>
             <th style="padding:10px;">Status</th>
         </tr>
@@ -97,6 +102,7 @@
             <td style="padding:10px;">{{ $rab->lokasi }}</td>
             <td style="padding:10px;">{{ $rab->tanggal_survey }}</td>
             <td style="padding:10px;">{{ $rab->pelaksana_inspeksi }}</td>
+            <td style="padding:10px;">{{ $rab->pengguna_laporan }}</td>
             <td style="padding:10px;">Rp {{ number_format($rab->total_biaya, 0, ',', '.') }}</td>
 
             <!-- STATUS WARNA -->

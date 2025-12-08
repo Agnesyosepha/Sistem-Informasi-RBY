@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('lokasi');
             $table->date('tanggal_survey'); // satu tanggal survey
             $table->string('pelaksana_inspeksi');
+            $table->string('pengguna_laporan');
             $table->integer('total_biaya');
             $table->enum('status', ['Menunggu', 'Disetujui'])->default('Menunggu');
             $table->timestamps();
