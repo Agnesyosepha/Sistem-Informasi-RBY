@@ -18,7 +18,6 @@
                 <th style="padding:10px; text-align:left;">Surveyor</th>
                 <th style="padding:10px; text-align:left;">Lokasi</th>
                 <th style="padding:10px; text-align:left;">Objek Penilaian</th>
-                <th style="padding:10px; text-align:left;">Reviewer</th>
                 <th style="padding:10px; text-align:left;">Status</th>
                 <th style="padding:10px; text-align:center;">Aksi</th>
             </tr>
@@ -33,7 +32,6 @@
                     <td style="padding:10px;">{{ $l->surveyor }}</td>
                     <td style="padding:10px;">{{ $l->lokasi }}</td>
                     <td style="padding:10px;">{{ $l->objek }}</td>
-                    <td style="padding:10px;">{{ $l->reviewer ?? '-' }}</td>
                     <td style="padding:10px;">
                         <span class="status-label" data-status="{{ $l->status }}">
                             {{ $l->status }}

@@ -17,7 +17,6 @@
             <th style="padding:10px; text-align:left;">Surveyor</th>
             <th style="padding:10px; text-align:left;">Lokasi</th>
             <th style="padding:10px; text-align:left;">Objek</th>
-            <th style="padding:10px; text-align:left;">Reviewer</th>
             <th style="padding:10px; text-align:left;">Status</th>
             <th style="padding:10px; text-align:left;">Aksi</th>
         </tr>
@@ -33,7 +32,6 @@
             <td style="padding:10px; text-align:left;">{{ $data->surveyor }}</td>
             <td style="padding:10px; text-align:left;">{{ $data->lokasi }}</td>
             <td style="padding:10px; text-align:left;">{{ $data->objek }}</td>
-            <td style="padding:10px; text-align:left;">{{ $data->reviewer }}</td>
             <td style="font-weight:600; color:{{ $data->status === 'Selesai' ? '#28a745' : '#ffc107' }}">
                 {{ $data->status }}
             </td>

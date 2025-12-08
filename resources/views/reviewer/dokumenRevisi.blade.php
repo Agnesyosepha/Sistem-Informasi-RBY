@@ -36,7 +36,6 @@
             <th style="padding:10px;">Surveyor</th>
             <th style="padding:10px;">Lokasi</th>
             <th style="padding:10px;">Objek</th>
-            <th style="padding:10px;">Reviewer</th>
             <th style="padding:10px;">Status</th>
         </tr>
     </thead>
@@ -51,7 +50,6 @@
             <td style="padding:10px;">{{ $data->surveyor }}</td>
             <td style="padding:10px;">{{ $data->lokasi }}</td>
             <td style="padding:10px;">{{ $data->objek }}</td>
-            <td style="padding:10px;">{{ $data->reviewer ?? '-' }}</td>
             <td style="padding:10px; font-weight:600;
                 color: {{ $data->status === 'Selesai' ? '#28a745' : '#ffc107' }}">
                 {{ $data->status }}
