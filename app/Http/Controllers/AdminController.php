@@ -205,9 +205,14 @@ class AdminController extends Controller
 // Surat Tugas
     public function SAsuratTugas()
     {
-        // Urutkan data dari yang terbaru ke yang terlama
         $suratTugas = SuratTugas::orderBy('id', 'desc')->get();
-        return view('admin.SAsuratTugas', compact('suratTugas'));
+
+        // Ambil surveyor, FILTER AKTIF, hanya nama
+        $tim = $this->getSurveyorList()
+                    ->where('status', 'Aktif')
+                    ->values();
+
+        return view('admin.SAsuratTugas', compact('suratTugas', 'tim'));
     }
 
     public function storeSuratTugas(Request $request)
@@ -682,6 +687,22 @@ public function draftLaporan()
 
             return view('admin.timAdmin', compact('tim'));
         }
+    
+    private function getSurveyorList()
+    {
+        return collect([
+            ['nama' => 'Richard Barus', 'status' => 'Aktif'],
+            ['nama' => 'Robbi Sugara Ginting', 'status' => 'Aktif'],
+            ['nama' => 'Firdaus Ginting', 'status' => 'Aktif'],
+            ['nama' => 'Amri Simbolon', 'status' => 'Aktif'],
+            ['nama' => 'Fajar Hariyadi', 'status' => 'Aktif'],
+            ['nama' => 'Jasmani Ginting', 'status' => 'Aktif'],
+            ['nama' => 'Santo Cornelius Ginting', 'status' => 'Aktif'],
+            ['nama' => 'Pretty Balerina Br Bangun', 'status' => 'Aktif'],
+            ['nama' => 'Benhur Sumanraja Sembiring', 'status' => 'Aktif'],
+            ['nama' => 'Elma Agnes Silitonga', 'status' => 'Aktif'],
+        ]);
+    }
         
 
 

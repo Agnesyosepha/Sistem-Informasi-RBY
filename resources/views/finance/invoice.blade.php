@@ -45,7 +45,7 @@
             <thead style="background:#007BFF; color:white;">
                  <tr style="background:#007BFF; color:white;">
                     <th style="padding:10px; text-align:center;">No</th>
-                    <th style="padding:10px; text-align:left;">Tanggal Pembuat</th>
+                    <th style="padding:10px; text-align:left;">Tanggal</th>
                     <th style="padding:10px; text-align:left;">No. Invoice</th>
                     <th style="padding:10px; text-align:left;">No. PPJP/No. Adendum</th>
                     <th style="padding:10px; text-align:left;">Debitur</th>

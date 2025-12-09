@@ -46,10 +46,18 @@
                 <label>Pemberi Tugas</label>
                 <input type="text" name="pemberi_tugas" required
                     style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
-
                 <label>Nama Penilai</label>
-                <input type="text" name="nama_penilai" required
+                <select name="nama_penilai" required
                     style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
+                    
+                    <option value="">-- Pilih Nama Penilai --</option>
+
+                    @foreach($tim as $t)
+                        <option value="{{ $t['nama'] }}">
+                            {{ $t['nama'] }}
+                        </option>
+                    @endforeach
+                </select>
 
                 <label>Adendum</label>
                 <input type="text" name="adendum"

@@ -25,7 +25,7 @@
         <form method="POST" action="{{ route('superadmin.finance.storeInvoice') }}">
             @csrf
 
-            <label>Tanggal Pembuat:</label>
+            <label>Tanggal:</label>
             <input type="date" name="tanggal_pembuat" required
                 style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
 
@@ -78,7 +78,7 @@
         <table style="width:100%; border-collapse: collapse; margin-top:15px;">
             <thead style="background:#007BFF; color:white;">
                  <tr style="background:#007BFF; color:white;">
-                    <th style="padding:10px; text-align:left;">Tanggal Pembuat</th>
+                    <th style="padding:10px; text-align:left;">Tanggal</th>
                     <th style="padding:10px; text-align:left;">No. Invoice</th>
                     <th style="padding:10px; text-align:left;">No. PPJP/No. Adendum</th>
                     <th style="padding:10px; text-align:left;">Debitur</th>
