@@ -116,7 +116,7 @@ class ITController extends Controller
         // Simpan di disk public -> storage/app/public/formpeminjaman
         Storage::disk('public')->putFileAs('formpeminjaman', $file, $filename);
 
-        return redirect()->route('it.uploadForm.page') // ganti nama route sesuai route Anda
+        return redirect()->route('it.uploadForm') 
                          ->with('success', 'File berhasil diunggah!');
     }
 
