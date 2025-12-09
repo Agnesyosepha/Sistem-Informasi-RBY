@@ -149,8 +149,8 @@
 </style>
 
 <div class="page-header">
-    <h1><i class="fas fa-file-archive"></i> Dokumen Final</h1>
-    <p><strong>Catatan:</strong> Sesuaikan dengan nama folder... </p>
+    <h1><i class="fas fa-file-archive"></i> Pengumpulan Dokumen Final</h1>
+    <p><strong>Catatan:</strong> Sesuaikan penamaan dengan: Pemberi Tugas_Nama Penilai_Objek  </p>
 </div>
 
 <div class="search-upload-wrapper">
