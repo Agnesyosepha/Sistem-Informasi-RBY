@@ -47,31 +47,31 @@ class NotificationService
      */
     public static function fileUploaded(TugasHarian $tugasHarian, int $tahapanId)
     {
+        // Data untuk setiap tahapan (diperbarui menjadi 15 tahapan)
         $tahapanData = [
-            1 => ['nextDivision' => 'Finance', 'nextTahapan' => 2, 'tahapanName' => 'Pengumpulan Data'],
-            2 => ['nextDivision' => 'Admin', 'nextTahapan' => 3, 'tahapanName' => 'Pembuatan Invoice DP'],
-            3 => ['nextDivision' => 'Admin', 'nextTahapan' => 4, 'tahapanName' => 'Penjadwalan Inspeksi'],
-            4 => ['nextDivision' => 'Surveyor', 'nextTahapan' => 5, 'tahapanName' => 'Inspeksi'],
-            5 => ['nextDivision' => 'Surveyor', 'nextTahapan' => 6, 'tahapanName' => 'Proses Analisa'],
-            6 => ['nextDivision' => 'Surveyor', 'nextTahapan' => 7, 'tahapanName' => 'Review Nilai'],
-            7 => ['nextDivision' => 'EDP', 'nextTahapan' => 8, 'tahapanName' => 'Kirim Draft Resume'],
-            8 => ['nextDivision' => 'EDP', 'nextTahapan' => 9, 'tahapanName' => 'Draft Laporan'],
-            9 => ['nextDivision' => 'EDP', 'nextTahapan' => 10, 'tahapanName' => 'Review/Final'],
-            10 => ['nextDivision' => 'EDP', 'nextTahapan' => 11, 'tahapanName' => 'Nomor Laporan'],
-            11 => ['nextDivision' => 'Admin', 'nextTahapan' => 12, 'tahapanName' => 'Laporan Rangkap 3'],
-            12 => ['nextDivision' => null, 'nextTahapan' => null, 'tahapanName' => 'Pengiriman Dokumen'],
+            1 => ['division' => 'Admin', 'nextDivision' => 'Finance', 'nextTahapan' => 2, 'tahapanName' => 'Pengumpulan Data'],
+            2 => ['division' => 'Finance', 'nextDivision' => 'Admin', 'nextTahapan' => 3, 'tahapanName' => 'Pembuatan Invoice DP'],
+            3 => ['division' => 'Admin', 'nextDivision' => 'Admin', 'nextTahapan' => 4, 'tahapanName' => 'Penjadwalan Inspeksi'],
+            4 => ['division' => 'Admin', 'nextDivision' => 'Surveyor', 'nextTahapan' => 5, 'tahapanName' => 'Inspeksi'],
+            5 => ['division' => 'Surveyor', 'nextDivision' => 'Surveyor', 'nextTahapan' => 6, 'tahapanName' => 'Proses Analisa'],
+            6 => ['division' => 'Surveyor', 'nextDivision' => 'Surveyor', 'nextTahapan' => 7, 'tahapanName' => 'Review Nilai'],
+            7 => ['division' => 'Surveyor', 'nextDivision' => 'EDP', 'nextTahapan' => 8, 'tahapanName' => 'Kirim Draft Resume'],
+            8 => ['division' => 'EDP', 'nextDivision' => 'Admin', 'nextTahapan' => 9, 'tahapanName' => 'Draft Laporan'],
+            9 => ['division' => 'Admin', 'nextDivision' => 'Reviewer', 'nextTahapan' => 10, 'tahapanName' => 'Final'],
+            10 => ['division' => 'Reviewer', 'nextDivision' => 'Reviewer', 'nextTahapan' => 11, 'tahapanName' => 'Review'],
+            11 => ['division' => 'Reviewer', 'nextDivision' => 'Finance', 'nextTahapan' => 12, 'tahapanName' => 'Review Approval'],
+            12 => ['division' => 'Finance', 'nextDivision' => 'EDP', 'nextTahapan' => 13, 'tahapanName' => 'Invoice Pelunasan'],
+            13 => ['division' => 'EDP', 'nextDivision' => 'EDP', 'nextTahapan' => 14, 'tahapanName' => 'Nomor Laporan'],
+            14 => ['division' => 'EDP', 'nextDivision' => 'EDP', 'nextTahapan' => 15, 'tahapanName' => 'Laporan Lengkap'],
+            15 => ['division' => 'EDP', 'nextDivision' => null, 'nextTahapan' => null, 'tahapanName' => 'Rangkap 3 LPA dan Pengiriman Dokumen'],
         ];
         
         if (isset($tahapanData[$tahapanId])) {
             $data = $tahapanData[$tahapanId];
             
             // Send completion notification to current division
-            $currentDivision = $tahapanId <= 4 || $tahapanId == 12 ? 'Admin' : 
-                              ($tahapanId <= 7 ? 'Surveyor' : 
-                              ($tahapanId <= 11 ? 'EDP' : 'Finance'));
-            
             self::sendToDivision(
-                $currentDivision,
+                $data['division'],
                 'Tahapan Selesai',
                 "File untuk tahapan {$data['tahapanName']} (No. PPJP: {$tugasHarian->no_ppjp}) telah berhasil diupload.",
                 'success',
@@ -116,6 +116,14 @@ class NotificationService
                 
                 self::sendToDivision(
                     'Finance',
+                    'Tugas Selesai',
+                    "Semua tahapan untuk tugas dengan No. PPJP: {$tugasHarian->no_ppjp} telah selesai.",
+                    'success',
+                    $tugasHarian
+                );
+                
+                self::sendToDivision(
+                    'Reviewer',
                     'Tugas Selesai',
                     "Semua tahapan untuk tugas dengan No. PPJP: {$tugasHarian->no_ppjp} telah selesai.",
                     'success',

@@ -135,16 +135,17 @@ class AdminController extends Controller
             ]
         );
 
-        NotificationService::fileUploaded($tugas, $tahapanId);
+        // Kirim notifikasi hanya jika bukan file revisi
+        if (!$isRevision) {
+            NotificationService::fileUploaded($tugas, $tahapanId);
+        }
 
         if ($tahapanId == 15) {
-
             $total = TugasHarianFile::where('tugas_harian_id', $tugasId)
                         ->where('is_revision', 0)
                         ->count();
 
             if ($total >= 15) {
-
                 $tugas->status = 'Selesai';
                 $tugas->tahapan = 'Pengiriman Dokumen';
                 $tugas->is_final_report = 1;
