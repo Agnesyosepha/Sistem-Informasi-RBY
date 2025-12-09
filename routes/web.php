@@ -247,6 +247,7 @@ Route::get('/admin/laporan-tugas-harian', [AdminController::class, 'laporanTugas
     Route::get('/laporan-tugas-harian', [AdminController::class, 'laporanTugasHarian'])
     ->name('admin.laporanTugasHarian');
 
+Route::get('/notifications/get-task-notifications/{taskId}', [NotificationController::class, 'getTaskNotifications']);
 // Surveyor
 Route::get('/surveyor', [SurveyorController::class, 'dashboard'])
     ->name('surveyor');

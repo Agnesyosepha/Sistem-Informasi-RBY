@@ -35,8 +35,8 @@
                                     </div>
                                     <p class="mb-2">{{ $notification->message }}</p>
                                     @if($notification->tugas_harian_id)
-                                        <a href="{{ route('admin') }}" class="btn btn-sm btn-outline-primary">
-                                            Lihat Detail Tugas
+                                        <a href="{{ route('admin', ['task_id' => $notification->tugas_harian_id, 'open' => 'true']) }}" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-eye"></i> Lihat Detail Tugas
                                         </a>
                                     @endif
                                     @if(!$notification->is_read)

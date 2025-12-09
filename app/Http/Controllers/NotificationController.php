@@ -53,4 +53,16 @@ class NotificationController extends Controller
         
         return response()->json(['count' => $count]);
     }
+
+    public function getTaskNotifications($taskId)
+    {
+        $notifications = Notification::where('tugas_harian_id', $taskId)
+                                ->orderBy('created_at', 'desc')
+                                ->get(['id', 'title', 'message', 'type', 'created_at']);
+        
+        return response()->json([
+            'success' => true,
+            'notifications' => $notifications
+        ]);
+    }
 }

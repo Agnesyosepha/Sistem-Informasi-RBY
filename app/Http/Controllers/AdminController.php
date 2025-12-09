@@ -18,36 +18,46 @@ use App\Services\NotificationService;
 
 class AdminController extends Controller
 {
-    public function index()
+   public function index()
     {
         $jumlahProposal = Proposal::count();
-    
-    // Filter untuk Tugas Harian
+        
+        // Filter untuk Tugas Harian
         $query = TugasHarian::where('is_final_report', 0);
-    
-    // Filter berdasarkan pencarian
+        
+        // Filter berdasarkan pencarian
         if (request('search')) {
             $search = request('search');
             $query->where(function($q) use ($search) {
                 $q->where('pemberi_tugas', 'like', "%$search%")
-                  ->orWhere('debitur', 'like', "%$search%")
-                  ->orWhere('no_ppjp', 'like', "%$search%")
-                  ->orWhere('tim_lapangan', 'like', "%$search%")
-                  ->orWhere('status', 'like', "%$search%");
+                ->orWhere('debitur', 'like', "%$search%")
+                ->orWhere('no_ppjp', 'like', "%$search%")
+                ->orWhere('tim_lapangan', 'like', "%$search%")
+                ->orWhere('status', 'like', "%$search%");
             });
         }
-    
-    // Filter berdasarkan bulan
+        
+        // Filter berdasarkan bulan
         if (request('bulan')) {
             $query->whereMonth('tanggal_survei', request('bulan'));
         }
-    
-            $tugasHarian = $query->orderBy('id', 'desc')->get();
-            $jumlahTugasHarian = TugasHarian::where('is_final_report', 0)->count();
-    
-            $laporanFinal = TugasHarian::where('is_final_report', 1)->get();
+        
+        $tugasHarian = $query->with('files')->orderBy('id', 'desc')->get();
+        $jumlahTugasHarian = TugasHarian::where('is_final_report', 0)->count();
+        
+        $laporanFinal = TugasHarian::where('is_final_report', 1)->get();
+        
+        // Tambahkan variabel untuk menandai tugas yang harus dibuka
+        $openTaskId = request('task_id');
+        $openTask = request('open') === 'true' ? $openTaskId : null;
 
-            return view('layouts.admin', compact('jumlahProposal', 'tugasHarian', 'laporanFinal', 'jumlahTugasHarian'));
+        return view('layouts.admin', compact(
+            'jumlahProposal', 
+            'tugasHarian', 
+            'laporanFinal', 
+            'jumlahTugasHarian',
+            'openTask'
+        ));
     }
     
     // Tugas Harian
@@ -65,7 +75,7 @@ class AdminController extends Controller
 
         NotificationService::sendToDivision(
             'Admin',
-            'Tugas Baru Ditambahkan',
+            'Tahapan 1 - Pengumpulan Data', // Lebih spesifik
             "Tugas baru dengan No. PPJP: {$tugasHarian->no_ppjp} untuk debitur {$tugasHarian->debitur} telah ditambahkan. Silakan upload file untuk tahapan 1 (Pengumpulan Data).",
             'info',
             $tugasHarian
