@@ -54,6 +54,8 @@ class FinanceController extends Controller
                   ->orWhere('no_ppjp', 'like', "%$search%")
                   ->orWhere('nama_klien', 'like', "%$search%")
                   ->orWhere('pemberi_tugas', 'like', "%$search%")
+                  ->orWhere('pengguna_laporan', 'like', "%$search%")
+                  ->orWhere('termin', 'like', "%$search%")
                   ->orWhere('status', 'like', "%$search%");
             });
         }

@@ -17,8 +17,8 @@
     ">
         <i class="fas fa-search" style="color:#6c757d; margin-right:8px;"></i>
         <input type="text" name="search" value="{{ request('search') }}"
-            placeholder="Cari ..."
-            style="border:none; outline:none; font-size:14px; width:220px;">
+            placeholder="Cari..."
+            style="border:none; outline:none; font-size:14px; width:280px;">
     </div>
 
     {{-- FILTER BULAN --}}
