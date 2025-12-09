@@ -48,6 +48,7 @@
     <table style="width:100%; border-collapse: collapse; margin-top:15px;">
         <thead style="background:#007BFF; color:white;">
             <tr>
+                <th style="padding:10px; text-align:left;">No</th>
                 <th style="padding:10px; text-align:left;">No. PPJP</th>
                 <th style="padding:10px; text-align:left;">Tanggal Survey</th>
                 <th style="padding:10px; text-align:left;">Lokasi</th>
@@ -61,6 +62,9 @@
         <tbody>
             @forelse ($jadwal as $j)
                 <tr style="border-bottom:1px solid #ddd;">
+                    <td style="padding:10px; text-align:center;">
+                        {{ $loop->iteration }}
+                    </td>
                     <td style="padding:10px;">{{ $j->no_ppjp }}</td>
                     <td style="padding:10px;">{{ \Carbon\Carbon::parse($j->tanggal_survey)->format('d M Y') }}</td>
                     <td style="padding:10px;">{{ $j->lokasi }}</td>
