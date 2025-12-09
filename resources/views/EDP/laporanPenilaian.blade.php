@@ -37,7 +37,7 @@
 
     <!-- TOMBOL FILTER -->
     <button type="submit"
-        style="background:#007BFF; color:white; border:none; 
+        style="background:#ABE7B2; color:black; border:none; 
         padding:8px 18px; border-radius:8px; cursor:pointer; font-size:14px;
         box-shadow:0 1px 3px rgba(0,0,0,0.15);">
         Filter
@@ -54,7 +54,7 @@
 
     <div class="dashboard-card" style="margin-top:30px;">
     <table style="width:100%; border-collapse: collapse; margin-top:15px;">
-        <thead style="background:#007BFF; color:white;">
+        <thead style="background:#ABE7B2; color:black;">
             <tr>
                 <th style="padding:10px; text-align:left;">No</th>
                 <th style="padding:10px; text-align:left;">Tanggal</th>
