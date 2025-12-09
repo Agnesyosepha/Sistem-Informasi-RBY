@@ -188,9 +188,14 @@
                                     $hasRevisionFile = $filesByTahapan->has($i . '_revision');
                                     $file = $hasFile ? $filesByTahapan->get($i . '_original') : null;
                                     $revisionFile = $hasRevisionFile ? $filesByTahapan->get($i . '_revision') : null;
+                                    
+                                    // Check if previous stage is completed
+                                    $previousStageCompleted = ($i == 1) ? true : $filesByTahapan->has(($i - 1) . '_original');
+                                    // Check if this stage is locked (not completed and previous stage not completed)
+                                    $isLocked = !$hasFile && !$previousStageCompleted;
                                 @endphp
 
-                                <div class="tahapan-item {{ $hasFile ? 'active' : '' }}" data-value="{{ $data['value'] }}">
+                                <div class="tahapan-item {{ $hasFile ? 'active' : '' }} {{ $isLocked ? 'locked' : '' }}" data-value="{{ $data['value'] }}">
                                     <div class="tahapan-header">
                                         <span class="tahapan-number">{{ $i }}.</span>
                                         <span class="tahapan-title">{{ $data['title'] }}</span>
@@ -232,19 +237,25 @@
                                             <p><strong>Catatan:</strong> Upload dalam ZIP keseluruhan dokumen dan bukti dokumen sudah dikirim</p>
                                         @endif
                                         
+                                        @if($isLocked)
+                                            <div class="locked-notice">
+                                                <i class="fas fa-lock"></i> Tahapan ini akan terbuka setelah tahapan {{ $i - 1 }} selesai
+                                            </div>
+                                        @endif
+                                        
                                         <!-- File Utama -->
                                         <div class="file-section">
                                             <h5>File Utama:</h5>
                                             <div class="file-upload-container">
-                                                <input type="file" id="file-tahapan{{ $i }}-{{ $tugas->id }}" class="file-input" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" {{ $hasFile ? 'disabled' : '' }}>
-                                                <label for="file-tahapan{{ $i }}-{{ $tugas->id }}" class="file-label" {{ $hasFile ? 'style="pointer-events: none; opacity: 0.6;"' : '' }}>
+                                                <input type="file" id="file-tahapan{{ $i }}-{{ $tugas->id }}" class="file-input" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" {{ $hasFile || $isLocked ? 'disabled' : '' }}>
+                                                <label for="file-tahapan{{ $i }}-{{ $tugas->id }}" class="file-label {{ $isLocked ? 'disabled' : '' }}" {{ $hasFile || $isLocked ? 'style="pointer-events: none; opacity: 0.6;"' : '' }}>
                                                     <i class="fas fa-upload"></i> Pilih File
                                                 </label>
                                                 <span class="file-name" id="file-name-tahapan{{ $i }}-{{ $tugas->id }}">
-                                                    {{ $hasFile ? $file->filename : 'Belum ada file' }}
+                                                    {{ $hasFile ? $file->filename : ($isLocked ? 'Tahapan Terkunci' : 'Belum ada file') }}
                                                 </span>
-                                                <button class="upload-btn" id="upload-btn-tahapan{{ $i }}-{{ $tugas->id }}" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" {{ $hasFile ? 'disabled' : '' }}>
-                                                    {{ $hasFile ? 'File Terupload' : 'Upload' }}
+                                                <button class="upload-btn" id="upload-btn-tahapan{{ $i }}-{{ $tugas->id }}" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" {{ $hasFile || $isLocked ? 'disabled' : '' }}>
+                                                    {{ $hasFile ? 'File Terupload' : ($isLocked ? 'Tahapan Terkunci' : 'Upload') }}
                                                 </button>
                                                 @if($hasFile)
                                                 {{--
@@ -318,6 +329,25 @@
 
 @section('scripts')
 <script>
+// Define tahapan data in JavaScript to access it on client side
+const tahapanData = {
+    1: 'Pengumpulan Data',
+    2: 'Pembuatan Invoice DP',
+    3: 'Penjadwalan Inspeksi',
+    4: 'Inspeksi',
+    5: 'Proses Analisa',
+    6: 'Review Nilai',
+    7: 'Kirim Draft Resume',
+    8: 'Draft Laporan',
+    9: 'Final',
+    10: 'Review',
+    11: 'Review Approval',
+    12: 'Invoice Pelunasan',
+    13: 'Nomor Laporan',
+    14: 'Laporan Lengkap',
+    15: 'Rangkap 3 LPA dan Pengiriman Dokumen'
+};
+
 document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
@@ -443,11 +473,20 @@ function initializeEventListeners(tugasId) {
             e.stopPropagation();
             
             const tugasId = this.getAttribute('data-tugas');
-            const tahapanId = this.getAttribute('data-tahapan');
+            const tahapanId = parseInt(this.getAttribute('data-tahapan'));
             const fileInput = document.getElementById(`file-tahapan${tahapanId}-${tugasId}`);
             const checkbox = document.getElementById(`tahapan${tahapanId}-${tugasId}`);
             const tahapanItem = this.closest('.tahapan-item');
             const currentTahapanSpan = document.getElementById(`current-tahapan-${tugasId}`);
+            
+            // Check if previous stage is completed (except for stage 1)
+            if (tahapanId > 1) {
+                const prevStageCheckbox = document.getElementById(`tahapan${tahapanId - 1}-${tugasId}`);
+                if (!prevStageCheckbox || !prevStageCheckbox.checked) {
+                    showError(`Harap selesaikan tahapan ${tahapanId - 1} terlebih dahulu!`);
+                    return;
+                }
+            }
             
             if (!fileInput || fileInput.files.length === 0) {
                 showError('Pilih file terlebih dahulu!');
@@ -473,7 +512,13 @@ function initializeEventListeners(tugasId) {
                 },
                 body: formData
             })
-            .then(res => res.json())
+            .then(res => {
+                // Check if response is ok before parsing JSON
+                if (!res.ok) {
+                    throw new Error('Server response was not ok');
+                }
+                return res.json();
+            })
             .then(data => {
                 // Reset button
                 this.textContent = originalText;
@@ -504,6 +549,36 @@ function initializeEventListeners(tugasId) {
                     this.disabled = true;
                     this.textContent = 'File Terupload';
                     
+                    // Unlock next stage if exists
+                    const nextStageId = tahapanId + 1;
+                    const nextStageValue = tahapanData[nextStageId];
+                    if (nextStageValue) {
+                        const nextStageItem = document.querySelector(`#tahapan-${tugasId} .tahapan-item[data-value="${nextStageValue}"]`);
+                        if (nextStageItem) {
+                            nextStageItem.classList.remove('locked');
+                            const nextStageFileInput = document.getElementById(`file-tahapan${nextStageId}-${tugasId}`);
+                            const nextStageUploadBtn = document.getElementById(`upload-btn-tahapan${nextStageId}-${tugasId}`);
+                            const nextStageLabel = document.querySelector(`label[for="file-tahapan${nextStageId}-${tugasId}"]`);
+                            const nextStageFileName = document.getElementById(`file-name-tahapan${nextStageId}-${tugasId}`);
+                            
+                            if (nextStageFileInput) nextStageFileInput.disabled = false;
+                            if (nextStageUploadBtn) {
+                                nextStageUploadBtn.disabled = false;
+                                nextStageUploadBtn.textContent = 'Upload';
+                            }
+                            if (nextStageLabel) {
+                                nextStageLabel.classList.remove('disabled');
+                                nextStageLabel.style.pointerEvents = 'auto';
+                                nextStageLabel.style.opacity = '1';
+                            }
+                            if (nextStageFileName) nextStageFileName.textContent = 'Belum ada file';
+                            
+                            // Remove locked notice if exists
+                            const lockedNotice = nextStageItem.querySelector('.locked-notice');
+                            if (lockedNotice) lockedNotice.remove();
+                        }
+                    }
+                    
                     showSuccess('File berhasil diupload!');
                 } else {
                     showError(data.message || 'Gagal mengupload file!');
@@ -520,7 +595,7 @@ function initializeEventListeners(tugasId) {
         });
     });
     
-    // Initialize upload button click listeners for revision files
+    // Initialize upload button click listeners for revision files (no sequential check needed)
     document.querySelectorAll(`#tahapan-${tugasId} .upload-btn[data-revision="true"]`).forEach(button => {
         button.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -553,7 +628,13 @@ function initializeEventListeners(tugasId) {
                 },
                 body: formData
             })
-            .then(res => res.json())
+            .then(res => {
+                // Check if response is ok before parsing JSON
+                if (!res.ok) {
+                    throw new Error('Server response was not ok');
+                }
+                return res.json();
+            })
             .then(data => {
                 // Reset button
                 this.textContent = originalText;
@@ -637,7 +718,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     checked_stages: checkedStages
                 })
             })
-            .then(res => res.json())
+            .then(res => {
+                // Check if response is ok before parsing JSON
+                if (!res.ok) {
+                    throw new Error('Server response was not ok');
+                }
+                return res.json();
+            })
             .then(data => {
                 console.log(data.message);
                 showSuccess('Progress berhasil disimpan!');
@@ -687,6 +774,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Helper functions for notifications
 function showSuccess(message) {
+    // Remove any existing notifications first
+    const existingNotifications = document.querySelectorAll('.alert');
+    existingNotifications.forEach(notification => notification.remove());
+    
     const successMsg = document.createElement('div');
     successMsg.className = 'alert alert-success';
     successMsg.textContent = message;
@@ -707,6 +798,10 @@ function showSuccess(message) {
 }
 
 function showError(message) {
+    // Remove any existing notifications first
+    const existingNotifications = document.querySelectorAll('.alert');
+    existingNotifications.forEach(notification => notification.remove());
+    
     const errorMsg = document.createElement('div');
     errorMsg.className = 'alert alert-error';
     errorMsg.textContent = message;
@@ -761,6 +856,11 @@ function showError(message) {
 .tahapan-item.active {
     border-color: #007bff;
     box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+
+.tahapan-item.locked {
+    opacity: 0.7;
+    border-color: #ccc;
 }
 
 .tahapan-header {
@@ -829,7 +929,6 @@ function showError(message) {
     border-color: #0056b3;
 }
 
-
 .tahapan-details {
     padding: 15px;
     display: none;
@@ -846,6 +945,18 @@ function showError(message) {
 
 .tahapan-details p:last-child {
     margin-bottom: 0;
+}
+
+.locked-notice {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    color: #856404;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .file-section {
@@ -879,8 +990,13 @@ function showError(message) {
     transition: background-color 0.2s;
 }
 
-.file-label:hover {
+.file-label:hover:not(.disabled) {
     background-color: #e9ecef;
+}
+
+.file-label.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .file-name {
