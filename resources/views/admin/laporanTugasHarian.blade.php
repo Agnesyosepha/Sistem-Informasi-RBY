@@ -109,6 +109,7 @@
 <table style="width:100%; border-collapse: collapse; margin-top:15px;">
     <thead style="background:#F9B572; color:black;">
         <tr>
+            <th style="padding:10px; text-align:left;">No</th>
             <th style="padding:10px; text-align:left;">Pemberi Tugas</th>
             <th style="padding:10px; text-align:left;">Debitur</th>
             <th style="padding:10px; text-align:left;">No. PPJP</th>
@@ -125,6 +126,9 @@
         <!-- ROW UTAMA -->
         <tr class="tugas-row" style="cursor:pointer; border-bottom:1px solid #ddd;" 
             onclick="toggleTahapan({{ $tugas->id }})">
+            <td style="padding:12px; text-align:center;">
+                {{ $loop->iteration }}
+            </td>
             <td style="padding:10px;">{{ $tugas->pemberi_tugas }}</td>
             <td style="padding:10px;">{{ $tugas->debitur }}</td>
             <td style="padding:10px;">{{ $tugas->no_ppjp }}</td>
