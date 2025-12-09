@@ -71,9 +71,9 @@
                 <td style="padding:10px;">{{ $item['pemberi_tugas'] }}</td>
                 <td style="padding:10px;">{{ $item['pengguna_laporan'] }}</td>
 
-                <td style="padding:10px; font-weight:600; 
-                  color: {{ $item['status'] == 'Disetujui' ? 'blue' : 'orange' }}">
-                  {{ $item['status'] }}
+                <td style="padding:10px; font-weight:600;
+                    color: {{ $item['status'] == 'Paid' ? 'green' : 'red' }}">
+                    {{ $item['status'] }}
                 </td>
 
                 <td style="padding:10px; text-align:center;">

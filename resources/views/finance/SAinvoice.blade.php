@@ -52,8 +52,8 @@
             <label>Status:</label>
             <select name="status" required
                 style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
-                <option value="Menunggu">Menunggu</option>
-                <option value="Disetujui">Disetujui</option>
+                <option value="Paid">Paid</option>
+                <option value="Unpaid">Unpaid</option>
             </select>
 
             <button type="submit"
@@ -98,11 +98,11 @@
                 <td style="padding:10px;">{{ $item['pemberi_tugas'] }}</td>
                 <td style="padding:10px;">{{ $item['pengguna_laporan'] }}</td>
                 <td style="padding:10px;">
-                  <select onchange="changeColor(this); updateInvoice({{ $item->id }}, 'status', this.value)"
-                    style="padding:10px; font-weight:600; border-radius:5px;">       
-                    <option value="Menunggu" {{ $item->status == 'Menunggu' ? 'selected' : '' }}>Menunggu</option>        
-                    <option value="Disetujui" {{ $item->status == 'Disetujui' ? 'selected' : '' }}>Disetujui</option>    
-                  </select>
+                    <select onchange="changeColor(this); updateInvoice({{ $item->id }}, 'status', this.value)"
+                        style="padding:10px; font-weight:600; border-radius:5px;">       
+                        <option value="Paid" {{ $item->status == 'Paid' ? 'selected' : '' }}>Paid</option>        
+                        <option value="Unpaid" {{ $item->status == 'Unpaid' ? 'selected' : '' }}>Unpaid</option>    
+                    </select>
                 </td>
                 <td style="padding:10px; text-align:center;">
                   <input type="checkbox"
@@ -148,10 +148,10 @@ function updateInvoice(id, field, value) {
 }
 
 function changeColor(selectEl) {
-    if (selectEl.value === "Disetujui") {
-        selectEl.style.color = "blue";
+    if (selectEl.value === "Paid") {
+        selectEl.style.color = "green";
     } else {
-        selectEl.style.color = "orange";
+        selectEl.style.color = "red";
     }
 }
 
