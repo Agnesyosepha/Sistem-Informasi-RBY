@@ -174,10 +174,10 @@
                                     9 => ['value' => 'Final', 'title' => 'Final (Admin)'],
                                     10 => ['value' => 'Review', 'title' => 'Review (Reviewer)'],
                                     11 => ['value' => 'Review Approval', 'title' => 'Review Approval (Reviewer)'],
-                                    12 => ['value' => 'Invoice Pelunasan', 'title' => 'Invoice Pelunasan (EDP)'],
+                                    12 => ['value' => 'Invoice Pelunasan', 'title' => 'Invoice Pelunasan (Finance)'],
                                     13 => ['value' => 'Nomor Laporan', 'title' => 'Nomor Laporan (EDP)'],
                                     14 => ['value' => 'Laporan Lengkap', 'title' => 'Laporan Lengkap (EDP)'],
-                                    15 => ['value' => 'Rangkap 3 LPA dan Pengiriman Dokumen', 'title' => 'Rangkap 3 LPA dan Pengiriman Dokumen (Admin)'],
+                                    15 => ['value' => 'Rangkap 3 LPA dan Pengiriman Dokumen', 'title' => 'Rangkap 3 LPA dan Pengiriman Dokumen (EDP dan Admin)'],
                                 ];
                             @endphp
 
@@ -200,10 +200,37 @@
                                         </div>
                                     </div>
                                     <div class="tahapan-details" style="{{ $hasFile ? 'display: block;' : '' }}">
-                                        @if($i == 6)
-                                            <p>Upload file <strong style="color: red;">FINAL</strong></p>
+                                        @if($i == 1)
+                                            <p><strong>Catatan:</strong> Upload dengan penamaan yang benar</p>
+                                        @elseif($i == 2)
+                                            <p><strong>Catatan:</strong> Upload bukti DP Invoice</p>
+                                        @elseif($i == 3)
+                                            <p><strong>Catatan:</strong> Upload Surat Tugas</p>
+                                        @elseif($i == 4)
+                                            <p><strong>Catatan:</strong> Upload dalam ZIP berisi ttd surat tugas setelah survey, ttd berita acara inspeksi, dan foto dengan pendamping</p>
+                                        @elseif($i == 5)
+                                            <p><strong>Catatan:</strong> Upload working paper dalam Excel</p>
+                                        @elseif($i == 6)
+                                            <p><strong>Catatan:</strong> Upload dengan penamaan yang benar</p>
+                                        @elseif($i == 7)
+                                            <p><strong>Catatan:</strong> Upload dengan penamaan yang benar</p>
+                                        @elseif($i == 8)
+                                            <p><strong>Catatan:</strong> Upload cover laporan</p>
+                                        @elseif($i == 9)
+                                            <p><strong>Catatan:</strong> Upload bukti screenshoot final dari debitur (chat/email)</p>
+                                        @elseif($i == 10)
+                                            <p><strong>Catatan:</strong> Upload dengan penamaan yang benar</p>
+                                        @elseif($i == 11)
+                                            <p><strong>Catatan:</strong> Upload dokumen review approval dari review nilai</p>
+                                        @elseif($i == 12)
+                                            <p><strong>Catatan:</strong> Upload bukti pelunasan invoice</p>
+                                        @elseif($i == 13)
+                                            <p><strong>Catatan:</strong> Upload nomor laporan penilaian</p>
+                                        @elseif($i == 14)
+                                            <p><strong>Catatan:</strong> Upload softcopy LPA</p>
+                                        @elseif($i == 15)
+                                            <p><strong>Catatan:</strong> Upload dalam ZIP keseluruhan dokumen dan bukti dokumen sudah dikirim</p>
                                         @endif
-                                        <p><strong>Catatan:</strong> Upload dengan penamaan yang benar</p>
                                         
                                         <!-- File Utama -->
                                         <div class="file-section">
