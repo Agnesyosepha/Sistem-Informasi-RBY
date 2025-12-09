@@ -118,6 +118,7 @@ class DatabaseSeeder extends Seeder
             'nohp' => '0812-8636-5116',
             'jabatan' => 'Staff',
             'mappi' => '18-P-08547',
+            'status' => 'Aktif',
         ]);
         User::create([
             'username' => 'rby/surveyor/robbi',
@@ -129,6 +130,7 @@ class DatabaseSeeder extends Seeder
             'nohp' => '0821-2358-0669',
             'jabatan' => 'Staff',
             'mappi' => '22-P-11583',
+            'status' => 'Aktif',
         ]);
         User::create([
             'username' => 'rby/surveyor/firdaus',
@@ -140,6 +142,7 @@ class DatabaseSeeder extends Seeder
             'nohp' => '0813-1246-7274',
             'jabatan' => 'Staff',
             'mappi' => '22-A-11580',
+            'status' => 'Aktif',
         ]);
         User::create([
             'username' => 'rby/surveyor/amri',
@@ -162,6 +165,7 @@ class DatabaseSeeder extends Seeder
             'nohp' => '0838-7009-5867',
             'jabatan' => 'Staff',
             'mappi' => '23-A-12042',
+            'status' => 'Aktif',
         ]);
         User::create([
             'username' => 'rby/surveyor/jasmani',
@@ -173,6 +177,7 @@ class DatabaseSeeder extends Seeder
             'nohp' => '0813-6293-0556',
             'jabatan' => 'Staff',
             'mappi' => '24-A-12448',
+            'status' => 'Aktif',
         ]);
         User::create([
             'username' => 'rby/surveyor/santo',
@@ -184,6 +189,7 @@ class DatabaseSeeder extends Seeder
             'nohp' => '0811-6511-109',
             'jabatan' => 'Staff',
             'mappi' => '12-P-03569',
+            'status' => 'Aktif',
         ]);
         User::create([
             'username' => 'rby/surveyor/pretty',
@@ -195,6 +201,7 @@ class DatabaseSeeder extends Seeder
             'nohp' => '0857-8207-8806',
             'jabatan' => 'Staff',
             'mappi' => '24-a-13299',
+            'status' => 'Aktif',
         ]);
         User::create([
             'username' => 'rby/surveyor/benhur',
@@ -217,6 +224,7 @@ class DatabaseSeeder extends Seeder
             'nohp' => '0812-8858-1609',
             'jabatan' => 'Staff',
             'mappi' => '25-A-14278',
+            'status' => 'Aktif',
         ]);
 
         //AKUN DIVISI EDP

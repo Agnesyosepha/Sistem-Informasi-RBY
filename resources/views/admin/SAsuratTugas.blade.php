@@ -1,3 +1,4 @@
+<!-- resources/views/admin.SAsuratTugas.blade.php -->
 @extends('superadmin.app2')
 
 @section('title', 'Surat Tugas')
@@ -46,15 +47,15 @@
                 <label>Pemberi Tugas</label>
                 <input type="text" name="pemberi_tugas" required
                     style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
+                    
                 <label>Nama Penilai</label>
-                <select name="nama_penilai" required
+                <select name="nama_penilai" id="nama_penilai" required
                     style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
                     
                     <option value="">-- Pilih Nama Penilai --</option>
-
                     @foreach($tim as $t)
-                        <option value="{{ $t['nama'] }}">
-                            {{ $t['nama'] }}
+                        <option value="{{ $t->nama }}" data-id="{{ $t->id }}">
+                            {{ $t->nama }}
                         </option>
                     @endforeach
                 </select>
@@ -64,7 +65,7 @@
                     style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
 
                 <label>Status</label>
-                <select name="status"
+                <select name="status" id="status"
                     style="width:100%; padding:8px; margin-bottom:15px; border:1px solid #ccc; border-radius:5px;">
                     <option value="survey">Survey</option>
                     <option value="pending">Pending</option>
@@ -156,10 +157,10 @@ function updateStatus(id, selectElement) {
     })
     .then(res => res.json())
     .then(data => {
-        if(data.success){
+        if(data.message){
             console.log(data.message);
             if(selectElement.value === 'survey') {
-                alert("Status berhasil diperbarui! Data telah ditambahkan ke jadwal surveyor.");
+                alert("Status berhasil diperbarui! Notifikasi telah dikirim ke surveyor yang dipilih.");
             } else {
                 alert("Status berhasil diperbarui!");
             }
@@ -172,5 +173,4 @@ function updateStatus(id, selectElement) {
     .catch(err => console.error(err));
 }
 </script>
-
 @endsection

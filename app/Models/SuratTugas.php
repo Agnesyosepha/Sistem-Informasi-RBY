@@ -20,8 +20,18 @@ class SuratTugas extends Model
         'status',
     ];
     
+    public function penilai()
+    {
+        return $this->belongsTo(User::class, 'nama_penilai', 'nama');
+    }
+
     public function jadwalSurveyor()
     {
         return $this->hasOne(JadwalSurveyor::class);
+    }
+    
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
     }
 }

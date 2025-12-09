@@ -13,6 +13,7 @@ class Notification extends Model
     protected $fillable = [
         'user_id',
         'tugas_harian_id',
+        'surat_tugas_id',
         'title',
         'message',
         'type',
@@ -37,5 +38,10 @@ class Notification extends Model
     public function tugasHarian(): BelongsTo
     {
         return $this->belongsTo(TugasHarian::class);
+    }
+    
+    public function suratTugas(): BelongsTo
+    {
+        return $this->belongsTo(SuratTugas::class);
     }
 }

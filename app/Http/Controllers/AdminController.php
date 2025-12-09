@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\Proposal;
+use App\Models\User;
 use App\Models\Adendum;
 use App\Models\SuratTugas;
 use App\Models\DraftResume;
 use App\Models\DraftLaporan;
 use App\Models\TugasHarian;
 use App\Models\TugasHarianFile;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Storage;
 use App\Services\NotificationService;
 
@@ -206,11 +208,11 @@ class AdminController extends Controller
     public function SAsuratTugas()
     {
         $suratTugas = SuratTugas::orderBy('id', 'desc')->get();
-
-        // Ambil surveyor, FILTER AKTIF, hanya nama
-        $tim = $this->getSurveyorList()
-                    ->where('status', 'Aktif')
-                    ->values();
+        
+        // Ambil surveyor dari database
+        $tim = User::where('divisi', 'Surveyor')
+                ->where('status', 'Aktif')
+                ->get(['id', 'nama', 'status']);
 
         return view('admin.SAsuratTugas', compact('suratTugas', 'tim'));
     }
@@ -268,36 +270,55 @@ public function suratTugas()
     return $this->suratTugasAdmin();
 }
 
-public function updateSuratTugas(Request $request, $id)
-{
-    $suratTugas = \App\Models\SuratTugas::findOrFail($id);
-    $oldStatus = $suratTugas->status;
-    $suratTugas->status = $request->status;
-    $suratTugas->save();
+    public function updateSuratTugas(Request $request, $id)
+    {
+        $suratTugas = \App\Models\SuratTugas::findOrFail($id);
+        $oldStatus = $suratTugas->status;
+        $suratTugas->status = $request->status;
+        $suratTugas->save();
 
-    // Jika status diubah menjadi "Survey" dan sebelumnya bukan "Survey"
-    if ($request->status == 'survey' && $oldStatus != 'survey') {
-        // Cek apakah data sudah ada di jadwal_surveyors untuk menghindari duplikasi
-        $existingJadwal = \App\Models\JadwalSurveyor::where('surat_tugas_id', $suratTugas->id)->first();
+        // Jika status diubah menjadi "Survey" dan sebelumnya bukan "Survey"
+        if ($request->status == 'survey' && $oldStatus != 'survey') {
+            // Cek apakah data sudah ada di jadwal_surveyors untuk menghindari duplikasi
+            $existingJadwal = \App\Models\JadwalSurveyor::where('surat_tugas_id', $suratTugas->id)->first();
+            
+            if (!$existingJadwal) {
+                \App\Models\JadwalSurveyor::create([
+                    'surat_tugas_id' => $suratTugas->id, // Menyimpan ID surat tugas asli untuk referensi
+                    'no_ppjp' => $suratTugas->no_ppjp,
+                    'tanggal_survey' => $suratTugas->tanggal_survey,
+                    'lokasi' => $suratTugas->lokasi,
+                    'objek_penilaian' => $suratTugas->objek_penilaian,
+                    'pemberi_tugas' => $suratTugas->pemberi_tugas,
+                    'nama_penilai' => $suratTugas->nama_penilai,
+                    'adendum' => $suratTugas->adendum,
+                    'status' => 'Survey', // Status awal di jadwal surveyor adalah Survey
+                ]);
+            }
+            
+            // Kirim notifikasi ke surveyor yang dipilih
+            $this->sendNotificationToSurveyor($suratTugas->nama_penilai, $suratTugas);
+        }
+
+        return response()->json(['message' => 'Status updated']);
+    } 
+
+    private function sendNotificationToSurveyor($surveyorName, $suratTugas)
+    {
+        // Cari user surveyor berdasarkan nama
+        $surveyor = User::where('nama', $surveyorName)->where('divisi', 'Surveyor')->first();
         
-        if (!$existingJadwal) {
-            \App\Models\JadwalSurveyor::create([
-                'surat_tugas_id' => $suratTugas->id, // Menyimpan ID surat tugas asli untuk referensi
-                'no_ppjp' => $suratTugas->no_ppjp,
-                'tanggal_survey' => $suratTugas->tanggal_survey,
-                'lokasi' => $suratTugas->lokasi,
-                'objek_penilaian' => $suratTugas->objek_penilaian,
-                'pemberi_tugas' => $suratTugas->pemberi_tugas,
-                'nama_penilai' => $suratTugas->nama_penilai,
-                'adendum' => $suratTugas->adendum,
-                'status' => 'Survey', // Status awal di jadwal surveyor adalah Survey
+        if ($surveyor) {
+            // Buat notifikasi untuk surveyor
+            Notification::create([
+                'user_id' => $surveyor->id,
+                'surat_tugas_id' => $suratTugas->id,
+                'title' => 'Surat Tugas Baru',
+                'message' => "Anda telah ditugaskan untuk survey pada {$suratTugas->tanggal_survey} di lokasi {$suratTugas->lokasi}. Objek penilaian: {$suratTugas->objek_penilaian}.",
+                'type' => 'info',
             ]);
         }
     }
-
-    return response()->json(['message' => 'Status updated']);
-}   
-
 
 // Daftar Proposal
     public function proposal()
