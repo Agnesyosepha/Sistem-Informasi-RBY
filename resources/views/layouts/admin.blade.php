@@ -217,9 +217,11 @@
                                                     {{ $hasFile ? 'File Terupload' : 'Upload' }}
                                                 </button>
                                                 @if($hasFile)
+                                                {{--
                                                 <a href="{{ route('admin.tugas-harian.downloadFile', $file->id) }}" class="download-btn" title="Download {{ $file->filename }}">
                                                     <i class="fas fa-download"></i>
                                                 </a>
+                                                --}}
                                                 @endif
                                             </div>
                                         </div>
@@ -239,9 +241,11 @@
                                                     {{ $hasRevisionFile ? 'File Revisi Terupload' : 'Upload Revisi' }}
                                                 </button>
                                                 @if($hasRevisionFile)
+                                                {{--
                                                 <a href="{{ route('admin.tugas-harian.downloadFile', $revisionFile->id) }}" class="download-btn" title="Download {{ $revisionFile->filename }}">
                                                     <i class="fas fa-download"></i>
                                                 </a>
+                                                --}}
                                                 @endif
                                             </div>
                                         </div>
