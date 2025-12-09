@@ -184,7 +184,7 @@ document.querySelectorAll('.status-select').forEach(select => {
 function updateStatus(id, selectElement) {
     applyColor(selectElement);
 
-    fetch(`/admin/proposal/update-status/${id}`, {
+    fetch(`/superadmin/admin/superadmin-proposal/update-status/${id}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

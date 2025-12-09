@@ -67,14 +67,13 @@ Route::get('/superadmin/admin', function () {
 
 Route::get('/superadmin/admin/superadmin-proposal', [\App\Http\Controllers\AdminController::class, 'SAproposal'])->name('superadmin.admin.SAproposal');
 Route::post('/superadmin/admin/superadmin-proposal/store', [AdminController::class, 'storeProposal'])->name('superadmin.admin.SAproposal.store');
-Route::post('/superadmin/admin/superadmin-proposal/update-status/{id}', [App\Http\Controllers\AdminController::class, 'updateStatus']);
+Route::post('/superadmin/admin/superadmin-proposal/update-status/{id}', [App\Http\Controllers\AdminController::class, 'updateStatus'])->name('superadmin.admin.proposal.updateStatus');
 Route::delete('/superadmin/admin/proposal/{id}', [AdminController::class, 'destroy'])->name('superadmin.admin.SAproposal.destroy');
 
 Route::get('/superadmin/admin/superadmin-adendum', [\App\Http\Controllers\AdminController::class, 'SAadendum'])->name('superadmin.admin.SAadendum');
 Route::post('/superadmin/admin/superadmin-adendum/store', [\App\Http\Controllers\AdminController::class, 'storeAdendum'])->name('superadmin.admin.SAadendum.store');
 Route::post('/superadmin/admin/superadmin-adendum/update-status/{id}', [App\Http\Controllers\AdminController::class, 'updateStatusAdendum'])->name('superadmin.admin.SAadendum.updateStatus');
-Route::post('/superadmin/adendum/store', [AdminController::class, 'storeAdendum'])
-    ->name('superadmin.admin.SAadendum.store');
+Route::post('/superadmin/adendum/store', [AdminController::class, 'storeAdendum'])->name('superadmin.admin.SAadendum.store');
 
 Route::get('/superadmin/admin/surat-tugas', [AdminController::class, 'SAsuratTugas'])->name('superadmin.admin.SAsuratTugas');
 Route::post('/superadmin/admin/surat-tugas/store', [AdminController::class, 'storeSuratTugas'])->name('superadmin.admin.SAsuratTugas.store');
@@ -344,11 +343,13 @@ Route::get('/it/total-laptop', [\App\Http\Controllers\ItController::class, 'tota
 
 Route::get('/it/laporan-penilaian', [\App\Http\Controllers\ItController::class, 'laporanPenilaian'])->name('it.laporanPenilaian');
 
-Route::get('/it/tim', [App\Http\Controllers\ITController::class, 'tim'])->name('it.tim');
 Route::get('/it/upload-form', [ITController::class, 'uploadFormPage'])->name('it.uploadForm');
 Route::post('/it/upload-form', [ITController::class, 'uploadFormStore'])->name('it.uploadForm.store');
+
+Route::get('/it/tim', [App\Http\Controllers\ITController::class, 'tim'])->name('it.tim');
+
 Route::get('/it/upload-form', [ITController::class, 'uploadFormPage'])
-    ->name('it.uploadForm');
+    ->name('it.uploadForm.page');
 
 Route::post('/it/upload-form', [ITController::class, 'uploadFormStore'])
     ->name('it.uploadForm.store');
