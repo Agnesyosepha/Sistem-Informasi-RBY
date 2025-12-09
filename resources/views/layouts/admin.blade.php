@@ -195,7 +195,7 @@
                                     $isLocked = !$hasFile && !$previousStageCompleted;
                                 @endphp
 
-                                <div class="tahapan-item {{ $hasFile ? 'active' : '' }} {{ $isLocked ? 'locked' : '' }}" data-value="{{ $data['value'] }}">
+                                <div class="tahapan-item {{ $hasFile ? 'active' : '' }} {{ $isLocked ? 'locked' : '' }}" data-value="{{ $data['value'] }}" data-tahapan-id="{{ $i }}">
                                     <div class="tahapan-header">
                                         <span class="tahapan-number">{{ $i }}.</span>
                                         <span class="tahapan-title">{{ $data['title'] }}</span>
@@ -550,34 +550,7 @@ function initializeEventListeners(tugasId) {
                     this.textContent = 'File Terupload';
                     
                     // Unlock next stage if exists
-                    const nextStageId = tahapanId + 1;
-                    const nextStageValue = tahapanData[nextStageId];
-                    if (nextStageValue) {
-                        const nextStageItem = document.querySelector(`#tahapan-${tugasId} .tahapan-item[data-value="${nextStageValue}"]`);
-                        if (nextStageItem) {
-                            nextStageItem.classList.remove('locked');
-                            const nextStageFileInput = document.getElementById(`file-tahapan${nextStageId}-${tugasId}`);
-                            const nextStageUploadBtn = document.getElementById(`upload-btn-tahapan${nextStageId}-${tugasId}`);
-                            const nextStageLabel = document.querySelector(`label[for="file-tahapan${nextStageId}-${tugasId}"]`);
-                            const nextStageFileName = document.getElementById(`file-name-tahapan${nextStageId}-${tugasId}`);
-                            
-                            if (nextStageFileInput) nextStageFileInput.disabled = false;
-                            if (nextStageUploadBtn) {
-                                nextStageUploadBtn.disabled = false;
-                                nextStageUploadBtn.textContent = 'Upload';
-                            }
-                            if (nextStageLabel) {
-                                nextStageLabel.classList.remove('disabled');
-                                nextStageLabel.style.pointerEvents = 'auto';
-                                nextStageLabel.style.opacity = '1';
-                            }
-                            if (nextStageFileName) nextStageFileName.textContent = 'Belum ada file';
-                            
-                            // Remove locked notice if exists
-                            const lockedNotice = nextStageItem.querySelector('.locked-notice');
-                            if (lockedNotice) lockedNotice.remove();
-                        }
-                    }
+                    unlockNextStage(tugasId, tahapanId);
                     
                     showSuccess('File berhasil diupload!');
                 } else {
@@ -687,6 +660,57 @@ function initializeEventListeners(tugasId) {
             }
         });
     });
+}
+
+// Function to unlock the next stage
+function unlockNextStage(tugasId, currentTahapanId) {
+    const nextStageId = currentTahapanId + 1;
+    
+    // Check if next stage exists (max is 15)
+    if (nextStageId > 15) return;
+    
+    // Find the next stage item by its tahapan-id attribute
+    const nextStageItem = document.querySelector(`#tahapan-${tugasId} .tahapan-item[data-tahapan-id="${nextStageId}"]`);
+    
+    if (nextStageItem) {
+        // Remove locked class
+        nextStageItem.classList.remove('locked');
+        
+        // Get all the elements for the next stage
+        const nextStageFileInput = document.getElementById(`file-tahapan${nextStageId}-${tugasId}`);
+        const nextStageUploadBtn = document.getElementById(`upload-btn-tahapan${nextStageId}-${tugasId}`);
+        const nextStageLabel = document.querySelector(`label[for="file-tahapan${nextStageId}-${tugasId}"]`);
+        const nextStageFileName = document.getElementById(`file-name-tahapan${nextStageId}-${tugasId}`);
+        
+        // Enable the file input
+        if (nextStageFileInput) {
+            nextStageFileInput.disabled = false;
+        }
+        
+        // Enable and update the upload button
+        if (nextStageUploadBtn) {
+            nextStageUploadBtn.disabled = false;
+            nextStageUploadBtn.textContent = 'Upload';
+        }
+        
+        // Enable the file label
+        if (nextStageLabel) {
+            nextStageLabel.classList.remove('disabled');
+            nextStageLabel.style.pointerEvents = 'auto';
+            nextStageLabel.style.opacity = '1';
+        }
+        
+        // Update the file name display
+        if (nextStageFileName) {
+            nextStageFileName.textContent = 'Belum ada file';
+        }
+        
+        // Remove locked notice if exists
+        const lockedNotice = nextStageItem.querySelector('.locked-notice');
+        if (lockedNotice) {
+            lockedNotice.remove();
+        }
+    }
 }
 
 // Event listener untuk tombol simpan
