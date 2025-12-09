@@ -161,24 +161,27 @@
                                     return $file->tahapan_id . '_' . ($file->is_revision ? 'revision' : 'original');
                                 });
 
-                                // Data untuk setiap tahapan
+                                // Data untuk setiap tahapan (diperbarui menjadi 15 tahapan)
                                 $tahapanData = [
                                     1 => ['value' => 'Pengumpulan Data', 'title' => 'Pengumpulan Data (Admin)'],
                                     2 => ['value' => 'Pembuatan Invoice DP', 'title' => 'Pembuatan Invoice DP (Finance)'],
                                     3 => ['value' => 'Penjadwalan Inspeksi', 'title' => 'Penjadwalan Inspeksi (Admin)'],
                                     4 => ['value' => 'Inspeksi', 'title' => 'Inspeksi (Admin)'],
                                     5 => ['value' => 'Proses Analisa', 'title' => 'Proses Analisa (Surveyor)'],
-                                    6 => ['value' => 'Review Nilai', 'title' => 'Review Nilai (Surveyor)', 'is_final' => true],
+                                    6 => ['value' => 'Review Nilai', 'title' => 'Review Nilai (Surveyor)'],
                                     7 => ['value' => 'Kirim Draft Resume', 'title' => 'Kirim Draft Resume (Surveyor)'],
                                     8 => ['value' => 'Draft Laporan', 'title' => 'Draft Laporan (EDP)'],
-                                    9 => ['value' => 'Review/Final', 'title' => 'Review/Final (EDP)'],
-                                    10 => ['value' => 'Nomor Laporan', 'title' => 'Nomor Laporan (EDP)'],
-                                    11 => ['value' => 'Laporan Rangkap', 'title' => 'Laporan Rangkap 3 (EDP)'],
-                                    12 => ['value' => 'Pengiriman Dokumen', 'title' => 'Pengiriman Dokumen (Admin)'],
+                                    9 => ['value' => 'Final', 'title' => 'Final (Admin)'],
+                                    10 => ['value' => 'Review', 'title' => 'Review (Reviewer)'],
+                                    11 => ['value' => 'Review Approval', 'title' => 'Review Approval (EDP)'],
+                                    12 => ['value' => 'Invoice Pelunasan', 'title' => 'Invoice Pelunasan (EDP)'],
+                                    13 => ['value' => 'Nomor Laporan', 'title' => 'Nomor Laporan (EDP)'],
+                                    14 => ['value' => 'Laporan Lengkap', 'title' => 'Laporan Lengkap (EDP)'],
+                                    15 => ['value' => 'Rangkap 3 LPA dan Pengiriman Dokumen', 'title' => 'Rangkap 3 LPA dan Pengiriman Dokumen (Admin)'],
                                 ];
                             @endphp
 
-                            @for ($i = 1; $i <= 12; $i++)
+                            @for ($i = 1; $i <= 15; $i++)
                                 @php
                                     $data = $tahapanData[$i];
                                     $hasFile = $filesByTahapan->has($i . '_original');
@@ -197,7 +200,7 @@
                                         </div>
                                     </div>
                                     <div class="tahapan-details" style="{{ $hasFile ? 'display: block;' : '' }}">
-                                        @if(isset($data['is_final']) && $data['is_final'])
+                                        @if($i == 6)
                                             <p>Upload file <strong style="color: red;">FINAL</strong></p>
                                         @endif
                                         <p><strong>Catatan:</strong> Upload dengan penamaan yang benar</p>

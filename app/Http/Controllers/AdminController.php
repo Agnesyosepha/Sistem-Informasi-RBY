@@ -135,20 +135,20 @@ class AdminController extends Controller
 
         NotificationService::fileUploaded($tugas, $tahapanId);
 
-        if ($tahapanId == 12) {
+        if ($tahapanId == 15) {
 
             $total = TugasHarianFile::where('tugas_harian_id', $tugasId)
                         ->where('is_revision', 0)
                         ->count();
 
-            if ($total >= 12) {
+            if ($total >= 15) {
 
                 $tugas->status = 'Selesai';
                 $tugas->tahapan = 'Pengiriman Dokumen';
                 $tugas->is_final_report = 1;
                 $tugas->save();
 
-                \Log::info("Tugas {$tugasId} selesai (12 tahapan lengkap).");
+                \Log::info("Tugas {$tugasId} selesai (15 tahapan lengkap).");
             }
         }
 

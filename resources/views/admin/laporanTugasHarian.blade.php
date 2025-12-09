@@ -83,7 +83,7 @@
     <select name="bulan" id="bulan"
         style="padding:10px 15px; border-radius:8px; border:1px solid #ccc;">
         <option value="">-- Semua Bulan --</option>
-        @foreach(range(1,12) as $m)
+        @foreach(range(1,15) as $m)
             <option value="{{ $m }}" {{ request('bulan') == $m ? 'selected' : '' }}>
                 {{ DateTime::createFromFormat('!m', $m)->format('F') }}
             </option>
@@ -148,10 +148,13 @@
                         6 => 'Review Nilai',
                         7 => 'Kirim Draft Resume',
                         8 => 'Draft Laporan',
-                        9 => 'Review/Final',
-                        10 => 'Nomor Laporan',
-                        11 => 'Laporan Rangkap',
-                        12 => 'Pengiriman Dokumen',
+                        9 => 'Final',
+                        10 => 'Review',
+                        11 => 'Review Approval',
+                        12 => 'Invoice Pelunasan',
+                        13 => 'Nomor Laporan',
+                        14 => 'Laporan Lengkap',
+                        15 => 'Rangkap 3 LPA dan Pengiriman Dokumen',
                     ];
                 @endphp
 
