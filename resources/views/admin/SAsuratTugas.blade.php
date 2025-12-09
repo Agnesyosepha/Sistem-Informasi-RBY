@@ -132,18 +132,18 @@
 @endsection
 
 @section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
 function applyColor(selectElement) {
     const value = selectElement.value;
-
-    if(value === 'survey') selectElement.style.color = 'blue';
-    else if(value === 'pending') selectElement.style.color = 'orange';
+    if (value === 'survey') selectElement.style.color = 'blue';
+    else if (value === 'pending') selectElement.style.color = 'orange';
 }
 
 // Inisialisasi warna saat load
 document.querySelectorAll('.status-select').forEach(select => applyColor(select));
 
-// Update status
 function updateStatus(id, selectElement) {
     applyColor(selectElement);
 
@@ -153,24 +153,36 @@ function updateStatus(id, selectElement) {
             "Content-Type": "application/json",
             "X-CSRF-TOKEN": "{{ csrf_token() }}"
         },
-        body: JSON.stringify({ status: selectElement.value })
+        body: JSON.stringify({
+            status: selectElement.value
+        })
     })
     .then(res => res.json())
     .then(data => {
-        if(data.message){
-            console.log(data.message);
-            if(selectElement.value === 'survey') {
-                alert("Status berhasil diperbarui! Notifikasi telah dikirim ke surveyor yang dipilih.");
-            } else {
-                alert("Status berhasil diperbarui!");
-            }
-            // Refresh halaman setelah 1 detik
+        if (data.message) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: selectElement.value === 'survey'
+                    ? 'Status diperbarui dan notifikasi telah dikirim ke surveyor.'
+                    : 'Status berhasil diperbarui.',
+                timer: 2000,
+                showConfirmButton: false
+            });
+
             setTimeout(() => {
                 window.location.reload();
-            }, 1000);
+            }, 2000);
         }
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal!',
+            text: 'Terjadi kesalahan saat memperbarui status.'
+        });
+        console.error(err);
+    });
 }
 </script>
 @endsection
