@@ -258,10 +258,14 @@
                     </a>
                 </li>
                 <li>
+                {{-- ================= SIDEBAR SURVEYOR (DICOMMENT) ================= --}}
+                {{--
+
                 <a href="{{ route('superadmin.surveyor') }}" 
                    class="{{ Route::is('superadmin.surveyor') ? 'active' : '' }}">
                    <i class="fas fa-clipboard-list"></i><span> Surveyor</span>
                 </a>
+                --}}
             </li>
             <li>
                 <a href="{{ route('superadmin.edp') }}" 
@@ -282,10 +286,13 @@
                 </a>
             </li>
             <li>
+                 {{-- ================= SIDEBAR SURVEYOR (DICOMMENT) ================= --}}
+                {{--
                 <a href="{{ route('superadmin.it') }}" 
                    class="{{ Route::is('it') ? 'active' : '' }}">
                    <i class="fas fa-server"></i><span> IT</span>
                 </a>
+                --}}
             </li>
                 
             </ul>
