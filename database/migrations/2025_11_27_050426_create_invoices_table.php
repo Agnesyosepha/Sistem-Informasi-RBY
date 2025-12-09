@@ -21,6 +21,10 @@ return new class extends Migration
             $table->string('pengguna_laporan'); // Tambahkan kolom ini
             $table->string('status');
             $table->boolean('checked')->default(false);
+            $table->string('termin')->default('DP'); // DP atau Pelunasan
+            $table->decimal('biaya_jasa', 15, 2)->default(0); // Format untuk uang
+            $table->string('bukti_dp')->nullable(); // Path ke file bukti DP
+            $table->string('bukti_pelunasan')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +34,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('invoices');
+        Schema::table('invoices', function (Blueprint $table) {
+            // Hapus kolom jika rollback
+            $table->dropColumn(['termin', 'biaya_jasa', 'bukti_dp', 'bukti_pelunasan']);
+        });
     }
 };

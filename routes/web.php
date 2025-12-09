@@ -170,7 +170,8 @@ Route::get('/superadmin/finance', function () {
 Route::get('/superadmin/finance/invoice', [FinanceController::class, 'SAinvoice'])->name('superadmin.finance.SAinvoice');
 Route::post('/superadmin/finance/invoice/store',[FinanceController::class, 'storeInvoice'])->name('superadmin.finance.storeInvoice');
 Route::post('/superadmin/finance/invoice/update-status', [FinanceController::class, 'updateStatus'])->name('superadmin.finance.updateStatus');
-
+Route::post('/superadmin/finance/invoice/store',[FinanceController::class, 'storeInvoice'])->name('superadmin.finance.storeInvoice');
+Route::post('/superadmin/finance/invoice/upload-file', [FinanceController::class, 'uploadFile'])->name('superadmin.finance.uploadFile');
 
 Route::get('/finance', [FinanceController::class, 'dashboard'])->name('finance.dashboard');
 

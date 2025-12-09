@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Invoice extends Model
 {
+    use HasFactory;
+    
     protected $fillable = [
         'tanggal_pembuat',
         'no_invoice',
@@ -14,6 +17,16 @@ class Invoice extends Model
         'pemberi_tugas',
         'pengguna_laporan',
         'status',
-        'checked'
+        'checked',
+        'termin',
+        'biaya_jasa',
+        'bukti_dp',
+        'bukti_pelunasan'
+    ];
+    
+    protected $casts = [
+        'tanggal_pembuat' => 'date',
+        'biaya_jasa' => 'decimal:2',
+        'checked' => 'boolean'
     ];
 }

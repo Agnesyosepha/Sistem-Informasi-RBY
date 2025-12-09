@@ -39,33 +39,34 @@ class FinanceController extends Controller
 
 // Invoice
 
+    
     public function invoice(Request $request)
-  {
-      $query = Invoice::query();
+    {
+        $query = Invoice::query();
 
-      // FILTER SEARCH
-      if ($request->search) {
-          $search = $request->search;
+        // FILTER SEARCH
+        if ($request->search) {
+            $search = $request->search;
 
-          $query->where(function ($q) use ($search) {
-              $q->where('tanggal_pembuat', 'like', "%$search%")
-                ->orWhere('no_invoice', 'like', "%$search%")
-                ->orWhere('no_ppjp', 'like', "%$search%")
-                ->orWhere('nama_klien', 'like', "%$search%")
-                ->orWhere('pemberi_tugas', 'like', "%$search%")
-                ->orWhere('status', 'like', "%$search%");
-          });
-      }
+            $query->where(function ($q) use ($search) {
+                $q->where('tanggal_pembuat', 'like', "%$search%")
+                  ->orWhere('no_invoice', 'like', "%$search%")
+                  ->orWhere('no_ppjp', 'like', "%$search%")
+                  ->orWhere('nama_klien', 'like', "%$search%")
+                  ->orWhere('pemberi_tugas', 'like', "%$search%")
+                  ->orWhere('status', 'like', "%$search%");
+            });
+        }
 
-      // FILTER BULAN
-      if ($request->bulan) {
-          $query->whereMonth('tanggal_pembuat', $request->bulan);
-      }
+        // FILTER BULAN
+        if ($request->bulan) {
+            $query->whereMonth('tanggal_pembuat', $request->bulan);
+        }
 
-      $invoice = $query->orderBy('id', 'desc')->get();
+        $invoice = $query->orderBy('id', 'desc')->get();
 
-      return view('finance.invoice', compact('invoice'));
-  }
+        return view('finance.invoice', compact('invoice'));
+    }
 
     public function SAinvoice()
     {
@@ -75,20 +76,22 @@ class FinanceController extends Controller
 
     public function storeInvoice(Request $request)
     {
-      $validated = $request->validate([
-        'tanggal_pembuat' => 'required|date',
-        'no_invoice' => 'required|string|max:255',
-        'no_ppjp' => 'required|string|max:255',
-        'nama_klien' => 'required|string|max:255',
-        'pemberi_tugas' => 'required|string|max:255',
-        'pengguna_laporan' => 'required|string|max:255',
-        'status' => 'required|string',
-      ]);
+        $validated = $request->validate([
+            'tanggal_pembuat' => 'required|date',
+            'no_invoice' => 'required|string|max:255',
+            'no_ppjp' => 'required|string|max:255',
+            'nama_klien' => 'required|string|max:255',
+            'pemberi_tugas' => 'required|string|max:255',
+            'pengguna_laporan' => 'required|string|max:255',
+            'termin' => 'required|string',
+            'biaya_jasa' => 'required|numeric|min:0',
+            'status' => 'required|string',
+        ]);
 
-      Invoice::create($validated);
+        Invoice::create($validated);
 
-      return redirect()->route('superadmin.finance.SAinvoice')
-                     ->with('success', 'Invoice berhasil ditambahkan!');
+        return redirect()->route('superadmin.finance.SAinvoice')
+                       ->with('success', 'Invoice berhasil ditambahkan!');
     }
 
     public function updateStatus(Request $request)
@@ -99,12 +102,17 @@ class FinanceController extends Controller
             return response()->json(['error' => 'Data tidak ditemukan'], 404);
         }
 
-    // Update status
+        // Update status
         if ($request->has('status')) {
             $invoice->status = $request->status;
         }
 
-    // Update checkbox
+        // Update termin
+        if ($request->has('termin')) {
+            $invoice->termin = $request->termin;
+        }
+
+        // Update checkbox
         if ($request->has('checked')) {
             $invoice->checked = $request->checked ? 1 : 0;
         }
@@ -113,6 +121,46 @@ class FinanceController extends Controller
 
         return response()->json(['success' => true]);
     }
+    
+    public function uploadFile(Request $request)
+    {
+    if (!$request->hasFile('file')) {
+        return response()->json([
+            'success' => false,
+            'message' => 'File tidak ditemukan'
+        ]);
+    }
+
+    $request->validate([
+        'file' => 'required|mimes:jpg,jpeg,png,pdf|max:5000'
+    ]);
+
+    $invoice = Invoice::find($request->id);
+
+    if (!$invoice) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Invoice tidak ditemukan'
+        ]);
+    }
+
+    $field = $request->field; // bukti_dp atau bukti_pelunasan
+
+    // Upload file
+    $path = $request->file('file')->store('invoice_files', 'public');
+
+    // Simpan ke database
+    $invoice->$field = $path;
+    $invoice->save();
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Upload berhasil',
+        'file' => $path
+    ]);
+}
+
+
 
 
 
