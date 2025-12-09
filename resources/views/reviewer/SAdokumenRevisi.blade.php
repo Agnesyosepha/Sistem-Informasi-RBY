@@ -37,7 +37,7 @@
             </td>
             <td>
                 <button
-                    onclick="openEditStatusModal('{{ $data->id }}', '{{ $data->status }}', '{{ $data->reviewer }}')"
+                    onclick="openEditStatusModal('{{ $data->id }}', '{{ $data->status }}')"
                     style="background:#007bff; color:white; padding:6px 10px; border:none; border-radius:6px; cursor:pointer;">
                     Edit
                 </button>
@@ -64,21 +64,17 @@
     <h3>Edit Status Dokumen</h3>
 
     <form id="formEditStatus" method="POST">
-      @csrf
-      @method('PUT')
+    @csrf
+    @method('PUT')
 
-      <label>Reviewer (opsional)</label>
-      <input type="text" name="reviewer" id="modal_reviewer"
-          style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:6px;">
+    <label>Status</label>
+    <select name="status" id="modal_status"
+        style="width:100%; padding:8px; margin-bottom:12px; border:1px solid #ccc; border-radius:6px;">
+        <option value="Dalam Revisi">Dalam Revisi</option>
+        <option value="Selesai">Selesai</option>
+    </select>
 
-      <label>Status</label>
-      <select name="status" id="modal_status"
-          style="width:100%; padding:8px; margin-bottom:12px; border:1px solid #ccc; border-radius:6px;">
-          <option value="Dalam Revisi">Dalam Revisi</option>
-          <option value="Selesai">Selesai</option>
-      </select>
-
-      <div style="display:flex; justify-content:flex-end; gap:8px;">
+    <div style="display:flex; justify-content:flex-end; gap:8px;">
         <button type="submit"
             style="background:#28a745; color:white; padding:8px 14px; border:none; border-radius:6px; cursor:pointer;">
             Simpan
@@ -89,17 +85,15 @@
             style="background:#dc3545; color:white; padding:8px 14px; border:none; border-radius:6px; cursor:pointer;">
             Batal
         </button>
-      </div>
+    </div>
     </form>
   </div>
 </div>
 
 <script>
-function openEditStatusModal(id, status, reviewer) {
+function openEditStatusModal(id, status) {
     document.getElementById('modalStatus').style.display = 'block';
-
     document.getElementById('modal_status').value = status;
-    document.getElementById('modal_reviewer').value = reviewer ?? '';
 
     document.getElementById('formEditStatus').action =
         '/reviewer/dokumen-revisi/update-status/' + id;
