@@ -173,7 +173,7 @@
                                     8 => ['value' => 'Draft Laporan', 'title' => 'Draft Laporan (EDP)'],
                                     9 => ['value' => 'Final', 'title' => 'Final (Admin)'],
                                     10 => ['value' => 'Review', 'title' => 'Review (Reviewer)'],
-                                    11 => ['value' => 'Review Approval', 'title' => 'Review Approval (EDP)'],
+                                    11 => ['value' => 'Review Approval', 'title' => 'Review Approval (Reviewer)'],
                                     12 => ['value' => 'Invoice Pelunasan', 'title' => 'Invoice Pelunasan (EDP)'],
                                     13 => ['value' => 'Nomor Laporan', 'title' => 'Nomor Laporan (EDP)'],
                                     14 => ['value' => 'Laporan Lengkap', 'title' => 'Laporan Lengkap (EDP)'],
