@@ -230,19 +230,34 @@ class AdminController extends Controller
 
     public function storeSuratTugas(Request $request)
     {
-    SuratTugas::create([
-        'no_ppjp'           => $request->no_ppjp,
-        'tanggal_survey'    => $request->tanggal_survey,
-        'lokasi'            => $request->lokasi,
-        'objek_penilaian'   => $request->objek_penilaian,
-        'pemberi_tugas'     => $request->pemberi_tugas,
-        'nama_penilai'      => $request->nama_penilai,
-        'adendum'           => $request->adendum,
-        'status'            => $request->status,
-    ]);
+        $request->validate([
+            'no_ppjp' => 'required',
+            'tanggal_survey' => 'required',
+            'lokasi' => 'required',
+            'objek_penilaian' => 'required',
+            'pemberi_tugas' => 'required',
+            'penilai.0' => 'required', // Penilai 1 WAJIB
+        ]);
 
-    return redirect()->route('superadmin.admin.SAsuratTugas')
-        ->with('success', 'Surat Tugas berhasil ditambahkan!');
+        // Ambil penilai yang terisi saja
+        $penilai = array_filter($request->penilai);
+
+        // Gabungkan jadi string "A, B, C"
+        $namaPenilai = implode(', ', $penilai);
+
+        SuratTugas::create([
+            'no_ppjp'         => $request->no_ppjp,
+            'tanggal_survey'  => $request->tanggal_survey,
+            'lokasi'          => $request->lokasi,
+            'objek_penilaian' => $request->objek_penilaian,
+            'pemberi_tugas'   => $request->pemberi_tugas,
+            'nama_penilai'    => $namaPenilai,
+            'adendum'         => $request->adendum,
+            'status'          => $request->status,
+        ]);
+
+        return redirect()->route('superadmin.admin.SAsuratTugas')
+            ->with('success', 'Surat Tugas berhasil ditambahkan!');
     }
 
     public function suratTugasAdmin()
@@ -308,7 +323,11 @@ public function suratTugas()
             }
             
             // Kirim notifikasi ke surveyor yang dipilih
-            $this->sendNotificationToSurveyor($suratTugas->nama_penilai, $suratTugas);
+            $namaPenilaiList = array_map('trim', explode(',', $suratTugas->nama_penilai));
+
+            foreach ($namaPenilaiList as $namaSurveyor) {
+                $this->sendNotificationToSurveyor($namaSurveyor, $suratTugas);
+            }
         }
 
         return response()->json(['message' => 'Status updated']);

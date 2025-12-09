@@ -49,16 +49,20 @@
                     style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
                     
                 <label>Nama Penilai</label>
-                <select name="nama_penilai" id="nama_penilai" required
-                    style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
-                    
-                    <option value="">-- Pilih Nama Penilai --</option>
-                    @foreach($tim as $t)
-                        <option value="{{ $t->nama }}" data-id="{{ $t->id }}">
-                            {{ $t->nama }}
+                @for($i = 1; $i <= 5; $i++)
+                    <select name="penilai[]" 
+                        {{ $i == 1 ? 'required' : '' }}
+                        style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
+                        
+                        <option value="">
+                            -- Pilih Nama Penilai {{ $i }} {{ $i == 1 ? '(Wajib)' : '(Opsional)' }}
                         </option>
-                    @endforeach
-                </select>
+
+                        @foreach($tim as $t)
+                            <option value="{{ $t->nama }}">{{ $t->nama }}</option>
+                        @endforeach
+                    </select>
+                @endfor
 
                 <label>Adendum</label>
                 <input type="text" name="adendum"
