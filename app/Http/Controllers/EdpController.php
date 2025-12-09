@@ -186,7 +186,7 @@ class EdpController extends Controller
         return redirect()->route('edp.dokumenFinal')->with('error', 'Dokumen tidak ditemukan.');
     }
 
-    // Log Aktivitas
+// Log Aktivitas
     public function index()
     {
         $logAktivitas = LogEDP::all();
@@ -237,31 +237,7 @@ class EdpController extends Controller
     return redirect()->back()->with('success', 'Status berhasil diperbarui!');
     }
 
-    public function uploadSoftcopy(Request $request, $id)
-    {
-        $request->validate([
-        'softcopy' => 'required|file|mimes:pdf|max:10240', // max 10MB
-        ]);
-
-        $laporan = LaporanPenilaian::findOrFail($id);
-
-    // Hapus file lama jika ada
-        if ($laporan->softcopy && Storage::disk('public')->exists('laporan/'.$laporan->softcopy)) {
-            Storage::disk('public')->delete('laporan/'.$laporan->softcopy);
-        }
-
-    // Upload file baru
-        if ($request->hasFile('softcopy')) {
-            $file = $request->file('softcopy');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('laporan', $filename, 'public');
-            $laporan->softcopy = $filename;
-            $laporan->save();
-        }
-
-        return back()->with('success', 'File berhasil diupload.');
-    }
-
+    
 
 // Laporan Penilaian
     public function laporanPenilaianUser()
@@ -393,6 +369,30 @@ public function destroyLaporanPenilaian($id)
     return response()->json(['success' => true, 'message' => 'Laporan penilaian berhasil dihapus.']);
 }
 
+public function uploadSoftcopy(Request $request, $id)
+    {
+        $request->validate([
+        'softcopy' => 'required|file|mimes:pdf|max:10240', // max 10MB
+        ]);
+
+        $laporan = LaporanPenilaian::findOrFail($id);
+
+    // Hapus file lama jika ada
+        if ($laporan->softcopy && Storage::disk('public')->exists('laporan/'.$laporan->softcopy)) {
+            Storage::disk('public')->delete('laporan/'.$laporan->softcopy);
+        }
+
+    // Upload file baru
+        if ($request->hasFile('softcopy')) {
+            $file = $request->file('softcopy');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('laporan', $filename, 'public');
+            $laporan->softcopy = $filename;
+            $laporan->save();
+        }
+
+        return back()->with('success', 'File berhasil diupload.');
+    }
 
 
 }
