@@ -45,29 +45,10 @@ class EdpController extends Controller
         return redirect()->route('edp.dataMentah')->with('success', 'Data berhasil diupload.');
     }
     
-    public function uploadSoftcopy(Request $request, $id)
+    
+// Data Aktif
+    public function dataAktif(Request $request)
     {
-        $request->validate([
-            'softcopy' => 'required|mimes:pdf|max:5120'
-        ]);
-
-        $laporan = LaporanPenilaian::findOrFail($id);
-
-        // Nama file aman
-        $filename = 'laporan_' . time() . '.pdf';
-
-        $request->file('softcopy')
-            ->storeAs('public/laporan', $filename);
-
-        $laporan->update([
-            'softcopy' => $filename
-        ]);
-
-        return back()->with('success', 'File laporan berhasil diupload.');
-    }
-    // Data Aktif
-public function dataAktif(Request $request)
-{
     $search = $request->search;
     $bulan = $request->bulan;
 
@@ -88,7 +69,7 @@ public function dataAktif(Request $request)
         ->get();
 
     return view('EDP.dataAktif', compact('dataAktif'));
-}
+    }
 
     public function SAdataAktif()
     {
@@ -244,7 +225,7 @@ public function dataAktif(Request $request)
     }
 
     public function updateLogEDP(Request $request, $id)
-{
+    {
     $request->validate([
         'status' => 'required'
     ]);
@@ -254,11 +235,37 @@ public function dataAktif(Request $request)
     $log->save();
 
     return redirect()->back()->with('success', 'Status berhasil diperbarui!');
-}
+    }
+
+    public function uploadSoftcopy(Request $request, $id)
+    {
+        $request->validate([
+        'softcopy' => 'required|file|mimes:pdf|max:10240', // max 10MB
+        ]);
+
+        $laporan = LaporanPenilaian::findOrFail($id);
+
+    // Hapus file lama jika ada
+        if ($laporan->softcopy && Storage::disk('public')->exists('laporan/'.$laporan->softcopy)) {
+            Storage::disk('public')->delete('laporan/'.$laporan->softcopy);
+        }
+
+    // Upload file baru
+        if ($request->hasFile('softcopy')) {
+            $file = $request->file('softcopy');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('laporan', $filename, 'public');
+            $laporan->softcopy = $filename;
+            $laporan->save();
+        }
+
+        return back()->with('success', 'File berhasil diupload.');
+    }
+
 
 // Laporan Penilaian
-public function laporanPenilaianUser()
-{
+    public function laporanPenilaianUser()
+    {
     $search = request('search');
 
     $laporanPenilaian = LaporanPenilaian::when($search, function ($query) use ($search) {
@@ -276,10 +283,10 @@ public function laporanPenilaianUser()
     ->get();
 
     return view('EDP.laporanPenilaian', compact('laporanPenilaian'));
-}
+    }
 
-public function laporanPenilaianAdmin()
-{
+    public function laporanPenilaianAdmin()
+    {
     $search = request('search');
     $bulan = request('bulan');
 
@@ -301,10 +308,10 @@ public function laporanPenilaianAdmin()
         ->get();
 
     return view('EDP.SAlaporanpenilaianfinal', compact('laporanPenilaian'));
-}
+    }
 
-public function storeLaporanPenilaian(Request $request)
-{
+    public function storeLaporanPenilaian(Request $request)
+    {
     $request->validate([
         'tanggal' => 'required|date',
         'jenis' => 'required|string',
@@ -376,6 +383,7 @@ public function updateLaporanPenilaian(Request $request, $id)
 
     return response()->json(['success' => true, 'message' => 'Laporan penilaian berhasil diperbarui.']);
 }
+
 
 public function destroyLaporanPenilaian($id)
 {
