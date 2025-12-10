@@ -144,7 +144,7 @@
                                 1 => ['value' => 'Pengumpulan Data', 'title' => 'Pengumpulan Data (Admin)'],
                                 2 => ['value' => 'Pembuatan Invoice DP', 'title' => 'Pembuatan Invoice DP (Finance)'],
                                 3 => ['value' => 'Penjadwalan Inspeksi', 'title' => 'Penjadwalan Inspeksi (Admin)'],
-                                4 => ['value' => 'Inspeksi', 'title' => 'Inspeksi (Admin)'],
+                                4 => ['value' => 'Inspeksi', 'title' => 'Inspeksi (Surveyor)'],
                                 5 => ['value' => 'Proses Analisa', 'title' => 'Proses Analisa (Surveyor)'],
                                 6 => ['value' => 'Review Nilai', 'title' => 'Review Nilai (Surveyor)'],
                                 7 => ['value' => 'Kirim Draft Resume', 'title' => 'Kirim Draft Resume (Surveyor)'],
