@@ -40,8 +40,8 @@
             <thead style="background:#239BA7; color:white;">
                 <tr>
                     <th style="padding:10px; text-align:center;">No</th>
-                    <th style="padding:10px; text-align:left;">Nama Objek</th>
-                    <th style="padding:10px; text-align:left;">Debitur</th>
+                    <th style="padding:10px; text-align:left;">Objek Penilaian</th>
+                    <th style="padding:10px; text-align:left;">Pemberi Tugas</th>
                     <th style="padding:10px; text-align:left;">Tanggal Pengajuan</th>
                     <th style="padding:10px; text-align:left;">Tanggal Disetujui</th>
                     <th style="padding:10px; text-align:left;">Deadline</th>

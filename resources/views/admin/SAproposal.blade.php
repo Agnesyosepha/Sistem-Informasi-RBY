@@ -26,11 +26,11 @@
             <form action="{{ route('superadmin.admin.SAproposal.store') }}" method="POST">
                 @csrf
 
-                <label>Nama Objek</label>
+                <label>Objek Penilaian</label>
                 <input type="text" name="judul" required
                     style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
 
-                <label>Debitur</label>
+                <label>Pemberi Tugas</label>
                 <input type="text" name="pengaju" required
                     style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
 
@@ -75,8 +75,8 @@
         <table style="width:100%; border-collapse: collapse; margin-top:15px;">
             <thead style="background:#007BFF; color:white;">
                 <tr>
-                    <th style="padding:10px; text-align:left;">Nama Objek</th>
-                    <th style="padding:10px; text-align:left;">Debitur</th>
+                    <th style="padding:10px; text-align:left;">Objek Penilaian</th>
+                    <th style="padding:10px; text-align:left;">Pemberi Tugas</th>
                     <th style="padding:10px; text-align:left;">Tanggal Pengajuan</th>
                     <th style="padding:10px; text-align:left;">Tanggal Disetujui</th>
                     <th style="padding:10px; text-align:left;">Deadline</th>
