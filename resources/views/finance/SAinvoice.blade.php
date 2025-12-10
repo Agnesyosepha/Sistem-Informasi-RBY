@@ -56,12 +56,14 @@
             <select name="termin" required
                 style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
                 <option value="DP">DP</option>
+                <option value="DP 2">DP 2</option>
                 <option value="Pelunasan">Pelunasan</option>
+                <option value="Lunas">Lunas</option>
             </select>
 
             <label>Biaya Jasa:</label>
             <div style="display: flex; margin-bottom:10px;">
-                <span style="padding:8px; border:1px solid #ccc; border-radius:5px 0 0 5px; background:#f8f9fa;">Rp</span>
+                <span style="padding:8px; border:1px solid #ccc; border-radius:0 5px 0 5px; background:#f8f9fa;">Rp</span>
                 <input type="number" name="biaya_jasa" step="0.01" required
                     style="width:100%; padding:8px; border:1px solid #ccc; border-radius:0 5px 5px 0;">
             </div>
@@ -119,7 +121,9 @@
                     <select onchange="changeColor(this); updateInvoice({{ $item->id }}, 'termin', this.value)"
                         style="padding:6px; font-weight:600; border-radius:5px;">       
                         <option value="DP" {{ $item->termin == 'DP' ? 'selected' : '' }}>DP</option>        
+                        <option value="DP 2" {{ $item->termin == 'DP 2' ? 'selected' : '' }}>DP 2</option>    
                         <option value="Pelunasan" {{ $item->termin == 'Pelunasan' ? 'selected' : '' }}>Pelunasan</option>    
+                        <option value="Lunas" {{ $item->termin == 'Lunas' ? 'selected' : '' }}>Lunas</option>    
                     </select>
                 </td>
                 <td style="padding:10px;">Rp {{ number_format($item->biaya_jasa, 2, ',', '.') }}</td>
@@ -195,18 +199,25 @@ function updateInvoice(id, field, value) {
 }
 
 function changeColor(selectEl) {
+    // Reset semua warna
+    selectEl.style.color = "#333";
+    
     if (selectEl.value === "Paid") {
         selectEl.style.color = "green";
     } else if (selectEl.value === "Unpaid") {
         selectEl.style.color = "red";
     } else if (selectEl.value === "DP") {
         selectEl.style.color = "#007BFF";
+    } else if (selectEl.value === "DP 2") {
+        selectEl.style.color = "#6f42c1"; // Ungu untuk DP 2
     } else if (selectEl.value === "Pelunasan") {
-        selectEl.style.color = "#28a745";
+        selectEl.style.color = "#28a745"; // Hijau untuk Pelunasan
+    } else if (selectEl.value === "Lunas") {
+        selectEl.style.color = "#17a2b8"; // Biru muda untuk Lunas
     }
 }
 
-// FUNGSI BARU UNTUK UPLOAD LANGSUNG
+// FUNGSI UNTUK UPLOAD FILE
 function handleFileUpload(input) {
     if (!input.files || !input.files[0]) {
         showNotification('Pilih file terlebih dahulu', 'error');
@@ -237,7 +248,7 @@ function handleFileUpload(input) {
         body: formData
     })
     .then(res => {
-        // Check if the response is OK
+        // Check if response is OK
         if (!res.ok) {
             throw new Error('Network response was not ok');
         }
@@ -246,7 +257,7 @@ function handleFileUpload(input) {
     .then(data => {
         console.log('Response data:', data); // Debugging
         
-        // Check if the response has a success property or if it has an error property
+        // Check if response has a success property or if it has an error property
         if (data.success === true || !data.error) {
             showNotification('File berhasil diupload', 'success');
             // Reload halaman setelah 1 detik untuk menampilkan perubahan
@@ -272,7 +283,7 @@ function handleFileUpload(input) {
 function showNotification(message, type) {
     // Buat elemen notifikasi
     const notification = document.createElement('div');
-    notification.className = `notification ${type}`;
+    notification.className = 'notification ' + type;
     notification.textContent = message;
     
     // Tambahkan ke body
@@ -336,6 +347,7 @@ document.addEventListener("DOMContentLoaded", () => {
     transform: translateY(-20px);
     transition: opacity 0.3s, transform 0.3s;
     z-index: 9999;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .notification.success {
