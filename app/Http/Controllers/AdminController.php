@@ -419,7 +419,16 @@ public function suratTugas()
 
     public function storeProposal(Request $request)
     {
+         $request->validate([
+        'no_ppjp' => 'required|string|max:255', // Contoh validasi
+        'judul' => 'required|string',
+        'pengaju' => 'required|string',
+        'tanggal' => 'required|date',
+        'status' => 'required|string',
+        ]);
+
         Proposal::create([
+            'no_ppjp'           => $request->no_ppjp, 
             'judul'              => $request->judul,
             'pengaju'            => $request->pengaju,
             'tanggal_pengajuan'  => $request->tanggal,

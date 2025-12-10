@@ -26,6 +26,10 @@
             <form action="{{ route('superadmin.admin.SAproposal.store') }}" method="POST">
                 @csrf
 
+                <label>No PPJP</label>
+                <input type="text" name="no_ppjp" required
+                    style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
+
                 <label>Objek Penilaian</label>
                 <input type="text" name="judul" required
                     style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
@@ -75,6 +79,7 @@
         <table style="width:100%; border-collapse: collapse; margin-top:15px;">
             <thead style="background:#007BFF; color:white;">
                 <tr>
+                    <th style="padding:10px; text-align:left;">No PPJP</th>
                     <th style="padding:10px; text-align:left;">Objek Penilaian</th>
                     <th style="padding:10px; text-align:left;">Pemberi Tugas</th>
                     <th style="padding:10px; text-align:left;">Tanggal Pengajuan</th>
@@ -88,6 +93,7 @@
             <tbody>
                 @foreach($proposal as $p)
                     <tr style="border-bottom:1px solid #ddd;">
+                        <td style="padding:10px;">{{ $p->no_ppjp ?? '-' }}</td>
                         <td style="padding:10px;">{{ $p['judul'] }}</td>
                         <td style="padding:10px;">{{ $p['pengaju'] }}</td>
                         <td style="padding:10px;">{{ $p['tanggal_pengajuan'] }}</td>
@@ -153,9 +159,6 @@
 
     </div>
 </div>
-
-
-
 
 @section('scripts')
 <script>

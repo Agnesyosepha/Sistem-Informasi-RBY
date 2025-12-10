@@ -33,13 +33,13 @@
     @endif
 </form>
 
-
     <!-- Tabel Proposal -->
     <div class="dashboard-card" style="margin-top:30px;">
         <table style="width:100%; border-collapse: collapse; margin-top:15px;">
             <thead style="background:#239BA7; color:white;">
                 <tr>
                     <th style="padding:10px; text-align:center;">No</th>
+                    <th style="padding:10px; text-align:left;">No PPJP</th>
                     <th style="padding:10px; text-align:left;">Objek Penilaian</th>
                     <th style="padding:10px; text-align:left;">Pemberi Tugas</th>
                     <th style="padding:10px; text-align:left;">Tanggal Pengajuan</th>
@@ -55,7 +55,7 @@
                     <td style="padding:10px; text-align:center;">
                         {{ $loop->iteration }}
                     </td>
-
+                    <td style="padding:10px;">{{ $p->no_ppjp ?? '-' }}</td>
                     <td style="padding:10px;">{{ $p['judul'] }}</td>
                     <td style="padding:10px;">{{ $p['pengaju'] }}</td>
                     <td style="padding:10px;">{{ $p['tanggal_pengajuan'] }}</td>

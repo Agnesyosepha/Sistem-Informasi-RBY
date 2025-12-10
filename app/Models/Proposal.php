@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Proposal extends Model
 {
     protected $fillable = [
+        'no_ppjp',
         'judul',
         'pengaju',
         'tanggal_pengajuan',
