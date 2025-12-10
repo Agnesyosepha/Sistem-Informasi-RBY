@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('termin')->default('DP'); // DP atau Pelunasan
             $table->decimal('biaya_jasa', 15, 2)->default(0); // Format untuk uang
             $table->string('bukti_dp')->nullable(); // Path ke file bukti DP
+            $table->string('bukti_dp_2')->nullable(); // Path ke file bukti DP2
             $table->string('bukti_pelunasan')->nullable();
             $table->timestamps();
         });

@@ -146,7 +146,7 @@ class FinanceController extends Controller
         ]);
     }
 
-    $field = $request->field; // bukti_dp atau bukti_pelunasan
+    $field = $request->field; // bukti_dp, bukti_dp_2, atau bukti_pelunasan
 
     // Upload file
     $path = $request->file('file')->store('invoice_files', 'public');

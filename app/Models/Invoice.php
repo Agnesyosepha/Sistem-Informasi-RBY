@@ -21,6 +21,7 @@ class Invoice extends Model
         'termin',
         'biaya_jasa',
         'bukti_dp',
+        'bukti_dp_2',
         'bukti_pelunasan'
     ];
     

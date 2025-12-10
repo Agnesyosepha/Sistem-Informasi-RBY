@@ -128,18 +128,37 @@
                 </td>
                 <td style="padding:10px;">Rp {{ number_format($item->biaya_jasa, 2, ',', '.') }}</td>
                 <td style="padding:10px;">
-                    @if($item->bukti_dp)
-                        <a href="{{ asset('storage/' . $item->bukti_dp) }}" target="_blank" 
-                           style="color:#007BFF; text-decoration:none;">
-                            <i class="fas fa-file-download"></i>
-                        </a>
-                    @else
-                        <input type="file" id="bukti_dp_{{ $item->id }}" class="file-input" accept="image/*,.pdf" 
-                               onchange="handleFileUpload(this)">
-                        <label for="bukti_dp_{{ $item->id }}" class="file-label">
-                            <i class="fas fa-upload"></i>
-                        </label>
-                    @endif
+                    <!-- Bukti DP 1 -->
+                    <div class="file-upload-container" style="margin-bottom: 5px;">
+                        @if($item->bukti_dp)
+                            <a href="{{ asset('storage/' . $item->bukti_dp) }}" target="_blank" 
+                               style="color:#007BFF; text-decoration:none; margin-right: 5px;">
+                                <i class="fas fa-file-download"></i>
+                            </a>
+                        @else
+                            <input type="file" id="bukti_dp_{{ $item->id }}" class="file-input" accept="image/*,.pdf" 
+                                   onchange="handleFileUpload(this)">
+                            <label for="bukti_dp_{{ $item->id }}" class="file-label">
+                                <i class="fas fa-upload"></i>
+                            </label>
+                        @endif
+                    </div>
+                    
+                    <!-- Bukti DP 2 -->
+                    <div class="file-upload-container">
+                        @if($item->bukti_dp_2)
+                            <a href="{{ asset('storage/' . $item->bukti_dp_2) }}" target="_blank" 
+                               style="color:#007BFF; text-decoration:none; margin-right: 5px;">
+                                <i class="fas fa-file-download"></i>
+                            </a>
+                        @else
+                            <input type="file" id="bukti_dp_2_{{ $item->id }}" class="file-input" accept="image/*,.pdf" 
+                                   onchange="handleFileUpload(this)">
+                            <label for="bukti_dp_2_{{ $item->id }}" class="file-label">
+                                <i class="fas fa-upload"></i>
+                            </label>
+                        @endif
+                    </div>
                 </td>
                 <td style="padding:10px;">
                     @if($item->bukti_pelunasan)
@@ -227,7 +246,14 @@ function handleFileUpload(input) {
     // 1. Dapatkan ID dan nama field dari ID input
     const idParts = input.id.split('_');
     const id = idParts[idParts.length - 1];
-    const field = idParts.slice(0, -1).join('_');
+    
+    // Menangani kasus khusus untuk bukti_dp_2
+    let field;
+    if (input.id.includes('bukti_dp_2')) {
+        field = 'bukti_dp_2';
+    } else {
+        field = idParts.slice(0, -1).join('_');
+    }
     
     // 2. Siapkan FormData
     const formData = new FormData();

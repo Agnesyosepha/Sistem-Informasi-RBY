@@ -87,14 +87,33 @@
                 </td>
                 <td style="padding:10px;">Rp {{ number_format($item->biaya_jasa, 2, ',', '.') }}</td>
                 <td style="padding:10px;">
-                    @if($item->bukti_dp)
-                        <a href="{{ asset('storage/' . $item->bukti_dp) }}" target="_blank" 
-                           style="color:#007BFF; text-decoration:none;">
-                            <i class="fas fa-file-download"></i>
-                        </a>
-                    @else
-                        <span style="color:#6c757d;">-</span>
-                    @endif
+                    <div class="file-container">
+                        <!-- Bukti DP 1 -->
+                        <div class="file-item">
+                            @if($item->bukti_dp)
+                                <a href="{{ asset('storage/' . $item->bukti_dp) }}" target="_blank" 
+                                   style="color:#007BFF; text-decoration:none; display: flex; align-items: center;">
+                                    <i class="fas fa-file-download"></i>
+                                    <span style="margin-left: 5px;"></span>
+                                </a>
+                            @else
+                                <span style="color:#6c757d;">-</span>
+                            @endif
+                        </div>
+                        
+                        <!-- Bukti DP 2 -->
+                        <div class="file-item">
+                            @if($item->bukti_dp_2)
+                                <a href="{{ asset('storage/' . $item->bukti_dp_2) }}" target="_blank" 
+                                   style="color:#007BFF; text-decoration:none; display: flex; align-items: center;">
+                                    <i class="fas fa-file-download"></i>
+                                    <span style="margin-left: 5px;"></span>
+                                </a>
+                            @else
+                                <span style="color:#6c757d;">-</span>
+                            @endif
+                        </div>
+                    </div>
                 </td>
                 <td style="padding:10px;">
                     @if($item->bukti_pelunasan)
@@ -149,6 +168,17 @@ table tbody tr:hover {
 
 table td {
     vertical-align: middle;
+}
+
+.file-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
 }
 
 @media (max-width: 768px) {
