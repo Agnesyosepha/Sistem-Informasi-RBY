@@ -76,8 +76,12 @@
                 <td style="padding:10px;">{{ $item->pemberi_tugas }}</td>
                 <td style="padding:10px;">{{ $item->pengguna_laporan }}</td>
                 <td style="padding:10px;">
-                    <span style="font-weight:600; 
-                        color: {{ $item->termin == 'DP' ? '#007BFF' : '#28a745' }};">
+                    <span style="font-weight:600;
+                        color:
+                            {{ $item->termin == 'DP' ? '#007BFF' :
+                            ($item->termin == 'DP 2' ? '#6f42c1' :
+                            ($item->termin == 'Pelunasan' ? '#28a745' :
+                            ($item->termin == 'Lunas' ? '#17a2b8' : 'black'))) }};">
                         {{ $item->termin }}
                     </span>
                 </td>
