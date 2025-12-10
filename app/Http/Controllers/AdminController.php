@@ -15,6 +15,8 @@ use App\Models\TugasHarianFile;
 use App\Models\Notification;
 use Illuminate\Support\Facades\Storage;
 use App\Services\NotificationService;
+use Illuminate\Support\Facades\DB;
+use DateTime;
 
 class AdminController extends Controller
 {
@@ -51,12 +53,40 @@ class AdminController extends Controller
         $openTaskId = request('task_id');
         $openTask = request('open') === 'true' ? $openTaskId : null;
 
+         $tugasHarianPerBulan = TugasHarian::select(
+                DB::raw('MONTH(tanggal_survei) as bulan'),
+                DB::raw('YEAR(tanggal_survei) as tahun'),
+                DB::raw('COUNT(*) as jumlah')
+            )
+            ->whereYear('tanggal_survei', date('Y')) // Hanya tahun ini
+            ->groupBy('bulan', 'tahun')
+            ->orderBy('bulan')
+            ->get();
+        
+        // Format data untuk grafik
+        $labels = [];
+        $data = [];
+
+         // Inisialisasi array untuk 12 bulan
+        for ($i = 1; $i <= 12; $i++) {
+            $labels[] = DateTime::createFromFormat('!m', $i)->format('F');
+            $data[] = 0; // Default 0
+        }
+        
+        // Isi data dari database
+        foreach ($tugasHarianPerBulan as $item) {
+            $index = $item->bulan - 1; // Array index dimulai dari 0
+            $data[$index] = $item->jumlah;
+        }
+
         return view('layouts.admin', compact(
             'jumlahProposal', 
             'tugasHarian', 
             'laporanFinal', 
             'jumlahTugasHarian',
-            'openTask'
+            'openTask',
+            'labels',
+            'data' 
         ));
     }
     

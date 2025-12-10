@@ -108,6 +108,21 @@
     font-size: 16px;
 }
 
+.chart-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.chart-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #333;
+}
+
 </style>
 
 <div class="layout-two-col">
@@ -176,6 +191,14 @@
 
     </div>
 
+<!-- Grafik Tugas Harian -->
+<div class="chart-container">
+    <div class="chart-title">Grafik Tugas Harian ({{ date('Y') }})</div>
+    <div style="height: 300px; position: relative;">
+        <canvas id="tugasHarianChart"></canvas>
+    </div>
+</div>
+
 </div>
 
 
@@ -238,4 +261,66 @@
     </div>
 </footer>
 
+@endsection
+
+@section('scripts')
+<!-- Tambahkan library Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize chart
+    initializeChart();
+});
+
+// Function to initialize chart
+function initializeChart() {
+    const ctx = document.getElementById('tugasHarianChart').getContext('2d');
+    
+    // Ambil data dari server
+    fetch('/api/tugas-harian-per-bulan')
+        .then(response => response.json())
+        .then(data => {
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: 'Jumlah Tugas Harian',
+                        data: data.data,
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                precision: 0
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `Jumlah: ${context.raw} tugas`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching chart data:', error);
+        });
+}
+</script>
 @endsection
