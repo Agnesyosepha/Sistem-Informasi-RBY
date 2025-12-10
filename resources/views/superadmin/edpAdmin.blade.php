@@ -16,7 +16,7 @@
         </a>
         <a href="{{ route('superadmin.edp.SAlaporanpenilaianfinal') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
-                <h3><i class="fas fa-file"></i> Laporan Penilaian</h3>
+                <h3><i class="fas fa-file"></i> Laporan Penilaian Final</h3>
                 <p><strong >Daftar laporan hasil penilaian</strong></p>
             </div>
         </a>

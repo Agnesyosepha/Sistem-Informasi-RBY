@@ -3,7 +3,7 @@
 @section('title', 'Laporan Penilaian')
 
 @section('content')
-    <h1><i class="fas fa-file-alt"></i> Laporan Penilaian-Final</h1>
+    <h1><i class="fas fa-file-alt"></i> Laporan Penilaian Final</h1>
     <p>Daftar laporan hasil penilaian yang telah selesai diproses.</p>
 
     <form method="GET" action="" class="search-container"

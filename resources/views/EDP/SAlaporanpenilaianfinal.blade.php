@@ -64,7 +64,7 @@
 
 </style>
 @section('content')
-<h1><i class="fas fa-file-alt"></i> Laporan Penilaian</h1>
+<h1><i class="fas fa-file-alt"></i> Laporan Penilaian Final</h1>
 <p>Daftar laporan hasil penilaian yang telah selesai diproses.</p>
 
 <!-- Tabel Laporan Penilaian -->
