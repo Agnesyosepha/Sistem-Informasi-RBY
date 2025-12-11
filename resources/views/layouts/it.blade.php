@@ -45,7 +45,7 @@
         </a>
         <a href="{{ route('it.tim') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card">
-                <h3><i class="fas fa-user"></i> Staff</h3>
+                <h3><i class="fas fa-user"></i> IT</h3>
                 <p><strong>1 Staff</strong></p>
             </div>
         </a>
