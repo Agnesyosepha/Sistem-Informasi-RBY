@@ -15,7 +15,7 @@
         </a>
         <a href="{{ route('finance.tim') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card" style="cursor:pointer;">
-                <h3><i class="fas fa-users"></i> Staff</h3>
+                <h3><i class="fas fa-users"></i> Finance</h3>
                 <p><strong>2 Staff</strong></p>
             </div>
         </a>
