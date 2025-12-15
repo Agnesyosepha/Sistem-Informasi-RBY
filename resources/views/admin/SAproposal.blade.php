@@ -23,7 +23,7 @@
 
             <h2 style="margin-bottom:15px;">Tambah Proposal</h2>
 
-            <form action="{{ route('superadmin.admin.SAproposal.store') }}" method="POST">
+            <form action="{{ route('superadmin.admin.SAproposal.store') }}" method="POST" id="formTambah">
                 @csrf
 
                 <label>No PPJP</label>
@@ -42,12 +42,12 @@
                 <input type="date" name="tanggal" required
                     style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
 
-                <label>Tanggal Disetujui</label>
-                <input type="date" name="tgl_disetujui"
+                <label>Tanggal Disetujui <span style="color:red;">*</span></label>
+                <input type="date" name="tgl_disetujui" required id="tgl_disetujui"
                     style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
 
-                <label>Tanggal Berakhir</label>
-                <input type="date" name="tgl_berakhir"
+                <label>Tanggal Berakhir <span style="color:red;">*</span></label>
+                <input type="date" name="tgl_berakhir" required id="tgl_berakhir"
                     style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
 
                 <label>Status</label>
@@ -209,6 +209,31 @@ function openModal(actionUrl) {
 function closeModal() {
     document.getElementById('modalHapus').style.display = 'none';
 }
+
+// Validasi form tambah proposal
+document.getElementById('formTambah').addEventListener('submit', function(e) {
+    const tglDisetujui = document.getElementById('tgl_disetujui').value;
+    const tglBerakhir = document.getElementById('tgl_berakhir').value;
+    
+    if (!tglDisetujui) {
+        e.preventDefault();
+        alert('Tanggal Disetujui harus diisi!');
+        return false;
+    }
+    
+    if (!tglBerakhir) {
+        e.preventDefault();
+        alert('Tanggal Berakhir harus diisi!');
+        return false;
+    }
+    
+    // Validasi tambahan: pastikan tanggal berakhir setelah tanggal disetujui
+    if (new Date(tglBerakhir) <= new Date(tglDisetujui)) {
+        e.preventDefault();
+        alert('Tanggal Berakhir harus setelah Tanggal Disetujui!');
+        return false;
+    }
+});
 
 </script>
 @endsection
