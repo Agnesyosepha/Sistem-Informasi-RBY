@@ -265,12 +265,14 @@
 
       <button type="submit" class="btn-login">Masuk</button>
     </form>
-
+    {{--
     <p class="register-link">
       Belum punya akun?
       <a href="{{ route('register') }}">Register</a>
     </p>
+    --}}
   </div>
+
 
   <script>
     const alertBox = document.getElementById('success-alert');

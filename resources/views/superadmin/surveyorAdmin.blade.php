@@ -9,12 +9,14 @@
 
 <div class="dashboard-cards">
      
-       <a href="{{ route('superadmin.admin.SAupdateProyek') }}" style="text-decoration:none; color:inherit;">
+        {{--
+        <a href="{{ route('superadmin.admin.SAupdateProyek') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card" style="cursor:pointer;">
                 <h3><i class="fas fa-chart-line"></i> Update Proyek</h3>
                 <p><strong>Ringkasan Semua Status Proyek</strong></p>
             </div>
         </a>
+        --}}
 
         {{-- 
         <a href="{{ route('superadmin.admin.SAlaporanpenilaianfinal') }}" style="text-decoration:none; color:inherit;">
