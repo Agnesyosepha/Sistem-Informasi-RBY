@@ -6,6 +6,7 @@
 <h1><i class="fas fa-calendar-alt"></i> Jadwal Surveyor</h1>
 <p>Kelola jadwal survei yang dibuat oleh para surveyor.</p>
 
+{{--
 <!-- Tombol Tambah Jadwal -->
 <button onclick="document.getElementById('modalTambah').style.display='block'"
     style="background:#28a745; color:white; padding:10px 18px; border:none; border-radius:6px; cursor:pointer; margin-top:20px;">
@@ -73,6 +74,8 @@
         </form>
     </div>
 </div>
+--}}
+
 
 <!-- Modal Edit -->
 <div id="modalEdit" style="
