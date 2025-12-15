@@ -178,7 +178,7 @@
                                     <span class="tahapan-number">{{ $i }}.</span>
                                     <span class="tahapan-title">{{ $data['title'] }}</span>
                                     <div class="tahapan-status">
-                                        <input type="checkbox" class="tahapan-checkbox" id="tahapan{{ $i }}-{{ $tugas->id }}" data-tahapan="{{ $i }}" {{ $hasFile ? 'checked disabled' : '' }}">
+                                        <input type="checkbox" class="tahapan-checkbox" id="tahapan{{ $i }}-{{ $tugas->id }}" data-tahapan="{{ $i }}" {{ $hasFile ? 'checked disabled' : '' }}>
                                             <label for="tahapan{{ $i }}-{{ $tugas->id }}">Selesai</label>
                                         </div>
                                 </div>
@@ -225,16 +225,23 @@
                                     <div class="file-section">
                                         <h5>File Utama:</h5>
                                         <div class="file-upload-container">
-                                            <input type="file" id="file-tahapan{{ $i }}-{{ $tugas->id }}" class="file-input" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" {{ $hasFile || $isLocked ? 'disabled' : '' }}">
-                                                <label for="file-tahapan{{ $i }}-{{ $tugas->id }}" class="file-label {{ $isLocked ? 'disabled' : '' }}" {{ $hasFile || $isLocked ? 'style="pointer-events: none; opacity: 0.6;"' : '' }}">
+                                            <input type="file" id="file-tahapan{{ $i }}-{{ $tugas->id }}" class="file-input" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" {{ $hasFile || $isLocked ? 'disabled' : '' }}>
+                                                <label for="file-tahapan{{ $i }}-{{ $tugas->id }}" class="file-label {{ $isLocked ? 'disabled' : '' }}" {{ $hasFile || $isLocked ? 'style="pointer-events: none; opacity: 0.6;"' : '' }}>
                                                     <i class="fas fa-upload"></i> Pilih File
                                                 </label>
                                                 <span class="file-name" id="file-name-tahapan{{ $i }}-{{ $tugas->id }}">
                                                     {{ $hasFile ? $file->filename : ($isLocked ? 'Tahapan Terkunci' : 'Belum ada file') }}
                                                 </span>
-                                                <button class="upload-btn" id="upload-btn-tahapan{{ $i }}-{{ $tugas->id }}" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" {{ $hasFile || $isLocked ? 'disabled' : '' }}">
+                                                <button class="upload-btn" id="upload-btn-tahapan{{ $i }}-{{ $tugas->id }}" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" {{ $hasFile || $isLocked ? 'disabled' : '' }}>
                                                     {{ $hasFile ? 'File Terupload' : ($isLocked ? 'Tahapan Terkunci' : 'Upload') }}
                                                 </button>
+                                                
+                                                <!-- Tambahkan tombol download untuk tahapan 3 -->
+                                                @if($i == 3 && $hasFile)
+                                                <a href="{{ route('admin.tugas-harian.downloadFile', $file->id) }}" class="download-btn" target="_blank">
+                                                    <i class="fas fa-download"></i>
+                                                </a>
+                                                @endif
                                             </div>
                                         </div>
                                     
@@ -243,15 +250,22 @@
                                         <h5>File Revisi:</h5>
                                         <div class="file-upload-container">
                                             <input type="file" id="file-revisi-tahapan{{ $i }}-{{ $tugas->id }}" class="file-input" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" data-revision="true" {{ $hasRevisionFile ? 'disabled' : '' }}>
-                                                <label for="file-revisi-tahapan{{ $i }}-{{ $tugas->id }}" class="file-label" {{ $hasRevisionFile ? 'style="pointer-events: none; opacity: 0.6;"' : '' }}">
+                                                <label for="file-revisi-tahapan{{ $i }}-{{ $tugas->id }}" class="file-label" {{ $hasRevisionFile ? 'style="pointer-events: none; opacity: 0.6;"' : '' }}>
                                                     <i class="fas fa-upload"></i> Pilih File Revisi
                                                 </label>
                                                 <span class="file-name" id="file-name-revisi-tahapan{{ $i }}-{{ $tugas->id }}">
                                                     {{ $hasRevisionFile ? $revisionFile->filename : 'Belum ada file revisi' }}
                                                 </span>
-                                                <button class="upload-btn" id="upload-btn-revisi-tahapan{{ $i }}-{{ $tugas->id }}" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" data-revision="true" {{ $hasRevisionFile ? 'disabled' : '' }}">
+                                                <button class="upload-btn" id="upload-btn-revisi-tahapan{{ $i }}-{{ $tugas->id }}" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" data-revision="true" {{ $hasRevisionFile ? 'disabled' : '' }}>
                                                     {{ $hasRevisionFile ? 'File Revisi Terupload' : 'Upload Revisi' }}
                                                 </button>
+                                                
+                                                <!-- Tambahkan tombol download untuk revisi tahapan 3 -->
+                                                @if($i == 3 && $hasRevisionFile)
+                                                <a href="{{ route('admin.tugas-harian.downloadFile', $revisionFile->id) }}" class="download-btn" target="_blank">
+                                                    <i class="fas fa-download"></i>
+                                                </a>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -700,6 +714,18 @@ function initializeUploadButtons(tugasId, isRevision) {
                         this.disabled = true;
                         this.textContent = 'File Terupload';
                         
+                        // Add download button for tahapan 3
+                        if (tahapanId == 3) {
+                            const downloadBtn = document.createElement('a');
+                            downloadBtn.href = data.file_url;
+                            downloadBtn.className = 'download-btn';
+                            downloadBtn.target = '_blank';
+                            downloadBtn.innerHTML = '<i class="fas fa-download"></i> Download';
+                            
+                            const container = this.parentElement;
+                            container.appendChild(downloadBtn);
+                        }
+                        
                         // Unlock next stage if exists
                         unlockNextStage(tugasId, tahapanId);
                     } else {
@@ -707,6 +733,18 @@ function initializeUploadButtons(tugasId, isRevision) {
                         fileInput.disabled = true;
                         this.disabled = true;
                         this.textContent = 'File Revisi Terupload';
+                        
+                        // Add download button for revision tahapan 3
+                        if (tahapanId == 3) {
+                            const downloadBtn = document.createElement('a');
+                            downloadBtn.href = data.file_url;
+                            downloadBtn.className = 'download-btn';
+                            downloadBtn.target = '_blank';
+                            downloadBtn.innerHTML = '<i class="fas fa-download"></i> Download Revisi';
+                            
+                            const container = this.parentElement;
+                            container.appendChild(downloadBtn);
+                        }
                     }
                     
                     showSuccess(isRevision ? 'File revisi berhasil diupload!' : 'File berhasil diupload!');
@@ -1069,6 +1107,7 @@ function showNotification(message, type) {
     display: flex;
     align-items: center;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 .file-input {
@@ -1098,6 +1137,7 @@ function showNotification(message, type) {
     flex-grow: 1;
     font-size: 14px;
     color: #666;
+    min-width: 150px;
 }
 
 .upload-btn {
