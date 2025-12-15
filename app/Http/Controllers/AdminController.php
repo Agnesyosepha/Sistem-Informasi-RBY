@@ -90,7 +90,8 @@ class AdminController extends Controller
         ));
     }
     
-    // Tugas Harian
+    
+// Tugas Harian
     public function SAtugasHarian()
     {
         $tugasHarian = TugasHarian::where('is_final_report', 0)
@@ -155,25 +156,35 @@ class AdminController extends Controller
             'file' => 'required|file|max:10240',
         ]);
 
-        $tugas = TugasHarian::findOrFail($tugasId);
-        $file = $request->file('file');
-        $isRevision = $request->input('is_revision', 0);
+    $tugas = TugasHarian::findOrFail($tugasId);
+    $file = $request->file('file');
+    $isRevision = $request->input('is_revision', 0);
+
+    // Periksa apakah file sudah ada untuk tahapan ini
+    $existingFile = TugasHarianFile::where([
+        'tugas_harian_id' => $tugasId,
+        'tahapan_id' => $tahapanId,
+        'is_revision' => $isRevision,
+    ])->first();
+
+    if ($existingFile) {
+        return response()->json([
+            'success' => false,
+            'message' => $isRevision ? 'File revisi sudah ada untuk tahapan ini!' : 'File sudah ada untuk tahapan ini!',
+        ], 422); // Unprocessable Entity
+    }
 
         // Simpan file
         $fileName = time() . '_' . $file->getClientOriginalName();
         $filePath = $file->storeAs('tugas-harian', $fileName, 'public');
 
-        TugasHarianFile::updateOrCreate(
-            [
-                'tugas_harian_id' => $tugasId,
-                'tahapan_id' => $tahapanId,
-                'is_revision' => $isRevision,
-            ],
-            [
-                'filename' => $file->getClientOriginalName(),
-                'path' => $filePath,
-            ]
-        );
+    TugasHarianFile::create([
+        'tugas_harian_id' => $tugasId,
+        'tahapan_id' => $tahapanId,
+        'is_revision' => $isRevision,
+        'filename' => $file->getClientOriginalName(),
+        'path' => $filePath,
+    ]);
 
         // Kirim notifikasi hanya jika bukan file revisi
         if (!$isRevision) {
@@ -185,20 +196,20 @@ class AdminController extends Controller
                         ->where('is_revision', 0)
                         ->count();
 
-            if ($total >= 15) {
-                $tugas->status = 'Selesai';
-                $tugas->tahapan = 'Pengiriman Dokumen';
-                $tugas->is_final_report = 1;
-                $tugas->save();
+        if ($total >= 15) {
+            $tugas->status = 'Selesai';
+            $tugas->tahapan = 'Pengiriman Dokumen';
+            $tugas->is_final_report = 1;
+            $tugas->save();
 
                 \Log::info("Tugas {$tugasId} selesai (15 tahapan lengkap).");
             }
         }
 
-        return response()->json([
-            'success' => true, 
-            'message' => $isRevision ? 'File revisi berhasil diupload!' : 'File berhasil diupload!',
-            'file_url' => Storage::url($filePath)
+    return response()->json([
+        'success' => true, 
+        'message' => $isRevision ? 'File revisi berhasil diupload!' : 'File berhasil diupload!',
+        'file_url' => Storage::url($filePath)
         ]);
     }
 

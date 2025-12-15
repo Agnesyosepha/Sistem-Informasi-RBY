@@ -319,6 +319,12 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeTaskRows();
     initializeSaveButtons();
     
+    // Initialize all tahapan items for all tasks
+    document.querySelectorAll('.tugas-row').forEach(row => {
+        const tugasId = row.getAttribute('data-id');
+        setActiveTahapan(tugasId);
+    });
+    
     // Check for URL parameters to open specific task
     checkUrlParameters();
 });
@@ -651,7 +657,10 @@ function initializeUploadButtons(tugasId, isRevision) {
             })
             .then(res => {
                 if (!res.ok) {
-                    throw new Error('Server response was not ok');
+                    // If server returns error status, parse the error message
+                    return res.json().then(data => {
+                        throw new Error(data.message || 'Server response was not ok');
+                    });
                 }
                 return res.json();
             })
@@ -701,8 +710,6 @@ function initializeUploadButtons(tugasId, isRevision) {
                     }
                     
                     showSuccess(isRevision ? 'File revisi berhasil diupload!' : 'File berhasil diupload!');
-                } else {
-                    showError(data.message || 'Gagal mengupload file!');
                 }
             })
             .catch(err => {
@@ -711,7 +718,7 @@ function initializeUploadButtons(tugasId, isRevision) {
                 this.disabled = false;
                 
                 console.error(err);
-                showError('Terjadi kesalahan saat mengupload file!');
+                showError(err.message || 'Terjadi kesalahan saat mengupload file!');
             });
         });
     });
