@@ -20,12 +20,14 @@
                 <p><strong >Daftar laporan hasil penilaian</strong></p>
             </div>
         </a>
+        {{--
         <a href="" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card" style="cursor:pointer;">
                 <h3><i class="fas fa-file-archive"></i> Dokumen Final</h3>
                 <p><strong>Lihat Dokumen</strong></p>
             </div>
         </a>
+        --}}
         <a href="{{ route('superadmin.edp.SAlogEDP') }}" style="text-decoration:none; color:inherit;">
             <div class="dashboard-card" style="cursor:pointer;">
                 <h3><i class="fas fa-history"></i> Log Aktivitas</h3>
