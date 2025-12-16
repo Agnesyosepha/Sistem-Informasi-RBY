@@ -25,7 +25,7 @@
         .header {
             position: fixed; top: 0; left: 0;
             width: 100%; height: 80px;
-            background-color: #898AC4;
+            background-color: #008DDA;
             color: #fff;
             display: flex; align-items: center;
             padding: 0 20px; box-sizing: border-box;
@@ -63,7 +63,7 @@
         .sidebar {
             position: fixed; top: 80px; left: 0;
             width: 250px; height: calc(100% - 80px);
-            background: linear-gradient(180deg, #898AC4, #0C2B4E);
+            background: linear-gradient(180deg, #008DDA, #41C9E2);
             padding-top: 20px; transition: 0.3s;
             z-index: 999; box-shadow: 2px 0 8px rgba(0,0,0,0.3);
             overflow-x: hidden;
