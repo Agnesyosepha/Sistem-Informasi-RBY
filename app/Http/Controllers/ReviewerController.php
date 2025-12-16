@@ -83,7 +83,7 @@ class ReviewerController extends Controller
                 ->orWhere('reviewer', 'like', "%$search%")
                 ->orWhere('status', 'like', "%$search%");
         })
-            ->orderBy('tanggal', 'desc')
+            ->orderBy('id', 'desc')
             ->get();
 
         return view('reviewer.dokumenRevisi', compact('dokumenRevisi'));
@@ -154,7 +154,7 @@ class ReviewerController extends Controller
         ->when($bulan, function ($query) use ($bulan) {
             $query->whereMonth('tanggal', $bulan);
         })
-        ->orderBy('tanggal', 'desc')
+        ->orderBy('id', 'desc')
         ->get();
 
     return view('reviewer.dokumenFinal', compact('dokumenFinal'));

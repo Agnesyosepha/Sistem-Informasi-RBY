@@ -65,7 +65,7 @@ class EdpController extends Controller
         ->when($bulan, function ($query) use ($bulan) {
             $query->whereMonth('tanggal', $bulan);
         })
-        ->orderBy('tanggal', 'desc')
+        ->orderBy('id', 'desc')
         ->get();
 
     return view('EDP.dataAktif', compact('dataAktif'));
@@ -239,7 +239,7 @@ class EdpController extends Controller
 
     
 
-// Laporan Penilaian
+// Laporan Penilaian Final
     public function laporanPenilaianUser()
     {
     $search = request('search');
@@ -267,7 +267,7 @@ class EdpController extends Controller
             $query->whereMonth('tanggal', $bulan);
         })
 
-        ->orderBy('tanggal', 'desc')
+        ->orderBy('id', 'desc')
         ->get();
 
     return view('EDP.laporanPenilaian', compact('laporanPenilaian'));
