@@ -184,7 +184,7 @@
                                 </div>
                                 <div class="tahapan-details" style="{{ $hasFile ? 'display: block;' : '' }}">
                                     @if($i == 1)
-                                        <p><strong>Catatan:</strong> Upload dengan penamaan yang benar</p>
+                                        <p><strong>Catatan:</strong> Upload dokumen sertifikat</p>
                                     @elseif($i == 2)
                                         <p><strong>Catatan:</strong> Upload bukti DP Invoice</p>
                                     @elseif($i == 3)
@@ -194,15 +194,15 @@
                                     @elseif($i == 5)
                                         <p><strong>Catatan:</strong> Upload working paper dalam Excel</p>
                                     @elseif($i == 6)
-                                        <p><strong>Catatan:</strong> Upload dengan penamaan yang benar</p>
+                                        <p><strong>Catatan:</strong> Upload dokumen Excel yang dedang di review</p>
                                     @elseif($i == 7)
-                                        <p><strong>Catatan:</strong> Upload dengan penamaan yang benar</p>
+                                        <p><strong>Catatan:</strong> Upload dokumen Resume yang sudah di approve</p>
                                     @elseif($i == 8)
-                                        <p><strong>Catatan:</strong> Upload cover laporan</p>
+                                        <p><strong>Catatan:</strong> Upload dokumen laporan PDF yang sudah di approve oleh Reviewer</p>
                                     @elseif($i == 9)
                                         <p><strong>Catatan:</strong> Upload bukti screenshoot final dari debitur (chat/email)</p>
                                     @elseif($i == 10)
-                                        <p><strong>Catatan:</strong> Upload dengan penamaan yang benar</p>
+                                        <p><strong>Catatan:</strong> Upload dokumen Word LPA</p>
                                     @elseif($i == 11)
                                         <p><strong>Catatan:</strong> Upload dokumen review approval dari review nilai</p>
                                     @elseif($i == 12)

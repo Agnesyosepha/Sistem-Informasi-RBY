@@ -128,15 +128,15 @@
     <table style="width:100%; border-collapse: collapse; margin-top:15px;">
         <thead style="background:#007BFF; color:white;">
             <tr>
-                <th style="padding:10px;">Tanggal</th>
-                <th style="padding:10px;">Maksud & Tujuan</th>
-                <th style="padding:10px;">Pemberi Tugas</th>
-                <th style="padding:10px;">Pengguna</th>
-                <th style="padding:10px;">Surveyor</th>
-                <th style="padding:10px;">Lokasi</th>
-                <th style="padding:10px;">Objek</th>
-                <th style="padding:10px;">Status</th>
-                <th style="padding:10px;">Aksi</th>
+                <th style="padding:10px; text-align:left;">Tanggal</th>
+                <th style="padding:10px; text-align:left;">Maksud & Tujuan</th>
+                <th style="padding:10px; text-align:left;">Pemberi Tugas</th>
+                <th style="padding:10px; text-align:left;">Pengguna</th>
+                <th style="padding:10px; text-align:left;">Surveyor</th>
+                <th style="padding:10px; text-align:left;">Lokasi</th>
+                <th style="padding:10px; text-align:left;">Objek</th>
+                <th style="padding:10px; text-align:left;">Status</th>
+                <th style="padding:10px; text-align:left;">Aksi</th>
             </tr>
         </thead>
 
