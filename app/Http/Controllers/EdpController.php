@@ -189,7 +189,7 @@ class EdpController extends Controller
 // Log Aktivitas
     public function index()
     {
-        $logAktivitas = LogEDP::all();
+        $logAktivitas = LogEDP::orderBy('tanggal', 'desc')->get();
         return view('layouts.edp', compact('logAktivitas'));
     }
 
