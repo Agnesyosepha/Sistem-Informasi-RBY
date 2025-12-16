@@ -16,7 +16,7 @@ class SurveyorController extends Controller
 
     public function dashboard()
     {
-        $jadwal = JadwalSurveyor::where('status', 'Survey')->orderBy('tanggal_survey', 'asc')->get();
+        $jadwal = JadwalSurveyor::where('status', 'Survey')->orderBy('tanggal_survey', 'desc')->get();
         return view('layouts.surveyor', compact('jadwal'));
     }
 
@@ -44,7 +44,7 @@ class SurveyorController extends Controller
 // Jadwal Surveyor di Superadmin
     public function jadwalAdmin()
     {
-        $jadwal = JadwalSurveyor::orderBy('tanggal_survey', 'asc')->get();
+        $jadwal = JadwalSurveyor::orderBy('tanggal_survey', 'desc')->get();
         return view('surveyor.SAjadwalsurveyor', compact('jadwal'));
     }
 
