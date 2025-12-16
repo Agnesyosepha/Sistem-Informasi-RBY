@@ -10,6 +10,8 @@ use App\Models\ProyekPending;
 use App\Models\LaporanPenilaian;
 use App\Models\JadwalSurveyor;
 use App\Models\LaporanJadwal;
+use Illuminate\Support\Facades\Auth;
+
 
 class SurveyorController extends Controller
 {
@@ -44,6 +46,13 @@ class SurveyorController extends Controller
 // Jadwal Surveyor di Superadmin
     public function jadwalAdmin()
     {
+        $user = Auth::user();
+
+        // 🔒 proteksi username
+        if (!in_array($user->username, ['administrator', 'superadmin'])) {
+            abort(403, 'Anda tidak memiliki akses ke halaman ini.');
+        }
+
         $jadwal = JadwalSurveyor::orderBy('tanggal_survey', 'desc')->get();
         return view('surveyor.SAjadwalsurveyor', compact('jadwal'));
     }

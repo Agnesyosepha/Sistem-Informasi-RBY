@@ -13,7 +13,6 @@ use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\NotificationController;
 
-
 // Login
 Route::get('/login', function () {
     return view('auth.login');
@@ -465,6 +464,19 @@ Route::middleware(['auth', 'division:Reviewer,Surveyor,EDP'])->group(function ()
         ->name('reviewer.dokumenFinal');
 });
 
+//SURVEYOR
+Route::get('/superadmin/surveyor', function () {
+
+    $user = Auth::user();
+
+    // 🔒 langsung blok dari sidebar
+    if (!in_array($user->username, ['administrator', 'superadmin'])) {
+        abort(403, 'Anda tidak memiliki akses ke halaman ini.');
+    }
+
+    return view('superadmin.surveyorAdmin');
+
+})->name('superadmin.surveyor')->middleware('auth');
 
 // FINANCE
 Route::middleware(['auth', 'division:Finance'])->group(function () {
