@@ -132,12 +132,14 @@
         <div class="left-content">
 
             <div class="title-accent"></div>
-            <h2 style="font-weight:800; margin-bottom:8px;">WELCOME TO</h2>
-            <h3 style="font-size:26px; font-weight:700; margin-bottom:18px;">
+            <h2 style="font-weight:800; margin-bottom:8px;">
+                WELCOME TO
+            </h2>
+            <h3 style="font-size:28px; font-weight:700; margin-bottom:18px; font-family: 'Playfair Display', serif;">
                 KJPP RUDDY BARUS YENNY DAN REKAN
             </h3>
 
-            <div class="info-list" style="margin-bottom:20px;">
+            <div class="info-list" style="margin-bottom:20px; font-family: 'Source Code Pro', monospace;">
                 <p>📌 NIKJPP : 2.17.0144</p>
                 <p>📌 No. KMK : 728/KM.1/2022</p>
                 <p>📌 STTD OJK : STTD-PP-212/PM.223/2022</p>
@@ -146,8 +148,10 @@
 
             <hr class="section-divider">
 
-            <h3 style="font-size:22px; font-weight:700; margin-bottom:12px;">Informasi Umum</h3>
-            <p style="line-height:1.75; color:#4b5563; font-size:15px;">
+            <h3 style="font-size:22px; font-weight:700; margin-bottom:12px;">
+                Informasi Umum
+            </h3>
+            <p style="line-height:1.75; color:#4b5563; font-size:15px; font-family: 'Great Vibes', cursive;">
                 Sistem ini dirancang untuk mendukung proses kerja tim KJPP RBY dalam pengelolaan data, 
                 dokumen, dan pelaporan secara lebih efisien. Gunakan menu yang tersedia untuk menjalankan 
                 tugas administrasi dan operasional harian.
@@ -158,9 +162,9 @@
 
     <!-- RIGHT CONTENT -->
     <div class="right-box">
-    <h3 style="font-weight:700; margin-bottom:18px;">Tugas Harian</h3>
+    <h3 style="font-weight:700; font-size:22px; margin-bottom:18px; font-family: 'Pacifico', cursive;">Tugas Harian</h3>
 
-    <div style="display:flex; flex-direction:column; gap:14px;">
+    <div style="display:flex; flex-direction:column; gap:14px; font-family: 'Dancing Script', cursive; font-size:26px; font-weight:600;">
         <a href="{{ route('admin') }}" class="tugas-card">
             <div class="tugas-card-icon">👨‍💼</div>
             <div class="tugas-card-title">Admin</div>
@@ -172,7 +176,7 @@
         </a>
 
         <a href="{{ route('edp') }}" class="tugas-card">
-            <div class="tugas-card-icon">💾</div>
+            <div class="tugas-card-icon">📊</div>
             <div class="tugas-card-title">EDP</div>
         </a>
 
@@ -183,7 +187,7 @@
 
         <a href="{{ route('it') }}" class="tugas-card">
             <div class="tugas-card-icon">🖥️</div>
-            <div class="tugas-card-title">IT Department</div>
+            <div class="tugas-card-title">IT Dept.</div>
         </a>
 
     </div>
