@@ -35,7 +35,8 @@
         </a>
 
     </div>
-
+    
+{{--
     <!-- Tabel -->
     <div class="dashboard-card" style="margin-top:30px;">
         <h3><i class="fas fa-history"></i> Log Aktivitas</h3>
@@ -71,4 +72,6 @@
 
         </table>
     </div>
+--}}
+
 @endsection
