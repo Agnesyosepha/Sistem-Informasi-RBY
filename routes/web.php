@@ -489,7 +489,8 @@ Route::middleware(['auth', 'division:Finance'])->group(function () {
 });
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-
+Route::post('/profile/photo', [ProfileController::class, 'updatePhoto'])
+    ->name('profile.photo');
 
 Route::put('/superadmin/edp/data-aktif/update-status/{id}', 
     [EDPController::class, 'updateStatus']

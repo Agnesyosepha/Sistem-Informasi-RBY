@@ -737,14 +737,37 @@
         <!-- Left -->
         <div class="profile-left">
             <div class="profile-photo upgraded-photo">
-                <i class="fas fa-user"></i>
+                @if($user->photo)
+                    <img 
+                        src="{{ asset('storage/'.$user->photo) }}"
+                        alt="Foto Profil"
+                        style="width:100%; height:100%; border-radius:50%; object-fit:cover"
+                    >
+                @else
+                    <i class="fas fa-user"></i>
+                @endif
             </div>
 
             <h3 class="name-title">{{ $user->nama }}</h3>
 
             <p class="email-text">{{ $user->email }}</p>
 
-            <button class="edit-btn upgrade-edit">Edit Profil</button>
+            <button type="button" 
+                    class="edit-btn upgrade-edit" 
+                    id="editPhotoBtn">
+                Edit Profil
+            </button>
+            <form id="photoForm" 
+                action="{{ route('profile.photo') }}" 
+                method="POST" 
+                enctype="multipart/form-data"
+                style="display:none;">
+                @csrf
+                <input type="file" 
+                    name="photo" 
+                    id="photoInput" 
+                    accept="image/*">
+            </form>
         </div>
 
         <!-- Right -->
@@ -810,50 +833,61 @@
     </form>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.getElementById('menu-toggle');
-            const sidebar = document.getElementById('sidebar');
+    document.addEventListener('DOMContentLoaded', function () {
 
-            menuToggle.addEventListener('click', function() {
-                // Jika layar kecil (mobile)
-                if (window.innerWidth <= 768) {
-                    sidebar.classList.toggle('open');   // gunakan .open untuk mobile
-                } else {
-                    sidebar.classList.toggle('collapsed');  // gunakan .collapsed untuk desktop
-                }
-            });
+        // ===== SIDEBAR =====
+        const menuToggle = document.getElementById('menu-toggle');
+        const sidebar = document.getElementById('sidebar');
 
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 768) {
-                    sidebar.classList.remove('open'); 
-                }
-            });
-
-
-            // Modal Logout
-            const logoutBtn = document.getElementById('logoutBtn');
-            const logoutModal = document.getElementById('logoutModal');
-            const cancelLogout = document.getElementById('cancelLogout');
-            const confirmLogout = document.getElementById('confirmLogout');
-            const logoutForm = document.getElementById('logoutForm');
-            const closeLogout = document.getElementById('closeLogout');
-
-            logoutBtn.addEventListener('click', () => {
-                logoutModal.style.display = 'flex';
-            });
-
-            cancelLogout.addEventListener('click', () => {
-                logoutModal.style.display = 'none';
-            });
-
-            confirmLogout.addEventListener('click', () => {
-                logoutForm.submit();
-            });
-
-            closeLogout.addEventListener('click', () => {
-                logoutModal.style.display = 'none';
-            });
+        menuToggle.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                sidebar.classList.toggle('open');
+            } else {
+                sidebar.classList.toggle('collapsed');
+            }
         });
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        // ===== LOGOUT MODAL =====
+        const logoutBtn = document.getElementById('logoutBtn');
+        const logoutModal = document.getElementById('logoutModal');
+        const cancelLogout = document.getElementById('cancelLogout');
+        const confirmLogout = document.getElementById('confirmLogout');
+        const logoutForm = document.getElementById('logoutForm');
+
+        logoutBtn.addEventListener('click', () => {
+            logoutModal.style.display = 'flex';
+        });
+
+        cancelLogout.addEventListener('click', () => {
+            logoutModal.style.display = 'none';
+        });
+
+        confirmLogout.addEventListener('click', () => {
+            logoutForm.submit();
+        });
+
+        // ===== EDIT FOTO PROFIL =====
+        const editBtn = document.getElementById('editPhotoBtn');
+        const photoInput = document.getElementById('photoInput');
+        const photoForm = document.getElementById('photoForm');
+
+        editBtn.addEventListener('click', function () {
+            photoInput.click();
+        });
+
+        photoInput.addEventListener('change', function () {
+            if (this.files.length > 0) {
+                photoForm.submit();
+            }
+        });
+
+    });
     </script>
 
 </body>
