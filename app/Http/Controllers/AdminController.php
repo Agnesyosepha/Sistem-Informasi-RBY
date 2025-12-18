@@ -391,6 +391,28 @@ public function suratTugas()
         }
     }
 
+    public function destroySuratTugas($id)
+    {
+    $suratTugas = SuratTugas::find($id);
+    
+    if (!$suratTugas) {
+        return response()->json(['success' => false, 'message' => 'Surat Tugas tidak ditemukan!'], 404);
+    }
+    
+    // Hapus juga data terkait di jadwal_surveyors jika ada
+    $jadwalSurveyor = \App\Models\JadwalSurveyor::where('surat_tugas_id', $id)->first();
+    if ($jadwalSurveyor) {
+        $jadwalSurveyor->delete();
+    }
+    
+    // Hapus notifikasi terkait jika ada
+    \App\Models\Notification::where('surat_tugas_id', $id)->delete();
+    
+    $suratTugas->delete();
+    
+    return redirect()->back()->with('success', 'Surat Tugas berhasil dihapus!');
+    }
+
 // Daftar Proposal
     public function proposal()
     {
@@ -675,7 +697,7 @@ public function storeAdendum(Request $request)
     $laporan = $query->orderBy('id', 'desc')->get();
     
     return view('admin.draftLaporan', compact('laporan', 'totalLaporan'));
-}
+    }
 
     public function SAdraftLaporan()
     {
@@ -768,8 +790,9 @@ public function storeAdendum(Request $request)
 
         return redirect()->back()->with('success', 'Data laporan final berhasil ditambahkan!');
     }
+
     public function updateLaporanFinal(Request $request, $id)
-{
+    {
     $laporan = \App\Models\LaporanFinal::findOrFail($id);
 
     $field = $request->field;
@@ -785,7 +808,7 @@ public function storeAdendum(Request $request)
     $laporan->save();
 
     return response()->json(['success' => true]);
-}
+    }
 
     // Anggota Admin
     public function tim()
