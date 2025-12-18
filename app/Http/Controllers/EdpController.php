@@ -187,10 +187,35 @@ class EdpController extends Controller
     }
 
 // Log Aktivitas
-    public function index()
+    public function index(Request $request) // Tambahkan Request $request
     {
+        // Ambil data log aktivitas (kode asli Anda)
         $logAktivitas = LogEDP::orderBy('tanggal', 'desc')->get();
-        return view('layouts.edp', compact('logAktivitas'));
+
+        // --- TAMBAHKAN KODE INI ---
+        // Ambil data Data Aktif dengan filter, sama seperti di method dataAktif()
+        $search = $request->search;
+        $bulan = $request->bulan;
+
+        $dataAktif = DataAktif::when($search, function ($query) use ($search) {
+                $query->where('tanggal', 'like', "%$search%")
+                    ->orWhere('jenis', 'like', "%$search%")
+                    ->orWhere('pemberi', 'like', "%$search%")
+                    ->orWhere('pengguna', 'like', "%$search%")
+                    ->orWhere('surveyor', 'like', "%$search%")
+                    ->orWhere('lokasi', 'like', "%$search%")
+                    ->orWhere('objek', 'like', "%$search%")
+                    ->orWhere('status_progres', 'like', "%$search%");
+            })
+            ->when($bulan, function ($query) use ($bulan) {
+                $query->whereMonth('tanggal', $bulan);
+            })
+            ->orderBy('id', 'desc')
+            ->get();
+        // --- AKHIR KODE TAMBAHAN ---
+
+        // Kirim kedua data (logAktivitas dan dataAktif) ke view
+        return view('layouts.edp', compact('logAktivitas', 'dataAktif'));
     }
 
     public function SAlogEDP()
