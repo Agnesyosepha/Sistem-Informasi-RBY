@@ -1,4 +1,3 @@
-<!-- resources/views/admin.SAsuratTugas.blade.php -->
 @extends('superadmin.app2')
 
 @section('title', 'Surat Tugas')
@@ -59,7 +58,9 @@
                         </option>
 
                         @foreach($tim as $t)
-                            <option value="{{ $t->nama }}">{{ $t->nama }}</option>
+                            @if(!empty($t->nama) && trim($t->nama) !== '')
+                                <option value="{{ $t->nama }}">{{ $t->nama }}</option>
+                            @endif
                         @endforeach
                     </select>
                 @endfor
