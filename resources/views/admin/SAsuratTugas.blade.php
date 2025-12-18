@@ -130,7 +130,7 @@
                             </select>
                         </td>
                         <td style="padding:10px; text-align:center;">
-                            <button onclick="showDeleteModal({{ $st->id }}, '{{ $st->no_ppjp }}')" 
+                            <button onclick="showDeleteModal({{ $st->id }})" 
                                     style="background:#dc3545; color:white; padding:6px 12px; border:none; border-radius:4px; cursor:pointer;">
                                 <i class="fas fa-trash"></i>
                             </button>
@@ -151,7 +151,7 @@
             box-shadow:0 4px 12px rgba(0,0,0,0.2);">
 
             <h2 style="margin-bottom:15px;">Konfirmasi Hapus</h2>
-            <p>Apakah Anda yakin ingin menghapus Surat Tugas dengan Nomor PPJP <strong id="noPPJP"></strong>?</p>
+            <p>Apakah Anda yakin ingin menghapus Surat Tugas ini?</p>
             <p style="color:red;">Tindakan ini tidak dapat dibatalkan!</p>
 
             <form id="formHapus" method="POST">
@@ -228,8 +228,7 @@ function updateStatus(id, selectElement) {
 }
 
 // Fungsi untuk menampilkan modal hapus
-function showDeleteModal(id, noPPJP) {
-    document.getElementById('noPPJP').textContent = noPPJP;
+function showDeleteModal(id) {
     document.getElementById('formHapus').action = `/superadmin/admin/surat-tugas/${id}`;
     document.getElementById('modalHapus').style.display = 'block';
 }

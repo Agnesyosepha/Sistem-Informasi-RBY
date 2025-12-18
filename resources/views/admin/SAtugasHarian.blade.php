@@ -127,13 +127,13 @@
     background:rgba(0,0,0,0.5); padding-top:60px;">
     
     <div style="background:white; margin:auto; padding:20px;
-        border-radius:10px; width:30%; text-align:center;
+        border-radius:10px; width:30%;
         box-shadow:0 4px 12px rgba(0,0,0,0.3);">
         
         <h3 style="margin-bottom:15px;">Konfirmasi Hapus</h3>
-        <p>Apakah kamu yakin ingin menghapus proposal ini?</p>
+        <p>Apakah kamu yakin ingin menghapus Tugas Harian ini?</p>
 
-        <form id="formHapus" method="POST" style="display:flex; gap:10px; justify-content:center; margin-top:15px;">
+        <form id="formHapus" method="POST" style="display:flex; gap:10px; margin-top:15px;">
         @csrf
         @method('DELETE')
 

@@ -27,15 +27,15 @@
             @csrf
 
             <label>Nomor Adendum</label>
-            <input type="text" name="nomor" required
+            <input type="text" name="nomor" required 
                 style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
 
             <label>Nama Proyek</label>
-            <input type="text" name="proyek" required
+            <input type="text" name="proyek" required 
                 style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
 
             <label>Tanggal</label>
-            <input type="date" name="tanggal" required
+            <input type="date" name="tanggal" required 
                 style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
 
             <label>Deskripsi</label>
@@ -43,7 +43,7 @@
                 style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;"></textarea>
 
             <label>Status</label>
-            <select name="status"
+            <select name="status" required
                 style="width:100%; padding:8px; margin-bottom:15px; border:1px solid #ccc; border-radius:5px;">
                 <option value="Disetujui">Disetujui</option>
                 <option value="Menunggu Persetujuan">Menunggu Persetujuan</option>
@@ -87,19 +87,19 @@
                     <td style="padding:10px;">{{ $a->tanggal }}</td>
                     <td style="padding:10px;">{{ $a->deskripsi }}</td>
                     <td style="padding:10px; font-weight:bold; text-align:center;">
-                      <select 
-                        onchange="updateStatus({{ $a->id }}, this)" 
-                        style="padding:6px; border-radius:5px; border:1px solid #ccc; font-weight:600;"
-                        class="status-select"
-                        data-status="{{ $a->status }}">
-                        <option value="Menunggu Persetujuan" {{ $a->status == 'Menunggu Persetujuan' ? 'selected' : '' }}>Menunggu Persetujuan</option>
-                        <option value="Disetujui" {{ $a->status == 'Disetujui' ? 'selected' : '' }}>Disetujui</option>
-                        <option value="Direvisi" {{ $a->status == 'Direvisi' ? 'selected' : '' }}>Direvisi</option>
-                        <option value="Proses" {{ $a->status == 'Proses' ? 'selected' : '' }}>Proses</option>
-                      </select>
+                        <select 
+                            onchange="updateStatus({{ $a->id }}, this)" 
+                            style="padding:6px; border-radius:5px; border:1px solid #ccc; font-weight:600;"
+                            class="status-select"
+                            data-status="{{ $a->status }}">
+                            <option value="Menunggu Persetujuan" {{ $a->status == 'Menunggu Persetujuan' ? 'selected' : '' }}>Menunggu Persetujuan</option>
+                            <option value="Disetujui" {{ $a->status == 'Disetujui' ? 'selected' : '' }}>Disetujui</option>
+                            <option value="Direvisi" {{ $a->status == 'Direvisi' ? 'selected' : '' }}>Direvisi</option>
+                            <option value="Proses" {{ $a->status == 'Proses' ? 'selected' : '' }}>Proses</option>
+                        </select>
                     </td>
                     <td style="padding:10px; text-align:center;">
-                        <button onclick="showDeleteModal({{ $a->id }}, '{{ $a->nomor }}')" 
+                        <button onclick="showDeleteModal({{ $a->id }})" 
                                 style="background:#dc3545; color:white; padding:6px 12px; border:none; border-radius:4px; cursor:pointer;">
                             <i class="fas fa-trash"></i> Hapus
                         </button>
@@ -120,7 +120,7 @@
         box-shadow:0 4px 12px rgba(0,0,0,0.2);">
 
         <h2 style="margin-bottom:15px;">Konfirmasi Hapus</h2>
-        <p>Apakah Anda yakin ingin menghapus adendum <strong id="namaAdendum"></strong>?</p>
+        <p>Apakah Anda yakin ingin menghapus Adendum ini?</p>
         <p style="color:red;">Tindakan ini tidak dapat dibatalkan!</p>
 
         <form id="formHapus" method="POST">
@@ -189,8 +189,7 @@ function updateStatus(id, selectElement) {
 }
 
 // Fungsi untuk menampilkan modal hapus
-function showDeleteModal(id, nomor) {
-    document.getElementById('namaAdendum').textContent = nomor;
+function showDeleteModal(id) {
     document.getElementById('formHapus').action = `/superadmin/admin/superadmin-adendum/${id}`;
     document.getElementById('modalHapus').style.display = 'block';
 }
