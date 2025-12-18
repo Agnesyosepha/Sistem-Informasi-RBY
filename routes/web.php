@@ -139,7 +139,7 @@ Route::delete('/superadmin/edp/laporan-penilaian/{id}', [EdpController::class, '
 Route::put('/superadmin/edp/laporan-penilaian/update-status/{id}', [EdpController::class, 'updateStatusLaporanPenilaian'])->name('superadmin.edp.updateStatusLaporanPenilaian');
 
 Route::post('/laporan-penilaian/upload/{id}', [EdpController::class, 'uploadSoftcopy'])->name('laporan.upload');
-
+Route::delete('/superadmin/edp/data-aktif/{id}', [\App\Http\Controllers\EdpController::class, 'destroyDataAktif'])->name('superadmin.edp.destroyDataAktif');
 // Reviewer di Superadmin
 
 Route::get('/superadmin/reviewer', function () {

@@ -36,6 +36,22 @@
     border-radius:6px; 
     cursor:pointer;
 }
+.btn-icon {
+    border: none;
+    padding: 8px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 0 3px;
+    font-size: 14px;
+}
+.btn-edit {
+    background: #17a2b8;
+    color: white;
+}
+.btn-delete {
+    background: #dc3545;
+    color: white;
+}
 </style>
 
 {{-- ================================
@@ -88,6 +104,30 @@
     </div>
 </div>
 
+{{-- ================================
+    MODAL KONFIRMASI HAPUS
+================================ --}}
+<div id="modalHapus"
+    style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%;
+           background:rgba(0,0,0,0.5); padding-top:60px;">
+
+    <div style="background:white; margin:auto; padding:20px; border-radius:10px;
+                width:30%; max-height:60vh; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+
+        <h2 style="margin-bottom:15px;">Konfirmasi Hapus</h2>
+        <p>Apakah Anda yakin ingin menghapus data ini?</p>
+
+        <form id="formHapus" method="POST">
+            @csrf
+            @method('DELETE')
+            
+            <button type="submit" class="btn-danger">Hapus</button>
+            <button type="button"
+                onclick="document.getElementById('modalHapus').style.display='none'"
+                class="btn-primary" style="margin-left:10px;">Batal</button>
+        </form>
+    </div>
+</div>
 
 {{-- ================================
     MODAL EDIT STATUS
@@ -119,7 +159,6 @@
         </form>
     </div>
 </div>
-
 
 {{-- ================================
     TABEL DATA AKTIF
@@ -163,8 +202,13 @@
                 <!-- Aksi paling kanan -->
                 <td style="padding:10px;">
                     <button onclick="openEditStatusModal('{{ $data->id }}', '{{ $data->status_progres }}')"
-                        style="background:#17a2b8; color:white; border:none; padding:6px 12px; border-radius:6px; cursor:pointer;">
-                        Edit
+                        class="btn-icon btn-edit" title="Edit Status">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    
+                    <button onclick="openDeleteModal('{{ $data->id }}')"
+                        class="btn-icon btn-delete" title="Hapus Data">
+                        <i class="fas fa-trash"></i>
                     </button>
                 </td>
 
@@ -182,6 +226,11 @@ function openEditStatusModal(id, currentStatus) {
         "/superadmin/edp/data-aktif/update-status/" + id;
 
     document.getElementById('edit_status_progres').value = currentStatus;
+}
+
+function openDeleteModal(id) {
+    document.getElementById('modalHapus').style.display = 'block';
+    document.getElementById('formHapus').action = "/superadmin/edp/data-aktif/" + id;
 }
 </script>
 

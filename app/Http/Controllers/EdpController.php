@@ -431,6 +431,13 @@ public function uploadSoftcopy(Request $request, $id)
 
         return back()->with('success', 'File berhasil diupload.');
     }
+    public function destroyDataAktif($id)
+    {
+        $data = DataAktif::findOrFail($id);
+        $data->delete();
+        
+        return redirect()->back()->with('success', 'Data berhasil dihapus!');
+    }
 
 
 }
