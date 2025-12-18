@@ -279,10 +279,11 @@
                             <strong>Tahapan Saat Ini:</strong> 
                             <span id="current-tahapan-{{ $tugas->id }}">{{ $tugas->tahapan ?? 'Belum ditentukan' }}</span>
                         </div>
-                        
+                        {{--
                         <div class="tahapan-actions">
                             <button class="btn-save-tahapan" data-id="{{ $tugas->id }}">Simpan Progress</button>
                         </div>
+                        --}}
                     </div>
                 </td>
             </tr>
@@ -591,6 +592,7 @@ function initializeEventListeners(tugasId) {
 }
 
 // Function to initialize upload buttons
+// Fungsi initializeUploadButtons yang diperbarui
 function initializeUploadButtons(tugasId, isRevision) {
     const selector = isRevision 
         ? `#tahapan-${tugasId} .upload-btn[data-revision="true"]` 
@@ -668,9 +670,12 @@ function initializeUploadButtons(tugasId, isRevision) {
                             checkbox.disabled = true;
                         }
                         
-                        // Update current tahapan
+                        // Update current tahapan to next stage
                         if (currentTahapanSpan && tahapanItem) {
-                            currentTahapanSpan.textContent = tahapanItem.getAttribute('data-value');
+                            // Get next stage value
+                            const nextStageId = tahapanId + 1;
+                            const nextStageValue = nextStageId <= 15 ? tahapanData[nextStageId] : 'Selesai';
+                            currentTahapanSpan.textContent = nextStageValue;
                             
                             // Remove active class from all items
                             document.querySelectorAll(`#tahapan-${tugasId} .tahapan-item`).forEach(item => {
@@ -679,6 +684,9 @@ function initializeUploadButtons(tugasId, isRevision) {
                             
                             // Add active class to selected item
                             tahapanItem.classList.add('active');
+                            
+                            // Save progress automatically
+                            saveProgressAutomatically(tugasId, nextStageValue);
                         }
                         
                         // Disable file input and upload button
@@ -731,6 +739,49 @@ function initializeUploadButtons(tugasId, isRevision) {
                 showError(err.message || 'Terjadi kesalahan saat mengupload file!');
             });
         });
+    });
+}
+
+// Fungsi baru untuk menyimpan progress secara otomatis
+function saveProgressAutomatically(tugasId, currentTahapan) {
+    // Collect all checked stages
+    const checkedStages = [];
+    document.querySelectorAll(`#tahapan-${tugasId} .tahapan-checkbox:checked`).forEach(checkbox => {
+        const tahapanItem = checkbox.closest('.tahapan-item');
+        checkedStages.push(tahapanItem.getAttribute('data-value'));
+    });
+    
+    // Send update to server
+    fetch(`/admin/tugas-harian/update-tahapan/${tugasId}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify({ 
+            tahapan: currentTahapan,
+            checked_stages: checkedStages
+        })
+    })
+    .then(res => {
+        if (!res.ok) {
+            throw new Error('Server response was not ok');
+        }
+        return res.json();
+    })
+    .then(data => {
+        console.log('Progress otomatis tersimpan:', data.message);
+    })
+    .catch(err => {
+        console.error('Gagal menyimpan progress otomatis:', err);
+    });
+}
+
+// Fungsi initializeSaveButtons yang diperbarui
+function initializeSaveButtons() {
+    // Sembunyikan tombol simpan progress
+    document.querySelectorAll('.btn-save-tahapan').forEach(button => {
+        button.style.display = 'none';
     });
 }
 
