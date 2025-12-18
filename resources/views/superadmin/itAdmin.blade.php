@@ -5,7 +5,7 @@
 @section('content')
 
 <h1><i class="fas fa-server"></i> Dashboard IT</h1>
-    <p style="font-family: 'Great Vibes', cursive;">Ringkasan status infrastruktur dan aktivitas IT perusahaan.</p>
+    <p style="font-family: 'Great Vibes', cursive; font-weight: bold;">Ringkasan status infrastruktur dan aktivitas IT perusahaan.</p>
 
     <div class="dashboard-cards">
         <a href="" style="text-decoration:none; color:inherit;">

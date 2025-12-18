@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h1><i class="fas fa-clipboard-list"></i> Surveyor Admin</h1>
+<h1><i class="fas fa-clipboard-list"></i> Surveyor Admin</h1 font-weight: bold;>
 <p style="font-family: 'Great Vibes', cursive;">Ringkasan aktivitas surveyor.</p>
 
 <div class="dashboard-cards">

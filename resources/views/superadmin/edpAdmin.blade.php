@@ -5,7 +5,7 @@
 @section('content')
 
 <h1><i class="fas fa-desktop"></i> EDP Admin</h1>
-    <p style="font-family: 'Great Vibes', cursive;">Ringkasan aktivitas Electronic Data Processing (EDP).</p>
+    <p style="font-family: 'Great Vibes', cursive; font-weight: bold;">Ringkasan aktivitas Electronic Data Processing (EDP).</p>
 
     <div class="dashboard-cards">
         <a href="{{ route('superadmin.edp.SAdataAktif') }}" style="text-decoration:none; color:inherit;">

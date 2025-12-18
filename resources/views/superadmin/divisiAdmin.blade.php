@@ -5,7 +5,7 @@
 @section('content')
 
 <h1><i class="fas fa-user-cog"></i> Admin Admin</h1>
-<p style="font-family: 'Great Vibes', cursive;">Panel kontrol administrator untuk mengelola sistem dan pengguna.</p>
+<p style="font-family: 'Great Vibes', cursive; font-weight: bold;">Panel kontrol administrator untuk mengelola sistem dan pengguna.</p>
 
 <!-- Statistik Utama -->
 <div class="dashboard-cards">

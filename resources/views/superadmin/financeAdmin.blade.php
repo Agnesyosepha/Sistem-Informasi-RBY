@@ -5,7 +5,7 @@
 @section('content')
 
 <h1><i class="fas fa-file-invoice-dollar"></i> Finance Admin</h1>
-    <p style="font-family: 'Great Vibes', cursive;">Data - data keuangan yang perlu divalidasi.</p>
+    <p style="font-family: 'Great Vibes', cursive; font-weight: bold;">Data - data keuangan yang perlu divalidasi.</p>
 
     <div class="dashboard-cards">
         <a href="{{ route('superadmin.finance.SAinvoice') }}" style="text-decoration:none; color:inherit;">
