@@ -413,6 +413,10 @@ public function suratTugas()
     return redirect()->back()->with('success', 'Surat Tugas berhasil dihapus!');
     }
 
+
+
+
+    
 // Daftar Proposal
     public function proposal()
     {
@@ -604,6 +608,24 @@ public function storeAdendum(Request $request)
     
     return redirect()->back()->with('success', 'Adendum berhasil dihapus!');
     }
+    public function editAdendum($id)
+{
+    $adendum = Adendum::findOrFail($id);
+    return response()->json($adendum);
+}
+
+public function updateAdendum(Request $request, $id)
+{
+    $request->validate([
+        'status' => 'required|string',
+    ]);
+
+    $adendum = Adendum::findOrFail($id);
+    $adendum->status = $request->status;
+    $adendum->save();
+
+    return response()->json(['success' => true, 'message' => 'Status berhasil diperbarui']);
+}
 
 
 
