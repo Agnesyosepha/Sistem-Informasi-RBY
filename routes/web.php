@@ -81,6 +81,7 @@ Route::get('/superadmin/admin/surat-tugas', [AdminController::class, 'SAsuratTug
 Route::post('/superadmin/admin/surat-tugas/store', [AdminController::class, 'storeSuratTugas'])->name('superadmin.admin.SAsuratTugas.store');
 Route::post('/superadmin/admin/surat-tugas/update-status/{id}', [App\Http\Controllers\AdminController::class, 'updateSuratTugas'])->name('superadmin.admin.SAsuratTugas.updateStatus');
 Route::delete('/superadmin/admin/surat-tugas/{id}', [App\Http\Controllers\AdminController::class, 'destroySuratTugas'])->name('superadmin.admin.SAsuratTugas.destroy');
+Route::put('/superadmin/admin/surat-tugas/{id}', [App\Http\Controllers\AdminController::class, 'editSuratTugas'])->name('superadmin.admin.SAsuratTugas.update');
 
 Route::get('/superadmin/admin/superadmin-draftResume', [\App\Http\Controllers\AdminController::class, 'SAdraftResume'])->name('superadmin.admin.SAdraftResume');
 Route::post('/superadmin/admin/superadmin-draftResume/store', [\App\Http\Controllers\AdminController::class, 'SAdraftResumeStore'])->name('superadmin.admin.SAdraftResume.store');
