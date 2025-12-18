@@ -176,29 +176,13 @@ Route::get('/finance', [FinanceController::class, 'dashboard'])->name('finance.d
 
 Route::get('/finance/tim', [FinanceController::class, 'tim'])->name('finance.tim');
 
-Route::get('/superadmin/rab', [FinanceController::class, 'rabIndex'])
-    ->name('superadmin.rab')
-    ->middleware('auth');
+Route::get('/superadmin/rab', [FinanceController::class, 'rabIndex'])->name('superadmin.rab')->middleware('auth');
+Route::post('/superadmin/rab/store', [FinanceController::class, 'rabStore'])->name('superadmin.rab.store')->middleware('auth');
+Route::get('/superadmin/rab/create', [FinanceController::class, 'rabCreate'])->name('superadmin.rab.create')->middleware('auth');
+Route::put('/superadmin/rab/{id}/update', [FinanceController::class, 'rabUpdate'])->name('superadmin.rab.update')->middleware('auth');
+Route::post('/superadmin/rab/{id}/update', [FinanceController::class, 'rabUpdate'])->name('superadmin.rab.update')->middleware('auth');
+Route::delete('/superadmin/rab/{id}/delete', [FinanceController::class, 'rabDelete'])->name('superadmin.rab.delete') ->middleware('auth');
 
-Route::post('/superadmin/rab/store', [FinanceController::class, 'rabStore'])
-    ->name('superadmin.rab.store')
-    ->middleware('auth');
-
-Route::get('/superadmin/rab/create', [FinanceController::class, 'rabCreate'])
-    ->name('superadmin.rab.create')
-    ->middleware('auth');
-
-Route::get('/superadmin/rab/{id}/edit', [FinanceController::class, 'rabEdit'])
-    ->name('superadmin.rab.edit')
-    ->middleware('auth');
-
-Route::post('/superadmin/rab/{id}/update', [FinanceController::class, 'rabUpdate'])
-    ->name('superadmin.rab.update')
-    ->middleware('auth');
-
-Route::delete('/superadmin/rab/{id}/delete', [FinanceController::class, 'rabDelete'])
-    ->name('superadmin.rab.delete')
-    ->middleware('auth');
 
 // IT di Superadmin
 

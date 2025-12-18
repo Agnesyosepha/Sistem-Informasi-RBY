@@ -68,16 +68,16 @@ class FinanceController extends Controller
         $invoice = $query->orderBy('id', 'desc')->get();
 
         return view('finance.invoice', compact('invoice'));
-    }
+        }
 
-    public function SAinvoice()
-    {
+        public function SAinvoice()
+        {
         $invoice = Invoice::orderBy('id', 'desc')->get();
         return view('finance.SAinvoice', compact('invoice'));
-    }
+        }
 
-    public function storeInvoice(Request $request)
-    {
+        public function storeInvoice(Request $request)
+        {
         $validated = $request->validate([
             'tanggal_pembuat' => 'required|date',
             'no_invoice' => 'required|string|max:255',
@@ -94,10 +94,10 @@ class FinanceController extends Controller
 
         return redirect()->route('superadmin.finance.SAinvoice')
                        ->with('success', 'Invoice berhasil ditambahkan!');
-    }
+        }
 
-    public function updateStatus(Request $request)
-    {
+        public function updateStatus(Request $request)
+        {
         $invoice = Invoice::find($request->id);
 
         if (!$invoice) {
@@ -122,16 +122,16 @@ class FinanceController extends Controller
         $invoice->save();
 
         return response()->json(['success' => true]);
-    }
+        }
     
-    public function uploadFile(Request $request)
-    {
-    if (!$request->hasFile('file')) {
-        return response()->json([
-            'success' => false,
-            'message' => 'File tidak ditemukan'
-        ]);
-    }
+        public function uploadFile(Request $request)
+            {
+        if (!$request->hasFile('file')) {
+            return response()->json([
+                'success' => false,
+                'message' => 'File tidak ditemukan'
+            ]);
+        }
 
     $request->validate([
         'file' => 'required|mimes:jpg,jpeg,png,pdf|max:5000'
@@ -188,7 +188,7 @@ class FinanceController extends Controller
     public function rabEdit($id)
     {
         $rab = Rab::findOrFail($id);
-        return view('superadmin.finance.rab.edit', compact('rab'));
+        return response()->json($rab);
     }
 
     public function rabUpdate(Request $request, $id)
@@ -215,5 +215,7 @@ class FinanceController extends Controller
 
         return redirect()->back()->with('success', 'Status RAB berhasil diupdate');
     }
+
+    
 
 }

@@ -12,7 +12,7 @@
     + Tambah RAB
 </button>
 
-<!-- Modal -->
+<!-- Modal Tambah -->
 <div id="modalTambahRAB" style="
     display:none; position:fixed; z-index:1000;
     left:0; top:0; width:100%; height:100%;
@@ -78,19 +78,61 @@
     </div>
 </div>
 
+<!-- Modal Edit -->
+<div id="modalEditRAB" style="
+    display:none; position:fixed; z-index:1000;
+    left:0; top:0; width:100%; height:100%;
+    background:rgba(0,0,0,0.5); padding-top:60px;
+">
+    <div style="
+        background:white; margin:auto; padding:20px; border-radius:10px;
+        width:40%; max-height:80vh;
+        overflow-y:auto;
+        box-shadow:0 4px 12px rgba(0,0,0,0.2);
+    ">
+        <h2 style="margin-bottom:15px;">Edit Status RAB</h2>
+
+        <form id="formEditRAB" method="POST">
+            @csrf
+            @method('PUT')
+            
+            <input type="hidden" id="editId" name="id">
+
+            <label>Status:</label>
+            <select id="editStatus" name="status" required 
+                style="width:100%; padding:8px; margin-bottom:10px; border-radius:5px; border:1px solid #ccc;">
+                <option value="Menunggu">Menunggu</option>
+                <option value="Disetujui">Disetujui</option>
+            </select>
+
+            <button type="submit"
+                style="background:#007BFF; color:white; padding:10px 18px; border:none; border-radius:6px; cursor:pointer;">
+                Update
+            </button>
+
+            <button type="button"
+                onclick="document.getElementById('modalEditRAB').style.display='none'"
+                style="background:#dc3545; color:white; padding:10px 18px; border:none; border-radius:6px; cursor:pointer; margin-left:10px;">
+                Batal
+            </button>
+        </form>
+    </div>
+</div>
+
 <!-- Tabel -->
 <div class="dashboard-card" style="margin-top:30px;">
 <table style="width:100%; border-collapse: collapse; margin-top:15px;">
     <thead style="background:#007BFF; color:white;">
         <tr>
-            <th style="padding:10px;">No PPJP</th>
-            <th style="padding:10px;">Pemberi Tugas</th>
-            <th style="padding:10px;">Lokasi</th>
-            <th style="padding:10px;">Tanggal Survey</th>
-            <th style="padding:10px;">Pelaksana Inspeksi</th>
+            <th style="padding:10px; text-align:left;">No PPJP</th>
+            <th style="padding:10px; text-align:left;">Pemberi Tugas</th>
+            <th style="padding:10px; text-align:left;">Lokasi</th>
+            <th style="padding:10px; text-align:left;">Tanggal Survey</th>
+            <th style="padding:10px; text-align:left;">Pelaksana Inspeksi</th>
             <th style="padding:10px; text-align:left;">Pengguna Laporan</th>
-            <th style="padding:10px;">Total Biaya</th>
-            <th style="padding:10px;">Status</th>
+            <th style="padding:10px; text-align:left;">Total Biaya</th>
+            <th style="padding:10px; text-align:left;">Status</th>
+            <th style="padding:10px; text-align:left;">Aksi</th>
         </tr>
     </thead>
 
@@ -107,30 +149,28 @@
 
             <!-- STATUS WARNA -->
             <td style="padding:10px;">
-                <form action="{{ route('superadmin.rab.updateStatus', $rab->id) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-
-                    <select name="status"
-                        onchange="this.form.submit()"
-                        style="
-                            padding:6px;
-                            border-radius:6px;
-                            font-weight:600;
-                            color:
-                                @if($rab->status === 'Disetujui') #28a745
-                                @elseif($rab->status === 'Menunggu') #ffc107
-                                @else #dc3545
-                                @endif
-                        ">
-                        <option value="Menunggu" {{ $rab->status == 'Menunggu' ? 'selected' : '' }}>
-                            Menunggu
-                        </option>
-                        <option value="Disetujui" {{ $rab->status == 'Disetujui' ? 'selected' : '' }}>
-                            Disetujui
-                        </option>
-                    </select>
-                </form>
+                <span style="
+                    padding:6px;
+                    border-radius:6px;
+                    font-weight:600;
+                    color:
+                        @if($rab->status === 'Disetujui') #28a745
+                        @elseif($rab->status === 'Menunggu') #ffc107
+                        @else #dc3545
+                        @endif
+                ">{{ $rab->status }}</span>
+            </td>
+            
+            <!-- AKSI -->
+            <td style="padding:10px;">
+                <button onclick="showEditModal({{ $rab->id }})" 
+                        style="background:#17a2b8; color:white; padding:6px 12px; border:none; border-radius:4px; cursor:pointer; margin-right:5px;">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button onclick="showDeleteModal({{ $rab->id }}, '{{ $rab->no_ppjp }}')" 
+                        style="background:#dc3545; color:white; padding:6px 12px; border:none; border-radius:4px; cursor:pointer;">
+                    <i class="fas fa-trash"></i>
+                </button>
             </td>
         </tr>
         @endforeach
@@ -138,4 +178,67 @@
 </table>
 </div>
 
+<!-- Modal Hapus -->
+<div id="modalHapus" style="
+    display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%;
+    background:rgba(0,0,0,0.5); padding-top:60px;">
+    
+    <div style="
+        background:white; margin:auto; padding:20px; border-radius:10px; width:40%;
+        box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+
+        <h2 style="margin-bottom:15px;">Konfirmasi Hapus</h2>
+        <p>Apakah Anda yakin ingin menghapus RAB dengan Nomor PPJP <strong id="noPPJP"></strong>?</p>
+        <p style="color:red;">Tindakan ini tidak dapat dibatalkan!</p>
+
+        <form id="formHapus" method="POST">
+            @csrf
+            @method('DELETE')
+            
+            <button type="submit"
+                style="background:#dc3545; color:white; padding:10px 18px; border:none; border-radius:6px; cursor:pointer;">
+                Hapus
+            </button>
+
+            <button type="button"
+                onclick="document.getElementById('modalHapus').style.display='none'"
+                style="background:#6c757d; color:white; padding:10px 18px; border:none; border-radius:6px; cursor:pointer; margin-left:10px;">
+                Batal
+            </button>
+        </form>
+    </div>
+</div>
+
+@endsection
+
+@section('scripts')
+<script>
+// Fungsi untuk menampilkan modal edit
+function showEditModal(id) {
+    // Ambil data RAB berdasarkan ID
+    fetch(`/superadmin/rab/${id}/edit`)
+        .then(response => response.json())
+        .then(data => {
+            // status
+            document.getElementById('editStatus').value = data.status;
+            
+            // Set action form
+            document.getElementById('formEditRAB').action = `/superadmin/rab/${id}/update`;
+            
+            // Tampilkan modal
+            document.getElementById('modalEditRAB').style.display = 'block';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Gagal memuat data RAB');
+        });
+}
+
+// Fungsi untuk menampilkan modal hapus
+function showDeleteModal(id, noPPJP) {
+    document.getElementById('noPPJP').textContent = noPPJP;
+    document.getElementById('formHapus').action = `/superadmin/rab/${id}/delete`;
+    document.getElementById('modalHapus').style.display = 'block';
+}
+</script>
 @endsection
