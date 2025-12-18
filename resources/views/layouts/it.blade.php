@@ -50,42 +50,4 @@
             </div>
         </a>
     </div>
-
-    <div class="dashboard-card" style="margin-top:30px;">
-        <h3><i class="fas fa-file-contract"></i> Log Aktivitas</h3>
-        <table style="width:100%; border-collapse: collapse; margin-top:15px;">
-            <thead style="background:#007BFF; color:white;">
-                <tr>
-                    <th style="padding:10px; text-align:left;">Tanggal</th>
-                    <th style="padding:10px; text-align:left;">Pengguna</th>
-                    <th style="padding:10px; text-align:left;">Jenis</th>
-                    <th style="padding:10px; text-align:left;">Keterangan</th>
-                    <th style="padding:10px; text-align:center;">Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">01 Sep 2025</td>
-                    <td style="padding:10px;">Elise</td>
-                    <td style="padding:10px;">Laptop</td>
-                    <td style="padding:10px;">Update isi elsa</td>
-                    <td style="padding:10px; text-align:center; color:green; font-weight:600;">Selesai</td>
-                </tr>
-                <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">02 Sep 2025</td>
-                    <td style="padding:10px;">Kenji</td>
-                    <td style="padding:10px;">Laptop</td>
-                    <td style="padding:10px;">Backup dakumen laporan</td>
-                    <td style="padding:10px; text-align:center; color:orange; font-weight:600;">Proses</td>
-                </tr>
-                <tr style="border-bottom:1px solid #ddd;">
-                    <td style="padding:10px;">03 Sep 2025</td>
-                    <td style="padding:10px;">Izumi</td>
-                    <td style="padding:10px;">Komputer</td>
-                    <td style="padding:10px;">Perbaikan server kantor</td>
-                    <td style="padding:10px; text-align:center; color:green; font-weight:600;">Selesai</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
 @endsection
