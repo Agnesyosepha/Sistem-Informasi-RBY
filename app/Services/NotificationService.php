@@ -51,8 +51,8 @@ class NotificationService
         $tahapanData = [
             1 => ['division' => 'Admin', 'nextDivision' => 'Finance', 'nextTahapan' => 2, 'tahapanName' => 'Pengumpulan Data'],
             2 => ['division' => 'Finance', 'nextDivision' => 'Admin', 'nextTahapan' => 3, 'tahapanName' => 'Pembuatan Invoice DP'],
-            3 => ['division' => 'Admin', 'nextDivision' => 'Admin', 'nextTahapan' => 4, 'tahapanName' => 'Penjadwalan Inspeksi'],
-            4 => ['division' => 'Admin', 'nextDivision' => 'Surveyor', 'nextTahapan' => 5, 'tahapanName' => 'Inspeksi'],
+            3 => ['division' => 'Admin', 'nextDivision' => 'Surveyor', 'nextTahapan' => 4, 'tahapanName' => 'Penjadwalan Inspeksi'],
+            4 => ['division' => 'Surveyor', 'nextDivision' => 'Surveyor', 'nextTahapan' => 5, 'tahapanName' => 'Inspeksi'],
             5 => ['division' => 'Surveyor', 'nextDivision' => 'Surveyor', 'nextTahapan' => 6, 'tahapanName' => 'Proses Analisa'],
             6 => ['division' => 'Surveyor', 'nextDivision' => 'Surveyor', 'nextTahapan' => 7, 'tahapanName' => 'Review Nilai'],
             7 => ['division' => 'Surveyor', 'nextDivision' => 'EDP', 'nextTahapan' => 8, 'tahapanName' => 'Kirim Draft Resume'],
