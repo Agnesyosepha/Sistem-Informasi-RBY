@@ -474,13 +474,16 @@ public function suratTugas()
         return redirect()->route('superadmin.admin.SAproposal')->with('success', 'Proposal berhasil ditambahkan!');
     }
 
-    public function updateStatus(Request $request, $id)
+   public function updateStatus(Request $request, $id)
     {
         $proposal = Proposal::findOrFail($id);
         $proposal->status = $request->status;
         $proposal->save();
 
-        return response()->json(['message' => 'Status updated']);
+        return response()->json([
+            'success' => true,
+            'new_status' => $proposal->status
+        ]);
     }
 
     public function SAproposal()

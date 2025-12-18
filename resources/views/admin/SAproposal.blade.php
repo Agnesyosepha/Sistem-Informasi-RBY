@@ -86,13 +86,13 @@
                     <th style="padding:10px; text-align:left;">Tanggal Disetujui</th>
                     <th style="padding:10px; text-align:left;">Deadline</th>
                     <th style="padding:10px; text-align:left;">Tanggal Berakhir</th>
-                    <th style="padding:10px; text-align:center;">Status</th>
-                    <th style="padding:10px; text-align:center;">Aksi</th>
+                    <th style="padding:10px; text-align:left;">Status</th>
+                    <th style="padding:10px; text-align:left;">Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($proposal as $p)
-                    <tr style="border-bottom:1px solid #ddd;">
+                    <tr style="border-bottom:1px solid #ddd;" data-id="{{ $p->id }}">
                         <td style="padding:10px;">{{ $p->no_ppjp ?? '-' }}</td>
                         <td style="padding:10px;">{{ $p['judul'] }}</td>
                         <td style="padding:10px;">{{ $p['pengaju'] }}</td>
@@ -100,33 +100,64 @@
                         <td style="padding:10px;">{{ $p['tanggal_disetujui'] }}</td>
                         <td style="padding:10px;">{{ $p['deadline'] }}</td>
                         <td style="padding:10px;">{{ $p['tanggal_berakhir'] }}</td>
-                        <td style="padding:10px; text-align:center;">
-                          <select 
-                            onchange="updateStatus({{ $p->id }}, this)" 
-                            style="padding:6px; border-radius:5px; border:1px solid #ccc; font-weight:600;"
-                            class="status-select"
-                            data-status="{{ $p->status }}">
-                            <option value="Menunggu Review" {{ $p->status == 'Menunggu Review' ? 'selected' : '' }}>Menunggu Review</option>
-                            <option value="Disetujui" {{ $p->status == 'Disetujui' ? 'selected' : '' }}>Disetujui</option>
-                            <option value="Direvisi" {{ $p->status == 'Direvisi' ? 'selected' : '' }}>Direvisi</option>
-                            <option value="Proses" {{ $p->status == 'Proses' ? 'selected' : '' }}>Proses</option>
-                          </select>
+                        <td style="padding:10px; font-weight:600; color:
+                            @if($p->status === 'Disetujui') #28a745
+                            @elseif($p->status === 'Menunggu Review') #ffc107
+                            @elseif($p->status === 'Direvisi') #17a2b8
+                            @elseif($p->status === 'Proses') #007bff
+                            @else #dc3545 @endif;" class="status-cell">
+                            {{ $p->status }}
                         </td>
-                        <td style="padding:10px; text-align:center;">
-                            <button type="button"
-                                onclick="openModal('{{ route('superadmin.admin.SAproposal.destroy', $p->id) }}')"
-                                style="background:#dc3545; color:white; padding:6px 12px;
-                                border:none; border-radius:5px; cursor:pointer;">
-                                Hapus
+                        <td style="padding:10px;">
+                            <button onclick="openEditStatusModal('{{ $p->id }}', '{{ $p->status }}')"
+                                class="btn-icon btn-edit" title="Edit Status">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            
+                            <button onclick="openDeleteModal('{{ route('superadmin.admin.SAproposal.destroy', $p->id) }}')"
+                                class="btn-icon btn-delete" title="Hapus Data">
+                                <i class="fas fa-trash"></i>
                             </button>
                         </td>
-
                     </tr>
-                  @endforeach
-              </tbody>
-          </table>
-      </div>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 @endsection
+
+{{-- ================================
+    MODAL EDIT STATUS
+================================ --}}
+<div id="modalEditStatus"
+    style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%;
+           background:rgba(0,0,0,0.5); padding-top:60px;">
+
+    <div style="background:white; margin:auto; padding:20px; border-radius:10px;
+                width:30%; max-height:60vh; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+
+        <h2>Edit Status</h2>
+
+        <form id="formEditStatus" method="POST">
+            @csrf
+            @method('PUT')
+
+            <label>Status Progres:</label>
+            <select name="status" id="edit_status" required class="input-field">
+                <option value="Menunggu Review">Menunggu Review</option>
+                <option value="Disetujui">Disetujui</option>
+                <option value="Direvisi">Direvisi</option>
+                <option value="Proses">Proses</option>
+            </select>
+
+            <button type="submit" class="btn-primary">Simpan</button>
+            <button type="button"
+                onclick="document.getElementById('modalEditStatus').style.display='none'"
+                class="btn-danger" style="margin-left:10px;">Batal</button>
+        </form>
+    </div>
+</div>
+
 <!-- Modal Konfirmasi Hapus -->
 <div id="modalHapus" style="
     display:none; position:fixed; z-index:2000;
@@ -161,53 +192,130 @@
 </div>
 
 @section('scripts')
+<style>
+.input-field {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.btn-primary {
+    background:#007BFF; 
+    color:white; 
+    padding:10px 18px; 
+    border:none; 
+    border-radius:6px; 
+    cursor:pointer;
+}
+.btn-danger {
+    background:#dc3545; 
+    color:white; 
+    padding:10px 18px; 
+    border:none; 
+    border-radius:6px; 
+    cursor:pointer;
+}
+.btn-icon {
+    border: none;
+    padding: 8px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 0 3px;
+    font-size: 14px;
+}
+.btn-edit {
+    background: #17a2b8;
+    color: white;
+}
+.btn-delete {
+    background: #dc3545;
+    color: white;
+}
+</style>
+
 <script>
-function applyColor(selectElement) {
-    const value = selectElement.value;
+// Variabel untuk menyimpan ID proposal yang sedang diedit
+let currentProposalId = null;
 
-    if (value === "Disetujui") {
-        selectElement.style.color = "green";
-    } 
-    else if (value === "Menunggu Review") {
-        selectElement.style.color = "orange";
-    } 
-    else if (value === "Direvisi") {
-        selectElement.style.color = "blue";
-    } 
-    else if (value === "Proses") {
-        selectElement.style.color = "blue";
-    }
+function openEditStatusModal(id, currentStatus) {
+    currentProposalId = id; // Simpan ID ke variabel global
+    document.getElementById('modalEditStatus').style.display = 'block';
+
+    // Gunakan route helper untuk membuat URL yang benar
+    document.getElementById('formEditStatus').action = "{{ route('superadmin.admin.proposal.updateStatus', ':id') }}".replace(':id', id);
+
+    document.getElementById('edit_status').value = currentStatus;
 }
 
-// Saat halaman pertama kali load
-document.querySelectorAll('.status-select').forEach(select => {
-    applyColor(select);
-});
-
-function updateStatus(id, selectElement) {
-    applyColor(selectElement);
-
-    fetch(`/superadmin/admin/superadmin-proposal/update-status/${id}`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRF-TOKEN": "{{ csrf_token() }}"
-        },
-        body: JSON.stringify({ status: selectElement.value })
-    })
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .catch(err => console.error(err));
-}
-
-// Hapus
-function openModal(actionUrl) {
-    document.getElementById('formHapus').action = actionUrl;
+function openDeleteModal(url) {
     document.getElementById('modalHapus').style.display = 'block';
+    document.getElementById('formHapus').action = url;
 }
 
 function closeModal() {
     document.getElementById('modalHapus').style.display = 'none';
+}
+
+// Tangani pengiriman form edit status dengan AJAX
+document.getElementById('formEditStatus').addEventListener('submit', function(e) {
+    e.preventDefault(); // Cegah pengiriman form standar
+
+    const form = e.target;
+    const formData = new FormData(form);
+    
+    // Ubah method dari POST ke PUT untuk sesuai dengan route
+    formData.set('_method', 'PUT');
+
+    fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Tutup modal
+        document.getElementById('modalEditStatus').style.display = 'none';
+
+        // Cari baris tabel yang sesuai berdasarkan ID
+        const row = document.querySelector(`tr[data-id="${currentProposalId}"]`);
+        if (row) {
+            // Cari sel status di dalam baris tersebut
+            const statusCell = row.querySelector('.status-cell');
+            if (statusCell) {
+                // Update teks status
+                statusCell.textContent = data.new_status;
+
+                // Update warna status
+                applyColorToCell(statusCell, data.new_status);
+            }
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Terjadi kesalahan saat memperbarui status.');
+    });
+});
+
+// Fungsi untuk mewarnai sel status
+function applyColorToCell(cell, value) {
+    if (value === "Disetujui") {
+        cell.style.color = "#28a745";
+    } 
+    else if (value === "Menunggu Review") {
+        cell.style.color = "#ffc107";
+    } 
+    else if (value === "Direvisi") {
+        cell.style.color = "#17a2b8";
+    } 
+    else if (value === "Proses") {
+        cell.style.color = "#007bff";
+    }
+    else {
+        cell.style.color = "#dc3545";
+    }
 }
 
 // Validasi form tambah proposal
@@ -227,13 +335,11 @@ document.getElementById('formTambah').addEventListener('submit', function(e) {
         return false;
     }
     
-    // Validasi tambahan: pastikan tanggal berakhir setelah tanggal disetujui
     if (new Date(tglBerakhir) <= new Date(tglDisetujui)) {
         e.preventDefault();
         alert('Tanggal Berakhir harus setelah Tanggal Disetujui!');
         return false;
     }
 });
-
 </script>
 @endsection
