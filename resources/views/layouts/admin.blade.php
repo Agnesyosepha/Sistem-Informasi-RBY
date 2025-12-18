@@ -291,21 +291,6 @@
 </div>
 @endsection
 
-@section('sidebar')
-<aside class="sidebar" id="sidebar">
-    <nav>
-        <ul>
-            <li><a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}"><i class="fas fa-home"></i><span> Home</span></a></li>
-            <li><a href="{{ route('admin') }}" class="{{ request()->routeIs('admin*') ? 'active' : '' }}"><i class="fas fa-user-cog"></i><span> Admin</span></a></li>
-            <li><a href="{{ route('surveyor') }}" class="{{ request()->routeIs('surveyor*') ? 'active' : '' }}"><i class="fas fa-clipboard-list"></i><span> Surveyor</span></a></li>
-            <li><a href="{{ route('edp') }}" class="{{ request()->routeIs('edp*') ? 'active' : '' }}"><i class="fas fa-desktop"></i><span> EDP</span></a></li>
-            <li><a href="{{ route('reviewer') }}" class="{{ request()->routeIs('reviewer*') ? 'active' : '' }}"><i class="fas fa-file-signature"></i><span> Reviewer</span></a></li>
-            <li><a href="{{ route('finance') }}" class="{{ request()->routeIs('finance*') ? 'active' : '' }}"><i class="fas fa-file-invoice-dollar"></i><span> Finance</span></a></li>
-            <li><a href="{{ route('it') }}" class="{{ request()->routeIs('it*') ? 'active' : '' }}"><i class="fas fa-server"></i><span> IT</span></a></li>
-        </ul>
-    </nav>
-</aside>
-@endsection
 
 @section('scripts')
 <script>
@@ -330,7 +315,6 @@ const tahapanData = {
 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all components
-    initializeSidebarToggle();
     initializeStatusLabels();
     initializeTaskRows();
     initializeSaveButtons();
@@ -345,21 +329,7 @@ document.addEventListener('DOMContentLoaded', function() {
     checkUrlParameters();
 });
 
-// Function to initialize sidebar toggle
-function initializeSidebarToggle() {
-    const menuToggle = document.getElementById('menu-toggle');
-    const sidebar = document.getElementById('sidebar');
-    
-    if (menuToggle && sidebar) {
-        menuToggle.addEventListener('click', function() {
-            sidebar.classList.toggle('collapsed');
-            const mainContent = document.querySelector('.main-content') || document.querySelector('.content-area');
-            if (mainContent) {
-                mainContent.classList.toggle('collapsed');
-            }
-        });
-    }
-}
+
 
 // Function to initialize status labels
 function initializeStatusLabels() {
