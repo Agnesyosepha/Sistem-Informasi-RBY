@@ -155,7 +155,7 @@
                                 12 => ['value' => 'Invoice Pelunasan', 'title' => 'Invoice Pelunasan (Finance)'],
                                 13 => ['value' => 'Nomor Laporan', 'title' => 'Nomor Laporan (EDP)'],
                                 14 => ['value' => 'Laporan Lengkap', 'title' => 'Laporan Lengkap (EDP)'],
-                                15 => ['value' => 'Rangkap 3 LPA dan Pengiriman Dokumen', 'title' => 'Rangkap 3 LPA dan Pengiriman Dokumen (EDP dan Admin)'],
+                                15 => ['value' => 'Rangkap 3 LPA dan Pengiriman Dokumen', 'title' => 'Rangkap 3 LPA dan Pengiriman Dokumen (EDP)'],
                             ];
                         @endphp
 

@@ -91,34 +91,6 @@
             @csrf
             @method('PUT')
 
-            <label>Nomor PPJP</label>
-            <input id="edit_no_ppjp" type="text" name="no_ppjp" required
-                style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
-
-            <label>Tanggal Survey</label>
-            <input id="edit_tanggal_survey" type="date" name="tanggal_survey" required
-                style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
-
-            <label>Lokasi</label>
-            <input id="edit_lokasi" type="text" name="lokasi" required
-                style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
-
-            <label>Objek Penilaian</label>
-            <input id="edit_objek_penilaian" type="text" name="objek_penilaian" required
-                style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
-
-            <label>Pemberi Tugas</label>
-            <input id="edit_pemberi_tugas" type="text" name="pemberi_tugas" required
-                style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
-
-            <label>Nama Penilai</label>
-            <input id="edit_nama_penilai" type="text" name="nama_penilai" required
-                style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
-
-            <label>Adendum</label>
-            <input id="edit_adendum" type="text" name="adendum"
-                style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
-
             <label>Status</label>
             <select id="edit_status" name="status" required
                 style="width:100%; padding:8px; margin-bottom:15px; border:1px solid #ccc; border-radius:5px;">
@@ -203,13 +175,6 @@
 <script>
 function openEdit(id, no_ppjp, tanggal_survey, lokasi, objek_penilaian, pemberi_tugas, nama_penilai, adendum, status) {
     document.getElementById('modalEdit').style.display = 'block';
-    document.getElementById('edit_no_ppjp').value = no_ppjp;
-    document.getElementById('edit_tanggal_survey').value = tanggal_survey;
-    document.getElementById('edit_lokasi').value = lokasi;
-    document.getElementById('edit_objek_penilaian').value = objek_penilaian;
-    document.getElementById('edit_pemberi_tugas').value = pemberi_tugas;
-    document.getElementById('edit_nama_penilai').value = nama_penilai;
-    document.getElementById('edit_adendum').value = adendum;
     document.getElementById('edit_status').value = status;
 
     document.getElementById('editForm').action = `/superadmin/jadwal-surveyor/update/${id}`;
