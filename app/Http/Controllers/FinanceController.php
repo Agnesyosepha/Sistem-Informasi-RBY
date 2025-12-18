@@ -160,6 +160,49 @@ class FinanceController extends Controller
         'message' => 'Upload berhasil',
         'file' => $path
     ]);
+    }
+
+    public function editInvoice($id)
+{
+    $invoice = Invoice::findOrFail($id);
+    return response()->json($invoice);
+}
+
+public function updateInvoice(Request $request, $id)
+{
+    $request->validate([
+        'termin' => 'required|string',
+        'status' => 'required|string',
+    ]);
+
+    $invoice = Invoice::findOrFail($id);
+    $invoice->termin = $request->termin;
+    $invoice->status = $request->status;
+    $invoice->save();
+
+    return redirect()->route('superadmin.finance.SAinvoice')
+                    ->with('success', 'Invoice berhasil diperbarui!');
+}
+
+public function deleteInvoice($id)
+{
+    $invoice = Invoice::findOrFail($id);
+    
+    // Hapus file terkait jika ada
+    if ($invoice->bukti_dp) {
+        Storage::disk('public')->delete($invoice->bukti_dp);
+    }
+    if ($invoice->bukti_dp_2) {
+        Storage::disk('public')->delete($invoice->bukti_dp_2);
+    }
+    if ($invoice->bukti_pelunasan) {
+        Storage::disk('public')->delete($invoice->bukti_pelunasan);
+    }
+    
+    $invoice->delete();
+    
+    return redirect()->route('superadmin.finance.SAinvoice')
+                    ->with('success', 'Invoice berhasil dihapus!');
 }
 
 

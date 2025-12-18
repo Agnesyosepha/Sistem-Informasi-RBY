@@ -89,13 +89,92 @@
     </div>
 </div>
 
+<!-- Modal Edit Invoice -->
+<div id="modalEdit" style="
+    display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%;
+    background:rgba(0,0,0,0.5); padding-top:60px;">
+
+    <div style="
+    background:white; margin:auto; padding:20px; border-radius:10px; width:45%;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+    max-height: 80vh; overflow-y: auto;">
+    
+        <h3>Edit Invoice</h3>
+
+        <form id="editForm" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            
+            <input type="hidden" id="editId" name="id">
+
+            <label>Termin:</label>
+            <select id="editTermin" name="termin" required
+                style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
+                <option value="DP">DP</option>
+                <option value="DP 2">DP 2</option>
+                <option value="Pelunasan">Pelunasan</option>
+                <option value="Lunas">Lunas</option>
+            </select>
+
+            <label>Status:</label>
+            <select id="editStatus" name="status" required
+                style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
+                <option value="Paid">Paid</option>
+                <option value="Unpaid">Unpaid</option>
+            </select>
+
+            <button type="submit"
+                style="background:#007BFF; color:white; padding:10px 18px; border:none; border-radius:6px; cursor:pointer;">
+                Update
+            </button>
+
+            <button type="button" 
+                onclick="document.getElementById('modalEdit').style.display='none'"
+                style="background:#dc3545; color:white; padding:10px 18px; border:none; border-radius:6px; cursor:pointer; margin-left:10px;">
+                Batal
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Modal Hapus Invoice -->
+<div id="modalHapus" style="
+    display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%;
+    background:rgba(0,0,0,0.5); padding-top:60px;">
+
+    <div style="
+    background:white; margin:auto; padding:20px; border-radius:10px; width:40%;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+    
+        <h3>Konfirmasi Hapus</h3>
+        <p>Apakah Anda yakin ingin menghapus invoice dengan nomor <strong id="hapusNoInvoice"></strong>?</p>
+        <p style="color:red;">Tindakan ini tidak dapat dibatalkan!</p>
+
+        <form id="hapusForm" method="POST">
+            @csrf
+            @method('DELETE')
+            
+            <button type="submit"
+                style="background:#dc3545; color:white; padding:10px 18px; border:none; border-radius:6px; cursor:pointer;">
+                Hapus
+            </button>
+
+            <button type="button" 
+                onclick="document.getElementById('modalHapus').style.display='none'"
+                style="background:#6c757d; color:white; padding:10px 18px; border:none; border-radius:6px; cursor:pointer; margin-left:10px;">
+                Batal
+            </button>
+        </form>
+    </div>
+</div>
+
 <div class="dashboard-card" style="margin-top:20px;">
     <h3><i class="fas fa-receipt"></i> Data Invoice</h3>
 
     <table style="width:100%; border-collapse: collapse; margin-top:15px;">
         <thead style="background:#007BFF; color:white;">
             <tr style="background:#007BFF; color:white;">
-                <th style="padding:10px; text-align:left;">Tanggal</th>
+                <th style="padding:5px; text-align:left;">Tanggal</th>
                 <th style="padding:10px; text-align:left;">No. Invoice</th>
                 <th style="padding:10px; text-align:left;">No. PPJP/No. Adendum</th>
                 <th style="padding:10px; text-align:left;">Debitur</th>
@@ -103,9 +182,10 @@
                 <th style="padding:10px; text-align:left;">Pengguna Laporan</th>
                 <th style="padding:10px; text-align:left;">Termin</th>
                 <th style="padding:10px; text-align:left;">Biaya Jasa</th>
-                <th style="padding:10px; text-align:left;">Bukti DP</th>
-                <th style="padding:10px; text-align:left;">Bukti Pelunasan</th>
+                <th style="padding:5px; text-align:left;">Bukti DP</th>
+                <th style="padding:3px; text-align:left;">Bukti Pelunasan</th>
                 <th style="padding:10px; text-align:left;">Status</th>
+                <th style="padding:10px; text-align:left;">Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -118,13 +198,13 @@
                 <td style="padding:10px;">{{ $item['pemberi_tugas'] }}</td>
                 <td style="padding:10px;">{{ $item['pengguna_laporan'] }}</td>
                 <td style="padding:10px;">
-                    <select onchange="changeColor(this); updateInvoice({{ $item->id }}, 'termin', this.value)"
-                        style="padding:6px; font-weight:600; border-radius:5px;">       
-                        <option value="DP" {{ $item->termin == 'DP' ? 'selected' : '' }}>DP</option>        
-                        <option value="DP 2" {{ $item->termin == 'DP 2' ? 'selected' : '' }}>DP 2</option>    
-                        <option value="Pelunasan" {{ $item->termin == 'Pelunasan' ? 'selected' : '' }}>Pelunasan</option>    
-                        <option value="Lunas" {{ $item->termin == 'Lunas' ? 'selected' : '' }}>Lunas</option>    
-                    </select>
+                    <span style=" padding:6px; border-radius:6px; font-weight:600; color:
+                        @if($item->termin === 'DP') #007BFF
+                        @elseif($item->termin === 'DP 2') #6f42c1
+                        @elseif($item->termin === 'Pelunasan') #28a745
+                        @elseif($item->termin === 'Lunas') #17a2b8
+                        @else #6c757d
+                    @endif ">{{ $item->termin }}</span>
                 </td>
                 <td style="padding:10px;">Rp {{ number_format($item->biaya_jasa, 2, ',', '.') }}</td>
                 <td style="padding:10px;">
@@ -175,11 +255,25 @@
                     @endif
                 </td>
                 <td style="padding:10px;">
-                    <select onchange="changeColor(this); updateInvoice({{ $item->id }}, 'status', this.value)"
-                        style="padding:6px; font-weight:600; border-radius:5px;">       
-                        <option value="Paid" {{ $item->status == 'Paid' ? 'selected' : '' }}>Paid</option>        
-                        <option value="Unpaid" {{ $item->status == 'Unpaid' ? 'selected' : '' }}>Unpaid</option>    
-                    </select>
+                    <span style="
+                        padding:6px;
+                        border-radius:6px;
+                        font-weight:600;
+                        color:
+                            @if($item->status === 'Paid') #28a745
+                            @else #dc3545
+                            @endif
+                    ">{{ $item->status }}</span>
+                </td>
+                <td style="padding:10px; display: flex; align-items: center; gap: 5px;">
+                    <button onclick="showEditModal({{ $item->id }})" 
+                            style="background:#17a2b8; color:white; padding:6px 12px; border:none; border-radius:4px; cursor:pointer;">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button onclick="showDeleteModal({{ $item->id }}, '{{ $item->no_invoice }}')" 
+                            style="background:#dc3545; color:white; padding:6px 12px; border:none; border-radius:4px; cursor:pointer;">
+                        <i class="fas fa-trash"></i>
+                    </button>
                 </td>
             </tr>
         @endforeach
@@ -189,51 +283,36 @@
 
 @endsection
 
+@section('scripts')
 <script>
-function updateInvoice(id, field, value) {
-    fetch("{{ route('superadmin.finance.updateStatus') }}", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRF-TOKEN": "{{ csrf_token() }}"
-        },
-        body: JSON.stringify({
-            id: id,
-            [field]: value
+// Fungsi untuk menampilkan modal edit
+function showEditModal(id) {
+    // Ambil data invoice berdasarkan ID
+    fetch(`/superadmin/finance/invoice/${id}/edit`)
+        .then(response => response.json())
+        .then(data => {
+            // Isi form dengan data yang ada
+            document.getElementById('editId').value = data.id;
+            document.getElementById('editTermin').value = data.termin;
+            document.getElementById('editStatus').value = data.status;
+            
+            // Set action form
+            document.getElementById('editForm').action = `/superadmin/finance/invoice/${id}/update`;
+            
+            // Tampilkan modal
+            document.getElementById('modalEdit').style.display = 'block';
         })
-    })
-    .then(res => res.json())
-    .then(data => {
-        console.log("Updated:", data);
-        if (data.success) {
-            showNotification('Data berhasil diperbarui', 'success');
-        } else {
-            showNotification('Gagal memperbarui data', 'error');
-        }
-    })
-    .catch(err => {
-        console.error(err);
-        showNotification('Terjadi kesalahan', 'error');
-    });
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Gagal memuat data invoice');
+        });
 }
 
-function changeColor(selectEl) {
-    // Reset semua warna
-    selectEl.style.color = "#333";
-    
-    if (selectEl.value === "Paid") {
-        selectEl.style.color = "green";
-    } else if (selectEl.value === "Unpaid") {
-        selectEl.style.color = "red";
-    } else if (selectEl.value === "DP") {
-        selectEl.style.color = "#007BFF";
-    } else if (selectEl.value === "DP 2") {
-        selectEl.style.color = "#6f42c1"; // Ungu untuk DP 2
-    } else if (selectEl.value === "Pelunasan") {
-        selectEl.style.color = "#28a745"; // Hijau untuk Pelunasan
-    } else if (selectEl.value === "Lunas") {
-        selectEl.style.color = "#17a2b8"; // Biru muda untuk Lunas
-    }
+// Fungsi untuk menampilkan modal hapus
+function showDeleteModal(id, noInvoice) {
+    document.getElementById('hapusNoInvoice').textContent = noInvoice;
+    document.getElementById('hapusForm').action = `/superadmin/finance/invoice/${id}/delete`;
+    document.getElementById('modalHapus').style.display = 'block';
 }
 
 // FUNGSI UNTUK UPLOAD FILE
@@ -328,11 +407,6 @@ function showNotification(message, type) {
         }, 300);
     }, 3000);
 }
-
-// Set warna saat halaman di-load
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll("select").forEach(sel => changeColor(sel));
-});
 </script>
 
 <style>
@@ -389,3 +463,4 @@ document.addEventListener("DOMContentLoaded", () => {
     transform: translateY(0);
 }
 </style>
+@endsection
