@@ -39,11 +39,13 @@
                                             <i class="fas fa-eye"></i> Lihat Detail Tugas
                                         </a>
                                     @endif
+                                    {{--
                                     @if(!$notification->is_read)
                                         <button class="btn btn-sm btn-outline-secondary mark-read" data-id="{{ $notification->id }}">
                                             Tandai Dibaca
                                         </button>
                                     @endif
+                                    --}}
                                 </div>
                             @endforeach
                         </div>

@@ -692,7 +692,7 @@ function initializeUploadButtons(tugasId, isRevision) {
                             downloadBtn.href = data.file_url;
                             downloadBtn.className = 'download-btn';
                             downloadBtn.target = '_blank';
-                            downloadBtn.innerHTML = '<i class="fas fa-download"></i> Download';
+                            downloadBtn.innerHTML = '<i class="fas fa-download"></i>';
                             
                             const container = this.parentElement;
                             container.appendChild(downloadBtn);
@@ -712,7 +712,7 @@ function initializeUploadButtons(tugasId, isRevision) {
                             downloadBtn.href = data.file_url;
                             downloadBtn.className = 'download-btn';
                             downloadBtn.target = '_blank';
-                            downloadBtn.innerHTML = '<i class="fas fa-download"></i> Download Revisi';
+                            downloadBtn.innerHTML = '<i class="fas fa-download"></i>';
                             
                             const container = this.parentElement;
                             container.appendChild(downloadBtn);
