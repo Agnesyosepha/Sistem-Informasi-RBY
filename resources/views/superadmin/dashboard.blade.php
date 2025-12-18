@@ -5,11 +5,11 @@
 @section('content')
 
 <!-- Judul -->
-<h1 style="font-weight:700; font-size:28px; margin-bottom:10px; color:#0C2B4E;">
+<h1 style="font-weight:700; font-size:28px; margin-bottom:10px; color:#0C2B4E; ">
     Dashboard Superadmin
 </h1>
 
-<p style="color:#555; margin-bottom:25px;">
+<p style="color:#555; margin-bottom:25px; font-family: 'Great Vibes', cursive;">
     Selamat datang kembali, Superadmin 👋
 </p>
 

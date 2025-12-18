@@ -36,3 +36,19 @@
 </div>
 
 @endsection
+
+
+<style>
+    .dashboard-cards {
+    display: flex;
+    justify-content: flex-start; /* atau center */
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.dashboard-card {
+    max-width: 350px;   /* ⬅️ ini kunci utama */
+    width: 100%;
+}
+
+</style>
