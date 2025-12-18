@@ -154,6 +154,7 @@
             max-width: 1200px;
             padding: 20px;
             box-sizing: border-box;
+            margin-top: 100px;
         }
 
         .profile-card {
