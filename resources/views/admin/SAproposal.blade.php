@@ -178,7 +178,7 @@
         <button type="submit" 
             style="background:#dc3545; color:white; padding:10px 18px;
             border:none; border-radius:6px; cursor:pointer;">
-            Ya, Hapus!
+            Hapus
         </button>
 
         <button type="button" onclick="closeModal()"
