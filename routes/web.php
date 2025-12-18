@@ -272,6 +272,8 @@ Route::get('/edp', function () {
     return view('layouts.edp');
 })->name('edp');
 
+Route::get('/edp', [EdpController::class, 'index'])->name('edp');
+
 Route::get('/edp/tim', [EdpController::class, 'tim'])->name('edp.tim');
 
     //seharusnya data mentah ini diganti jadi dokumen final, tapi jadi kubuat rute baru untuk dokuem final ehe, ini disini untuk jaga2 aja
