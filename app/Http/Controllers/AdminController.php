@@ -565,11 +565,26 @@ public function storeAdendum(Request $request)
     ]);
 
     return redirect()->back()->with('success', 'Adendum berhasil ditambahkan!');
-}
+    }
+
+    public function destroyAdendum($id)
+    {
+    $adendum = Adendum::find($id);
+    
+    if (!$adendum) {
+        return response()->json(['success' => false, 'message' => 'Adendum tidak ditemukan!'], 404);
+    }
+    
+    $adendum->delete();
+    
+    return redirect()->back()->with('success', 'Adendum berhasil dihapus!');
+    }
+
+
 
 // Draft Resume
-public function draftResume()
-{
+    public function draftResume()
+    {
     $query = DraftResume::query();
     
     // Hitung total data untuk ditampilkan di footer tabel
@@ -596,7 +611,7 @@ public function draftResume()
     $resume = $query->orderBy('id', 'desc')->get();
     
     return view('admin.draftResume', compact('resume', 'totalResume'));
-}
+    }
 
     public function SAdraftResume()
     {
@@ -632,8 +647,8 @@ public function draftResume()
 
 
 // Draft Laporan
-public function draftLaporan()
-{
+    public function draftLaporan()
+    {
     $query = DraftLaporan::query();
     
     // Hitung total data untuk ditampilkan di footer tabel

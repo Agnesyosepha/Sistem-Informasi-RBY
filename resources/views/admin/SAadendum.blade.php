@@ -76,6 +76,7 @@
                 <th style="padding:10px; text-align:left;">Tanggal</th>
                 <th style="padding:10px; text-align:left;">Deskripsi</th>
                 <th style="padding:10px; text-align:center;">Status</th>
+                <th style="padding:10px; text-align:center;">Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -97,10 +98,47 @@
                         <option value="Proses" {{ $a->status == 'Proses' ? 'selected' : '' }}>Proses</option>
                       </select>
                     </td>
+                    <td style="padding:10px; text-align:center;">
+                        <button onclick="showDeleteModal({{ $a->id }}, '{{ $a->nomor }}')" 
+                                style="background:#dc3545; color:white; padding:6px 12px; border:none; border-radius:4px; cursor:pointer;">
+                            <i class="fas fa-trash"></i> Hapus
+                        </button>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+</div>
+
+<!-- Modal Hapus -->
+<div id="modalHapus" style="
+    display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%;
+    background:rgba(0,0,0,0.5); padding-top:60px;">
+    
+    <div style="
+        background:white; margin:auto; padding:20px; border-radius:10px; width:40%;
+        box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+
+        <h2 style="margin-bottom:15px;">Konfirmasi Hapus</h2>
+        <p>Apakah Anda yakin ingin menghapus adendum <strong id="namaAdendum"></strong>?</p>
+        <p style="color:red;">Tindakan ini tidak dapat dibatalkan!</p>
+
+        <form id="formHapus" method="POST">
+            @csrf
+            @method('DELETE')
+            
+            <button type="submit"
+                style="background:#dc3545; color:white; padding:10px 18px; border:none; border-radius:6px; cursor:pointer;">
+                Hapus
+            </button>
+
+            <button type="button"
+                onclick="document.getElementById('modalHapus').style.display='none'"
+                style="background:#6c757d; color:white; padding:10px 18px; border:none; border-radius:6px; cursor:pointer; margin-left:10px;">
+                Batal
+            </button>
+        </form>
+    </div>
 </div>
 
 @endsection
@@ -123,6 +161,7 @@ function applyColor(selectElement) {
         selectElement.style.color = "blue";
     }
 }
+
 // Warna saat halaman diload
 document.querySelectorAll('.status-select').forEach(select => applyColor(select));
 
@@ -149,6 +188,11 @@ function updateStatus(id, selectElement) {
     .catch(err => console.error(err));
 }
 
-
+// Fungsi untuk menampilkan modal hapus
+function showDeleteModal(id, nomor) {
+    document.getElementById('namaAdendum').textContent = nomor;
+    document.getElementById('formHapus').action = `/superadmin/admin/superadmin-adendum/${id}`;
+    document.getElementById('modalHapus').style.display = 'block';
+}
 </script>
 @endsection
