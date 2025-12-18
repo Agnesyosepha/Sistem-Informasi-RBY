@@ -245,7 +245,8 @@
                                             </div>
                                         </div>
                                     
-                                    <!-- File Revisi -->
+                                    <!-- File Revisi - Hanya tampilkan untuk tahapan 1-14 -->
+                                    @if($i < 15)
                                     <div class="file-section" style="margin-top: 15px;">
                                         <h5>File Revisi:</h5>
                                         <div class="file-upload-container">
@@ -268,6 +269,7 @@
                                                 @endif
                                             </div>
                                         </div>
+                                    @endif
                                     </div>
                                 </div>
                             </div>
@@ -1228,3 +1230,4 @@ function showNotification(message, type) {
 }
 </style>
 @endsection
+
