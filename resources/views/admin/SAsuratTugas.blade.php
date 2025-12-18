@@ -134,7 +134,7 @@
             <thead style="background:#007BFF; color:white;">
                 <tr>
                     <th style="padding:10px; text-align:left;">No.</th>
-                    <th style="padding:10px; text-align:left;">PPJP</th>
+                    <th style="padding:10px; text-align:left;">no. PPJP</th>
                     <th style="padding:10px; text-align:left;">Tanggal Survey</th>
                     <th style="padding:10px; text-align:left;">Lokasi</th>
                     <th style="padding:10px; text-align:left;">Objek Penilaian</th>
@@ -167,7 +167,7 @@
                         </td>
                         <td style="padding:10px; text-align:center;">
                             <button onclick="showEditModal({{ $st->id }}, '{{ $st->status }}')" 
-                                    style="background:#007BFF; color:white; padding:6px 12px; border:none; border-radius:4px; cursor:pointer; margin-right:5px;">
+                                    style="background:#17a2b8; color:white; padding:6px 12px; border:none; border-radius:4px; cursor:pointer; margin-right:5px;">
                                 <i class="fas fa-edit"></i>
                             </button>
                             <button onclick="showDeleteModal({{ $st->id }})" 

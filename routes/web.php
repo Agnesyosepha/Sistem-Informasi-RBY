@@ -97,8 +97,10 @@ Route::post('/superadmin/admin/laporan-final/update/{id}',[AdminController::clas
 
 Route::get('/superadmin/admin/tugas-harian', [\App\Http\Controllers\AdminController::class, 'SAtugasHarian'])->name('superadmin.admin.SAtugasHarian');
 Route::post('/superadmin/admin/tugas-harian/store', [AdminController::class, 'storeSAtugasHarian'])->name('superadmin.admin.SAtugasHarian.store');
-Route::post('/superadmin/admin/tugas-harian/update-status/{id}', [App\Http\Controllers\AdminController::class, 'updateStatusTugas'])->name('superadmin.admin.SAtugasHarian.updateStatusTugas');
+Route::put('/superadmin/admin/tugas-harian/update-status/{id}', [AdminController::class, 'updateStatusTugas'])->name('superadmin.admin.SAtugasHarian.updateStatusTugas');
 Route::delete('/superadmin/admin/tugas-harian/{id}', [AdminController::class, 'destroyTugas'])->name('superadmin.admin.SAtugasHarian.destroyTugas');
+
+
 
 // Surveyor di Superadmin
 

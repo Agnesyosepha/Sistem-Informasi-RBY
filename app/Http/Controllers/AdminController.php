@@ -123,7 +123,7 @@ class AdminController extends Controller
         $task->status = $request->status;
         $task->save();
 
-        return response()->json(['message' => 'Status updated']);
+        return back()->with('success', 'Status berhasil diperbarui');
     }
 
     public function destroyTugas($id)
@@ -256,6 +256,10 @@ class AdminController extends Controller
         return view('admin.laporanTugasHarian', compact('tugasFinal'));
     }
 
+
+
+
+    
 // Surat Tugas
     public function SAsuratTugas()
     {
