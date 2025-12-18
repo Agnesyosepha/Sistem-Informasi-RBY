@@ -13,10 +13,28 @@ class ReviewerController extends Controller
     // ===========================
     // DASHBOARD REVIEWER
     // ===========================
-    public function index()
+    public function index(Request $request)
     {
+        // Ambil data log aktivitas
         $logs = LogAktivitas::orderBy('tanggal', 'desc')->get();
-        return view('layouts.reviewer', compact('logs'));
+        
+        // Ambil data dokumen revisi dengan filter
+        $search = $request->search;
+        $dokumenRevisi = DokumenRevisi::when($search, function ($q) use ($search) {
+            $q->where('tanggal', 'like', "%$search%")
+                ->orWhere('jenis', 'like', "%$search%")
+                ->orWhere('pemberi', 'like', "%$search%")
+                ->orWhere('pengguna', 'like', "%$search%")
+                ->orWhere('surveyor', 'like', "%$search%")
+                ->orWhere('lokasi', 'like', "%$search%")
+                ->orWhere('objek', 'like', "%$search%")
+                ->orWhere('reviewer', 'like', "%$search%")
+                ->orWhere('status', 'like', "%$search%");
+        })
+        ->orderBy('id', 'desc')
+        ->get();
+        
+        return view('layouts.reviewer', compact('logs', 'dokumenRevisi'));
     }
 
     // ===========================

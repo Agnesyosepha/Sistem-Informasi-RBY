@@ -298,6 +298,7 @@ Route::get('/edp/laporan-penilaian', [EdpController::class, 'laporanPenilaianUse
 Route::get('/reviewer', function () {
     return view('layouts.reviewer');
 })->name('reviewer');
+
 Route::get('/reviewer', [ReviewerController::class, 'index'])->name('reviewer');
 Route::get('/reviewer/tim', [\App\Http\Controllers\ReviewerController::class, 'tim'])->name('reviewer.tim');
 
