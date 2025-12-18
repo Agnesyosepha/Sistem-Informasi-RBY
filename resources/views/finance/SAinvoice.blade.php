@@ -147,7 +147,7 @@
     box-shadow:0 4px 12px rgba(0,0,0,0.2);">
     
         <h3>Konfirmasi Hapus</h3>
-        <p>Apakah Anda yakin ingin menghapus invoice dengan nomor <strong id="hapusNoInvoice"></strong>?</p>
+        <p>Apakah Anda yakin ingin menghapus invoice ini?</p>
         <p style="color:red;">Tindakan ini tidak dapat dibatalkan!</p>
 
         <form id="hapusForm" method="POST">
@@ -204,7 +204,7 @@
                         @elseif($item->termin === 'Pelunasan') #28a745
                         @elseif($item->termin === 'Lunas') #17a2b8
                         @else #6c757d
-                    @endif ">{{ $item->termin }}</span>
+                        @endif ">{{ $item->termin }}</span>
                 </td>
                 <td style="padding:10px;">Rp {{ number_format($item->biaya_jasa, 2, ',', '.') }}</td>
                 <td style="padding:10px;">
@@ -270,7 +270,7 @@
                             style="background:#17a2b8; color:white; padding:6px 12px; border:none; border-radius:4px; cursor:pointer;">
                         <i class="fas fa-edit"></i>
                     </button>
-                    <button onclick="showDeleteModal({{ $item->id }}, '{{ $item->no_invoice }}')" 
+                    <button onclick="showDeleteModal({{ $item->id }})" 
                             style="background:#dc3545; color:white; padding:6px 12px; border:none; border-radius:4px; cursor:pointer;">
                         <i class="fas fa-trash"></i>
                     </button>
@@ -309,8 +309,7 @@ function showEditModal(id) {
 }
 
 // Fungsi untuk menampilkan modal hapus
-function showDeleteModal(id, noInvoice) {
-    document.getElementById('hapusNoInvoice').textContent = noInvoice;
+function showDeleteModal(id) {
     document.getElementById('hapusForm').action = `/superadmin/finance/invoice/${id}/delete`;
     document.getElementById('modalHapus').style.display = 'block';
 }

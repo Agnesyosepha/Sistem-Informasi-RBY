@@ -162,12 +162,12 @@
             </td>
             
             <!-- AKSI -->
-            <td style="padding:10px;">
+            <td style="padding:10px; display: flex; align-items: center; gap: 5px;">
                 <button onclick="showEditModal({{ $rab->id }})" 
                         style="background:#17a2b8; color:white; padding:6px 12px; border:none; border-radius:4px; cursor:pointer; margin-right:5px;">
                     <i class="fas fa-edit"></i>
                 </button>
-                <button onclick="showDeleteModal({{ $rab->id }}, '{{ $rab->no_ppjp }}')" 
+                <button onclick="showDeleteModal({{ $rab->id }})" 
                         style="background:#dc3545; color:white; padding:6px 12px; border:none; border-radius:4px; cursor:pointer;">
                     <i class="fas fa-trash"></i>
                 </button>
@@ -188,7 +188,7 @@
         box-shadow:0 4px 12px rgba(0,0,0,0.2);">
 
         <h2 style="margin-bottom:15px;">Konfirmasi Hapus</h2>
-        <p>Apakah Anda yakin ingin menghapus RAB dengan Nomor PPJP <strong id="noPPJP"></strong>?</p>
+        <p>Apakah Anda yakin ingin menghapus RAB ini?</p>
         <p style="color:red;">Tindakan ini tidak dapat dibatalkan!</p>
 
         <form id="formHapus" method="POST">
@@ -219,7 +219,8 @@ function showEditModal(id) {
     fetch(`/superadmin/rab/${id}/edit`)
         .then(response => response.json())
         .then(data => {
-            // status
+            // Isi form dengan data yang ada
+            document.getElementById('editId').value = data.id;
             document.getElementById('editStatus').value = data.status;
             
             // Set action form
@@ -235,8 +236,7 @@ function showEditModal(id) {
 }
 
 // Fungsi untuk menampilkan modal hapus
-function showDeleteModal(id, noPPJP) {
-    document.getElementById('noPPJP').textContent = noPPJP;
+function showDeleteModal(id) {
     document.getElementById('formHapus').action = `/superadmin/rab/${id}/delete`;
     document.getElementById('modalHapus').style.display = 'block';
 }
