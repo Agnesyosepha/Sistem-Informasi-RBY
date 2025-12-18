@@ -250,15 +250,15 @@
                                     <div class="file-section" style="margin-top: 15px;">
                                         <h5>File Revisi:</h5>
                                         <div class="file-upload-container">
-                                            <input type="file" id="file-revisi-tahapan{{ $i }}-{{ $tugas->id }}" class="file-input" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" data-revision="true" {{ $hasRevisionFile ? 'disabled' : '' }}>
-                                                <label for="file-revisi-tahapan{{ $i }}-{{ $tugas->id }}" class="file-label" {{ $hasRevisionFile ? 'style="pointer-events: none; opacity: 0.6;"' : '' }}>
+                                            <input type="file" id="file-revisi-tahapan{{ $i }}-{{ $tugas->id }}" class="file-input" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" data-revision="true" {{ $hasRevisionFile || $isLocked ? 'disabled' : '' }}>
+                                                <label for="file-revisi-tahapan{{ $i }}-{{ $tugas->id }}" class="file-label {{ $isLocked ? 'disabled' : '' }}" {{ $hasRevisionFile || $isLocked ? 'style="pointer-events: none; opacity: 0.6;"' : '' }}>
                                                     <i class="fas fa-upload"></i> Pilih File Revisi
                                                 </label>
                                                 <span class="file-name" id="file-name-revisi-tahapan{{ $i }}-{{ $tugas->id }}">
-                                                    {{ $hasRevisionFile ? $revisionFile->filename : 'Belum ada file revisi' }}
+                                                    {{ $hasRevisionFile ? $revisionFile->filename : ($isLocked ? 'Tahapan Terkunci' : 'Belum ada file revisi') }}
                                                 </span>
-                                                <button class="upload-btn" id="upload-btn-revisi-tahapan{{ $i }}-{{ $tugas->id }}" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" data-revision="true" {{ $hasRevisionFile ? 'disabled' : '' }}>
-                                                    {{ $hasRevisionFile ? 'File Revisi Terupload' : 'Upload Revisi' }}
+                                                <button class="upload-btn" id="upload-btn-revisi-tahapan{{ $i }}-{{ $tugas->id }}" data-tahapan="{{ $i }}" data-tugas="{{ $tugas->id }}" data-revision="true" {{ $hasRevisionFile || $isLocked ? 'disabled' : '' }}>
+                                                    {{ $hasRevisionFile ? 'File Revisi Terupload' : ($isLocked ? 'Tahapan Terkunci' : 'Upload Revisi') }}
                                                 </button>
                                                 
                                                 <!-- Tambahkan tombol download untuk revisi tahapan 3 -->
@@ -883,33 +883,66 @@ function unlockNextStage(tugasId, currentTahapanId) {
         // Remove locked class
         nextStageItem.classList.remove('locked');
         
-        // Get all elements for next stage
+        // Get all elements for next stage main file
         const nextStageFileInput = document.getElementById(`file-tahapan${nextStageId}-${tugasId}`);
         const nextStageUploadBtn = document.getElementById(`upload-btn-tahapan${nextStageId}-${tugasId}`);
         const nextStageLabel = document.querySelector(`label[for="file-tahapan${nextStageId}-${tugasId}"]`);
         const nextStageFileName = document.getElementById(`file-name-tahapan${nextStageId}-${tugasId}`);
         
-        // Enable file input
+        // Enable main file input
         if (nextStageFileInput) {
             nextStageFileInput.disabled = false;
         }
         
-        // Enable and update upload button
+        // Enable and update main upload button
         if (nextStageUploadBtn) {
             nextStageUploadBtn.disabled = false;
             nextStageUploadBtn.textContent = 'Upload';
         }
         
-        // Enable file label
+        // Enable main file label
         if (nextStageLabel) {
             nextStageLabel.classList.remove('disabled');
             nextStageLabel.style.pointerEvents = 'auto';
             nextStageLabel.style.opacity = '1';
         }
         
-        // Update file name display
+        // Update main file name display
         if (nextStageFileName) {
             nextStageFileName.textContent = 'Belum ada file';
+        }
+        
+        // Now handle revision files for the same stage
+        // Only unlock revision files if it's not stage 15 (which doesn't have revision)
+        if (nextStageId < 15) {
+            // Get all elements for next stage revision file
+            const nextStageRevisionFileInput = document.getElementById(`file-revisi-tahapan${nextStageId}-${tugasId}`);
+            const nextStageRevisionUploadBtn = document.getElementById(`upload-btn-revisi-tahapan${nextStageId}-${tugasId}`);
+            const nextStageRevisionLabel = document.querySelector(`label[for="file-revisi-tahapan${nextStageId}-${tugasId}"]`);
+            const nextStageRevisionFileName = document.getElementById(`file-name-revisi-tahapan${nextStageId}-${tugasId}`);
+            
+            // Enable revision file input
+            if (nextStageRevisionFileInput) {
+                nextStageRevisionFileInput.disabled = false;
+            }
+            
+            // Enable and update revision upload button
+            if (nextStageRevisionUploadBtn) {
+                nextStageRevisionUploadBtn.disabled = false;
+                nextStageRevisionUploadBtn.textContent = 'Upload Revisi';
+            }
+            
+            // Enable revision file label
+            if (nextStageRevisionLabel) {
+                nextStageRevisionLabel.classList.remove('disabled');
+                nextStageRevisionLabel.style.pointerEvents = 'auto';
+                nextStageRevisionLabel.style.opacity = '1';
+            }
+            
+            // Update revision file name display
+            if (nextStageRevisionFileName) {
+                nextStageRevisionFileName.textContent = 'Belum ada file revisi';
+            }
         }
         
         // Remove locked notice if exists
@@ -1230,4 +1263,3 @@ function showNotification(message, type) {
 }
 </style>
 @endsection
-
