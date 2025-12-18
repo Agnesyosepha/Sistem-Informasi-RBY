@@ -90,6 +90,44 @@
         </div>
     </div>
 
+    <!-- Modal Edit Status -->
+    <div id="modalEdit" style="
+        display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%;
+        background:rgba(0,0,0,0.5); padding-top:60px;">
+        
+        <div style="
+            background:white; margin:auto; padding:20px; border-radius:10px; width:40%;
+            box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+
+            <h2 style="margin-bottom:15px;">Edit Status Surat Tugas</h2>
+
+            <form id="formEdit" method="POST">
+                @csrf
+                @method('PUT')
+                
+                <input type="hidden" name="id" id="editId">
+                
+                <label>Status</label>
+                <select name="status" id="editStatus"
+                    style="width:100%; padding:8px; margin-bottom:15px; border:1px solid #ccc; border-radius:5px;">
+                    <option value="survey">Survey</option>
+                    <option value="pending">Pending</option>
+                </select>
+                
+                <button type="submit"
+                    style="background:#007BFF; color:white; padding:10px 18px; border:none; border-radius:6px; cursor:pointer;">
+                    Simpan
+                </button>
+
+                <button type="button"
+                    onclick="document.getElementById('modalEdit').style.display='none'"
+                    style="background:#6c757d; color:white; padding:10px 18px; border:none; border-radius:6px; cursor:pointer; margin-left:10px;">
+                    Batal
+                </button>
+            </form>
+        </div>
+    </div>
+
     <!-- Tabel Surat Tugas -->
     <div class="dashboard-card" style="margin-top:30px;">
         <table style="width:100%; border-collapse: collapse; margin-top:15px;">
@@ -120,16 +158,18 @@
                         <td style="padding:10px;">{{ $st->nama_penilai }}</td>
                         <td style="padding:10px;">{{ $st->adendum ?? '-' }}</td>
                         <td style="padding:10px; text-align:center;">
-                            <select 
-                                onchange="updateStatus({{ $st->id }}, this)" 
-                                style="padding:6px; border-radius:5px; border:1px solid #ccc; font-weight:600;"
-                                class="status-select"
-                                data-status="{{ $st->status }}">
-                                <option value="survey" {{ $st->status == 'survey' ? 'selected' : '' }}>Survey</option>
-                                <option value="pending" {{ $st->status == 'pending' ? 'selected' : '' }}>Pending</option>
-                            </select>
+                            <span style="
+                                padding:5px 10px; border-radius:5px; font-weight:600;
+                                {{ $st->status == 'survey' ? 'background:#e3f2fd; color:#1976d2;' : 'background:#fff3e0; color:#f57c00;' }}
+                            ">
+                                {{ ucfirst($st->status) }}
+                            </span>
                         </td>
                         <td style="padding:10px; text-align:center;">
+                            <button onclick="showEditModal({{ $st->id }}, '{{ $st->status }}')" 
+                                    style="background:#007BFF; color:white; padding:6px 12px; border:none; border-radius:4px; cursor:pointer; margin-right:5px;">
+                                <i class="fas fa-edit"></i>
+                            </button>
                             <button onclick="showDeleteModal({{ $st->id }})" 
                                     style="background:#dc3545; color:white; padding:6px 12px; border:none; border-radius:4px; cursor:pointer;">
                                 <i class="fas fa-trash"></i>
@@ -177,60 +217,31 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-function applyColor(selectElement) {
-    const value = selectElement.value;
-    if (value === 'survey') selectElement.style.color = 'blue';
-    else if (value === 'pending') selectElement.style.color = 'orange';
-}
-
-// Inisialisasi warna saat load
-document.querySelectorAll('.status-select').forEach(select => applyColor(select));
-
-function updateStatus(id, selectElement) {
-    applyColor(selectElement);
-
-    fetch(`/superadmin/admin/surat-tugas/update-status/${id}`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRF-TOKEN": "{{ csrf_token() }}"
-        },
-        body: JSON.stringify({
-            status: selectElement.value
-        })
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.message) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil!',
-                text: selectElement.value === 'survey'
-                    ? 'Status diperbarui dan notifikasi telah dikirim ke surveyor.'
-                    : 'Status berhasil diperbarui.',
-                timer: 2000,
-                showConfirmButton: false
-            });
-
-            setTimeout(() => {
-                window.location.reload();
-            }, 2000);
-        }
-    })
-    .catch(err => {
-        Swal.fire({
-            icon: 'error',
-            title: 'Gagal!',
-            text: 'Terjadi kesalahan saat memperbarui status.'
-        });
-        console.error(err);
-    });
+// Fungsi untuk menampilkan modal edit
+function showEditModal(id, status) {
+    document.getElementById('editId').value = id;
+    document.getElementById('editStatus').value = status;
+    document.getElementById('formEdit').action = `/superadmin/admin/surat-tugas/${id}`;
+    document.getElementById('modalEdit').style.display = 'block';
 }
 
 // Fungsi untuk menampilkan modal hapus
 function showDeleteModal(id) {
     document.getElementById('formHapus').action = `/superadmin/admin/surat-tugas/${id}`;
     document.getElementById('modalHapus').style.display = 'block';
+}
+
+// Menutup modal saat klik di luar area modal
+window.onclick = function(event) {
+    if (event.target == document.getElementById('modalTambah')) {
+        document.getElementById('modalTambah').style.display = 'none';
+    }
+    if (event.target == document.getElementById('modalEdit')) {
+        document.getElementById('modalEdit').style.display = 'none';
+    }
+    if (event.target == document.getElementById('modalHapus')) {
+        document.getElementById('modalHapus').style.display = 'none';
+    }
 }
 </script>
 @endsection
