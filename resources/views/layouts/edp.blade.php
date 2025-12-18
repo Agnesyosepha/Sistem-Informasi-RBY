@@ -4,7 +4,7 @@
 
 @section('content')
     <h1><i class="fas fa-desktop"></i> Dashboard EDP</h1>
-    <p>Ringkasan aktivitas Electronic Data Processing (EDP).</p>
+    <p style="font-family: 'Great Vibes', cursive;">Ringkasan aktivitas Electronic Data Processing (EDP).</p>
 
     <div class="dashboard-cards">
         {{-- Card "Data Aktif" sudah dihapus --}}

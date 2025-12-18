@@ -4,7 +4,7 @@
 
 @section('content')
     <h1><i class="fas fa-file-invoice-dollar"></i> Dashboard Finance</h1>
-    <p>Data - data keuangan yang perlu divalidasi.</p>
+    <p style="font-family: 'Great Vibes', cursive;">Data - data keuangan yang perlu divalidasi.</p>
 
     <div class="dashboard-cards">
         <a href="{{ route('finance.invoice') }}" style="text-decoration:none; color:inherit;">

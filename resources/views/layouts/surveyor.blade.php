@@ -5,7 +5,7 @@
 @section('content')
 
     <h1><i class="fas fa-clipboard-list"></i> Dashboard Surveyor</h1>
-    <p>Ringkasan aktivitas surveyor.</p>
+    <p style="font-family: 'Great Vibes', cursive;">Ringkasan aktivitas surveyor.</p>
 
     <div class="dashboard-cards">
        

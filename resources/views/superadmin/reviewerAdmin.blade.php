@@ -5,7 +5,7 @@
 @section('content')
 
 <h1><i class="fas fa-file-signature"></i> Reviewer Admin</h1>
-    <p>Ringkasan aktivitas Reviewer.</p>
+    <p style="font-family: 'Great Vibes', cursive;">Ringkasan aktivitas Reviewer.</p>
 
     <div class="dashboard-cards">
 
