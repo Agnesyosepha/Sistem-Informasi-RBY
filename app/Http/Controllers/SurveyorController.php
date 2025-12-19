@@ -83,41 +83,40 @@ class SurveyorController extends Controller
 
     public function updateJadwal(Request $request, $id)
     {
-        $jadwal = JadwalSurveyor::findOrFail($id);
-
-    $jadwal->update([
-        'no_ppjp' => $request->no_ppjp,
-        'tanggal_survey' => $request->tanggal_survey,
-        'lokasi' => $request->lokasi,
-        'objek_penilaian' => $request->objek_penilaian,
-        'pemberi_tugas' => $request->pemberi_tugas,
-        'nama_penilai' => $request->nama_penilai,
-        'adendum' => $request->adendum,
-        'status' => $request->status,
+        $request->validate([
+            'status' => 'required|in:Survey,Selesai',
         ]);
 
-    // Jika status diubah menjadi "Selesai", tambahkan ke tabel laporan_jadwals
-    if ($request->status == 'Selesai') {
-        // Cek apakah data sudah ada di laporan_jadwals untuk menghindari duplikasi
-        $existingLaporan = LaporanJadwal::where('jadwal_id', $jadwal->id)->first();
-        
-        if (!$existingLaporan) {
-            LaporanJadwal::create([
-                'jadwal_id' => $jadwal->id, // Menyimpan ID jadwal asli untuk referensi
-                'no_ppjp' => $jadwal->no_ppjp,
-                'tanggal_survey' => $jadwal->tanggal_survey,
-                'lokasi' => $jadwal->lokasi,
-                'objek_penilaian' => $jadwal->objek_penilaian,
-                'pemberi_tugas' => $jadwal->pemberi_tugas,
-                'nama_penilai' => $jadwal->nama_penilai,
-                'adendum' => $jadwal->adendum,
-                'status' => $jadwal->status,
+        $jadwal = JadwalSurveyor::findOrFail($id);
+
+        // update STATUS saja
+        $jadwal->status = $request->status;
+        $jadwal->save();
+
+        // Jika status menjadi Selesai → masuk laporan
+        if ($request->status === 'Selesai') {
+
+            $existingLaporan = LaporanJadwal::where('jadwal_id', $jadwal->id)->first();
+
+            if (!$existingLaporan) {
+                LaporanJadwal::create([
+                    'jadwal_id' => $jadwal->id,
+                    'no_ppjp' => $jadwal->no_ppjp,
+                    'tanggal_survey' => $jadwal->tanggal_survey,
+                    'lokasi' => $jadwal->lokasi,
+                    'objek_penilaian' => $jadwal->objek_penilaian,
+                    'pemberi_tugas' => $jadwal->pemberi_tugas,
+                    'nama_penilai' => $jadwal->nama_penilai,
+                    'adendum' => $jadwal->adendum,
+                    'status' => 'Selesai',
                 ]);
             }
         }
 
-        return redirect()->route('superadmin.jadwal.index')->with('success', 'Jadwal berhasil diperbarui');
+        return redirect()->route('superadmin.jadwal.index')
+            ->with('success', 'Status jadwal berhasil diperbarui');
     }
+
 
 
 // Tim
